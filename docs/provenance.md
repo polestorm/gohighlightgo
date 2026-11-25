@@ -1,7 +1,6 @@
 # Rodowód kodu
 
-`gohighlightgo` powstaje od zera. Zasada jest robocza do potwierdzenia przez właściciela
-(`adr/open-questions.md`, punkt 4); do tego czasu obowiązuje w tej postaci.
+`gohighlightgo` powstaje od zera. Zasada potwierdzona przez właściciela 2026-11-25 (ADR 0002, punkt 8).
 
 ## Źródła, z których piszemy
 

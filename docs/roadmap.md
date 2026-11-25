@@ -3,9 +3,9 @@
 | Etap | Zakres | Stan |
 |---|---|---|
 | 0 | szkielet: moduł, licencja, ADR 0001, rodowód, punkt wyjścia pomiarów | gotowy (2026-11-25) |
-| 1 | silnik tabelowy, klasy, `HTML`, `Languages`, testy H2–H4; pierwszy język: Go | nie rozpoczęty |
-| 2 | języki z tabeli: C, C++, Java, JavaScript, TypeScript, Python, Rust, SQL, JSON | nie rozpoczęty |
-| 3 | języki z własnym kodem: HTML/XML, CSS, YAML, TOML, powłoka, diff, Markdown, Pascal | nie rozpoczęty |
+| 1 | silnik tabelowy, klasy, `HTML`, `Languages`, testy H2–H4; pierwszy język: Go | gotowy (2026-11-25; ADR 0002) |
+| 2 | języki z tabeli: C, C++, Java, JavaScript, TypeScript, Python, Rust, SQL, JSON, Pascal/Delphi (decyzja właściciela 2026-11-25) | nie rozpoczęty |
+| 3 | języki z własnym kodem: HTML/XML, CSS, YAML, TOML, powłoka, diff, Markdown | nie rozpoczęty |
 | 4 | `highlight.CSS` (jasny i ciemny), dołączenie u odbiorców pod znacznikiem `highlight` (`gopeekgo`, `gomdgo/cmd/gomdgo-mermaid`), pomiar H5 | nie rozpoczęty |
 | 5 | `tools/compare`: porównanie z odniesieniem (H6), tabela w `README.md` | nie rozpoczęty |
 | 6 | fuzzing, pierwsze wydanie | nie rozpoczęty |

@@ -1,7 +1,7 @@
 # Wymagania
 
 Każde wymaganie ma identyfikator `PREFIKS-nnn`. Testy i pliki korpusu odwołują się do nich przez
-`REQ: PREFIKS-nnn`; test `TestRequirementsCovered` sprawdzi pokrycie w obie strony (do napisania w etapie 1).
+`REQ: PREFIKS-nnn`; test `TestRequirementsCovered` sprawdza pokrycie w obie strony.
 
 | Prefiks | Plik | Zakres |
 |---|---|---|
@@ -10,5 +10,9 @@ Każde wymaganie ma identyfikator `PREFIKS-nnn`. Testy i pliki korpusu odwołuj�
 | `SAFE` | `safety.md` | bezpieczeństwo wyniku (H2, H3) |
 | `DET` | `determinism.md` | powtarzalność, czas liniowy, odporność (H4) |
 | `LANG` | `languages/<język>.md` | co kolorujemy w danym języku, ze wskazaniem rozdziału jego specyfikacji |
+
+Numeracja `LANG` jest wspólna dla wszystkich języków: nowy język zaczyna od następnej wolnej dziesiątki
+(Go: `LANG-001`–`LANG-009`, następny język od `LANG-011`). Każdy język z `Languages()` musi mieć plik
+w `languages/` nazwany jego nazwą główną (`TestLanguageRequirements`).
 
 Pliki powstają razem z etapami w `../docs/roadmap.md`.

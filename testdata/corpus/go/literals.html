@@ -1,0 +1,29 @@
+<span class="hl-com">// REQ: LANG-004 LANG-005 LANG-006 LANG-007</span>
+<span class="hl-kw">package</span> literals
+
+<span class="hl-kw">var</span> ints <span class="hl-op">=</span> []<span class="hl-type">int</span>{<span class="hl-num">0</span>, <span class="hl-num">42</span>, <span class="hl-num">4_2</span>, <span class="hl-num">0600</span>, <span class="hl-num">0_600</span>, <span class="hl-num">0o600</span>, <span class="hl-num">0O600</span>, <span class="hl-num">0xBadFace</span>, <span class="hl-num">0xBad_Face</span>, <span class="hl-num">0x_67_7a_2f_cc_40_c6</span>, <span class="hl-num">0b1011</span>, <span class="hl-num">0B_1_0</span>}
+
+<span class="hl-kw">var</span> floats <span class="hl-op">=</span> []<span class="hl-type">float64</span>{<span class="hl-num">0.</span>, <span class="hl-num">72.40</span>, <span class="hl-num">072.40</span>, <span class="hl-num">2.71828</span>, <span class="hl-num">1.e+0</span>, <span class="hl-num">6.67428e-11</span>, <span class="hl-num">1E6</span>, <span class="hl-num">.25</span>, <span class="hl-num">.12345E+5</span>, <span class="hl-num">1_5.</span>, <span class="hl-num">0.15e+0_2</span>, <span class="hl-num">0x1p-2</span>, <span class="hl-num">0x2.p10</span>, <span class="hl-num">0x1.Fp+0</span>, <span class="hl-num">0X.8p-0</span>, <span class="hl-num">0X_1FFFP-16</span>}
+
+<span class="hl-kw">var</span> imaginary <span class="hl-op">=</span> []<span class="hl-type">complex128</span>{<span class="hl-num">0i</span>, <span class="hl-num">0123i</span>, <span class="hl-num">0o123i</span>, <span class="hl-num">0xabci</span>, <span class="hl-num">0.i</span>, <span class="hl-num">2.71828i</span>, <span class="hl-num">1.e+0i</span>, <span class="hl-num">6.67428e-11i</span>, <span class="hl-num">1E6i</span>, <span class="hl-num">.25i</span>, <span class="hl-num">.12345E+5i</span>, <span class="hl-num">0x1p-2i</span>}
+
+<span class="hl-kw">var</span> runes <span class="hl-op">=</span> []<span class="hl-type">rune</span>{<span class="hl-str">'a'</span>, <span class="hl-str">'ä'</span>, <span class="hl-str">'本'</span>, <span class="hl-str">'</span><span class="hl-esc">\t</span><span class="hl-str">'</span>, <span class="hl-str">'</span><span class="hl-esc">\000</span><span class="hl-str">'</span>, <span class="hl-str">'</span><span class="hl-esc">\007</span><span class="hl-str">'</span>, <span class="hl-str">'</span><span class="hl-esc">\377</span><span class="hl-str">'</span>, <span class="hl-str">'</span><span class="hl-esc">\x07</span><span class="hl-str">'</span>, <span class="hl-str">'</span><span class="hl-esc">\xff</span><span class="hl-str">'</span>, <span class="hl-str">'</span><span class="hl-esc">\u12e4</span><span class="hl-str">'</span>, <span class="hl-str">'</span><span class="hl-esc">\U00101234</span><span class="hl-str">'</span>, <span class="hl-str">'</span><span class="hl-esc">\'</span><span class="hl-str">'</span>, <span class="hl-str">'</span><span class="hl-esc">\\</span><span class="hl-str">'</span>}
+
+<span class="hl-kw">var</span> strs <span class="hl-op">=</span> []<span class="hl-type">string</span>{
+	<span class="hl-str">""</span>,
+	<span class="hl-str">"Hello, world!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>,
+	<span class="hl-str">"日本語"</span>,
+	<span class="hl-str">"</span><span class="hl-esc">\u65e5</span><span class="hl-str">本</span><span class="hl-esc">\U00008a9e</span><span class="hl-str">"</span>,
+	<span class="hl-str">"</span><span class="hl-esc">\xff\u00FF</span><span class="hl-str">"</span>,
+	<span class="hl-str">"quote </span><span class="hl-esc">\"</span><span class="hl-str"> and backslash </span><span class="hl-esc">\\</span><span class="hl-str"> and </span><span class="hl-esc">\q</span><span class="hl-str">"</span>,
+	<span class="hl-str">`raw \n stays`</span>,
+	<span class="hl-str">`multi</span>
+<span class="hl-str">line raw string`</span>,
+}
+
+<span class="hl-kw">var</span> x <span class="hl-op">=</span> a[<span class="hl-num">1</span><span class="hl-op">:</span><span class="hl-num">2</span>] <span class="hl-op">+</span> b.c <span class="hl-op">-</span> <span class="hl-num">3.0</span><span class="hl-op">*</span>d
+
+<span class="hl-com">// Comments do not nest: /* inside a line comment is plain text.</span>
+<span class="hl-com">/* outer /* inner */</span> x <span class="hl-op">:=</span> <span class="hl-num">1</span> <span class="hl-com">/* after */</span>
+<span class="hl-com">/* multi-line</span>
+<span class="hl-com">block comment */</span>

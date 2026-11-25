@@ -2,8 +2,8 @@
 
 Syntax highlighting for source code in pure Go: code in, HTML `<span>` elements out.
 
-Status: **skeleton**. Nothing is implemented yet; this repository holds the scope, the plan and the
-measurements to beat. See `docs/adr/0001-scope-and-acceptance.md` and `docs/roadmap.md`.
+Status: **early development**. The engine and the first language (Go) work; see `docs/roadmap.md` for the
+remaining stages and `docs/adr/0001-scope-and-acceptance.md` for the scope.
 
 ## Goals
 
@@ -17,14 +17,14 @@ measurements to beat. See `docs/adr/0001-scope-and-acceptance.md` and `docs/road
 - **Independent of any Markdown parser.** The library does not import
   [gomdgo](https://github.com/polestorm/gomdgo); a caller connects the two in a few lines.
 
-## Planned API
+## API
 
 ```go
 import "github.com/polestorm/gohighlightgo/highlight"
 
 out, ok := highlight.HTML("go", src) // escaped code with <span class="…">; ok is false for an unknown language
 names := highlight.Languages()       // names and aliases: "go", "golang", "sh", "bash", …
-css := highlight.CSS                 // colours for the classes, light and dark
+css := highlight.CSS                 // colours for the classes, light and dark (planned, stage 4)
 ```
 
 ## Use with gomdgo

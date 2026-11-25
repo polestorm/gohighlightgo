@@ -1,7 +1,34 @@
 # Testy i pomiary
 
-Testów jeszcze nie ma (etap 0). Układ wzorujemy na `../gomdgo/docs/testing.md`: korpus w `testdata/`,
-wymagania w `requirements/`, tabela datowanych pomiarów poniżej.
+Układ jak w `../gomdgo/docs/testing.md`: korpus w `testdata/`, wymagania w `requirements/`, tabela datowanych
+pomiarów na końcu.
+
+## Warstwy
+
+| Warstwa | Gdzie | Co sprawdza |
+|---|---|---|
+| wymagania | `requirements/*.md`, `requirements/languages/*.md`, `TestRequirementsCovered`, `TestLanguageRequirements` | każde wymaganie ma test albo plik korpusu; każde odwołanie `REQ:` wskazuje istniejące wymaganie; każdy język ma plik wymagań i katalog korpusu (H1) |
+| korpus | `testdata/corpus/<język>/*.txt` + `*.html`, `TestCorpus` | wynik co do bajta; język to nazwa katalogu; pierwszy wiersz pliku to komentarz z `REQ:`; wzorce przepisuje `go test -update ./highlight`, różnicę ogląda się w `git diff`. Rozszerzenie `.txt`, żeby `gofmt`, `go vet` i inne narzędzia nie traktowały korpusu jak kodu |
+| odwracalność | `TestRoundTrip` | zdjęcie znaczników i trzech odwołań znakowych daje wejście po zamianie niepoprawnego UTF-8 (H2) |
+| bezpieczeństwo | `TestSafeOutput`, `TestCheckSafeRejects` | sprawdzian `checkSafe` niezależny od biblioteki (własna kopia listy klas): tylko `<span class="hl-…">` i `</span>`, bez zagnieżdżeń, pustych elementów i `\n` w elemencie, poprawny UTF-8 (H3); drugi test pilnuje, że sprawdzian odrzuca złe wyniki |
+| API | `TestHTML`, `TestLanguages`, `TestEscapeOnly`, `TestInvalidUTF8`, `ExampleHTML` | nazwy bez rozróżniania wielkości liter, język nieznany, lista nazw, ucieczka, zamiana na U+FFFD |
+| powtarzalność | `TestDeterministic` | 8 gorutyn po 20 wywołań daje ten sam wynik (warto uruchamiać z `-race`) |
+| patologiczne | `TestPathological`, lista `pathological` | czas procesora dla dwóch rozmiarów różniących się 16 razy, próg 96 (jak w `gomdgo`); `go test -short` pomija ten test (H4) |
+| odporność | `FuzzHTML` | dla każdego języka: bez paniki, `checkSafe`, odwracalność, powtarzalność; ziarna: korpus, `trickyInputs`, małe wersje przypadków patologicznych |
+| wydajność | `BenchmarkCorpus` | korpus każdego języka powtórzony do około 1 MB |
+
+`TestPathological` od razu się przydał: pierwsza wersja szukała końca komentarza przez
+`strings.Index(string(src[j:]), …)`, a ta konwersja kopiuje resztę danych przy każdym komentarzu. Seria `/*/*/*…`
+dała 2,2 ms dla 20 KB i 833 ms dla 320 KB (czynnik 384 przy progu 96). Po zamianie na `bytes.Index` test przechodzi.
+
+## Fuzzing
+
+```sh
+go test -run xxx -fuzz FuzzHTML -fuzztime 10m ./highlight
+```
+
+Próg przed wydaniem: 24 h na kandydacie do wydania (ADR 0002, punkt 9). Wejścia, które wywołały błąd, Go zapisuje
+w `highlight/testdata/fuzz/FuzzHTML/`; trafiają do repozytorium jako testy regresji.
 
 ## Punkt wyjścia (przed kolorowaniem)
 
@@ -47,3 +74,4 @@ nie rysuje przy konwersji. Porównanie samego kolorowania wymaga osobnego pomiar
 | Data | Commit | Języki | H2–H4 | Binarka `gomdgo-mermaid` bez / z | Czas bez / z | Uwagi |
 |---|---|--:|---|---|---|---|
 | 2026-11-25 | szkielet | 0 | brak | 8 021 346 B / — | 4,2 ms / — (24 KB) | punkt wyjścia |
+| 2026-11-25 | etap 1 (na `948e5c4`) | 1 (Go) | testy przechodzą; fuzzing 2 min, 11,0 mln wywołań, bez błędu | — | — | samo kolorowanie: 124 MB/s, 2 alokacje na wywołanie (`BenchmarkCorpus/go`, korpus Go powtórzony do 1 MB, mediana nieliczona, 1 przebieg `-benchtime 2s`); wynik 4–5 razy dłuższy od wejścia; 1 120 wierszy Go w `highlight/`, z czego testy około połowy; pomiar u odbiorców w etapie 4 |

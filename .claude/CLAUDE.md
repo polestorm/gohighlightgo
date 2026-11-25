@@ -5,8 +5,9 @@ zapisany bezpiecznie w HTML, z elementami `<span class="…">`. Cele: zero zale�
 wynik bezpieczny z konstrukcji, powtarzalny co do bajta, czas liniowy także dla danych złośliwych, mały kod.
 Projekt jest agnostyczny wobec odbiorców: **nie importuje `gomdgo`** ani żadnego innego parsera Markdown.
 
-Stan (2026-11-25): **szkielet**. Jest moduł, licencja, dokumenty i pusty pakiet `highlight`. Kodu kolorowania
-jeszcze nie ma. Zacznij od `README.md`, potem `docs/adr/0001-scope-and-acceptance.md`, `docs/roadmap.md`,
+Stan (2026-11-25): **etap 1 gotowy**. Silnik tabelowy, `HTML`, `Languages` i pierwszy język (Go) z korpusem,
+wymaganiami i testami H1–H4; postać wyniku ustala ADR 0002. Następny jest etap 2. Zacznij od `README.md`,
+potem `docs/adr/0001-scope-and-acceptance.md`, `docs/adr/0002-engine-and-output.md`, `docs/roadmap.md`,
 `docs/provenance.md`, `docs/notes-from-gomdgo.md` i `docs/adr/open-questions.md`.
 
 ## Po co i w jakim układzie

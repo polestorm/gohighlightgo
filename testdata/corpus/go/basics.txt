@@ -1,0 +1,64 @@
+// REQ: LANG-001 LANG-002 LANG-003 LANG-008 LANG-009 API-001 OUT-002 OUT-003
+// Package demo shows the basics.
+package demo
+
+import (
+	"fmt"
+	"strings"
+)
+
+/* A block comment
+   over two lines. */
+type Point struct {
+	X, Y int
+	Name string
+}
+
+func (p *Point) Scale(k float64) error {
+	if p == nil || k < 0 {
+		return fmt.Errorf("bad scale %v", k)
+	}
+	p.X = int(float64(p.X) * k)
+	p.Y *= 2
+	return nil
+}
+
+func Equal[T comparable](a, b T) bool { return a == b }
+
+func main() {
+	pts := make([]Point, 0, 4)
+	pts = append(pts, Point{X: 1, Y: 2})
+	for i, p := range pts {
+		go func() { defer recover(); _ = p.Scale(1.5) }()
+		fmt.Println(i, len(pts), strings.ToUpper (p.Name))
+	}
+	var ch chan<- struct{}
+	select {
+	case ch <- struct{}{}:
+	default:
+	}
+	switch x := any(true); x.(type) {
+	case bool:
+		fallthrough
+	default:
+		break
+	}
+	const c = iota
+	goto end
+end:
+	var m map[string]interface{}
+	_, _ = m, c
+	clear(m)
+	println(min(1, 2), max(3, 4), cap(pts), new(uintptr), real(complex(1, 2)), imag(2i))
+	copy(pts, pts)
+	delete(m, "k")
+	close(make(chan error))
+	if false || true {
+		panic(nil)
+	}
+	type T = rune
+	var _ = T(0) &^ 3
+	var _ byte = ^uint8(1) % 7
+	print(^0 | 1<<2 >> 1)
+	continue
+}

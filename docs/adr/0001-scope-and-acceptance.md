@@ -1,8 +1,8 @@
 # 0001 Zakres, API i kryteria przyjęcia
 
-Status: robocza · 2026-11-25 (polecenie właściciela: osobny projekt, agnostyczny wobec `gomdgo`, łatwy do
-dołączenia, np. przełącznikiem przy kompilacji; licencja Apache 2.0). Punkty oznaczone „do potwierdzenia”
-są w `open-questions.md`.
+Status: przyjęta · 2026-11-25 (polecenie właściciela: osobny projekt, agnostyczny wobec `gomdgo`, łatwy do
+dołączenia, np. przełącznikiem przy kompilacji; licencja Apache 2.0). Lista klas, zapis niepoprawnego UTF-8
+i próg fuzzingu rozstrzygnięte w ADR 0002; lista języków (punkt 2) czeka w `open-questions.md`.
 
 ## Kontekst
 
@@ -51,7 +51,7 @@ const CSS = "…"
 
 Nazwa języka jest porównywana bez rozróżniania wielkości liter. Klasy mają stały przedrostek (propozycja `hl-`)
 i stałą, krótką listę: `hl-kw` (słowo kluczowe), `hl-type`, `hl-builtin`, `hl-str`, `hl-esc`, `hl-num`,
-`hl-com`, `hl-op`, `hl-fn`, `hl-tag`, `hl-attr`, `hl-ins`, `hl-del`, `hl-meta`. Lista do potwierdzenia.
+`hl-com`, `hl-op`, `hl-fn`, `hl-tag`, `hl-attr`, `hl-ins`, `hl-del`, `hl-meta`. Potwierdzona w ADR 0002.
 
 ### Dołączanie (agnostyczność)
 
@@ -68,9 +68,9 @@ i stałą, krótką listę: `hl-kw` (słowo kluczowe), `hl-type`, `hl-builtin`, 
 | # | Kryterium |
 |---|---|
 | H1 | każdy obsługiwany język ma plik korpusu z oczekiwanym wynikiem i wymaganie w `requirements/` |
-| H2 | zdjęcie znaczników i odwrócenie ucieczek z wyniku daje wejście bajt w bajt (dla każdego wejścia, także niepoprawnego UTF-8: do potwierdzenia, jak je zapisujemy) |
-| H3 | w wyniku występują wyłącznie `<span class="K">` i `</span>` dla K ze stałej listy, poprawnie zagnieżdżone |
-| H4 | czas liniowy dla danych złośliwych; fuzzing bez paniki (długość przebiegu ustalimy przed pierwszym wydaniem) |
+| H2 | zdjęcie znaczników i odwrócenie ucieczek z wyniku daje wejście bajt w bajt (dla każdego wejścia; niepoprawny UTF-8 zamieniony na U+FFFD, ADR 0002) |
+| H3 | w wyniku występują wyłącznie `<span class="K">` i `</span>` dla K ze stałej listy, w parach, bez zagnieżdżeń (ADR 0002) |
+| H4 | czas liniowy dla danych złośliwych; fuzzing bez paniki (24 h na kandydacie do wydania, ADR 0002) |
 | H5 | koszt u odbiorcy zmierzony przed i po: czas konwersji, pamięć, rozmiar binarki `gomdgo-mermaid` i rozszerzenia `gopeekgo` budowanych ze znacznikiem `highlight` i bez |
 | H6 | porównanie z odniesieniem (`highlight`, `chroma`) jako czarną skrzynką: rozmiar, czas, liczba języków |
 
