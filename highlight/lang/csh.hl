@@ -1,0 +1,13 @@
+# csh and tcsh: tcsh(1) manual page (6.24), Lexical structure and Builtin commands; requirements/languages/csh.md
+name     csh tcsh
+
+keyword  if then else endif foreach end while switch case breaksw endsw default goto break continue
+keyword  set setenv unset unsetenv alias unalias source exit shift
+builtin  echo cd pwd printf history jobs time umask
+
+line-comment   #
+string   " "  : escapes interp=dollar
+string   ' '
+string   ` `
+sigil    $    : attr
+operators  |&;<>=!(){}

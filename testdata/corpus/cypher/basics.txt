@@ -1,0 +1,12 @@
+// REQ: LANG-821 LANG-822 LANG-823 LANG-824
+/* Find friends of friends. */
+MATCH (p:Person {name: $name})-[:KNOWS]->(f:Person)-[:KNOWS]->(fof)
+WHERE fof <> p AND NOT (p)-[:KNOWS]->(fof) AND fof.age > 30
+WITH fof, count(*) AS common
+ORDER BY common DESC
+LIMIT 10
+RETURN fof.name AS name, common, toUpper(fof.city) AS city, `odd name`;
+
+CREATE (n:Person {name: 'Ann', active: true, score: 1.5})
+MERGE (n)-[:LIVES_IN]->(:City {name: "Kraków"})
+RETURN n IS NOT NULL;

@@ -1,0 +1,21 @@
+<span class="hl-com">-- REQ: LANG-831 LANG-832</span>
+<span class="hl-kw">CREATE</span> <span class="hl-kw">OR</span> <span class="hl-kw">REPLACE</span> <span class="hl-kw">PROCEDURE</span> greet (p_name <span class="hl-kw">IN</span> <span class="hl-type">VARCHAR2</span>, p_times <span class="hl-kw">IN</span> <span class="hl-type">PLS_INTEGER</span> <span class="hl-kw">DEFAULT</span> <span class="hl-num">1</span>) <span class="hl-kw">IS</span>
+  v_text   <span class="hl-type">VARCHAR2</span>(<span class="hl-num">100</span>);
+  v_count  <span class="hl-type">NUMBER</span> <span class="hl-op">:=</span> <span class="hl-num">0</span>;
+  <span class="hl-kw">CURSOR</span> c_people <span class="hl-kw">IS</span> <span class="hl-kw">SELECT</span> name <span class="hl-kw">FROM</span> people <span class="hl-kw">WHERE</span> active <span class="hl-op">=</span> <span class="hl-num">1</span>;
+<span class="hl-kw">BEGIN</span>
+  <span class="hl-kw">FOR</span> r <span class="hl-kw">IN</span> c_people <span class="hl-kw">LOOP</span>
+    v_text <span class="hl-op">:=</span> <span class="hl-str">'Hello, '</span> <span class="hl-op">||</span> r.name <span class="hl-op">||</span> <span class="hl-str">'! it</span><span class="hl-esc">''</span><span class="hl-str">s fine'</span>;
+    <span class="hl-builtin">DBMS_OUTPUT</span>.<span class="hl-builtin">PUT_LINE</span>(v_text);
+    v_count <span class="hl-op">:=</span> v_count <span class="hl-op">+</span> <span class="hl-num">1</span>;
+    <span class="hl-kw">EXIT</span> <span class="hl-kw">WHEN</span> v_count <span class="hl-op">&gt;=</span> p_times;
+  <span class="hl-kw">END</span> <span class="hl-kw">LOOP</span>;
+  <span class="hl-kw">IF</span> v_count <span class="hl-op">=</span> <span class="hl-num">0</span> <span class="hl-kw">THEN</span>
+    <span class="hl-kw">RAISE</span> NO_DATA_FOUND;
+  <span class="hl-kw">ELSIF</span> v_count <span class="hl-op">&gt;</span> <span class="hl-num">10</span> <span class="hl-kw">THEN</span>
+    <span class="hl-builtin">NULL</span>;
+  <span class="hl-kw">END</span> <span class="hl-kw">IF</span>;
+<span class="hl-kw">EXCEPTION</span>
+  <span class="hl-kw">WHEN</span> OTHERS <span class="hl-kw">THEN</span>
+    <span class="hl-builtin">DBMS_OUTPUT</span>.<span class="hl-builtin">PUT_LINE</span>(<span class="hl-builtin">SQLERRM</span> <span class="hl-op">||</span> <span class="hl-builtin">TO_CHAR</span>(<span class="hl-builtin">SYSDATE</span>));
+<span class="hl-kw">END</span> greet;

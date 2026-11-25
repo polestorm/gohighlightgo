@@ -1,0 +1,28 @@
+// REQ: LANG-891 LANG-892 LANG-893 LANG-894
+use fmt;
+use strings;
+
+type point = struct {
+	x: int,
+	y: f64,
+};
+
+fn square(x: int) int = x * x;
+
+@test fn square_test() void = {
+	assert(square(3) == 9);
+};
+
+export fn main() void = {
+	const name = "world";
+	const raw = `C:\temp\file`;
+	let c: rune = 'x';
+	let count: size = 0x1F + 1000;
+	for (let i = 0; i < 3; i += 1) {
+		if (i > 0 && c != '\n') {
+			fmt::printfln("Hello, {}! {}", name, square(i))!;
+		};
+	};
+	let p: nullable *point = null;
+	defer free(p);
+};

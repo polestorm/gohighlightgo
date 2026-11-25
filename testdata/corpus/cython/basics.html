@@ -1,0 +1,17 @@
+<span class="hl-com"># REQ: LANG-851 LANG-852</span>
+<span class="hl-com"># cython: language_level=3</span>
+<span class="hl-kw">from</span> libc.math <span class="hl-kw">cimport</span> sqrt
+
+<span class="hl-kw">cdef</span> <span class="hl-kw">struct</span> Point<span class="hl-op">:</span>
+    <span class="hl-type">double</span> x
+    <span class="hl-type">double</span> y
+
+<span class="hl-kw">cdef</span> <span class="hl-kw">inline</span> <span class="hl-type">double</span> <span class="hl-fn">norm</span>(Point p) <span class="hl-kw">nogil</span><span class="hl-op">:</span>
+    <span class="hl-kw">return</span> <span class="hl-fn">sqrt</span>(p.x <span class="hl-op">*</span> p.x <span class="hl-op">+</span> p.y <span class="hl-op">*</span> p.y)
+
+<span class="hl-kw">cpdef</span> <span class="hl-type">int</span> <span class="hl-fn">greet</span>(<span class="hl-type">str</span> name, <span class="hl-type">Py_ssize_t</span> times<span class="hl-op">=</span><span class="hl-num">1</span>) <span class="hl-kw">except</span> <span class="hl-op">-</span><span class="hl-num">1</span><span class="hl-op">:</span>
+    <span class="hl-kw">cdef</span> <span class="hl-type">int</span> i
+    <span class="hl-kw">cdef</span> <span class="hl-type">bint</span> ok <span class="hl-op">=</span> <span class="hl-builtin">True</span>
+    <span class="hl-kw">for</span> i <span class="hl-kw">in</span> <span class="hl-type">range</span>(times)<span class="hl-op">:</span>
+        <span class="hl-builtin">print</span>(<span class="hl-str">f"Hello, {name}!"</span>)
+    <span class="hl-kw">return</span> <span class="hl-num">0</span> <span class="hl-kw">if</span> ok <span class="hl-kw">else</span> <span class="hl-num">1</span>

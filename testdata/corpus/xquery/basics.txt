@@ -1,0 +1,17 @@
+(: REQ: LANG-801 LANG-802 LANG-803 LANG-804 :)
+xquery version "3.1";
+
+declare namespace ex = "http://example.com/ns";
+
+(: outer (: nested :) still a comment :)
+declare function local:greet($name as xs:string, $times as xs:integer) as xs:string {
+  string-join(for $i in 1 to $times return concat("Hello, ", $name, "!"), " ")
+};
+
+let $doc := doc("people.xml")
+for $p in $doc//person
+where $p/@age > 30 and fn:count($p/email) gt 0
+order by $p/name descending
+return
+  if (contains($p/name, 'it''s')) then local:greet($p/name, 2)
+  else <person name="{ $p/name }"/>

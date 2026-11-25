@@ -1,0 +1,19 @@
+# Cypher: openCypher 9 specification and the Neo4j Cypher Manual (5); requirements/languages/cypher.md
+name     cypher cql
+
+keyword  MATCH OPTIONAL WHERE RETURN CREATE MERGE DELETE DETACH SET REMOVE WITH UNWIND ORDER BY SKIP
+keyword  LIMIT CALL YIELD AS AND OR NOT XOR IN IS DISTINCT CASE WHEN THEN ELSE END UNION ALL EXISTS
+keyword  ON ASC DESC STARTS ENDS CONTAINS FOREACH LOAD CSV HEADERS INDEX CONSTRAINT
+builtin  true false null count collect size length type id labels keys nodes relationships
+builtin  coalesce toUpper toLower toString toInteger range sum avg min max
+fold-case
+
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+string   ' '  : escapes
+string   ` `  : name
+sigil    :    : attr
+sigil    $    : meta
+operators  =<>!+-*/%^|.
+calls

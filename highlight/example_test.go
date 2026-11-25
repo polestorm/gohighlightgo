@@ -16,7 +16,7 @@ func ExampleHTML() {
 }
 
 func ExampleHTML_unknown() {
-	out, ok := highlight.HTML("cobol", []byte("DISPLAY 'HELLO'."))
+	out, ok := highlight.HTML("klingon", []byte("Qapla'"))
 	fmt.Println(out == nil, ok)
 	// Output:
 	// true false

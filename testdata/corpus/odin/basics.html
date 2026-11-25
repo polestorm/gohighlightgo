@@ -1,0 +1,32 @@
+<span class="hl-com">// REQ: LANG-881 LANG-882 LANG-883 LANG-884</span>
+<span class="hl-kw">package</span> main
+
+<span class="hl-kw">import</span> <span class="hl-str">"core:fmt"</span>
+
+<span class="hl-com">/* outer /* nested */ still a comment */</span>
+Point <span class="hl-op">::</span> <span class="hl-kw">struct</span> {
+	x<span class="hl-op">:</span> <span class="hl-type">int</span>,
+	y<span class="hl-op">:</span> <span class="hl-type">f64</span>,
+}
+
+@(private)
+square <span class="hl-op">::</span> <span class="hl-kw">proc</span>(x<span class="hl-op">:</span> <span class="hl-type">int</span>) <span class="hl-op">-&gt;</span> <span class="hl-type">int</span> {
+	<span class="hl-kw">return</span> x <span class="hl-op">*</span> x
+}
+
+main <span class="hl-op">::</span> <span class="hl-kw">proc</span>() {
+	name <span class="hl-op">:=</span> <span class="hl-str">"world"</span>
+	raw <span class="hl-op">:=</span> <span class="hl-str">`C:\temp\file`</span>
+	c<span class="hl-op">:</span> <span class="hl-type">rune</span> <span class="hl-op">=</span> <span class="hl-str">'x'</span>
+	count <span class="hl-op">:=</span> <span class="hl-num">0x1F</span> <span class="hl-op">+</span> <span class="hl-num">1_000</span>
+	<span class="hl-meta">#partial</span> <span class="hl-kw">switch</span> v <span class="hl-kw">in</span> some_union {
+	<span class="hl-kw">case</span> <span class="hl-type">int</span><span class="hl-op">:</span> fmt<span class="hl-op">.</span><span class="hl-fn">println</span>(v)
+	}
+	<span class="hl-kw">for</span> i <span class="hl-kw">in</span> <span class="hl-num">0</span><span class="hl-op">..&lt;</span><span class="hl-num">3</span> {
+		<span class="hl-kw">if</span> i <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-op">&amp;&amp;</span> c <span class="hl-op">!=</span> <span class="hl-str">'</span><span class="hl-esc">\n</span><span class="hl-str">'</span> {
+			fmt<span class="hl-op">.</span><span class="hl-fn">printf</span>(<span class="hl-str">"Hello, %s! %d</span><span class="hl-esc">\n</span><span class="hl-str">"</span>, name, <span class="hl-fn">square</span>(i))
+		}
+	}
+	<span class="hl-kw">defer</span> <span class="hl-builtin">delete</span>(<span class="hl-builtin">make</span>([]<span class="hl-type">int</span>, <span class="hl-num">4</span>))
+	ptr<span class="hl-op">:</span> <span class="hl-type">rawptr</span> <span class="hl-op">=</span> <span class="hl-builtin">nil</span>
+}

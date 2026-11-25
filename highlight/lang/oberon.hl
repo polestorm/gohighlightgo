@@ -1,0 +1,13 @@
+# Oberon: The Programming Language Oberon (Oberon-07, revised 2016); requirements/languages/oberon.md
+name     oberon ob obn
+
+keyword  ARRAY BEGIN BY CASE CONST DIV DO ELSE ELSIF END FALSE FOR IF IMPORT IN IS MOD MODULE NIL OF OR
+keyword  POINTER PROCEDURE RECORD REPEAT RETURN THEN TO TRUE TYPE UNTIL VAR WHILE
+type     BOOLEAN CHAR INTEGER REAL BYTE SET
+builtin  ABS ASR ASSERT CHR DEC EXCL FLOOR FLT INC INCL LEN LSL NEW ODD ORD PACK ROR UNPK
+
+block-comment  (* *)  : nested
+string   " "
+number        : no-leading-dot
+operators  +-*/=#<>&~:^|
+calls

@@ -176,7 +176,7 @@ func scanHeredoc(t *table, w *writer, src []byte, i, k int, inner hookFunc, ruby
 	var delim []byte
 	if k < len(src) && (src[k] == '\'' || src[k] == '"') {
 		q := src[k]
-		n := bytes.IndexByte(src[k+1:lineEnd(src, k)], q)
+		n := quoteBeforeEOL(src, k+1, q)
 		if n <= 0 {
 			return i
 		}
@@ -223,4 +223,18 @@ func scanHeredoc(t *table, w *writer, src []byte, i, k int, inner hookFunc, ruby
 
 func isWordByte(b byte) bool {
 	return b == '_' || isDigit(b) || b|0x20 >= 'a' && b|0x20 <= 'z'
+}
+
+// quoteBeforeEOL zwraca odległość od src[from] do znaku q przed końcem wiersza albo -1. Szukanie kończy się na
+// q albo \n, więc przy kolejnych próbach w jednym wierszu nie czyta tych samych bajtów wiele razy.
+func quoteBeforeEOL(src []byte, from int, q byte) int {
+	for j := from; j < len(src); j++ {
+		switch src[j] {
+		case q:
+			return j - from
+		case '\n':
+			return -1
+		}
+	}
+	return -1
 }

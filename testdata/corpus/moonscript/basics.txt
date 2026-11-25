@@ -1,0 +1,20 @@
+-- REQ: LANG-761 LANG-762 LANG-763 LANG-764
+--[[ Block comment ]]
+import concat from table
+
+class Greeter
+  new: (@name = "world") =>
+    @count = 0
+
+  greet: (times = 1) =>
+    @count += 1
+    text = "Hello, #{@name}! Count: #{@count}\n"
+    raw = 'single #{not}'
+    long = [[raw "text" \n stays]]
+    concat [text for i = 1, times]
+
+g = Greeter "moon"
+print g\greet(2), 0x1F, 3.14, true, nil
+unless false
+  for k, v in pairs {a: 1}
+    print k, v

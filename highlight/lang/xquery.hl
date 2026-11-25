@@ -1,0 +1,18 @@
+# XQuery: XQuery 3.1 (W3C Recommendation 2017), A.2 Lexical structure; requirements/languages/xquery.md
+name     xquery xq xqy
+
+keyword  xquery version encoding module namespace declare import schema function variable external
+keyword  for let where order by group stable ascending descending return if then else some every in
+keyword  satisfies typeswitch switch case default try catch as at instance of treat castable cast to
+keyword  element attribute text document comment processing-instruction and or div idiv mod union
+keyword  intersect except
+builtin  true false fn:count fn:concat fn:string fn:doc fn:data count concat string doc data
+builtin  string-join contains substring
+
+ident-part     -.:
+block-comment  (: :)  : nested
+string   " "  : doubled
+string   ' '  : doubled
+sigil    $    : attr
+operators  =!<>+*|/:,
+calls

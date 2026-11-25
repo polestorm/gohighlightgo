@@ -1,0 +1,28 @@
+<span class="hl-com">// REQ: LANG-891 LANG-892 LANG-893 LANG-894</span>
+<span class="hl-kw">use</span> fmt;
+<span class="hl-kw">use</span> strings;
+
+<span class="hl-kw">type</span> point <span class="hl-op">=</span> <span class="hl-kw">struct</span> {
+	x<span class="hl-op">:</span> <span class="hl-type">int</span>,
+	y<span class="hl-op">:</span> <span class="hl-type">f64</span>,
+};
+
+<span class="hl-kw">fn</span> <span class="hl-fn">square</span>(x<span class="hl-op">:</span> <span class="hl-type">int</span>) <span class="hl-type">int</span> <span class="hl-op">=</span> x <span class="hl-op">*</span> x;
+
+<span class="hl-meta">@test</span> <span class="hl-kw">fn</span> <span class="hl-fn">square_test</span>() <span class="hl-type">void</span> <span class="hl-op">=</span> {
+	<span class="hl-kw">assert</span>(<span class="hl-fn">square</span>(<span class="hl-num">3</span>) <span class="hl-op">==</span> <span class="hl-num">9</span>);
+};
+
+<span class="hl-kw">export</span> <span class="hl-kw">fn</span> <span class="hl-fn">main</span>() <span class="hl-type">void</span> <span class="hl-op">=</span> {
+	<span class="hl-kw">const</span> name <span class="hl-op">=</span> <span class="hl-str">"world"</span>;
+	<span class="hl-kw">const</span> raw <span class="hl-op">=</span> <span class="hl-str">`C:\temp\file`</span>;
+	<span class="hl-kw">let</span> c<span class="hl-op">:</span> <span class="hl-type">rune</span> <span class="hl-op">=</span> <span class="hl-str">'x'</span>;
+	<span class="hl-kw">let</span> count<span class="hl-op">:</span> <span class="hl-type">size</span> <span class="hl-op">=</span> <span class="hl-num">0x1F</span> <span class="hl-op">+</span> <span class="hl-num">1000</span>;
+	<span class="hl-kw">for</span> (<span class="hl-kw">let</span> i <span class="hl-op">=</span> <span class="hl-num">0</span>; i <span class="hl-op">&lt;</span> <span class="hl-num">3</span>; i <span class="hl-op">+=</span> <span class="hl-num">1</span>) {
+		<span class="hl-kw">if</span> (i <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-op">&amp;&amp;</span> c <span class="hl-op">!=</span> <span class="hl-str">'</span><span class="hl-esc">\n</span><span class="hl-str">'</span>) {
+			fmt<span class="hl-op">::</span><span class="hl-fn">printfln</span>(<span class="hl-str">"Hello, {}! {}"</span>, name, <span class="hl-fn">square</span>(i))<span class="hl-op">!</span>;
+		};
+	};
+	<span class="hl-kw">let</span> p<span class="hl-op">:</span> <span class="hl-kw">nullable</span> <span class="hl-op">*</span>point <span class="hl-op">=</span> <span class="hl-builtin">null</span>;
+	<span class="hl-kw">defer</span> <span class="hl-kw">free</span>(p);
+};

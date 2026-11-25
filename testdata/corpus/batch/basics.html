@@ -1,0 +1,20 @@
+<span class="hl-com">REM REQ: LANG-791 LANG-792 LANG-793 LANG-794</span>
+<span class="hl-op">@</span><span class="hl-kw">echo</span> <span class="hl-kw">off</span>
+<span class="hl-kw">setlocal</span> <span class="hl-kw">enabledelayedexpansion</span>
+<span class="hl-com">:: Double-colon comment</span>
+<span class="hl-kw">set</span> NAME<span class="hl-op">=</span>world
+<span class="hl-kw">set</span> /a COUNT<span class="hl-op">=</span><span class="hl-num">3</span>
+
+<span class="hl-fn">:loop</span>
+<span class="hl-kw">if</span> <span class="hl-esc">%COUNT%</span> <span class="hl-kw">leq</span> <span class="hl-num">0</span> <span class="hl-kw">goto</span> done
+<span class="hl-kw">echo</span> Hello, <span class="hl-esc">%NAME%</span>! Count: <span class="hl-esc">!COUNT!</span> <span class="hl-kw">in</span> <span class="hl-esc">%~dp0</span>
+<span class="hl-kw">set</span> /a COUNT-<span class="hl-op">=</span><span class="hl-num">1</span>
+<span class="hl-kw">goto</span> loop
+
+<span class="hl-fn">:done</span>
+<span class="hl-kw">for</span> <span class="hl-esc">%%f</span> <span class="hl-kw">in</span> <span class="hl-op">(</span>*.txt<span class="hl-op">)</span> <span class="hl-kw">do</span> <span class="hl-op">(</span>
+    <span class="hl-kw">echo</span> <span class="hl-esc">%%f</span>
+<span class="hl-op">)</span>
+<span class="hl-kw">if</span> <span class="hl-kw">exist</span> <span class="hl-str">"%1"</span> <span class="hl-kw">call</span> :helper <span class="hl-esc">%1</span> <span class="hl-op">&amp;</span> <span class="hl-com">rem trailing remark</span>
+remove-me.exe <span class="hl-op">&gt;</span> nul <span class="hl-num">2</span><span class="hl-op">&gt;&amp;</span><span class="hl-num">1</span>
+<span class="hl-kw">exit</span> /b <span class="hl-num">0</span>

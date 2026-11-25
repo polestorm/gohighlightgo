@@ -1,0 +1,25 @@
+<span class="hl-com">(* REQ: LANG-751 LANG-752 LANG-753 LANG-754 *)</span>
+<span class="hl-kw">MODULE</span> Greeter;
+  <span class="hl-kw">IMPORT</span> Out;
+
+  <span class="hl-com">(* outer (* nested *) still a comment *)</span>
+  <span class="hl-kw">CONST</span> Max <span class="hl-op">=</span> <span class="hl-num">10</span>;
+
+  <span class="hl-kw">TYPE</span> Point <span class="hl-op">=</span> <span class="hl-kw">RECORD</span> x, y<span class="hl-op">:</span> <span class="hl-type">INTEGER</span> <span class="hl-kw">END</span>;
+
+  <span class="hl-kw">VAR</span> i<span class="hl-op">:</span> <span class="hl-type">INTEGER</span>; done<span class="hl-op">:</span> <span class="hl-type">BOOLEAN</span>;
+
+  <span class="hl-kw">PROCEDURE</span> <span class="hl-fn">Square</span>(x<span class="hl-op">:</span> <span class="hl-type">INTEGER</span>)<span class="hl-op">:</span> <span class="hl-type">INTEGER</span>;
+  <span class="hl-kw">BEGIN</span>
+    <span class="hl-kw">RETURN</span> x <span class="hl-op">*</span> x
+  <span class="hl-kw">END</span> Square;
+
+<span class="hl-kw">BEGIN</span>
+  done <span class="hl-op">:=</span> <span class="hl-kw">FALSE</span>;
+  <span class="hl-kw">FOR</span> i <span class="hl-op">:=</span> <span class="hl-num">1</span> <span class="hl-kw">TO</span> Max <span class="hl-kw">DO</span>
+    <span class="hl-kw">IF</span> (i <span class="hl-kw">MOD</span> <span class="hl-num">2</span> <span class="hl-op">=</span> <span class="hl-num">0</span>) <span class="hl-op">&amp;</span> <span class="hl-op">~</span>done <span class="hl-kw">THEN</span>
+      Out.<span class="hl-fn">String</span>(<span class="hl-str">"Hello, world"</span>); Out.<span class="hl-fn">Int</span>(<span class="hl-fn">Square</span>(i), <span class="hl-num">4</span>); Out.Ln
+    <span class="hl-kw">END</span>
+  <span class="hl-kw">END</span>;
+  <span class="hl-builtin">INC</span>(i); <span class="hl-builtin">ASSERT</span>(i <span class="hl-op">&gt;</span> <span class="hl-num">0</span>); done <span class="hl-op">:=</span> <span class="hl-kw">TRUE</span>
+<span class="hl-kw">END</span> Greeter.

@@ -1,0 +1,12 @@
+# Smalltalk: ANSI INCITS 319-1998 (Smalltalk) and the Pharo by Example syntax summary; requirements/languages/smalltalk.md
+name     smalltalk st squeak pharo
+
+keyword  self super thisContext
+builtin  true false nil
+
+block-comment  " "
+string   ' '  : doubled
+sigil    #    : attr
+sigil    $    : str
+operators  +-*/\<>=~@%&?!,|^:
+upper-type

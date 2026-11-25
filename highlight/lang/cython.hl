@@ -1,0 +1,7 @@
+# Cython: Cython documentation (3.0), "Language basics"; requirements/languages/cython.md
+extends  python
+name     cython pyx pxd
+
+keyword  cdef cpdef ctypedef cimport nogil gil inline public readonly extern struct union enum
+keyword  include DEF IF ELIF ELSE
+type     char short long double unsigned signed size_t Py_ssize_t bint void

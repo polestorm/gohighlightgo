@@ -305,7 +305,7 @@ func shellHeredoc(w *writer, src []byte, i int) (int, heredoc, bool) {
 	start := k
 	if k < len(src) && (src[k] == '\'' || src[k] == '"') {
 		q := src[k]
-		e := bytes.IndexByte(src[k+1:lineEnd(src, k)], q)
+		e := quoteBeforeEOL(src, k+1, q)
 		if e < 0 {
 			return k, heredoc{}, false
 		}

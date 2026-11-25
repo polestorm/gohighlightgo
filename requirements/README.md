@@ -23,7 +23,10 @@ Fortran 421–425, Makefile 431–434, Dockerfile 441–444, CMake 451–454, IN
 Protobuf 481–484, GraphQL 491–494, HCL 501–504, Nix 511–514, LaTeX 521–524, Vim 531–534, AsciiDoc 541–544,
 Elm 551–554, Nim 561–564, Crystal 571–574, D 581–584, Ada 591–594, Prolog 601–604, Scheme 611–614,
 Racket 621–622, Common Lisp 631–634, Solidity 641–644, Verilog 651–654, VHDL 661–664, GLSL 671–674, Tcl 681–684,
-AWK 691–694, asembler x86 701–704, asembler ARM 711–714; następny język od `LANG-721`). Każdy język z `Languages()` musi mieć plik
+AWK 691–694, asembler x86 701–704, asembler ARM 711–714, COBOL 721–724, Smalltalk 731–734, Modula-2 741–744,
+Oberon 751–754, MoonScript 761–764, fish 771–774, csh 781–784, pliki wsadowe 791–794, XQuery 801–804,
+SPARQL 811–814, Cypher 821–824, PL/SQL 831–832, T-SQL 841–842, Cython 851–852, Mojo 861–862, V 871–874,
+Odin 881–884, Hare 891–894, Gleam 901–904; następny język od `LANG-911`). Każdy język z `Languages()` musi mieć plik
 w `languages/` nazwany jego nazwą główną (`TestLanguageRequirements`).
 
 Pliki powstają razem z etapami w `../docs/roadmap.md`.

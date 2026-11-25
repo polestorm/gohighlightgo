@@ -14,7 +14,8 @@ type     ULong UShort Variant
 builtin  True False Nothing CInt CStr CDbl CBool MsgBox Console
 fold-case
 
-line-comment   ' REM Rem rem
+line-comment   '
 string   " "  : doubled
 operators  +-*/\^&=<>:
 calls
+hook     rem

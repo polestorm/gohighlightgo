@@ -1,0 +1,12 @@
+<span class="hl-com">// REQ: LANG-821 LANG-822 LANG-823 LANG-824</span>
+<span class="hl-com">/* Find friends of friends. */</span>
+<span class="hl-kw">MATCH</span> (p<span class="hl-attr">:Person</span> {name: <span class="hl-meta">$name</span>})<span class="hl-op">-</span>[<span class="hl-attr">:KNOWS</span>]<span class="hl-op">-&gt;</span>(f<span class="hl-attr">:Person</span>)<span class="hl-op">-</span>[<span class="hl-attr">:KNOWS</span>]<span class="hl-op">-&gt;</span>(fof)
+<span class="hl-kw">WHERE</span> fof <span class="hl-op">&lt;&gt;</span> p <span class="hl-kw">AND</span> <span class="hl-kw">NOT</span> (p)<span class="hl-op">-</span>[<span class="hl-attr">:KNOWS</span>]<span class="hl-op">-&gt;</span>(fof) <span class="hl-kw">AND</span> fof<span class="hl-op">.</span>age <span class="hl-op">&gt;</span> <span class="hl-num">30</span>
+<span class="hl-kw">WITH</span> fof, <span class="hl-builtin">count</span>(<span class="hl-op">*</span>) <span class="hl-kw">AS</span> common
+<span class="hl-kw">ORDER</span> <span class="hl-kw">BY</span> common <span class="hl-kw">DESC</span>
+<span class="hl-kw">LIMIT</span> <span class="hl-num">10</span>
+<span class="hl-kw">RETURN</span> fof<span class="hl-op">.</span>name <span class="hl-kw">AS</span> name, common, <span class="hl-builtin">toUpper</span>(fof<span class="hl-op">.</span>city) <span class="hl-kw">AS</span> city, `odd name`;
+
+<span class="hl-kw">CREATE</span> (n<span class="hl-attr">:Person</span> {name: <span class="hl-str">'Ann'</span>, active: <span class="hl-builtin">true</span>, score: <span class="hl-num">1.5</span>})
+<span class="hl-kw">MERGE</span> (n)<span class="hl-op">-</span>[<span class="hl-attr">:LIVES_IN</span>]<span class="hl-op">-&gt;</span>(<span class="hl-attr">:City</span> {name: <span class="hl-str">"Kraków"</span>})
+<span class="hl-kw">RETURN</span> n <span class="hl-kw">IS</span> <span class="hl-kw">NOT</span> <span class="hl-builtin">NULL</span>;

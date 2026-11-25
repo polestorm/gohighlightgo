@@ -1,0 +1,21 @@
+# REQ: LANG-781 LANG-782 LANG-783 LANG-784
+#!/bin/csh
+set name = "world"
+set count = 3
+setenv EDITOR vim
+
+# Loop over the names.
+foreach n (alice bob)
+    if ($n == "bob") then
+        echo "Hello, $n"
+    else
+        echo 'single $not'
+    endif
+end
+
+while ($count > 0)
+    @ count--
+end
+alias ll 'ls -l'
+set files = `ls *.txt`
+exit 0

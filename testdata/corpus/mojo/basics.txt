@@ -1,0 +1,24 @@
+# REQ: LANG-861 LANG-862
+from math import sqrt
+
+struct Point:
+    var x: Float64
+    var y: Float64
+
+    fn __init__(inout self, x: Float64, y: Float64):
+        self.x = x
+        self.y = y
+
+    fn norm(self) -> Float64:
+        return sqrt(self.x ** 2 + self.y ** 2)
+
+fn greet(name: String, times: Int = 1) raises -> String:
+    var text = String("")
+    for i in range(times):
+        text += "Hello, " + name + "!\n"
+    return text
+
+def main():
+    alias size = 4
+    let p = Point(3.0, 4.0)
+    print(greet("mojo", 2), p.norm(), size, True)

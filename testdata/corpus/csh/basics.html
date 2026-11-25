@@ -1,0 +1,21 @@
+<span class="hl-com"># REQ: LANG-781 LANG-782 LANG-783 LANG-784</span>
+<span class="hl-com">#!/bin/csh</span>
+<span class="hl-kw">set</span> name <span class="hl-op">=</span> <span class="hl-str">"world"</span>
+<span class="hl-kw">set</span> count <span class="hl-op">=</span> <span class="hl-num">3</span>
+<span class="hl-kw">setenv</span> EDITOR vim
+
+<span class="hl-com"># Loop over the names.</span>
+<span class="hl-kw">foreach</span> n <span class="hl-op">(</span>alice bob<span class="hl-op">)</span>
+    <span class="hl-kw">if</span> <span class="hl-op">(</span><span class="hl-attr">$n</span> <span class="hl-op">==</span> <span class="hl-str">"bob"</span><span class="hl-op">)</span> <span class="hl-kw">then</span>
+        <span class="hl-builtin">echo</span> <span class="hl-str">"Hello, </span><span class="hl-esc">$n</span><span class="hl-str">"</span>
+    <span class="hl-kw">else</span>
+        <span class="hl-builtin">echo</span> <span class="hl-str">'single $not'</span>
+    <span class="hl-kw">endif</span>
+<span class="hl-kw">end</span>
+
+<span class="hl-kw">while</span> <span class="hl-op">(</span><span class="hl-attr">$count</span> <span class="hl-op">&gt;</span> <span class="hl-num">0</span><span class="hl-op">)</span>
+    @ count--
+<span class="hl-kw">end</span>
+<span class="hl-kw">alias</span> ll <span class="hl-str">'ls -l'</span>
+<span class="hl-kw">set</span> files <span class="hl-op">=</span> <span class="hl-str">`ls *.txt`</span>
+<span class="hl-kw">exit</span> <span class="hl-num">0</span>

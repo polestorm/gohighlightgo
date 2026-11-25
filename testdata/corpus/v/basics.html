@@ -1,0 +1,31 @@
+<span class="hl-com">// REQ: LANG-871 LANG-872 LANG-873 LANG-874</span>
+<span class="hl-kw">module</span> main
+
+<span class="hl-kw">import</span> os
+
+<span class="hl-com">/* outer /* nested */ still a comment */</span>
+<span class="hl-kw">struct</span> Point {
+<span class="hl-kw">mut</span><span class="hl-op">:</span>
+	x <span class="hl-type">int</span>
+	y <span class="hl-type">f64</span> <span class="hl-op">=</span> <span class="hl-num">1.5e3</span>
+}
+
+<span class="hl-kw">fn</span> <span class="hl-fn">greet</span>(name <span class="hl-type">string</span>, times <span class="hl-type">int</span>) <span class="hl-type">string</span> {
+	<span class="hl-kw">mut</span> text <span class="hl-op">:=</span> <span class="hl-str">''</span>
+	<span class="hl-kw">for</span> _ <span class="hl-kw">in</span> <span class="hl-num">0</span> <span class="hl-op">..</span> times {
+		text <span class="hl-op">+=</span> <span class="hl-str">'Hello, </span><span class="hl-esc">${name}</span><span class="hl-str">! </span><span class="hl-esc">$times\n</span><span class="hl-str">'</span>
+	}
+	<span class="hl-kw">return</span> text
+}
+
+<span class="hl-kw">fn</span> <span class="hl-fn">main</span>() {
+	raw <span class="hl-op">:=</span> <span class="hl-str">r'C:\temp\$name'</span>
+	c <span class="hl-op">:=</span> <span class="hl-str">`x`</span>
+	p <span class="hl-op">:=</span> Point{x<span class="hl-op">:</span> <span class="hl-num">0x1F</span>}
+	<span class="hl-kw">if</span> p<span class="hl-op">.</span>x <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-op">!</span><span class="hl-builtin">false</span> {
+		<span class="hl-builtin">println</span>(<span class="hl-fn">greet</span>(<span class="hl-str">'v'</span>, <span class="hl-num">2</span>) <span class="hl-op">+</span> raw <span class="hl-op">+</span> c<span class="hl-op">.</span><span class="hl-fn">str</span>())
+	} <span class="hl-kw">else</span> {
+		<span class="hl-builtin">panic</span>(<span class="hl-str">'never'</span>)
+	}
+	args <span class="hl-op">:=</span> os<span class="hl-op">.</span>args <span class="hl-kw">or</span> { [] }
+}

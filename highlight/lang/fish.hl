@@ -1,0 +1,12 @@
+# fish: fish shell documentation (3.7), "The fish language" and builtin commands; requirements/languages/fish.md
+name     fish
+
+keyword  function end if else switch case for in while begin and or not return break continue set
+builtin  echo printf test string math status set_color read source cd contains count argparse
+builtin  abbr alias bind builtin command emit eval exec exit functions history jobs type
+
+line-comment   #
+string   " "  : escapes interp=dollar
+string   ' '  : escapes
+sigil    $    : attr
+operators  |&;<>=!

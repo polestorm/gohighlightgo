@@ -1,0 +1,23 @@
+<span class="hl-com">"REQ: LANG-731 LANG-732 LANG-733 LANG-734"</span>
+<span class="hl-type">Object</span> subclass<span class="hl-op">:</span> <span class="hl-attr">#Greeter</span>
+    instanceVariableNames<span class="hl-op">:</span> <span class="hl-str">'name count'</span>
+    classVariableNames<span class="hl-op">:</span> <span class="hl-str">''</span>
+    package<span class="hl-op">:</span> <span class="hl-str">'Demo'</span>.
+
+<span class="hl-com">"Greets the name.</span>
+<span class="hl-com"> Multi-line comment."</span>
+<span class="hl-type">Greeter</span> <span class="hl-op">&gt;&gt;</span> greet<span class="hl-op">:</span> times [
+    <span class="hl-op">|</span> text <span class="hl-op">|</span>
+    text <span class="hl-op">:=</span> <span class="hl-str">'Hello, '</span><span class="hl-op">,</span> name<span class="hl-op">,</span> <span class="hl-str">'! it</span><span class="hl-esc">''</span><span class="hl-str">s fine'</span>.
+    times <span class="hl-op">&gt;</span> <span class="hl-num">0</span> ifTrue<span class="hl-op">:</span> [ <span class="hl-op">^</span> text <span class="hl-op">,</span> <span class="hl-type">String</span> cr ] ifFalse<span class="hl-op">:</span> [ <span class="hl-op">^</span> <span class="hl-builtin">nil</span> ].
+    count <span class="hl-op">:=</span> count <span class="hl-op">+</span> <span class="hl-num">1.</span>
+    <span class="hl-op">^</span> <span class="hl-kw">self</span>
+]
+
+<span class="hl-op">|</span> g <span class="hl-op">|</span>
+g <span class="hl-op">:=</span> <span class="hl-type">Greeter</span> new.
+<span class="hl-type">Transcript</span> show<span class="hl-op">:</span> (g greet<span class="hl-op">:</span> <span class="hl-num">2</span>); cr.
+#(<span class="hl-num">1</span> <span class="hl-num">2</span> <span class="hl-num">3</span>) do<span class="hl-op">:</span> [<span class="hl-op">:</span>each <span class="hl-op">|</span> <span class="hl-type">Transcript</span> show<span class="hl-op">:</span> each printString].
+<span class="hl-str">$a</span> isVowel <span class="hl-op">&amp;</span> <span class="hl-builtin">true</span> <span class="hl-op">|</span> <span class="hl-builtin">false</span>.
+<span class="hl-num">16r1F</span> <span class="hl-op">+</span> <span class="hl-num">3.14e0</span> <span class="hl-op">+</span> <span class="hl-num">2</span><span class="hl-op">/</span><span class="hl-num">3.</span>
+<span class="hl-kw">thisContext</span> printString.

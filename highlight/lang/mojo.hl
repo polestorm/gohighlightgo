@@ -1,0 +1,7 @@
+# Mojo: Mojo manual (Modular, 24.x), Language basics; requirements/languages/mojo.md
+extends  python
+name     mojo
+
+keyword  fn struct var let inout owned borrowed alias trait raises out ref mut
+type     Int Int8 Int16 Int32 Int64 UInt8 UInt16 UInt32 UInt64 Float16 Float32 Float64 String Bool
+type     SIMD DType List Dict

@@ -1,0 +1,18 @@
+# Hare: Hare specification (harelang.org/specification); requirements/languages/hare.md
+name     hare ha
+
+keyword  fn let const def type struct union enum if else for match switch return break continue defer
+keyword  yield use export static abort assert is as size len offset free alloc append delete insert
+keyword  nullable vastart vaarg vaend
+type     int uint i8 i16 i32 i64 u8 u16 u32 u64 f32 f64 bool str rune void size uintptr opaque never
+type     valist done
+builtin  true false null
+
+line-comment   //
+string   " "  : escapes
+string   ` `  : multiline
+string   ' '  : escapes
+escape        : x=2 u4 U8
+sigil    @    : meta
+operators  +-*/%&|^!<>=:?~.
+calls

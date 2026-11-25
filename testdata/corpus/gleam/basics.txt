@@ -1,0 +1,29 @@
+// REQ: LANG-901 LANG-902 LANG-903 LANG-904
+//// Module documentation.
+import gleam/io
+import gleam/list
+
+/// A shape.
+pub type Shape {
+  Circle(radius: Float)
+  Rect(width: Float, height: Float)
+}
+
+pub fn area(shape: Shape) -> Float {
+  case shape {
+    Circle(r) -> 3.14 *. r *. r
+    Rect(w, h) -> w *. h
+  }
+}
+
+@deprecated("use greet2")
+pub fn greet(name: String, times: Int) -> String {
+  let text = "Hello, " <> name <> "!\n\u{1F600}"
+  list.repeat(text, times) |> string.concat
+}
+
+pub fn main() {
+  io.println(greet("gleam", 0x1F))
+  let assert Ok(_) = Ok(Nil)
+  True && False
+}

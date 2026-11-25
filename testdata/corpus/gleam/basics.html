@@ -1,0 +1,29 @@
+<span class="hl-com">// REQ: LANG-901 LANG-902 LANG-903 LANG-904</span>
+<span class="hl-com">//// Module documentation.</span>
+<span class="hl-kw">import</span> gleam<span class="hl-op">/</span>io
+<span class="hl-kw">import</span> gleam<span class="hl-op">/</span>list
+
+<span class="hl-com">/// A shape.</span>
+<span class="hl-kw">pub</span> <span class="hl-kw">type</span> <span class="hl-type">Shape</span> {
+  <span class="hl-type">Circle</span>(radius<span class="hl-op">:</span> <span class="hl-type">Float</span>)
+  <span class="hl-type">Rect</span>(width<span class="hl-op">:</span> <span class="hl-type">Float</span>, height<span class="hl-op">:</span> <span class="hl-type">Float</span>)
+}
+
+<span class="hl-kw">pub</span> <span class="hl-kw">fn</span> <span class="hl-fn">area</span>(shape<span class="hl-op">:</span> <span class="hl-type">Shape</span>) <span class="hl-op">-&gt;</span> <span class="hl-type">Float</span> {
+  <span class="hl-kw">case</span> shape {
+    <span class="hl-type">Circle</span>(r) <span class="hl-op">-&gt;</span> <span class="hl-num">3.14</span> <span class="hl-op">*.</span> r <span class="hl-op">*.</span> r
+    <span class="hl-type">Rect</span>(w, h) <span class="hl-op">-&gt;</span> w <span class="hl-op">*.</span> h
+  }
+}
+
+<span class="hl-meta">@deprecated</span>(<span class="hl-str">"use greet2"</span>)
+<span class="hl-kw">pub</span> <span class="hl-kw">fn</span> <span class="hl-fn">greet</span>(name<span class="hl-op">:</span> <span class="hl-type">String</span>, times<span class="hl-op">:</span> <span class="hl-type">Int</span>) <span class="hl-op">-&gt;</span> <span class="hl-type">String</span> {
+  <span class="hl-kw">let</span> text <span class="hl-op">=</span> <span class="hl-str">"Hello, "</span> <span class="hl-op">&lt;&gt;</span> name <span class="hl-op">&lt;&gt;</span> <span class="hl-str">"!</span><span class="hl-esc">\n\u{1F600}</span><span class="hl-str">"</span>
+  list<span class="hl-op">.</span><span class="hl-fn">repeat</span>(text, times) <span class="hl-op">|&gt;</span> string<span class="hl-op">.</span>concat
+}
+
+<span class="hl-kw">pub</span> <span class="hl-kw">fn</span> <span class="hl-fn">main</span>() {
+  io<span class="hl-op">.</span><span class="hl-fn">println</span>(<span class="hl-fn">greet</span>(<span class="hl-str">"gleam"</span>, <span class="hl-num">0x1F</span>))
+  <span class="hl-kw">let</span> <span class="hl-kw">assert</span> <span class="hl-builtin">Ok</span>(_) <span class="hl-op">=</span> <span class="hl-builtin">Ok</span>(<span class="hl-builtin">Nil</span>)
+  <span class="hl-builtin">True</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-builtin">False</span>
+}

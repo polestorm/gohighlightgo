@@ -1,0 +1,21 @@
+# REQ: LANG-771 LANG-772 LANG-773 LANG-774
+function greet --argument-names name times
+    # Greets the name.
+    set -l text "Hello, $name!\n"
+    for i in (seq $times)
+        echo $text
+    end
+end
+
+set -gx PATH $HOME/bin $PATH
+if test (count $argv) -gt 0; and not set -q DEBUG
+    greet $argv[1] 2
+else if string match -q 'a*' -- $USER
+    echo 'single $not' | string upper
+end
+switch $status
+    case 0
+        echo ok
+    case '*'
+        return 1
+end

@@ -1,0 +1,21 @@
+# Odin: Odin overview and specification (odin-lang.org/docs); requirements/languages/odin.md
+name     odin
+
+keyword  package import proc struct enum union map dynamic bit_set bit_field if else for in not_in switch
+keyword  case return defer when using distinct break continue fallthrough cast transmute auto_cast
+keyword  or_else or_return or_break or_continue context foreign where matrix
+type     int i8 i16 i32 i64 i128 uint u8 u16 u32 u64 u128 uintptr f16 f32 f64 bool b8 b16 b32 b64
+type     string cstring rune rawptr any typeid byte complex64 complex128
+builtin  true false nil len cap size_of align_of offset_of type_of typeid_of make new delete free
+builtin  append
+
+line-comment   //
+block-comment  /* */  : nested
+string   " "  : escapes
+string   ` `  : multiline
+string   ' '  : escapes
+escape        : x=2 u4 U8 octal=3
+sigil    #    : meta
+sigil    @    : meta
+operators  +-*/%&|^!<>=:?~.$
+calls

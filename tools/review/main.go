@@ -33,7 +33,7 @@ const defaultRef = "/Applications/QLMarkdown.app/Contents/Resources/qlmarkdown_c
 // refNames: nazwa języka dla odniesienia, gdy różni się od naszej nazwy głównej.
 var refNames = map[string]string{"pascal": "delphi", "objectivec": "objc", "fortran": "f90", "make": "makefile",
 	"latex": "tex", "protobuf": "pb", "commonlisp": "lisp", "armasm": "arm", "prolog": "pro", "scheme": "scm",
-	"vhdl": "vhd"}
+	"vhdl": "vhd", "moonscript": "moon", "batch": "bat"}
 
 type side struct {
 	Light, Dark string // fragment HTML albo cała strona odniesienia

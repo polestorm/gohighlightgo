@@ -1,0 +1,20 @@
+<span class="hl-com">-- REQ: LANG-761 LANG-762 LANG-763 LANG-764</span>
+<span class="hl-com">--[[ Block comment ]]</span>
+<span class="hl-kw">import</span> concat <span class="hl-kw">from</span> table
+
+<span class="hl-kw">class</span> <span class="hl-type">Greeter</span>
+  new<span class="hl-op">:</span> (<span class="hl-attr">@name</span> <span class="hl-op">=</span> <span class="hl-str">"world"</span>) <span class="hl-op">=&gt;</span>
+    <span class="hl-attr">@count</span> <span class="hl-op">=</span> <span class="hl-num">0</span>
+
+  greet<span class="hl-op">:</span> (times <span class="hl-op">=</span> <span class="hl-num">1</span>) <span class="hl-op">=&gt;</span>
+    <span class="hl-attr">@count</span> <span class="hl-op">+=</span> <span class="hl-num">1</span>
+    text <span class="hl-op">=</span> <span class="hl-str">"Hello, </span><span class="hl-esc">#{@name}</span><span class="hl-str">! Count: </span><span class="hl-esc">#{@count}\n</span><span class="hl-str">"</span>
+    raw <span class="hl-op">=</span> <span class="hl-str">'single #{not}'</span>
+    long <span class="hl-op">=</span> <span class="hl-str">[[raw "text" \n stays]]</span>
+    concat [text <span class="hl-kw">for</span> i <span class="hl-op">=</span> <span class="hl-num">1</span>, times]
+
+g <span class="hl-op">=</span> <span class="hl-type">Greeter</span> <span class="hl-str">"moon"</span>
+<span class="hl-builtin">print</span> g<span class="hl-op">\</span><span class="hl-fn">greet</span>(<span class="hl-num">2</span>), <span class="hl-num">0x1F</span>, <span class="hl-num">3.14</span>, <span class="hl-builtin">true</span>, <span class="hl-builtin">nil</span>
+<span class="hl-kw">unless</span> <span class="hl-builtin">false</span>
+  <span class="hl-kw">for</span> k, v <span class="hl-kw">in</span> <span class="hl-builtin">pairs</span> {a<span class="hl-op">:</span> <span class="hl-num">1</span>}
+    <span class="hl-builtin">print</span> k, v

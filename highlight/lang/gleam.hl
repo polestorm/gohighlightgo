@@ -1,0 +1,13 @@
+# Gleam: Gleam language tour and reference (1.x); requirements/languages/gleam.md
+name     gleam
+
+keyword  as assert case const external fn if import let opaque pub todo type use panic echo
+builtin  True False Nil Ok Error
+
+line-comment   //
+string   " "  : escapes
+escape        : u-braces
+sigil    @    : meta
+operators  +-*/%&|^!<>=:.
+upper-type
+calls

@@ -43,6 +43,10 @@ var hooks = map[string]hookFunc{
 	"verilog-number": verilogNumber,
 	"tcl":            tclSpecial,
 	"asm-label":      asmLabel,
+	"cobol":          cobolFixed,
+	"batch":          batchSpecial,
+	"iri":            iriSpecial,
+	"rem":            remComment,
 }
 
 // DefinitionError reports an invalid language definition: the line (from 1) and what is wrong with it.

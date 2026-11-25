@@ -1,0 +1,24 @@
+<span class="hl-com"># REQ: LANG-861 LANG-862</span>
+<span class="hl-kw">from</span> math <span class="hl-kw">import</span> sqrt
+
+<span class="hl-kw">struct</span> Point<span class="hl-op">:</span>
+    <span class="hl-kw">var</span> x<span class="hl-op">:</span> <span class="hl-type">Float64</span>
+    <span class="hl-kw">var</span> y<span class="hl-op">:</span> <span class="hl-type">Float64</span>
+
+    <span class="hl-kw">fn</span> <span class="hl-fn">__init__</span>(<span class="hl-kw">inout</span> self, x<span class="hl-op">:</span> <span class="hl-type">Float64</span>, y<span class="hl-op">:</span> <span class="hl-type">Float64</span>)<span class="hl-op">:</span>
+        self.x <span class="hl-op">=</span> x
+        self.y <span class="hl-op">=</span> y
+
+    <span class="hl-kw">fn</span> <span class="hl-fn">norm</span>(self) <span class="hl-op">-&gt;</span> <span class="hl-type">Float64</span><span class="hl-op">:</span>
+        <span class="hl-kw">return</span> <span class="hl-fn">sqrt</span>(self.x <span class="hl-op">**</span> <span class="hl-num">2</span> <span class="hl-op">+</span> self.y <span class="hl-op">**</span> <span class="hl-num">2</span>)
+
+<span class="hl-kw">fn</span> <span class="hl-fn">greet</span>(name<span class="hl-op">:</span> <span class="hl-type">String</span>, times<span class="hl-op">:</span> <span class="hl-type">Int</span> <span class="hl-op">=</span> <span class="hl-num">1</span>) <span class="hl-kw">raises</span> <span class="hl-op">-&gt;</span> <span class="hl-type">String</span><span class="hl-op">:</span>
+    <span class="hl-kw">var</span> text <span class="hl-op">=</span> <span class="hl-type">String</span>(<span class="hl-str">""</span>)
+    <span class="hl-kw">for</span> i <span class="hl-kw">in</span> <span class="hl-type">range</span>(times)<span class="hl-op">:</span>
+        text <span class="hl-op">+=</span> <span class="hl-str">"Hello, "</span> <span class="hl-op">+</span> name <span class="hl-op">+</span> <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>
+    <span class="hl-kw">return</span> text
+
+<span class="hl-kw">def</span> <span class="hl-fn">main</span>()<span class="hl-op">:</span>
+    <span class="hl-kw">alias</span> size <span class="hl-op">=</span> <span class="hl-num">4</span>
+    <span class="hl-kw">let</span> p <span class="hl-op">=</span> <span class="hl-fn">Point</span>(<span class="hl-num">3.0</span>, <span class="hl-num">4.0</span>)
+    <span class="hl-builtin">print</span>(<span class="hl-fn">greet</span>(<span class="hl-str">"mojo"</span>, <span class="hl-num">2</span>), p.<span class="hl-fn">norm</span>(), size, <span class="hl-builtin">True</span>)

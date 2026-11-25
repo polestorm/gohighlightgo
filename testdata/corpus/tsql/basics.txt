@@ -1,0 +1,17 @@
+-- REQ: LANG-841 LANG-842
+SET NOCOUNT ON;
+DECLARE @name NVARCHAR(50) = N'world', @count INT = 0;
+
+BEGIN TRY
+    SELECT TOP 10 [p].[Name], COUNT(*) AS [Total]
+    FROM dbo.[People] AS p
+    WHERE p.Created > DATEADD(day, -7, GETDATE()) AND p.Id <> @count
+    GROUP BY p.[Name];
+
+    EXEC dbo.Greet @name = @name, @times = 2;
+    PRINT 'Done: ' + CONVERT(VARCHAR(10), SCOPE_IDENTITY());
+END TRY
+BEGIN CATCH
+    THROW 50000, 'Failed', 1;
+END CATCH
+GO

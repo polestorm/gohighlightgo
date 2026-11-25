@@ -1,0 +1,17 @@
+<span class="hl-com">-- REQ: LANG-841 LANG-842</span>
+<span class="hl-kw">SET</span> <span class="hl-kw">NOCOUNT</span> <span class="hl-kw">ON</span>;
+<span class="hl-kw">DECLARE</span> <span class="hl-attr">@name</span> <span class="hl-type">NVARCHAR</span>(<span class="hl-num">50</span>) <span class="hl-op">=</span> <span class="hl-str">N'world'</span>, <span class="hl-attr">@count</span> <span class="hl-type">INT</span> <span class="hl-op">=</span> <span class="hl-num">0</span>;
+
+<span class="hl-kw">BEGIN</span> <span class="hl-kw">TRY</span>
+    <span class="hl-kw">SELECT</span> <span class="hl-kw">TOP</span> <span class="hl-num">10</span> [p].[Name], <span class="hl-builtin">COUNT</span>(<span class="hl-op">*</span>) <span class="hl-kw">AS</span> [Total]
+    <span class="hl-kw">FROM</span> dbo.[People] <span class="hl-kw">AS</span> p
+    <span class="hl-kw">WHERE</span> p.Created <span class="hl-op">&gt;</span> <span class="hl-builtin">DATEADD</span>(day, <span class="hl-op">-</span><span class="hl-num">7</span>, <span class="hl-builtin">GETDATE</span>()) <span class="hl-kw">AND</span> p.Id <span class="hl-op">&lt;&gt;</span> <span class="hl-attr">@count</span>
+    <span class="hl-kw">GROUP</span> <span class="hl-kw">BY</span> p.[Name];
+
+    <span class="hl-kw">EXEC</span> dbo.Greet <span class="hl-attr">@name</span> <span class="hl-op">=</span> <span class="hl-attr">@name</span>, <span class="hl-attr">@times</span> <span class="hl-op">=</span> <span class="hl-num">2</span>;
+    <span class="hl-kw">PRINT</span> <span class="hl-str">'Done: '</span> <span class="hl-op">+</span> <span class="hl-builtin">CONVERT</span>(<span class="hl-type">VARCHAR</span>(<span class="hl-num">10</span>), <span class="hl-builtin">SCOPE_IDENTITY</span>());
+<span class="hl-kw">END</span> <span class="hl-kw">TRY</span>
+<span class="hl-kw">BEGIN</span> <span class="hl-kw">CATCH</span>
+    <span class="hl-kw">THROW</span> <span class="hl-num">50000</span>, <span class="hl-str">'Failed'</span>, <span class="hl-num">1</span>;
+<span class="hl-kw">END</span> <span class="hl-kw">CATCH</span>
+<span class="hl-kw">GO</span>

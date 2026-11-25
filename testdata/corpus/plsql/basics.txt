@@ -1,0 +1,21 @@
+-- REQ: LANG-831 LANG-832
+CREATE OR REPLACE PROCEDURE greet (p_name IN VARCHAR2, p_times IN PLS_INTEGER DEFAULT 1) IS
+  v_text   VARCHAR2(100);
+  v_count  NUMBER := 0;
+  CURSOR c_people IS SELECT name FROM people WHERE active = 1;
+BEGIN
+  FOR r IN c_people LOOP
+    v_text := 'Hello, ' || r.name || '! it''s fine';
+    DBMS_OUTPUT.PUT_LINE(v_text);
+    v_count := v_count + 1;
+    EXIT WHEN v_count >= p_times;
+  END LOOP;
+  IF v_count = 0 THEN
+    RAISE NO_DATA_FOUND;
+  ELSIF v_count > 10 THEN
+    NULL;
+  END IF;
+EXCEPTION
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE(SQLERRM || TO_CHAR(SYSDATE));
+END greet;

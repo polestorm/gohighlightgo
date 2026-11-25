@@ -1,0 +1,31 @@
+(* REQ: LANG-741 LANG-742 LANG-743 LANG-744 *)
+MODULE Greeter;
+
+FROM InOut IMPORT WriteString, WriteLn, WriteInt;
+
+(* outer (* nested *) still a comment *)
+CONST
+  Max = 10;
+  Mask = 0FFH;
+
+TYPE
+  Point = RECORD x, y: INTEGER END;
+
+VAR
+  i: CARDINAL;
+  done: BOOLEAN;
+
+PROCEDURE Square(x: INTEGER): INTEGER;
+BEGIN
+  RETURN x * x
+END Square;
+
+BEGIN
+  done := FALSE;
+  FOR i := 1 TO Max DO
+    IF (i MOD 2 = 0) AND NOT done THEN
+      WriteString("Hello, "); WriteString('world'); WriteInt(Square(i), 4); WriteLn
+    END
+  END;
+  INC(i); done := TRUE
+END Greeter.

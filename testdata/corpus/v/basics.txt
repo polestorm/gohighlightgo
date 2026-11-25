@@ -1,0 +1,31 @@
+// REQ: LANG-871 LANG-872 LANG-873 LANG-874
+module main
+
+import os
+
+/* outer /* nested */ still a comment */
+struct Point {
+mut:
+	x int
+	y f64 = 1.5e3
+}
+
+fn greet(name string, times int) string {
+	mut text := ''
+	for _ in 0 .. times {
+		text += 'Hello, ${name}! $times\n'
+	}
+	return text
+}
+
+fn main() {
+	raw := r'C:\temp\$name'
+	c := `x`
+	p := Point{x: 0x1F}
+	if p.x > 0 && !false {
+		println(greet('v', 2) + raw + c.str())
+	} else {
+		panic('never')
+	}
+	args := os.args or { [] }
+}

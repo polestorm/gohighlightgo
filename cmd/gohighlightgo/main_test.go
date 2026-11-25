@@ -32,7 +32,7 @@ func TestRun(t *testing.T) {
 		{[]string{file}, "", 0, `<span class="hl-kw">func</span> <span class="hl-fn">f</span>() {}` + "\n", ""},
 		{[]string{"-lang", "python", file}, "", 0, `func <span class="hl-fn">f</span>`, ""}, // -lang przed rozszerzeniem
 		{[]string{}, "x", 2, "", "no -lang given"},
-		{[]string{"-lang", "cobol"}, "x", 2, "", "unknown language"},
+		{[]string{"-lang", "klingon"}, "x", 2, "", "unknown language"},
 		{[]string{"-lang", "go", "-theme", "x"}, "x", 2, "", "unknown -theme"},
 		{[]string{"a.go", "b.go"}, "", 2, "", "at most one"},
 		{[]string{filepath.Join(dir, "missing.go")}, "", 1, "", "no such file"},

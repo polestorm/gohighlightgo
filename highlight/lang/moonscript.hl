@@ -1,0 +1,16 @@
+# MoonScript: MoonScript language guide (0.5); requirements/languages/moonscript.md
+name     moonscript moon
+
+keyword  class extends with import export from local if else elseif unless switch when then for in do
+keyword  while return break continue using
+builtin  true false nil self print pairs ipairs type tostring require
+
+line-comment   --
+string   " "  : escapes interp=hash
+string   ' '  : escapes
+escape        : x=2
+sigil    @    : attr
+operators  +-*/%^#&|<>=!:\
+upper-type
+calls
+hook     lua

@@ -1,0 +1,17 @@
+      <span class="hl-com">*&gt; REQ: LANG-721 LANG-722 LANG-723 LANG-724</span>
+<span class="hl-num">000100</span> <span class="hl-kw">IDENTIFICATION</span> <span class="hl-kw">DIVISION</span>.
+<span class="hl-num">000200</span> <span class="hl-kw">PROGRAM-ID</span>. GREETER.
+<span class="hl-com">000300* Fixed-format comment line.</span>
+<span class="hl-num">000400</span> <span class="hl-kw">DATA</span> <span class="hl-kw">DIVISION</span>.
+<span class="hl-num">000500</span> <span class="hl-kw">WORKING-STORAGE</span> <span class="hl-kw">SECTION</span>.
+<span class="hl-num">000600</span> <span class="hl-num">01</span> WS-NAME     <span class="hl-kw">PIC</span> X(<span class="hl-num">20</span>) <span class="hl-kw">VALUE</span> <span class="hl-str">"world"</span>.
+<span class="hl-num">000700</span> <span class="hl-num">01</span> WS-COUNT    <span class="hl-kw">PIC</span> <span class="hl-num">9</span>(<span class="hl-num">4</span>) <span class="hl-kw">COMP</span> <span class="hl-kw">VALUE</span> <span class="hl-builtin">ZERO</span>.
+<span class="hl-num">000800</span> <span class="hl-num">01</span> WS-QUOTED   <span class="hl-kw">PIC</span> X(<span class="hl-num">10</span>) <span class="hl-kw">VALUE</span> <span class="hl-str">'it</span><span class="hl-esc">''</span><span class="hl-str">s'</span>.
+<span class="hl-num">000900</span> <span class="hl-kw">PROCEDURE</span> <span class="hl-kw">DIVISION</span>.
+<span class="hl-num">001000</span>     <span class="hl-kw">PERFORM</span> <span class="hl-kw">VARYING</span> WS-COUNT <span class="hl-kw">FROM</span> <span class="hl-num">1</span> <span class="hl-kw">BY</span> <span class="hl-num">1</span> <span class="hl-kw">UNTIL</span> WS-COUNT <span class="hl-op">&gt;</span> <span class="hl-num">3</span>
+<span class="hl-num">001100</span>         <span class="hl-kw">DISPLAY</span> <span class="hl-str">"Hello, "</span> WS-NAME <span class="hl-com">*&gt; inline comment</span>
+<span class="hl-num">001200</span>     <span class="hl-kw">END-PERFORM</span>
+<span class="hl-num">001300</span>     <span class="hl-kw">IF</span> WS-COUNT <span class="hl-kw">IS</span> <span class="hl-kw">GREATER</span> <span class="hl-kw">THAN</span> <span class="hl-num">2</span> <span class="hl-kw">AND</span> <span class="hl-kw">NOT</span> WS-NAME <span class="hl-op">=</span> <span class="hl-builtin">SPACES</span>
+<span class="hl-num">001400</span>         <span class="hl-kw">COMPUTE</span> WS-COUNT <span class="hl-op">=</span> WS-COUNT <span class="hl-op">*</span> <span class="hl-num">2</span> <span class="hl-op">+</span> <span class="hl-num">1</span>
+<span class="hl-num">001500</span>     <span class="hl-kw">END-IF</span>
+<span class="hl-num">001600</span>     <span class="hl-kw">STOP</span> <span class="hl-kw">RUN</span>.

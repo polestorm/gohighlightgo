@@ -1,0 +1,15 @@
+# Modula-2: ISO/IEC 10514-1:1996 and Wirth, "Programming in Modula-2" (4th ed.); requirements/languages/modula2.md
+name     modula2 modula-2 mod def
+
+keyword  AND ARRAY BEGIN BY CASE CONST DEFINITION DIV DO ELSE ELSIF END EXCEPT EXIT EXPORT FINALLY FOR
+keyword  FROM IF IMPLEMENTATION IMPORT IN LOOP MOD MODULE NOT OF OR PACKEDSET POINTER PROCEDURE QUALIFIED
+keyword  RECORD REM REPEAT RETRY RETURN SET THEN TO TYPE UNTIL VAR WHILE WITH
+type     INTEGER CARDINAL REAL LONGREAL LONGINT BOOLEAN CHAR BITSET PROC ADDRESS WORD
+builtin  TRUE FALSE NIL ABS CAP CHR ORD INC DEC HALT NEW DISPOSE HIGH MAX MIN SIZE VAL INCL EXCL
+
+block-comment  (* *)  : nested
+string   " "
+string   ' '
+number        : no-leading-dot
+operators  +-*/=#<>&~:^|
+calls

@@ -1,0 +1,32 @@
+// REQ: LANG-881 LANG-882 LANG-883 LANG-884
+package main
+
+import "core:fmt"
+
+/* outer /* nested */ still a comment */
+Point :: struct {
+	x: int,
+	y: f64,
+}
+
+@(private)
+square :: proc(x: int) -> int {
+	return x * x
+}
+
+main :: proc() {
+	name := "world"
+	raw := `C:\temp\file`
+	c: rune = 'x'
+	count := 0x1F + 1_000
+	#partial switch v in some_union {
+	case int: fmt.println(v)
+	}
+	for i in 0..<3 {
+		if i > 0 && c != '\n' {
+			fmt.printf("Hello, %s! %d\n", name, square(i))
+		}
+	}
+	defer delete(make([]int, 4))
+	ptr: rawptr = nil
+}

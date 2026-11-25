@@ -1,0 +1,17 @@
+<span class="hl-com">(: REQ: LANG-801 LANG-802 LANG-803 LANG-804 :)</span>
+<span class="hl-kw">xquery</span> <span class="hl-kw">version</span> <span class="hl-str">"3.1"</span>;
+
+<span class="hl-kw">declare</span> <span class="hl-kw">namespace</span> ex <span class="hl-op">=</span> <span class="hl-str">"http://example.com/ns"</span>;
+
+<span class="hl-com">(: outer (: nested :) still a comment :)</span>
+<span class="hl-kw">declare</span> <span class="hl-kw">function</span> <span class="hl-fn">local:greet</span>(<span class="hl-attr">$name</span> <span class="hl-kw">as</span> xs:string<span class="hl-op">,</span> <span class="hl-attr">$times</span> <span class="hl-kw">as</span> xs:integer) <span class="hl-kw">as</span> xs:string {
+  <span class="hl-builtin">string-join</span>(<span class="hl-kw">for</span> <span class="hl-attr">$i</span> <span class="hl-kw">in</span> <span class="hl-num">1</span> <span class="hl-kw">to</span> <span class="hl-attr">$times</span> <span class="hl-kw">return</span> <span class="hl-builtin">concat</span>(<span class="hl-str">"Hello, "</span><span class="hl-op">,</span> <span class="hl-attr">$name</span><span class="hl-op">,</span> <span class="hl-str">"!"</span>)<span class="hl-op">,</span> <span class="hl-str">" "</span>)
+};
+
+<span class="hl-kw">let</span> <span class="hl-attr">$doc</span> <span class="hl-op">:=</span> <span class="hl-builtin">doc</span>(<span class="hl-str">"people.xml"</span>)
+<span class="hl-kw">for</span> <span class="hl-attr">$p</span> <span class="hl-kw">in</span> <span class="hl-attr">$doc</span><span class="hl-op">//</span>person
+<span class="hl-kw">where</span> <span class="hl-attr">$p</span><span class="hl-op">/</span>@age <span class="hl-op">&gt;</span> <span class="hl-num">30</span> <span class="hl-kw">and</span> <span class="hl-builtin">fn:count</span>(<span class="hl-attr">$p</span><span class="hl-op">/</span>email) gt <span class="hl-num">0</span>
+<span class="hl-kw">order</span> <span class="hl-kw">by</span> <span class="hl-attr">$p</span><span class="hl-op">/</span>name <span class="hl-kw">descending</span>
+<span class="hl-kw">return</span>
+  <span class="hl-kw">if</span> (<span class="hl-builtin">contains</span>(<span class="hl-attr">$p</span><span class="hl-op">/</span>name<span class="hl-op">,</span> <span class="hl-str">'it</span><span class="hl-esc">''</span><span class="hl-str">s'</span>)) <span class="hl-kw">then</span> <span class="hl-fn">local:greet</span>(<span class="hl-attr">$p</span><span class="hl-op">/</span>name<span class="hl-op">,</span> <span class="hl-num">2</span>)
+  <span class="hl-kw">else</span> <span class="hl-op">&lt;</span>person name<span class="hl-op">=</span><span class="hl-str">"{ $p/name }"</span><span class="hl-op">/&gt;</span>

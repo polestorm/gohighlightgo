@@ -1,0 +1,15 @@
+<span class="hl-com"># REQ: LANG-811 LANG-812 LANG-813 LANG-814</span>
+<span class="hl-kw">PREFIX</span> foaf: <span class="hl-str">&lt;http://xmlns.com/foaf/0.1/&gt;</span>
+<span class="hl-kw">PREFIX</span> xsd:  <span class="hl-str">&lt;http://www.w3.org/2001/XMLSchema#&gt;</span>
+
+<span class="hl-kw">SELECT</span> <span class="hl-kw">DISTINCT</span> <span class="hl-attr">?name</span> (<span class="hl-builtin">COUNT</span>(<span class="hl-attr">?friend</span>) <span class="hl-kw">AS</span> <span class="hl-attr">?friends</span>)
+<span class="hl-kw">WHERE</span> {
+  <span class="hl-attr">?person</span> <span class="hl-builtin">a</span> foaf:Person <span class="hl-op">;</span>
+          foaf:name <span class="hl-attr">?name</span> <span class="hl-op">;</span>
+          foaf:age <span class="hl-attr">?age</span> <span class="hl-op">.</span>
+  <span class="hl-kw">OPTIONAL</span> { <span class="hl-attr">?person</span> foaf:knows <span class="hl-attr">?friend</span> }
+  <span class="hl-kw">FILTER</span> (<span class="hl-attr">?age</span> <span class="hl-op">&lt;</span> <span class="hl-num">40</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-builtin">LANG</span>(<span class="hl-attr">?name</span>) <span class="hl-op">=</span> <span class="hl-str">"en"</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-builtin">REGEX</span>(<span class="hl-attr">?name</span><span class="hl-op">,</span> <span class="hl-str">'^A'</span><span class="hl-op">,</span> <span class="hl-str">"i"</span>))
+}
+<span class="hl-kw">GROUP</span> <span class="hl-kw">BY</span> <span class="hl-attr">?name</span>
+<span class="hl-kw">ORDER</span> <span class="hl-kw">BY</span> <span class="hl-kw">DESC</span>(<span class="hl-attr">?friends</span>)
+<span class="hl-kw">LIMIT</span> <span class="hl-num">10</span>

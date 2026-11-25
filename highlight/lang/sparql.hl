@@ -1,0 +1,19 @@
+# SPARQL: SPARQL 1.1 Query Language and Update (W3C Recommendations 2013), 19 Grammar; requirements/languages/sparql.md
+name     sparql rq
+
+keyword  BASE PREFIX SELECT CONSTRUCT DESCRIBE ASK WHERE FROM NAMED GRAPH OPTIONAL UNION MINUS FILTER
+keyword  BIND VALUES SERVICE ORDER BY ASC DESC LIMIT OFFSET DISTINCT REDUCED GROUP HAVING AS INSERT
+keyword  DELETE DATA WITH USING CLEAR DROP LOAD CREATE IN NOT EXISTS
+builtin  a true false STR LANG LANGMATCHES DATATYPE BOUND IRI URI BNODE REGEX COUNT SUM MIN MAX AVG
+builtin  SAMPLE GROUP_CONCAT CONCAT STRLEN UCASE LCASE CONTAINS NOW YEAR ISIRI ISLITERAL
+fold-case
+
+ident-part     -:
+line-comment   #
+string   """ """  : escapes multiline
+string   ''' '''  : escapes multiline
+string   " "      : escapes
+string   ' '      : escapes
+sigil    ?$   : attr
+operators  =!<>&|+*/^.;,
+hook     iri

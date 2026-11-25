@@ -1,0 +1,20 @@
+REM REQ: LANG-791 LANG-792 LANG-793 LANG-794
+@echo off
+setlocal enabledelayedexpansion
+:: Double-colon comment
+set NAME=world
+set /a COUNT=3
+
+:loop
+if %COUNT% leq 0 goto done
+echo Hello, %NAME%! Count: !COUNT! in %~dp0
+set /a COUNT-=1
+goto loop
+
+:done
+for %%f in (*.txt) do (
+    echo %%f
+)
+if exist "%1" call :helper %1 & rem trailing remark
+remove-me.exe > nul 2>&1
+exit /b 0

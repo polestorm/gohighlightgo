@@ -1,0 +1,23 @@
+"REQ: LANG-731 LANG-732 LANG-733 LANG-734"
+Object subclass: #Greeter
+    instanceVariableNames: 'name count'
+    classVariableNames: ''
+    package: 'Demo'.
+
+"Greets the name.
+ Multi-line comment."
+Greeter >> greet: times [
+    | text |
+    text := 'Hello, ', name, '! it''s fine'.
+    times > 0 ifTrue: [ ^ text , String cr ] ifFalse: [ ^ nil ].
+    count := count + 1.
+    ^ self
+]
+
+| g |
+g := Greeter new.
+Transcript show: (g greet: 2); cr.
+#(1 2 3) do: [:each | Transcript show: each printString].
+$a isVowel & true | false.
+16r1F + 3.14e0 + 2/3.
+thisContext printString.

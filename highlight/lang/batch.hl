@@ -1,0 +1,12 @@
+# Windows batch files: Windows Commands reference (cmd, set, if, for, call, goto, rem); requirements/languages/batch.md
+name     batch bat cmd
+
+keyword  echo set if else goto call exit for in do not exist defined errorlevel setlocal endlocal
+keyword  enabledelayedexpansion shift pause cls start title pushd popd equ neq lss leq gtr geq off on
+builtin  copy move del mkdir rmdir dir type find findstr cd chdir ren timeout choice
+fold-case
+
+string   " "
+operators  @=|&<>()
+hook     batch
+hook     rem

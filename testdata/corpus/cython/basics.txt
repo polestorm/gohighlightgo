@@ -1,0 +1,17 @@
+# REQ: LANG-851 LANG-852
+# cython: language_level=3
+from libc.math cimport sqrt
+
+cdef struct Point:
+    double x
+    double y
+
+cdef inline double norm(Point p) nogil:
+    return sqrt(p.x * p.x + p.y * p.y)
+
+cpdef int greet(str name, Py_ssize_t times=1) except -1:
+    cdef int i
+    cdef bint ok = True
+    for i in range(times):
+        print(f"Hello, {name}!")
+    return 0 if ok else 1
