@@ -9,5 +9,6 @@
 | LANG-043 | Komentarze `//` i `/* … */` dostają `hl-com` (12.4). |
 | LANG-044 | Napisy w cudzysłowach i apostrofach dostają `hl-str`; sekwencje ucieczki (`\` z jednym znakiem, `\x` z dwiema cyframi, `\u` z czterema, `\u{…}`) dostają `hl-esc`; `\` przed końcem wiersza przedłuża napis (12.9.4). |
 | LANG-045 | Szablon `` `…` `` dostaje `hl-str` i może obejmować wiele wierszy; `${` i odpowiadające mu `}` dostają `hl-esc`, a wyrażenie między nimi jest kolorowane jak zwykły kod, także z zagnieżdżonymi szablonami i nawiasami `{}` (12.9.6). |
-| LANG-046 | Liczby jak w Go (`LANG-007`) z przyrostkiem `n` (BigInt) (12.9.3). Wyrażenia regularne `/…/` nie są rozpoznawane: ich rozpoznanie zależy od składni, nie od samych znaków (12.9.5). |
+| LANG-046 | Liczby jak w Go (`LANG-007`) z przyrostkiem `n` (BigInt) (12.9.3). |
+| LANG-048 | Wyrażenie regularne `/…/flagi` dostaje `hl-str` w całości, gdy `/` stoi na początku danych, po operatorze, po `(`, `[`, `{`, `,`, `;` albo po słowie `return typeof instanceof in new delete void throw case do else yield await`; po identyfikatorze, liczbie, napisie, `)`, `]` i `}` to dzielenie. Wyrażenie kończy się na `/` poza klasą `[…]`, `\\` chroni następny znak; bez zamknięcia w tym wierszu `/` jest operatorem, a w reszcie wiersza nie szukamy już wyrażeń (12.9.5; specyfikacja rozstrzyga to składnią, tu wystarcza poprzedni token). |
 | LANG-047 | Dekorator `@nazwa` dostaje `hl-meta`; operatory `+ - * / % & \| ^ ! < > = : ? ~` dostają `hl-op`; identyfikator przed `(` dostaje `hl-fn`. |

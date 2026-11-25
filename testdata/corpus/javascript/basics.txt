@@ -1,4 +1,4 @@
-// REQ: LANG-041 LANG-042 LANG-043 LANG-044 LANG-045 LANG-046 LANG-047
+// REQ: LANG-041 LANG-042 LANG-043 LANG-044 LANG-045 LANG-046 LANG-047 LANG-048
 import { readFile } from "node:fs/promises";
 
 /* Block comment */
@@ -16,7 +16,11 @@ second line \` and \${not}`;
         if (data === undefined || data == null || Number.isNaN(NaN) || x !== Infinity) {
             throw new Error("bad \x41 \u0041 \u{1F600}");
         }
-        const re = /'not a string/; // regular expressions are not recognized
+        const re = /'not a string/; // a regular expression after =
+        const half = (a + b) / 2 / c, ratio = arr[0] / x.length;
+        total /= 2;
+        if (/^[a-z/]+$/i.test(path) && [/x/, /\//g].length) {}
+        const after = typeof /y/ === 'object' ? /z/u : null;
         return typeof data === 'string' ? data : void 0;
     }
 }

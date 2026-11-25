@@ -39,5 +39,6 @@ func jsTable(groups ...wordGroup) *table {
 		calls:      true,
 		decorators: true,
 		templates:  true,
+		regex:      true,
 	}
 }

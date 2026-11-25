@@ -23,8 +23,12 @@ wyboru między dokładnością a prostotą.
    punkt 7; każdy ma przypadki w `TestPathological`.
 3. **Szablony JS bez rekurencji**: zagnieżdżone `${ … }` obsługuje stos liczników nawiasów w pętli skanera,
    więc głębokość zagnieżdżenia nie zużywa stosu wywołań.
-4. **Wyrażenia regularne JS nie są rozpoznawane**: to, czy `/` zaczyna wyrażenie, zależy od składni, nie od
-   znaków. Skutek: apostrof albo cudzysłów w wyrażeniu regularnym otwiera napis do końca wiersza.
+4. **Wyrażenia regularne JS rozpoznaje poprzedni token** (zmiana z 2026-11-25 na prośbę właściciela; pierwsza
+   wersja ich nie rozpoznawała i apostrof w `/'…/` otwierał napis do końca wiersza). Specyfikacja rozstrzyga
+   to składnią; tu `/` zaczyna wyrażenie po operatorze, nawiasie otwierającym, przecinku, średniku i kilku
+   słowach kluczowych (`LANG-048`), a po wartości jest dzieleniem. Nieudana próba (brak zamknięcia w wierszu)
+   wyłącza kolejne próby do końca wiersza, co utrzymuje czas liniowy. Pomyłki zostają w rzadkich miejscach:
+   `}` kończący blok, po którym stoi wyrażenie, daje dzielenie.
 5. **SQL bez `hl-fn`**: identyfikator przed nawiasem to w SQL najczęściej nazwa tabeli; funkcje wbudowane mają
    `hl-builtin`. Dialekty nie są rozróżniane; lista słów to norma i słowa powszechne w PostgreSQL, SQLite
    i MySQL.
@@ -41,5 +45,5 @@ wyboru między dokładnością a prostotą.
 + jedenaście języków w jednym skanerze; kod języka to głównie listy słów (`highlight/lang_*.go`);
 + wydajność 87–122 MB/s we wszystkich językach (`docs/testing.md`);
 − kolorowanie pozostaje leksykalne: konwersja `T(x)` dostaje `hl-fn`, `t.0` w Ruście daje liczbę `0`,
-  wyrażenie regularne z apostrofem w JS psuje resztę wiersza;
+  `}` przed wyrażeniem regularnym w JS daje dzielenie;
 − plik z przyrostkiem `_js.go` byłby budowany tylko dla `GOOS=js`, dlatego JavaScript leży w `lang_javascript.go`.

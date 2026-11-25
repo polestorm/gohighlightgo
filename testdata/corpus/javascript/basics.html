@@ -1,4 +1,4 @@
-<span class="hl-com">// REQ: LANG-041 LANG-042 LANG-043 LANG-044 LANG-045 LANG-046 LANG-047</span>
+<span class="hl-com">// REQ: LANG-041 LANG-042 LANG-043 LANG-044 LANG-045 LANG-046 LANG-047 LANG-048</span>
 <span class="hl-kw">import</span> { readFile } from <span class="hl-str">"node:fs/promises"</span>;
 
 <span class="hl-com">/* Block comment */</span>
@@ -16,7 +16,11 @@
         <span class="hl-kw">if</span> (data <span class="hl-op">===</span> <span class="hl-builtin">undefined</span> <span class="hl-op">||</span> data <span class="hl-op">==</span> <span class="hl-builtin">null</span> <span class="hl-op">||</span> Number.<span class="hl-fn">isNaN</span>(<span class="hl-builtin">NaN</span>) <span class="hl-op">||</span> x <span class="hl-op">!==</span> <span class="hl-builtin">Infinity</span>) {
             <span class="hl-kw">throw</span> <span class="hl-kw">new</span> <span class="hl-fn">Error</span>(<span class="hl-str">"bad </span><span class="hl-esc">\x41</span><span class="hl-str"> </span><span class="hl-esc">\u0041</span><span class="hl-str"> </span><span class="hl-esc">\u{1F600}</span><span class="hl-str">"</span>);
         }
-        <span class="hl-kw">const</span> re <span class="hl-op">=</span> <span class="hl-op">/</span><span class="hl-str">'not a string/; // regular expressions are not recognized</span>
+        <span class="hl-kw">const</span> re <span class="hl-op">=</span> <span class="hl-str">/'not a string/</span>; <span class="hl-com">// a regular expression after =</span>
+        <span class="hl-kw">const</span> half <span class="hl-op">=</span> (a <span class="hl-op">+</span> b) <span class="hl-op">/</span> <span class="hl-num">2</span> <span class="hl-op">/</span> c, ratio <span class="hl-op">=</span> arr[<span class="hl-num">0</span>] <span class="hl-op">/</span> x.length;
+        total <span class="hl-op">/=</span> <span class="hl-num">2</span>;
+        <span class="hl-kw">if</span> (<span class="hl-str">/^[a-z/]+$/i</span>.<span class="hl-fn">test</span>(path) <span class="hl-op">&amp;&amp;</span> [<span class="hl-str">/x/</span>, <span class="hl-str">/\//g</span>].length) {}
+        <span class="hl-kw">const</span> after <span class="hl-op">=</span> <span class="hl-kw">typeof</span> <span class="hl-str">/y/</span> <span class="hl-op">===</span> <span class="hl-str">'object'</span> <span class="hl-op">?</span> <span class="hl-str">/z/u</span> <span class="hl-op">:</span> <span class="hl-builtin">null</span>;
         <span class="hl-kw">return</span> <span class="hl-kw">typeof</span> data <span class="hl-op">===</span> <span class="hl-str">'string'</span> <span class="hl-op">?</span> data <span class="hl-op">:</span> <span class="hl-kw">void</span> <span class="hl-num">0</span>;
     }
 }

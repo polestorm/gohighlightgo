@@ -24,6 +24,7 @@ type table struct {
 	decorators    bool   // @nazwa dostaje hl-meta (adnotacje i dekoratory)
 	templates     bool   // `…${…}…` z wyrażeniami wewnątrz (JS, TS)
 	keys          bool   // napis przed dwukropkiem dostaje hl-attr (klucze JSON)
+	regex         bool   // /…/flagi po tokenie, po którym nie może stać dzielenie, dostaje hl-str (JS, TS)
 
 	// special obsługuje konstrukcje spoza tabeli (preprocesor, napisy surowe z ogranicznikiem, czasy życia).
 	// Woła się go na początku każdego tokenu; zwraca koniec tego, co zapisał, albo i, gdy nic nie rozpoznał.
@@ -87,6 +88,10 @@ func foldWords(m map[string]class) map[string]class {
 func (t *table) scan(w *writer, src []byte) {
 	// templates: dla każdego otwartego ${ w szablonie liczba otwartych w nim nawiasów {.
 	var templates []int
+	// regexOK: poprzedni znaczący token nie jest wartością, więc / zaczyna wyrażenie regularne, nie dzielenie.
+	// regexFailed: do tej pozycji (koniec wiersza po nieudanej próbie) nie próbujemy znowu, żeby seria
+	// niezamkniętych wyrażeń w jednym wierszu nie dała czasu kwadratowego.
+	regexOK, regexFailed := true, 0
 	for i := 0; i < len(src); {
 		b := src[i]
 		if isSpace(b) {
@@ -117,6 +122,7 @@ func (t *table) scan(w *writer, src []byte) {
 				if open {
 					templates = append(templates, 0)
 				}
+				regexOK = open
 				continue
 			case b == '{' && len(templates) > 0:
 				templates[len(templates)-1]++
@@ -131,10 +137,20 @@ func (t *table) scan(w *writer, src []byte) {
 					if open {
 						templates = append(templates, 0)
 					}
+					regexOK = open
 					continue
 				}
 			}
 		}
+		if t.regex && b == '/' && regexOK && i >= regexFailed {
+			if end := regexEnd(src, i); end > i {
+				w.emit(str, src[i:end])
+				i, regexOK = end, false
+				continue
+			}
+			regexFailed = lineEnd(src, i)
+		}
+		regexOK = false // każda gałąź poniżej, która nie ustawia regexOK, zapisuje wartość
 		if q := t.quoteAt(src, i); q != nil {
 			c := str
 			if t.keys && colonAfter(src, t.scanQuote(nil, src, i, i, q, false, str)) {
@@ -172,6 +188,7 @@ func (t *table) scan(w *writer, src []byte) {
 			if c == none && t.macros && j+1 < len(src) && src[j] == '!' && src[j+1] != '=' {
 				c = call
 			}
+			regexOK = c == keyword && regexKeywords[string(src[i:j])]
 			w.emit(c, src[i:j])
 			i = j
 			continue
@@ -179,12 +196,48 @@ func (t *table) scan(w *writer, src []byte) {
 		if b < utf8.RuneSelf && strings.IndexByte(t.operators, b) >= 0 {
 			w.emit(operator, src[i:i+1])
 			i++
+			regexOK = true
 			continue
 		}
+		regexOK = b == '(' || b == '[' || b == '{' || b == ',' || b == ';'
 		_, size := utf8.DecodeRune(src[i:])
 		w.emit(none, src[i:i+size])
 		i += size
 	}
+}
+
+// regexKeywords: słowa JS, po których / zaczyna wyrażenie regularne.
+var regexKeywords = map[string]bool{"return": true, "typeof": true, "instanceof": true, "in": true,
+	"new": true, "delete": true, "void": true, "throw": true, "case": true, "do": true, "else": true,
+	"yield": true, "await": true}
+
+// regexEnd zwraca koniec wyrażenia regularnego JS od / w src[i] (z flagami) albo i, gdy w tym wierszu nie ma
+// zamykającego / poza klasą znaków [...]. \ chroni następny znak.
+func regexEnd(src []byte, i int) int {
+	inClass := false
+	for j := i + 1; j < len(src); j++ {
+		switch src[j] {
+		case '\n':
+			return i
+		case '\\':
+			if j+1 < len(src) && src[j+1] != '\n' {
+				j++
+			}
+		case '[':
+			inClass = true
+		case ']':
+			inClass = false
+		case '/':
+			if !inClass {
+				j++
+				for j < len(src) && (isDigit(src[j]) || src[j]|0x20 >= 'a' && src[j]|0x20 <= 'z') {
+					j++
+				}
+				return j
+			}
+		}
+	}
+	return i
 }
 
 // identEnd zwraca koniec identyfikatora od src[i] albo i, gdy go tam nie ma.
