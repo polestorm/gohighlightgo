@@ -14,6 +14,26 @@ type language struct {
 	names []string // nazwa główna, potem aliasy; małymi literami
 	scan  func(w *writer, src []byte)
 	table *table // dla języków z definicji (do extends); nil dla skanerów w Go
+
+	// Definicja wbudowana jest parsowana przy pierwszym użyciu (ADR 0009): definition to jej tekst, base daje
+	// język do extends, once pilnuje jednego parsowania także przy wywołaniach równoległych.
+	definition []byte
+	base       func(string) *language
+	once       sync.Once
+}
+
+// tbl zwraca tabelę języka z definicji, parsując ją przy pierwszym użyciu; nil dla skanerów w Go.
+func (l *language) tbl() *table {
+	if l.definition != nil {
+		l.once.Do(func() {
+			parsed, err := parseDefinition(l.definition, l.base)
+			if err != nil {
+				panic("highlight: built-in definition " + l.names[0] + ": " + err.Error())
+			}
+			l.table = parsed.table
+		})
+	}
+	return l.table
 }
 
 // languages to języki wbudowane: z definicji w lang/*.hl i ze skanerów w Go. Nazwa główna wyznacza plik
@@ -34,7 +54,7 @@ var (
 
 func init() {
 	languages = append(loadBuiltins(), &langXML, &langHTML, &langCSS, &langYAML, &langTOML, &langShell,
-		&langDiff, &langMarkdown)
+		&langDiff, &langMarkdown, &langINI, &langProperties, &langAsciiDoc)
 	reg, err := newRegistry(languages)
 	if err != nil {
 		panic(err)

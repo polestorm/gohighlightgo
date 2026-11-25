@@ -1,0 +1,17 @@
+<span class="hl-com"># REQ: LANG-441 LANG-442 LANG-443 LANG-444</span>
+<span class="hl-com"># syntax=docker/dockerfile:1</span>
+<span class="hl-kw">ARG</span> GO_VERSION<span class="hl-op">=</span><span class="hl-num">1.22</span>
+<span class="hl-kw">FROM</span> golang:<span class="hl-esc">${GO_VERSION}</span> <span class="hl-kw">AS</span> build
+<span class="hl-kw">WORKDIR</span> /src
+<span class="hl-kw">COPY</span> go.mod go.sum ./
+<span class="hl-kw">RUN</span> go mod download <span class="hl-op">&amp;&amp;</span> <span class="hl-op">\</span>
+    go build -o /out/app ./<span class="hl-kw">cmd</span>/app
+<span class="hl-kw">ENV</span> APP_HOME<span class="hl-op">=</span>/app PATH<span class="hl-op">=</span><span class="hl-str">"</span><span class="hl-esc">$PATH</span><span class="hl-str">:/app/bin"</span>
+
+<span class="hl-kw">FROM</span> gcr.io/distroless/static <span class="hl-kw">AS</span> final
+<span class="hl-kw">LABEL</span> org.opencontainers.image.title<span class="hl-op">=</span><span class="hl-str">'gohighlightgo'</span>
+<span class="hl-kw">COPY</span> --<span class="hl-kw">from</span><span class="hl-op">=</span>build /out/app <span class="hl-esc">$APP_HOME</span>/app
+<span class="hl-kw">EXPOSE</span> <span class="hl-num">8080</span>
+<span class="hl-kw">USER</span> nonroot
+<span class="hl-kw">ENTRYPOINT</span> [<span class="hl-str">"/app/app"</span>, <span class="hl-str">"--port"</span>, <span class="hl-str">"8080"</span>]
+<span class="hl-kw">cmd</span> [<span class="hl-str">"--help"</span>]

@@ -1,0 +1,16 @@
+# GraphQL: GraphQL specification (October 2021), section 2 Language; requirements/languages/graphql.md
+name     graphql gql
+
+keyword  query mutation subscription fragment on type interface union enum input scalar schema extend
+keyword  implements directive repeatable
+type     Int Float String Boolean ID
+builtin  true false null
+
+line-comment   #
+string   """ """  : escapes multiline
+string   " "      : escapes
+escape        : u4 u-braces
+sigil    $    : attr
+sigil    @    : meta
+operators  =:!|&
+upper-type

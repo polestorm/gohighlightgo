@@ -1,0 +1,18 @@
+# Vim script: Vim reference manual, ":help eval", ":help expression-syntax", ":help vim9" (Vim 9.1); requirements/languages/vim.md
+name     vim vimscript viml
+
+keyword  function endfunction func endfunc let unlet if else elseif endif for endfor while endwhile
+keyword  return call execute exe set setlocal autocmd augroup command try catch finally endtry throw
+keyword  echo echom echomsg def enddef var const final export import vim9script normal silent
+keyword  map nmap vmap imap noremap nnoremap vnoremap inoremap source runtime
+builtin  exists has expand strftime len empty get join split printf string type filereadable
+builtin  true false v:true v:false v:null
+
+ident-part     :#
+line-comment   #
+string   " "  : escapes
+string   ' '  : doubled
+sigil    &@$  : attr
+operators  =+-*/%.<>!&|?
+calls
+hook     vim

@@ -1,0 +1,24 @@
+# REQ: LANG-451 LANG-452 LANG-453 LANG-454
+cmake_minimum_required(VERSION 3.20)
+project(Demo VERSION 1.0 LANGUAGES C CXX)
+
+option(BUILD_TESTS "Build the tests" ON)
+set(SOURCES src/main.c src/util.c)
+
+if(NOT CMAKE_BUILD_TYPE AND NOT DEFINED ENV{CI})
+  set(CMAKE_BUILD_TYPE Release)
+elseif(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  message(STATUS "Debug build in ${CMAKE_BINARY_DIR}")
+endif()
+
+add_executable(demo ${SOURCES})
+target_link_libraries(demo PRIVATE m)
+
+foreach(test IN ITEMS a b c)
+  add_test(NAME test_${test} COMMAND demo --test ${test})
+endforeach()
+
+function(print_all)
+  message("multi-line
+string ${ARGN}")
+endfunction()

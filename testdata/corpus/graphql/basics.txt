@@ -1,0 +1,23 @@
+# REQ: LANG-491 LANG-492 LANG-493 LANG-494
+"""
+A person in the system.
+"""
+type Person implements Node @key(fields: "id") {
+  id: ID!
+  name: String
+  age: Int
+  friends(first: Int = 10): [Person!]!
+}
+
+enum Role { ADMIN USER }
+
+query GetPerson($id: ID!, $withFriends: Boolean = false) {
+  person(id: $id) {
+    name
+    friends @include(if: $withFriends) { name }
+  }
+}
+
+mutation { addPerson(name: "Ola", age: 30, active: true, note: null) { id } }
+
+fragment Basic on Person { id name }

@@ -1,0 +1,14 @@
+# Makefile: GNU make manual (4.4): Rule Syntax, Variables, Conditionals, Automatic Variables; requirements/languages/make.md
+name     make makefile mk mak
+
+keyword  ifeq ifneq ifdef ifndef else endif include -include sinclude define endef export unexport
+keyword  override private vpath .PHONY .SUFFIXES .DEFAULT .PRECIOUS .INTERMEDIATE .SECONDARY
+builtin  subst patsubst strip findstring filter filter-out sort word words wordlist firstword lastword
+builtin  dir notdir suffix basename addsuffix addprefix join wildcard realpath abspath error warning info
+builtin  shell origin flavor foreach call eval value if or and
+
+line-comment   #
+string   " "  : escapes
+string   ' '  : escapes
+operators  =:+?!|;<>
+hook     variables

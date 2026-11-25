@@ -1,0 +1,17 @@
+<span class="hl-com">% REQ: LANG-521 LANG-522 LANG-523 LANG-524</span>
+<span class="hl-kw">\documentclass</span>[<span class="hl-num">11pt</span>]{article}
+<span class="hl-kw">\usepackage</span>[utf8]{inputenc}
+
+<span class="hl-kw">\begin</span>{document}
+<span class="hl-kw">\section</span>{Introduction}
+This costs <span class="hl-num">10</span><span class="hl-esc">\%</span> less, see <span class="hl-kw">\cite</span>{knuth}. <span class="hl-com">% a comment</span>
+Inline math <span class="hl-str">$E = mc^2$</span> and a display:
+<span class="hl-str">$$</span>
+<span class="hl-str">  \sum_{i=1}^{n} i = \frac{n(n+1)}{2}</span>
+<span class="hl-str">$$</span>
+<span class="hl-kw">\begin</span>{tabular}{l r}
+  Name <span class="hl-op">&amp;</span> Value <span class="hl-esc">\\</span>
+  Pi <span class="hl-op">&amp;</span> <span class="hl-num">3.14</span> <span class="hl-esc">\\</span>
+<span class="hl-kw">\end</span>{tabular}
+Escaped <span class="hl-esc">\{</span>braces<span class="hl-esc">\}</span> and <span class="hl-esc">\$</span>dollars, a tilde<span class="hl-op">~</span>space.
+<span class="hl-kw">\end</span>{document}

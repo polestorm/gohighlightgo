@@ -1,0 +1,12 @@
+; REQ: LANG-461 LANG-462 LANG-463 LANG-464
+# Global settings
+[core]
+editor = vim
+autocrlf = false
+timeout: 30
+ratio = 0.75
+
+[user "work"]
+name = "Jan Kowalski"
+path = ${HOME}/projects
+enabled = yes

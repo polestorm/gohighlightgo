@@ -1,0 +1,17 @@
+% REQ: LANG-521 LANG-522 LANG-523 LANG-524
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+\section{Introduction}
+This costs 10\% less, see \cite{knuth}. % a comment
+Inline math $E = mc^2$ and a display:
+$$
+  \sum_{i=1}^{n} i = \frac{n(n+1)}{2}
+$$
+\begin{tabular}{l r}
+  Name & Value \\
+  Pi & 3.14 \\
+\end{tabular}
+Escaped \{braces\} and \$dollars, a tilde~space.
+\end{document}

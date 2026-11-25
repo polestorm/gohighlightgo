@@ -139,3 +139,32 @@ func FuzzDefinition(f *testing.F) {
 		}
 	})
 }
+
+// REQ: DEF-001
+// TestBuiltinDefinitions: każda wbudowana definicja parsuje się bez błędu, a nazwy odczytane bez parsowania
+// zgadzają się z nazwami z parsera (wczytywanie leniwe, ADR 0009).
+func TestBuiltinDefinitions(t *testing.T) {
+	for _, l := range languages {
+		if l.definition == nil {
+			continue
+		}
+		parsed, err := parseDefinition(l.definition, l.base)
+		if err != nil {
+			t.Errorf("%s: %v", l.names[0], err)
+			continue
+		}
+		if strings.Join(parsed.names, " ") != strings.Join(l.names, " ") {
+			t.Errorf("%s: names %v, parser %v", l.names[0], l.names, parsed.names)
+		}
+		if l.tbl() == nil {
+			t.Errorf("%s: no table", l.names[0])
+		}
+	}
+}
+
+func BenchmarkLoadBuiltins(b *testing.B) {
+	b.ReportAllocs()
+	for i := 0; i < b.N; i++ {
+		loadBuiltins()
+	}
+}

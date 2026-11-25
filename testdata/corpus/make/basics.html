@@ -1,0 +1,26 @@
+<span class="hl-com"># REQ: LANG-431 LANG-432 LANG-433 LANG-434</span>
+CC <span class="hl-op">?=</span> gcc
+CFLAGS <span class="hl-op">:=</span> -O2 -Wall
+SRCS <span class="hl-op">=</span> <span class="hl-esc">$(wildcard src/*.c)</span>
+OBJS <span class="hl-op">=</span> <span class="hl-esc">$(patsubst %.c,%.o,$(SRCS))</span>
+VERSION <span class="hl-op">=</span> <span class="hl-str">"1.0"</span>
+
+.PHONY<span class="hl-op">:</span> all clean
+
+<span class="hl-fn">all</span><span class="hl-op">:</span> app
+
+<span class="hl-fn">app</span><span class="hl-op">:</span> <span class="hl-esc">$(OBJS)</span>
+	<span class="hl-esc">$(CC)</span> <span class="hl-esc">$(CFLAGS)</span> -o <span class="hl-esc">$@</span> <span class="hl-esc">$^</span>
+
+%.o<span class="hl-op">:</span> %.c
+	<span class="hl-esc">$(CC)</span> <span class="hl-esc">$(CFLAGS)</span> -c <span class="hl-esc">$&lt;</span> -o <span class="hl-esc">${@}</span>
+
+<span class="hl-kw">ifeq</span> (<span class="hl-esc">$(DEBUG)</span>,<span class="hl-num">1</span>)
+CFLAGS <span class="hl-op">+=</span> -g
+<span class="hl-kw">else</span>
+CFLAGS <span class="hl-op">+=</span> -DNDEBUG
+<span class="hl-kw">endif</span>
+
+<span class="hl-fn">clean</span><span class="hl-op">:</span>
+	rm -f <span class="hl-esc">$(OBJS)</span> app <span class="hl-com"># remove build output</span>
+	@echo <span class="hl-str">'done $$HOME'</span>

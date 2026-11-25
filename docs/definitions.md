@@ -50,7 +50,7 @@ contain any letters.
 | `line-string` | prefixes | | a string to the end of the line (`\\` in Zig) |
 | `line-comment` | prefixes | | a comment to the end of the line |
 | `block-comment` | open close | `nested` | a comment between two delimiters; an unclosed one runs to the end |
-| `string` | open close | `escapes`, `multiline`, `doubled`, `name`, `interp=dollar`, `interp=braces`, `interp=hash` | see below |
+| `string` | open close | `escapes`, `multiline`, `doubled`, `name`, `interp=dollar`, `interp=dollar-braces`, `interp=braces`, `interp=hash` | see below |
 | `prefix` | prefixes | `raw`, `literal`, `verbatim`, `interp=dollar`, `interp=braces`, `any-case` | see below |
 | `escape` | | `continuation`, `x=N` or `x=any`, `octal=N`, `u4`, `U8`, `u-braces`, `java-u`, `named`, `paren` | escape sequences after `\` in strings with `escapes` |
 | `number` | | `no-leading-dot`, `dot-ident`, `quote-sep` | differences in number syntax |
@@ -62,13 +62,13 @@ contain any letters.
 | `templates` | | | JavaScript template literals with `${…}` |
 | `regex` | | | JavaScript regular expression literals, decided by the previous token |
 | `keys` | | | a string followed by `:` is coloured `hl-attr` (JSON keys) |
-| `hook` | a hook | | a construct written in Go: `c-preprocessor`, `cpp`, `rust`, `json-minus`, `pascal`, `lua`, `swift`, `apostrophe`, `haskell`, `ruby`, `php`, `perl`, `elixir`, `matlab`, `dotted`; may be repeated, tried in order |
+| `hook` | a hook | | a construct written in Go: `c-preprocessor`, `cpp`, `rust`, `json-minus`, `pascal`, `lua`, `swift`, `apostrophe`, `haskell`, `ruby`, `php`, `perl`, `elixir`, `matlab`, `dotted`, `variables`, `latex`, `vim`, `hcl`; may be repeated, tried in order |
 
 **Strings.** `escapes`: `\` starts an escape sequence (shaped by `escape`); `multiline`: the string may cross line
 ends, otherwise an unclosed string ends before the line break; `doubled`: the closing delimiter written twice is an
 escape (`''` in SQL); `name`: a quoted name, not a string, so it gets no class (`"column"` in SQL);
 `interp=dollar`: `$name` and `${…}` are coloured `hl-esc`; `interp=braces`: `{…}` is coloured `hl-esc` and `{{` is
-an escape; `interp=hash`: `#{…}` is coloured `hl-esc` (Ruby). The first matching delimiter wins, so longer ones (`"""`) go first.
+an escape; `interp=hash`: `#{…}` is coloured `hl-esc` (Ruby); `interp=dollar-braces`: only `${…}` (Nix, HCL, CMake). The first matching delimiter wins, so longer ones (`"""`) go first.
 
 **Prefixes** are glued to a string: `u8"…"`, `r"…"`, `@"…"`. `raw`: no escape sequences, but `\` still protects
 the next character from closing the string (Python); `literal`: `\` is an ordinary character (Dart); `verbatim`:

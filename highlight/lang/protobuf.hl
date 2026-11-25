@@ -1,0 +1,16 @@
+# Protocol Buffers: Protocol Buffers Version 3 Language Specification and Editions; requirements/languages/protobuf.md
+name     protobuf proto proto3
+
+keyword  syntax edition package import public weak option message enum service rpc returns stream oneof
+keyword  map repeated optional required reserved extensions extend to max group
+type     double float int32 int64 uint32 uint64 sint32 sint64 fixed32 fixed64 sfixed32 sfixed64 bool
+type     string bytes
+builtin  true false inf nan
+
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+string   ' '  : escapes
+escape        : x=2 octal=3
+operators  =<>-
+upper-type

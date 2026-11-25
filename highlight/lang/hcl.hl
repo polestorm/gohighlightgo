@@ -1,0 +1,14 @@
+# HCL / Terraform: HCL Native Syntax Specification and Terraform language docs; requirements/languages/hcl.md
+name     hcl terraform tf tfvars
+
+keyword  resource data variable output module provider locals terraform backend for in if else endif
+keyword  endfor dynamic content each count
+builtin  true false null
+
+line-comment   # //
+block-comment  /* */
+string   " "  : escapes interp=dollar-braces
+escape        : u4 U8
+operators  =!<>&|?:+-*/%
+calls
+hook     hcl

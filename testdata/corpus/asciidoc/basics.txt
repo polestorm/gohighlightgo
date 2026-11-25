@@ -1,0 +1,30 @@
+// REQ: LANG-541 LANG-542 LANG-543 LANG-544
+= Document Title
+:author: Jan Kowalski
+:version: 1.0
+
+== Introduction
+
+This is version {version} with `inline code` and a list:
+
+* first item
+* second item
+. ordered item
+
+////
+A block comment.
+////
+
+[source,go]
+----
+func main() { fmt.Println("hi") }
+----
+
+....
+Literal block <&>
+....
+
+[NOTE]
+====
+An admonition block.
+====

@@ -15,9 +15,9 @@ języków z konkurencją (chroma 297, highlight 263; stan 2026-11-25).
 2. Zasady się nie zmieniają: każdy język ma definicję napisaną ze specyfikacji albo oficjalnej dokumentacji
    (zasada rodowodu), plik wymagań z odwołaniami do źródła, plik korpusu i przechodzi H2–H4. Konstrukcje spoza
    tabeli są hakami w Go z przypadkami w `TestPathological`.
-3. Definicje są wczytywane przy starcie pakietu; dziś 22 pliki to około 0,2 ms. Gdy liczba plików przekroczy
-   około 50, wczytywanie stanie się leniwe (przy pierwszym użyciu języka), żeby start programu nie rósł z liczbą
-   języków; nazwy będą znane bez parsowania całych definicji.
+3. Definicje są wczytywane leniwie (od 2026-11-25, przy 44 plikach): przy starcie pakietu czytane są tylko nazwy
+   (62 µs dla 35 plików), a całą definicję parsuje pierwsze użycie języka, raz (`sync.Once`). Poprawność wszystkich
+   sprawdza `TestBuiltinDefinitions`.
 4. Rozmiar: definicja dokłada do programu kilka KB; przy 300 językach spodziewany rozmiar to około 1–1,5 MB
    (szacunek), wciąż mniej niż chroma (4,8 MB zmierzone) i highlight (3,4 MB i 2,7 MB danych).
 

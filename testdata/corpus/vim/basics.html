@@ -1,0 +1,22 @@
+<span class="hl-com">" REQ: LANG-531 LANG-532 LANG-533 LANG-534</span>
+<span class="hl-kw">set</span> nocompatible
+<span class="hl-kw">let</span> g:demo_enabled <span class="hl-op">=</span> <span class="hl-num">1</span>
+
+<span class="hl-kw">function</span><span class="hl-op">!</span> <span class="hl-fn">s:Greet</span>(name) abort
+  <span class="hl-com">" Greets the name.</span>
+  <span class="hl-kw">let</span> l:text <span class="hl-op">=</span> <span class="hl-str">"Hello, "</span> <span class="hl-op">.</span> a:name <span class="hl-op">.</span> <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>
+  <span class="hl-kw">let</span> l:quoted <span class="hl-op">=</span> <span class="hl-str">'it</span><span class="hl-esc">''</span><span class="hl-str">s'</span>
+  <span class="hl-kw">if</span> <span class="hl-builtin">exists</span>(<span class="hl-str">'g:demo_enabled'</span>) <span class="hl-op">&amp;&amp;</span> <span class="hl-attr">&amp;number</span>
+    <span class="hl-kw">echo</span> l:text
+  <span class="hl-kw">elseif</span> <span class="hl-builtin">len</span>(a:name) <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-op">|</span> <span class="hl-kw">echom</span> <span class="hl-str">"short"</span> <span class="hl-op">|</span> <span class="hl-kw">endif</span>
+  <span class="hl-kw">return</span> l:text
+<span class="hl-kw">endfunction</span>
+
+<span class="hl-kw">augroup</span> demo
+  <span class="hl-kw">autocmd</span><span class="hl-op">!</span>
+  <span class="hl-kw">autocmd</span> BufWritePre <span class="hl-op">*.</span>go <span class="hl-kw">call</span> <span class="hl-fn">s:Greet</span>(<span class="hl-builtin">expand</span>(<span class="hl-str">'%'</span>))
+<span class="hl-kw">augroup</span> END
+
+<span class="hl-kw">nnoremap</span> <span class="hl-op">&lt;</span>leader<span class="hl-op">&gt;</span>g :<span class="hl-kw">call</span> <span class="hl-fn">s:Greet</span>(<span class="hl-attr">$USER</span>)<span class="hl-op">&lt;</span>CR<span class="hl-op">&gt;</span>
+<span class="hl-kw">let</span> <span class="hl-attr">@a</span> <span class="hl-op">=</span> <span class="hl-str">'register'</span>
+<span class="hl-kw">call</span> <span class="hl-fn">demo#util#Init</span>(<span class="hl-builtin">v:true</span>)

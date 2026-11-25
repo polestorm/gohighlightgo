@@ -1,0 +1,29 @@
+<span class="hl-com">// REQ: LANG-481 LANG-482 LANG-483 LANG-484</span>
+<span class="hl-kw">syntax</span> <span class="hl-op">=</span> <span class="hl-str">"proto3"</span>;
+
+<span class="hl-kw">package</span> demo.v1;
+
+<span class="hl-kw">import</span> <span class="hl-str">"google/protobuf/timestamp.proto"</span>;
+
+<span class="hl-com">/* A person. */</span>
+<span class="hl-kw">message</span> <span class="hl-type">Person</span> {
+  <span class="hl-type">string</span> name <span class="hl-op">=</span> <span class="hl-num">1</span>;
+  <span class="hl-type">int32</span> id <span class="hl-op">=</span> <span class="hl-num">2</span>;
+  <span class="hl-kw">repeated</span> <span class="hl-type">string</span> emails <span class="hl-op">=</span> <span class="hl-num">3</span>;
+  <span class="hl-kw">map</span><span class="hl-op">&lt;</span><span class="hl-type">string</span>, <span class="hl-type">int64</span><span class="hl-op">&gt;</span> scores <span class="hl-op">=</span> <span class="hl-num">4</span>;
+  google.protobuf.<span class="hl-type">Timestamp</span> created <span class="hl-op">=</span> <span class="hl-num">5</span>;
+  <span class="hl-kw">oneof</span> contact {
+    <span class="hl-type">string</span> phone <span class="hl-op">=</span> <span class="hl-num">6</span>;
+    <span class="hl-type">bytes</span> photo <span class="hl-op">=</span> <span class="hl-num">7</span> [deprecated <span class="hl-op">=</span> <span class="hl-builtin">true</span>];
+  }
+  <span class="hl-kw">reserved</span> <span class="hl-num">8</span>, <span class="hl-num">10</span> <span class="hl-kw">to</span> <span class="hl-kw">max</span>;
+}
+
+<span class="hl-kw">enum</span> <span class="hl-type">Status</span> {
+  <span class="hl-type">STATUS_UNSPECIFIED</span> <span class="hl-op">=</span> <span class="hl-num">0</span>;
+  <span class="hl-type">ACTIVE</span> <span class="hl-op">=</span> <span class="hl-num">1</span>;
+}
+
+<span class="hl-kw">service</span> <span class="hl-type">People</span> {
+  <span class="hl-kw">rpc</span> <span class="hl-type">Get</span> (<span class="hl-type">Person</span>) <span class="hl-kw">returns</span> (<span class="hl-kw">stream</span> <span class="hl-type">Person</span>);
+}

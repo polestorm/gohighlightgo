@@ -1,0 +1,23 @@
+<span class="hl-com"># REQ: LANG-491 LANG-492 LANG-493 LANG-494</span>
+<span class="hl-str">"""</span>
+<span class="hl-str">A person in the system.</span>
+<span class="hl-str">"""</span>
+<span class="hl-kw">type</span> <span class="hl-type">Person</span> <span class="hl-kw">implements</span> <span class="hl-type">Node</span> <span class="hl-meta">@key</span>(fields<span class="hl-op">:</span> <span class="hl-str">"id"</span>) {
+  id<span class="hl-op">:</span> <span class="hl-type">ID</span><span class="hl-op">!</span>
+  name<span class="hl-op">:</span> <span class="hl-type">String</span>
+  age<span class="hl-op">:</span> <span class="hl-type">Int</span>
+  friends(first<span class="hl-op">:</span> <span class="hl-type">Int</span> <span class="hl-op">=</span> <span class="hl-num">10</span>)<span class="hl-op">:</span> [<span class="hl-type">Person</span><span class="hl-op">!</span>]<span class="hl-op">!</span>
+}
+
+<span class="hl-kw">enum</span> <span class="hl-type">Role</span> { <span class="hl-type">ADMIN</span> <span class="hl-type">USER</span> }
+
+<span class="hl-kw">query</span> <span class="hl-type">GetPerson</span>(<span class="hl-attr">$id</span><span class="hl-op">:</span> <span class="hl-type">ID</span><span class="hl-op">!</span>, <span class="hl-attr">$withFriends</span><span class="hl-op">:</span> <span class="hl-type">Boolean</span> <span class="hl-op">=</span> <span class="hl-builtin">false</span>) {
+  person(id<span class="hl-op">:</span> <span class="hl-attr">$id</span>) {
+    name
+    friends <span class="hl-meta">@include</span>(if<span class="hl-op">:</span> <span class="hl-attr">$withFriends</span>) { name }
+  }
+}
+
+<span class="hl-kw">mutation</span> { addPerson(name<span class="hl-op">:</span> <span class="hl-str">"Ola"</span>, age<span class="hl-op">:</span> <span class="hl-num">30</span>, active<span class="hl-op">:</span> <span class="hl-builtin">true</span>, note<span class="hl-op">:</span> <span class="hl-builtin">null</span>) { id } }
+
+<span class="hl-kw">fragment</span> <span class="hl-type">Basic</span> <span class="hl-kw">on</span> <span class="hl-type">Person</span> { id name }

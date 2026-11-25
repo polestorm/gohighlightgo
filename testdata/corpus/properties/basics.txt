@@ -1,0 +1,10 @@
+# REQ: LANG-471 LANG-472 LANG-473 LANG-474
+! Exclamation comment
+app.name=gohighlightgo
+app.version : 1.0
+greeting Hello, world
+path=C:\\temp\\file.txt
+message=First line \
+    continued line
+unicode=Za\u017c\u00f3\u0142\u0107
+enabled=true

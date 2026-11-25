@@ -1,0 +1,9 @@
+# LaTeX: The TeXbook (lexical conventions) and the LaTeX2e reference manual; requirements/languages/latex.md
+name     latex tex sty cls
+
+line-comment   %
+string   $$ $$  : multiline
+string   $ $
+sigil    \    : kw
+operators  &^_~
+hook     latex

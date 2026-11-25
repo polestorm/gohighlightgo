@@ -1,0 +1,13 @@
+# Dockerfile: Dockerfile reference (Docker docs): instructions, environment replacement, comments; requirements/languages/dockerfile.md
+name     dockerfile docker containerfile
+
+keyword  FROM RUN CMD LABEL MAINTAINER EXPOSE ENV ADD COPY ENTRYPOINT VOLUME USER WORKDIR ARG ONBUILD
+keyword  STOPSIGNAL HEALTHCHECK SHELL AS
+fold-case
+
+line-comment   #
+string   " "  : escapes interp=dollar
+string   ' '
+sigil    $    : esc
+operators  =&|;<>\
+hook     variables

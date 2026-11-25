@@ -1,0 +1,24 @@
+# REQ: LANG-511 LANG-512 LANG-513 LANG-514
+{ pkgs ? import <nixpkgs> {} }:
+
+/* A small package. */
+let
+  version = "1.0";
+  name = "demo-${version}";
+  enable-tests = true;
+in
+pkgs.stdenv.mkDerivation rec {
+  pname = "demo";
+  inherit version;
+  src = ./.;
+  buildInputs = with pkgs; [ go git ];
+  buildPhase = ''
+    go build -o $out/bin/demo ${src}
+  '';
+  doCheck = enable-tests && !false;
+  meta = {
+    description = "Demo package";
+    license = if true then pkgs.lib.licenses.asl20 else null;
+  };
+  passthru.count = builtins.length [ 1 2 3 ] + 42;
+}

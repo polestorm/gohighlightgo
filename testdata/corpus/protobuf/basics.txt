@@ -1,0 +1,29 @@
+// REQ: LANG-481 LANG-482 LANG-483 LANG-484
+syntax = "proto3";
+
+package demo.v1;
+
+import "google/protobuf/timestamp.proto";
+
+/* A person. */
+message Person {
+  string name = 1;
+  int32 id = 2;
+  repeated string emails = 3;
+  map<string, int64> scores = 4;
+  google.protobuf.Timestamp created = 5;
+  oneof contact {
+    string phone = 6;
+    bytes photo = 7 [deprecated = true];
+  }
+  reserved 8, 10 to max;
+}
+
+enum Status {
+  STATUS_UNSPECIFIED = 0;
+  ACTIVE = 1;
+}
+
+service People {
+  rpc Get (Person) returns (stream Person);
+}

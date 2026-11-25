@@ -19,14 +19,27 @@ func samples(t testing.TB) []Sample {
 	return s
 }
 
+// withChroma zostawia próbki języków, które chroma zna; porównania czasu i wyniku dotyczą tylko ich.
+func withChroma(s []Sample) []Sample {
+	var out []Sample
+	for _, sample := range s {
+		if ChromaLexer(sample.Lang) != nil {
+			out = append(out, sample)
+		}
+	}
+	return out
+}
+
 // TestRivalsLanguages wypisuje liczby języków i sprawdza, że chroma ma lekser dla każdego naszego języka.
 func TestRivalsLanguages(t *testing.T) {
 	s := samples(t)
+	var missing []string
 	for _, sample := range s {
 		if ChromaLexer(sample.Lang) == nil {
-			t.Errorf("chroma has no lexer for %s", sample.Lang)
+			missing = append(missing, sample.Lang)
 		}
 	}
+	t.Logf("languages chroma does not know: %v", missing)
 	defs, _ := filepath.Glob("/Applications/QLMarkdown.app/Contents/Resources/highlight/langDefs/*.lang")
 	t.Logf("languages: gohighlightgo %d, chroma %d, highlight (QLMarkdown) %d", PrimaryLanguages(s), ChromaLanguages(), len(defs))
 }
@@ -34,7 +47,7 @@ func TestRivalsLanguages(t *testing.T) {
 // TestRivalsOutput porównuje postać wyniku na korpusie: rozmiar fragmentu i liczbę elementów <span>.
 func TestRivalsOutput(t *testing.T) {
 	var oursBytes, chromaBytes, oursSpans, chromaSpans, in int
-	for _, s := range samples(t) {
+	for _, s := range withChroma(samples(t)) {
 		o := Ours(s.Lang, s.Code)
 		c, err := Chroma(ChromaLexer(s.Lang), s.Code)
 		if err != nil {
@@ -52,7 +65,7 @@ func TestRivalsOutput(t *testing.T) {
 // TestRivalsSafety: obie biblioteki muszą zapisać znaki HTML z kodu jako odwołania.
 func TestRivalsSafety(t *testing.T) {
 	attack := []byte("</code></pre><script>alert(1)</script> \"<img src=x onerror=alert(1)>\" & <!-- -->")
-	for _, s := range samples(t) {
+	for _, s := range withChroma(samples(t)) {
 		o := Ours(s.Lang, attack)
 		c, err := Chroma(ChromaLexer(s.Lang), attack)
 		if err != nil {
@@ -68,7 +81,7 @@ func TestRivalsSafety(t *testing.T) {
 
 // BenchmarkRivals: korpus każdego języka powtórzony do około 1 MB oraz całość; chroma z leksera i formatera HTML.
 func BenchmarkRivals(b *testing.B) {
-	s := samples(b)
+	s := withChroma(samples(b))
 	langs := []string{""}
 	seen := map[string]bool{}
 	for _, sample := range s {

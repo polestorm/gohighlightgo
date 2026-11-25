@@ -1,0 +1,17 @@
+# CMake: cmake-language(7) and cmake-commands(7) (CMake 3.28); requirements/languages/cmake.md
+name     cmake
+
+keyword  if elseif else endif foreach endforeach while endwhile function endfunction macro endmacro
+keyword  return break continue block endblock
+keyword  NOT AND OR STREQUAL EQUAL LESS GREATER VERSION_LESS VERSION_GREATER MATCHES DEFINED EXISTS
+builtin  set unset option message project cmake_minimum_required add_executable add_library
+builtin  target_link_libraries target_include_directories target_compile_options add_subdirectory
+builtin  include find_package install list string file configure_file add_test enable_testing
+builtin  ON OFF TRUE FALSE YES NO PUBLIC PRIVATE INTERFACE REQUIRED STATUS FATAL_ERROR WARNING
+fold-case
+
+line-comment   #
+string   " "  : escapes multiline interp=dollar-braces
+operators  =<>
+calls
+hook     variables

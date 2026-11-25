@@ -1,0 +1,28 @@
+<span class="hl-com"># REQ: LANG-501 LANG-502 LANG-503 LANG-504</span>
+<span class="hl-kw">terraform</span> {
+  required_version <span class="hl-op">=</span> <span class="hl-str">"&gt;= 1.5"</span>
+}
+
+<span class="hl-kw">variable</span> <span class="hl-str">"region"</span> {
+  type    <span class="hl-op">=</span> string
+  default <span class="hl-op">=</span> <span class="hl-str">"eu-central-1"</span>
+}
+
+<span class="hl-com">// Instance resource</span>
+<span class="hl-kw">resource</span> <span class="hl-str">"aws_instance"</span> <span class="hl-str">"web"</span> {
+  <span class="hl-kw">count</span>         <span class="hl-op">=</span> var.enabled <span class="hl-op">?</span> <span class="hl-num">2</span> <span class="hl-op">:</span> <span class="hl-num">0</span>
+  ami           <span class="hl-op">=</span> <span class="hl-kw">data</span>.aws_ami.ubuntu.id
+  instance_type <span class="hl-op">=</span> <span class="hl-str">"t3.micro"</span>
+  tags <span class="hl-op">=</span> {
+    Name <span class="hl-op">=</span> <span class="hl-str">"web-</span><span class="hl-esc">${count.index}</span><span class="hl-str">"</span>
+  }
+  user_data <span class="hl-op">=</span> <span class="hl-op">&lt;&lt;-</span><span class="hl-meta">EOT</span>
+<span class="hl-str">    #!/bin/bash</span>
+<span class="hl-str">    echo "hello ${var.region}"</span>
+  <span class="hl-meta">EOT</span>
+}
+
+<span class="hl-com">/* Outputs */</span>
+<span class="hl-kw">output</span> <span class="hl-str">"ids"</span> {
+  value <span class="hl-op">=</span> [<span class="hl-kw">for</span> i <span class="hl-kw">in</span> aws_instance.web <span class="hl-op">:</span> <span class="hl-fn">upper</span>(i.id) <span class="hl-kw">if</span> i.id <span class="hl-op">!=</span> <span class="hl-builtin">null</span>]
+}

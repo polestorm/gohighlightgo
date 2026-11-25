@@ -489,7 +489,7 @@ func (t *table) scanQuoteRaw(w *writer, src []byte, start, i int, q *quote, raw 
 			start = j
 			continue
 		}
-		if q.interp != 0 && src[j] == q.interp {
+		if q.interp != 0 && (src[j] == q.interp || q.interp == 'B' && src[j] == '$') {
 			if n := interpLen(src, j, q.interp); n > 0 {
 				emit(c, src[start:j])
 				emit(escape, src[j:j+n])
@@ -546,6 +546,8 @@ func interpLen(src []byte, j int, kind byte) int {
 	switch {
 	case kind == '{' && next == '{':
 		return 2
+	case kind == 'B' && next == '{': // tylko ${…} (Nix, HCL, CMake)
+		return bracketLen(src, j, '{', '}', j+1)
 	case kind == '#' && next == '{':
 		return bracketLen(src, j, '{', '}', j+1)
 	case kind == '$' && next == '(':

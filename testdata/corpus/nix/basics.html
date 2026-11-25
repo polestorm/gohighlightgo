@@ -1,0 +1,24 @@
+<span class="hl-com"># REQ: LANG-511 LANG-512 LANG-513 LANG-514</span>
+{ pkgs <span class="hl-op">?</span> <span class="hl-builtin">import</span> <span class="hl-op">&lt;</span>nixpkgs<span class="hl-op">&gt;</span> {} }<span class="hl-op">:</span>
+
+<span class="hl-com">/* A small package. */</span>
+<span class="hl-kw">let</span>
+  version <span class="hl-op">=</span> <span class="hl-str">"1.0"</span>;
+  name <span class="hl-op">=</span> <span class="hl-str">"demo-</span><span class="hl-esc">${version}</span><span class="hl-str">"</span>;
+  enable-tests <span class="hl-op">=</span> <span class="hl-builtin">true</span>;
+<span class="hl-kw">in</span>
+pkgs<span class="hl-op">.</span>stdenv<span class="hl-op">.</span>mkDerivation <span class="hl-kw">rec</span> {
+  pname <span class="hl-op">=</span> <span class="hl-str">"demo"</span>;
+  <span class="hl-kw">inherit</span> version;
+  src <span class="hl-op">=</span> <span class="hl-op">./.</span>;
+  buildInputs <span class="hl-op">=</span> <span class="hl-kw">with</span> pkgs; [ go git ];
+  buildPhase <span class="hl-op">=</span> <span class="hl-str">''</span>
+<span class="hl-str">    go build -o $out/bin/demo </span><span class="hl-esc">${src}</span>
+<span class="hl-str">  ''</span>;
+  doCheck <span class="hl-op">=</span> enable-tests <span class="hl-op">&amp;&amp;</span> <span class="hl-op">!</span><span class="hl-builtin">false</span>;
+  meta <span class="hl-op">=</span> {
+    description <span class="hl-op">=</span> <span class="hl-str">"Demo package"</span>;
+    license <span class="hl-op">=</span> <span class="hl-kw">if</span> <span class="hl-builtin">true</span> <span class="hl-kw">then</span> pkgs<span class="hl-op">.</span>lib<span class="hl-op">.</span>licenses<span class="hl-op">.</span>asl20 <span class="hl-kw">else</span> <span class="hl-builtin">null</span>;
+  };
+  passthru<span class="hl-op">.</span>count <span class="hl-op">=</span> <span class="hl-builtin">builtins</span><span class="hl-op">.</span>length [ <span class="hl-num">1</span> <span class="hl-num">2</span> <span class="hl-num">3</span> ] <span class="hl-op">+</span> <span class="hl-num">42</span>;
+}

@@ -31,7 +31,8 @@ import (
 const defaultRef = "/Applications/QLMarkdown.app/Contents/Resources/qlmarkdown_cli"
 
 // refNames: nazwa języka dla odniesienia, gdy różni się od naszej nazwy głównej.
-var refNames = map[string]string{"pascal": "delphi"}
+var refNames = map[string]string{"pascal": "delphi", "objectivec": "objc", "fortran": "f90", "make": "makefile",
+	"latex": "tex", "protobuf": "pb"}
 
 type side struct {
 	Light, Dark string // fragment HTML albo cała strona odniesienia

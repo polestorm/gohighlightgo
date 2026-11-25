@@ -1,0 +1,22 @@
+" REQ: LANG-531 LANG-532 LANG-533 LANG-534
+set nocompatible
+let g:demo_enabled = 1
+
+function! s:Greet(name) abort
+  " Greets the name.
+  let l:text = "Hello, " . a:name . "!\n"
+  let l:quoted = 'it''s'
+  if exists('g:demo_enabled') && &number
+    echo l:text
+  elseif len(a:name) > 0 | echom "short" | endif
+  return l:text
+endfunction
+
+augroup demo
+  autocmd!
+  autocmd BufWritePre *.go call s:Greet(expand('%'))
+augroup END
+
+nnoremap <leader>g :call s:Greet($USER)<CR>
+let @a = 'register'
+call demo#util#Init(v:true)

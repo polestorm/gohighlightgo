@@ -35,6 +35,10 @@ var hooks = map[string]hookFunc{
 	"elixir":         elixirSpecial,
 	"matlab":         matlabSpecial,
 	"dotted":         dottedSpecial,
+	"variables":      variablesSpecial,
+	"latex":          latexSpecial,
+	"vim":            vimSpecial,
+	"hcl":            hclSpecial,
 }
 
 // DefinitionError reports an invalid language definition: the line (from 1) and what is wrong with it.
@@ -96,10 +100,10 @@ func parseDefinition(src []byte, lookup func(string) *language) (*language, erro
 				return fail("extends takes one name and must come before everything else")
 			}
 			base := lookup(strings.ToLower(values[0]))
-			if base == nil || base.table == nil {
+			if base == nil || base.tbl() == nil {
 				return fail("extends: no table language %q", values[0])
 			}
-			t = base.table.clone()
+			t = base.tbl().clone()
 		case "name":
 			if len(values) == 0 || len(opts) > 0 {
 				return fail("name needs at least one value")
@@ -209,6 +213,8 @@ func parseDefinition(src []byte, lookup func(string) *language) (*language, erro
 					q.interp = '{'
 				case "interp=hash":
 					q.interp = '#'
+				case "interp=dollar-braces":
+					q.interp = 'B'
 				default:
 					return fail("string: unknown option %q", o)
 				}
@@ -330,7 +336,7 @@ func parseDefinition(src []byte, lookup func(string) *language) (*language, erro
 		t.words = foldWords(t.words)
 	}
 	t.finish()
-	return &language{names: names, scan: t.scan, table: t}, nil
+	return &language{names: names, scan: t.scan, table: t}, nil // Register: bez leniwego parsowania
 }
 
 // clone kopiuje tabelę do dyrektywy extends: mapy i wycinki są nowe, więc zmiany nie dotykają bazy.
@@ -393,8 +399,9 @@ func hookNames() []string {
 	return names
 }
 
-// loadBuiltins czyta wbudowane definicje w kolejności alfabetycznej plików; definicja z extends musi mieć
-// nazwę pliku po swojej bazie (typescript.hl po javascript.hl).
+// loadBuiltins przygotowuje wbudowane definicje bez parsowania: z każdego pliku czyta tylko nazwy (wiersze
+// name), a resztę parsuje przy pierwszym użyciu języka (ADR 0009). Poprawność wszystkich sprawdza
+// TestBuiltinDefinitions.
 func loadBuiltins() []*language {
 	files, err := builtinDefinitions.ReadDir("lang")
 	if err != nil {
@@ -402,19 +409,33 @@ func loadBuiltins() []*language {
 	}
 	var out []*language
 	byPrimary := map[string]*language{}
+	base := func(name string) *language { return byPrimary[name] }
 	for _, f := range files {
 		src, err := builtinDefinitions.ReadFile(path.Join("lang", f.Name()))
 		if err != nil {
 			panic(err)
 		}
-		l, err := parseDefinition(src, func(name string) *language { return byPrimary[name] })
-		if err != nil {
-			panic(sprintf("%s: %v", f.Name(), err))
+		l := &language{names: definitionNames(src), definition: src, base: base}
+		if len(l.names) == 0 {
+			panic("highlight: built-in definition " + f.Name() + " has no name")
 		}
+		l.scan = func(w *writer, code []byte) { l.tbl().scan(w, code) }
 		byPrimary[l.names[0]] = l
 		out = append(out, l)
 	}
 	return out
+}
+
+// definitionNames zwraca wartości wierszy name bez parsowania reszty definicji.
+func definitionNames(src []byte) []string {
+	var names []string
+	for _, line := range strings.Split(string(src), "\n") {
+		fields := strings.Fields(line)
+		if len(fields) > 1 && fields[0] == "name" {
+			names = append(names, fields[1:]...)
+		}
+	}
+	return names
 }
 
 // sprintf formatuje komunikat błędu: %q (napis w cudzysłowie), %s (napis albo błąd), %d (liczba). Zastępuje

@@ -1,0 +1,13 @@
+# Nix: Nix Reference Manual (2.18), "Nix Language": Syntax and semantics, String literals; requirements/languages/nix.md
+name     nix
+
+keyword  let in with rec inherit if then else assert or
+builtin  true false null import builtins throw abort derivation map toString
+
+ident-part     -'
+line-comment   #
+block-comment  /* */
+string   '' ''  : multiline interp=dollar-braces
+string   " "    : escapes multiline interp=dollar-braces
+operators  =+-*/!<>&|?:@.
+calls

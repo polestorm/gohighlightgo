@@ -1,0 +1,24 @@
+<span class="hl-com"># REQ: LANG-451 LANG-452 LANG-453 LANG-454</span>
+<span class="hl-builtin">cmake_minimum_required</span>(VERSION <span class="hl-num">3.20</span>)
+<span class="hl-builtin">project</span>(Demo VERSION <span class="hl-num">1.0</span> LANGUAGES C CXX)
+
+<span class="hl-builtin">option</span>(BUILD_TESTS <span class="hl-str">"Build the tests"</span> <span class="hl-builtin">ON</span>)
+<span class="hl-builtin">set</span>(SOURCES src/main.c src/util.c)
+
+<span class="hl-kw">if</span>(<span class="hl-kw">NOT</span> CMAKE_BUILD_TYPE <span class="hl-kw">AND</span> <span class="hl-kw">NOT</span> <span class="hl-kw">DEFINED</span> ENV{CI})
+  <span class="hl-builtin">set</span>(CMAKE_BUILD_TYPE Release)
+<span class="hl-kw">elseif</span>(CMAKE_BUILD_TYPE <span class="hl-kw">STREQUAL</span> <span class="hl-str">"Debug"</span>)
+  <span class="hl-builtin">message</span>(<span class="hl-builtin">STATUS</span> <span class="hl-str">"Debug build in </span><span class="hl-esc">${CMAKE_BINARY_DIR}</span><span class="hl-str">"</span>)
+<span class="hl-kw">endif</span>()
+
+<span class="hl-builtin">add_executable</span>(demo <span class="hl-esc">${SOURCES}</span>)
+<span class="hl-builtin">target_link_libraries</span>(demo <span class="hl-builtin">PRIVATE</span> m)
+
+<span class="hl-kw">foreach</span>(test IN ITEMS a b c)
+  <span class="hl-builtin">add_test</span>(NAME test_<span class="hl-esc">${test}</span> COMMAND demo --test <span class="hl-esc">${test}</span>)
+<span class="hl-kw">endforeach</span>()
+
+<span class="hl-kw">function</span>(print_all)
+  <span class="hl-builtin">message</span>(<span class="hl-str">"multi-line</span>
+<span class="hl-str">string </span><span class="hl-esc">${ARGN}</span><span class="hl-str">"</span>)
+<span class="hl-kw">endfunction</span>()
