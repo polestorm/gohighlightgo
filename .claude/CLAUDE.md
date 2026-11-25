@@ -43,7 +43,8 @@ kolumnę „Stan” w `docs/roadmap.md`.
 - najpierw test (plik korpusu z oczekiwanym wynikiem), potem kod;
 - wymagania piszemy razem z etapem, w plikach według prefiksów z `requirements/README.md`;
 - układ repozytorium jak w `gomdgo` (jego ADR 0016): w katalogu głównym tylko `README.md`, `LICENSE`, `NOTICE`,
-  `go.mod`; biblioteka to pakiet `highlight` w `highlight/` (import `github.com/polestorm/gohighlightgo/highlight`);
+  `go.mod`; biblioteka to pakiet `highlight` w `highlight/` (import `github.com/polestorm/gohighlightgo/highlight`),
+  polecenie (etap 4, ADR 0005) w `cmd/gohighlightgo`;
   ten plik leży w `.claude/`;
 - `go.mod` wymaga Go 1.22 i nie ma sekcji `require`; narzędzia z zależnościami (porównanie z odniesieniem)
   żyją w osobnych modułach w `tools/`;

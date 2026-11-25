@@ -19,13 +19,13 @@ Z wiedzy ogólnej, niesprawdzone w tej sesji:
 
 ## Punkt dołączenia w gomdgo
 
-- `markdown.Config.CodeBlocks` to `map[string]CodeBlockFunc`, klucz to pierwsze słowo napisu informacyjnego,
-  **z rozróżnianiem wielkości liter**. Funkcja dostaje `CodeBlock{Lang, Info, Code, Line}` i zwraca gotowy HTML,
+- `markdown.Config.CodeBlocks` to `map[string]CodeBlockFunc`, klucz to pierwsze słowo napisu informacyjnego;
+  od 2026-11-25 **bez rozróżniania wielkości liter** (ADR 0018 w `gomdgo`, decyzja właściciela; wcześniej
+  z rozróżnianiem). Funkcja dostaje `CodeBlock{Lang, Info, Code, Line}` i zwraca gotowy HTML,
   który trafia do dokumentu bez zmian (gwarancje bezpieczeństwa `gomdgo` go nie obejmują, stąd kryterium H3).
-- Nie ma klucza „każdy język”. Adapter musi wpisać do mapy wszystkie nazwy z `Languages()`; blok ```` ```Go ````
-  (wielka litera) nie trafi do funkcji. Jeżeli to okaże się uciążliwe, potrzebna jest zmiana w `gomdgo`
-  (funkcja domyślna albo porównanie bez wielkości liter); to osobna decyzja tam, a zmiana w `markdown/`
-  zeruje licznik fuzzingu K5 w `gomdgo`.
+- Nie ma klucza „każdy język”: adapter wpisuje do mapy wszystkie nazwy z `Languages()` (są małymi literami),
+  a ```` ```Go ```` trafia do tej samej funkcji co ```` ```go ````. `CodeBlock.Lang` zachowuje zapis z dokumentu,
+  więc klasa `language-Go` zostaje taka, jak w zwykłym bloku. Zmiana w `gomdgo` zeruje tam licznik fuzzingu K5.
 - Zwykły blok `gomdgo` zapisuje jako `<pre><code class="language-X">…</code></pre>`; adapter powinien zachować
   tę postać, żeby CSS odbiorcy działał tak samo z kolorowaniem i bez.
 
