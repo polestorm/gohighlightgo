@@ -1,0 +1,6 @@
+.DS_Store
+/.claude/*
+!/.claude/CLAUDE.md
+# wyniki robocze i wyniki narzędzi odniesienia nie trafiają do repozytorium
+/out/
+/ref/
