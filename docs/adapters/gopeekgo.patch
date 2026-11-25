@@ -1,0 +1,75 @@
+diff --git a/preview/highlight.go b/preview/highlight.go
+new file mode 100644
+index 0000000..5707f1d
+--- /dev/null
++++ b/preview/highlight.go
+@@ -0,0 +1,32 @@
++//go:build !nohighlight
++
++// Kolorowanie składni bloków kodu biblioteką gohighlightgo, domyślnie włączone (ADR 0003); znacznik
++// nohighlight je wyłącza (nohighlight.go).
++package preview
++
++import (
++	"html"
++
++	"github.com/polestorm/gohighlightgo/highlight"
++	gomdgo "github.com/polestorm/gomdgo/markdown"
++)
++
++// highlightCSS: motyw auto, jasny albo ciemny według wyglądu systemu, jak reszta podglądu.
++var highlightCSS, _ = highlight.ThemeCSS("auto")
++
++// addHighlighting rejestruje każdą nazwę języka z gohighlightgo; mermaid zostaje przy diagramach.
++func addHighlighting(blocks map[string]gomdgo.CodeBlockFunc) {
++	for _, name := range highlight.Languages() {
++		if blocks[name] == nil {
++			blocks[name] = highlighted
++		}
++	}
++}
++
++// highlighted zapisuje blok tak jak gomdgo (<pre><code class="language-…">), z klasą hl dla motywu.
++func highlighted(b gomdgo.CodeBlock) ([]byte, error) {
++	code, _ := highlight.HTML(b.Lang, b.Code)
++	out := []byte(`<pre class="hl"><code class="language-` + html.EscapeString(b.Lang) + `">`)
++	out = append(out, code...)
++	return append(out, "</code></pre>\n"...), nil
++}
+diff --git a/preview/nohighlight.go b/preview/nohighlight.go
+new file mode 100644
+index 0000000..78565a2
+--- /dev/null
++++ b/preview/nohighlight.go
+@@ -0,0 +1,10 @@
++//go:build nohighlight
++
++package preview
++
++import gomdgo "github.com/polestorm/gomdgo/markdown"
++
++const highlightCSS = ""
++
++// addHighlighting ze znacznikiem nohighlight nic nie robi: bloki kodu zapisuje gomdgo.
++func addHighlighting(map[string]gomdgo.CodeBlockFunc) {}
+diff --git a/preview/preview.go b/preview/preview.go
+index 4df4ea4..03da0c1 100644
+--- a/preview/preview.go
++++ b/preview/preview.go
+@@ -35,6 +35,7 @@ func Page(src []byte, title string) (out []byte) {
+ 		HeadingIDs: true,
+ 		CodeBlocks: map[string]gomdgo.CodeBlockFunc{"mermaid": diagram},
+ 	}
++	addHighlighting(cfg.CodeBlocks)
+ 	start := time.Now()
+ 	body, err := gomdgo.New(cfg).Render(src)
+ 	elapsed := time.Since(start)
+@@ -78,7 +79,7 @@ func diagramError(b gomdgo.CodeBlock, message string) []byte {
+ 
+ func head(title string) []byte {
+ 	return []byte("<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<title>" +
+-		html.EscapeString(title) + "</title>\n<style>" + markdown.CSS + style + "</style>\n</head>\n<body>\n")
++		html.EscapeString(title) + "</title>\n<style>" + markdown.CSS + style + highlightCSS + "</style>\n</head>\n<body>\n")
+ }
+ 
+ func failure(title, message, detail string) []byte {

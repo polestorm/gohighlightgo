@@ -46,7 +46,7 @@ func HTML(lang string, code []byte) (out []byte, ok bool)
 func Languages() []string
 
 // CSS holds the colours for the classes, for light and dark appearance.
-const CSS = "…"
+const CSS = "…" // zastąpione przez ThemeCSS, Themes i DefaultTheme (ADR 0006)
 ```
 
 Nazwa języka jest porównywana bez rozróżniania wielkości liter. Klasy mają stały przedrostek (propozycja `hl-`)

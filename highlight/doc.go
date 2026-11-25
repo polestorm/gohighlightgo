@@ -5,7 +5,8 @@
 // (hl-num), comments (hl-com), operators (hl-op) and names before a parenthesis (hl-fn); hl-tag, hl-attr,
 // hl-ins, hl-del and hl-meta are reserved for markup, diffs and preprocessor lines. Elements never nest
 // and never contain a line break, so every output line can be handled on its own. The caller adds the
-// <pre><code> wrapper and the stylesheet.
+// <pre><code> wrapper; ThemeCSS gives a stylesheet for the classes (themes "light", the default, "dark"
+// and "auto") that applies inside an element with the class "hl".
 //
 // Highlighting is lexical: one pass over the bytes, driven by a table per language, without regular
 // expressions, in linear time also for hostile input. The output is deterministic and safe by construction:

@@ -1,0 +1,72 @@
+diff --git a/cmd/gomdgo-mermaid/highlight.go b/cmd/gomdgo-mermaid/highlight.go
+new file mode 100644
+index 0000000..f97fb79
+--- /dev/null
++++ b/cmd/gomdgo-mermaid/highlight.go
+@@ -0,0 +1,33 @@
++//go:build highlight
++
++// Kolorowanie składni bloków kodu biblioteką gohighlightgo; dołączane przy budowaniu ze znacznikiem highlight
++// (go build -tags highlight). Bez znacznika obowiązuje nohighlight.go.
++package main
++
++import (
++	"html"
++
++	"github.com/polestorm/gohighlightgo/highlight"
++	"github.com/polestorm/gomdgo/internal/cli"
++	gomdgo "github.com/polestorm/gomdgo/markdown"
++)
++
++// addHighlighting rejestruje każdą nazwę języka z gohighlightgo (gomdgo porównuje je bez rozróżniania wielkości
++// liter) i dopisuje arkusz motywu jasnego.
++func addHighlighting(opts *cli.Options) {
++	for _, name := range highlight.Languages() {
++		if opts.CodeBlocks[name] == nil {
++			opts.CodeBlocks[name] = highlighted
++		}
++	}
++	css, _ := highlight.ThemeCSS(highlight.DefaultTheme)
++	opts.Head += "<style>\n" + css + "</style>\n"
++}
++
++// highlighted zapisuje blok tak jak gomdgo (<pre><code class="language-…">), z klasą hl dla motywu.
++func highlighted(b gomdgo.CodeBlock) ([]byte, error) {
++	code, _ := highlight.HTML(b.Lang, b.Code)
++	out := []byte(`<pre class="hl"><code class="language-` + html.EscapeString(b.Lang) + `">`)
++	out = append(out, code...)
++	return append(out, "</code></pre>\n"...), nil
++}
+diff --git a/cmd/gomdgo-mermaid/main.go b/cmd/gomdgo-mermaid/main.go
+index 7f4b90f..76b670e 100644
+--- a/cmd/gomdgo-mermaid/main.go
++++ b/cmd/gomdgo-mermaid/main.go
+@@ -23,11 +23,13 @@ func main() {
+ }
+ 
+ func options() cli.Options {
+-	return cli.Options{
++	opts := cli.Options{
+ 		Name:       "gomdgo-mermaid",
+ 		CodeBlocks: map[string]gomdgo.CodeBlockFunc{"mermaid": diagram},
+ 		Head:       "<style>" + markdown.CSS + "</style>\n",
+ 	}
++	addHighlighting(&opts)
++	return opts
+ }
+ 
+ // diagram rysuje jeden blok mermaid. Opakowanie <figure class="diagram"> jest takie samo jak
+diff --git a/cmd/gomdgo-mermaid/nohighlight.go b/cmd/gomdgo-mermaid/nohighlight.go
+new file mode 100644
+index 0000000..c3b0f38
+--- /dev/null
++++ b/cmd/gomdgo-mermaid/nohighlight.go
+@@ -0,0 +1,8 @@
++//go:build !highlight
++
++package main
++
++import "github.com/polestorm/gomdgo/internal/cli"
++
++// addHighlighting bez znacznika highlight nic nie robi: bloki kodu zapisuje gomdgo.
++func addHighlighting(*cli.Options) {}

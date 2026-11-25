@@ -6,7 +6,7 @@
 | 1 | silnik tabelowy, klasy, `HTML`, `Languages`, testy H2–H4; pierwszy język: Go | gotowy (2026-11-25; ADR 0002) |
 | 2 | języki z tabeli: C, C++, Java, JavaScript, TypeScript, Python, Rust, SQL, JSON, Pascal/Delphi (decyzja właściciela 2026-11-25) | gotowy (2026-11-25; ADR 0003) |
 | 3 | języki z własnym kodem: HTML/XML, CSS, YAML, TOML, powłoka, diff, Markdown | gotowy (2026-11-25; ADR 0004) |
-| 4 | `highlight.CSS` (jasny i ciemny), polecenie `cmd/gohighlightgo` (ADR 0005), dołączenie u odbiorców pod znacznikiem `highlight` (`gopeekgo`, `gomdgo/cmd/gomdgo-mermaid`), pomiar H5 | nie rozpoczęty |
+| 4 | motywy (ADR 0006), polecenie `cmd/gohighlightgo` (ADR 0005), strona przeglądu `tools/review`, adaptery u odbiorców (`gomdgo/cmd/gomdgo-mermaid` pod znacznikiem `highlight`, `gopeekgo` domyślnie włączone), pomiar H5 | prawie gotowy (2026-11-25): wszystko poza commitem adapterów u odbiorców, które czekają na pierwsze wydanie (łatki w `docs/adapters/`) |
 | 5 | `tools/compare`: porównanie z odniesieniem (H6), także polecenia `gohighlightgo` z programem `highlight`, tabela w `README.md` | nie rozpoczęty |
 | 6 | fuzzing, pierwsze wydanie | nie rozpoczęty |
 

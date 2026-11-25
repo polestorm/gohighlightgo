@@ -22,22 +22,34 @@ SQL, JSON, Pascal/Delphi, XML, HTML, CSS, YAML, TOML, shell, diff and Markdown; 
 ```go
 import "github.com/polestorm/gohighlightgo/highlight"
 
-out, ok := highlight.HTML("go", src) // escaped code with <span class="…">; ok is false for an unknown language
-names := highlight.Languages()       // names and aliases: "go", "golang", "sh", "bash", …
-css := highlight.CSS                 // colours for the classes, light and dark (planned, stage 4)
+out, ok := highlight.HTML("go", src)      // escaped code with <span class="hl-…">; ok is false for an unknown language
+names := highlight.Languages()            // names and aliases: "go", "golang", "sh", "bash", …
+css, _ := highlight.ThemeCSS("light")     // stylesheet for the classes: "light" (default), "dark" or "auto"
+```
+
+The stylesheet applies inside an element with the class `hl`, so a block is written as
+`<pre class="hl"><code class="language-go">…</code></pre>`.
+
+## Command line
+
+```sh
+go install github.com/polestorm/gohighlightgo/cmd/gohighlightgo@latest
+gohighlightgo main.go > main.html                  # fragment; the language comes from the extension
+gohighlightgo -lang sql -standalone -theme dark < q.sql > q.html
+gohighlightgo -list
 ```
 
 ## Use with gomdgo
 
-gomdgo hands fenced code blocks to the caller through `Config.CodeBlocks`. The adapter lives in the
-caller's module, so neither library depends on the other:
+gomdgo hands fenced code blocks to the caller through `Config.CodeBlocks` (language names match without regard
+to case). The adapter lives in the caller's module, so neither library depends on the other:
 
 ```go
 blocks := map[string]markdown.CodeBlockFunc{}
 for _, name := range highlight.Languages() {
 	blocks[name] = func(b markdown.CodeBlock) ([]byte, error) {
 		code, _ := highlight.HTML(b.Lang, b.Code)
-		return wrap(b.Lang, code), nil // <pre><code class="language-…">…</code></pre>
+		return wrap(b.Lang, code), nil // <pre class="hl"><code class="language-…">…</code></pre>
 	}
 }
 ```
