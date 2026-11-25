@@ -1,0 +1,41 @@
+<span class="hl-attr">[//]:</span> <span class="hl-str"># (REQ: LANG-181 LANG-182 LANG-183 LANG-184 LANG-185 LANG-186)</span>
+<span class="hl-kw"># gohighlightgo</span>
+
+Setext heading
+<span class="hl-meta">==============</span>
+
+Text with <span class="hl-str">`code`</span>, <span class="hl-str">``code with ` inside``</span>, an unmatched ` backtick, a [link](<span class="hl-str">https://example.com/a</span>)
+and <span class="hl-str">&lt;https://example.com&gt;</span> or <span class="hl-str">&lt;user@example.com&gt;</span>, escaped <span class="hl-esc">\*</span>stars<span class="hl-esc">\*</span> and <span class="hl-esc">&amp;amp;</span> entity.
+
+<span class="hl-op">&gt;</span> Quote with **bold** text
+<span class="hl-op">&gt;</span> <span class="hl-op">&gt;</span> nested quote
+
+<span class="hl-op">-</span> item one
+<span class="hl-op">*</span> item two
+  <span class="hl-op">1.</span> ordered
+  <span class="hl-op">2)</span> other
+<span class="hl-op">-</span> <span class="hl-meta">[ ]</span> task
+<span class="hl-op">-</span> <span class="hl-meta">[x]</span> done task
+
+<span class="hl-attr">[ref]:</span> <span class="hl-str">https://example.com "Title"</span>
+
+<span class="hl-meta">---</span>
+
+<span class="hl-meta">```go</span>
+<span class="hl-kw">func</span> <span class="hl-fn">main</span>() { fmt.<span class="hl-fn">Println</span>(<span class="hl-str">"hi"</span>) }
+<span class="hl-meta">```</span>
+
+<span class="hl-meta">~~~</span>
+<span class="hl-str">plain code block &lt;&amp;&gt;</span>
+<span class="hl-meta">~~~</span>
+
+<span class="hl-meta">````markdown</span>
+<span class="hl-str">```go</span>
+<span class="hl-str">not highlighted as Go inside Markdown</span>
+<span class="hl-str">```</span>
+<span class="hl-meta">````</span>
+
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-str">"note"</span><span class="hl-tag">&gt;</span>HTML block<span class="hl-tag">&lt;/div&gt;</span>
+
+<span class="hl-meta">```unknown</span>
+<span class="hl-str">kept as a string</span>

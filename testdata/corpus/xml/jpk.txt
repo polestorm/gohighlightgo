@@ -1,0 +1,16 @@
+<!-- REQ: LANG-111 LANG-112 LANG-113 LANG-114 LANG-115 -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE note SYSTEM "note.dtd">
+<tns:JPK xmlns:tns="http://jpk.mf.gov.pl/wzor/2022/02/17/02171/"
+         xmlns:etd='http://crd.gov.pl/xml/schematy/dziedzinowe/mf/2022/01/05/eD/DefinicjeTypy/'>
+  <tns:Naglowek>
+    <tns:KodFormularza kodSystemowy="JPK_V7M (2)" wersjaSchemy="1-0E">JPK_VAT</tns:KodFormularza>
+    <tns:DataWytworzeniaJPK>2024-01-31T10:00:00</tns:DataWytworzeniaJPK>
+  </tns:Naglowek>
+  <tns:Opis>Zażółć &amp; gęślą &#261; &#x105; jaźń &lt;tag&gt; & a < b</tns:Opis>
+  <tns:P_15>1230.00</tns:P_15>
+  <empty attr="a &quot;quoted&quot; value"/>
+  <![CDATA[ <not> a & tag ]]>
+  <!-- multi-line
+       comment -->
+</tns:JPK>

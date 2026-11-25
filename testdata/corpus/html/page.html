@@ -1,0 +1,21 @@
+<span class="hl-com">&lt;!-- REQ: LANG-121 LANG-122 LANG-123 --&gt;</span>
+<span class="hl-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hl-tag">&lt;html</span> <span class="hl-attr">lang</span>=<span class="hl-str">pl</span><span class="hl-tag">&gt;</span>
+<span class="hl-tag">&lt;head&gt;</span>
+  <span class="hl-tag">&lt;meta</span> <span class="hl-attr">charset</span>=<span class="hl-str">"utf-8"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;title&gt;</span>Zażółć <span class="hl-esc">&amp;mdash;</span> test<span class="hl-tag">&lt;/title&gt;</span>
+  <span class="hl-tag">&lt;style&gt;</span>
+    <span class="hl-tag">body</span> { <span class="hl-attr">color</span>: <span class="hl-num">#333</span>; <span class="hl-attr">margin</span>: <span class="hl-num">0</span> <span class="hl-builtin">auto</span>; }
+    <span class="hl-com">/* &lt;/b&gt; is not the end */</span>
+  <span class="hl-tag">&lt;/style&gt;</span>
+  <span class="hl-tag">&lt;script</span> <span class="hl-attr">type</span>=<span class="hl-str">"module"</span><span class="hl-tag">&gt;</span>
+    <span class="hl-kw">const</span> html <span class="hl-op">=</span> <span class="hl-str">"&lt;b&gt;"</span> <span class="hl-op">+</span> <span class="hl-str">'&lt;/style&gt;'</span>;
+    <span class="hl-kw">if</span> (a <span class="hl-op">&lt;</span> b <span class="hl-op">&amp;&amp;</span> c <span class="hl-op">&gt;</span> d) { console.<span class="hl-fn">log</span>(<span class="hl-str">`</span><span class="hl-esc">${</span>a<span class="hl-esc">}</span><span class="hl-str">`</span>); }
+  <span class="hl-tag">&lt;/SCRIPT&gt;</span>
+<span class="hl-tag">&lt;/head&gt;</span>
+<span class="hl-tag">&lt;body</span> <span class="hl-attr">class</span>=<span class="hl-str">"main"</span> <span class="hl-attr">data-x</span>=<span class="hl-str">'1'</span> <span class="hl-attr">hidden</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;p&gt;</span>Text with <span class="hl-tag">&lt;a</span> <span class="hl-attr">href</span>=<span class="hl-str">"https://example.com/?a=1</span><span class="hl-esc">&amp;amp;</span><span class="hl-str">b=2"</span><span class="hl-tag">&gt;</span>a link<span class="hl-tag">&lt;/a&gt;</span> <span class="hl-esc">&amp;amp;</span> more.<span class="hl-tag">&lt;/p&gt;</span>
+  <span class="hl-tag">&lt;img</span> <span class="hl-attr">src</span>=<span class="hl-str">logo.png</span> <span class="hl-attr">alt</span>=<span class="hl-str">""</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;br/&gt;</span>
+<span class="hl-tag">&lt;/body&gt;</span>
+<span class="hl-tag">&lt;/html&gt;</span>

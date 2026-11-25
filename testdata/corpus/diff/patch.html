@@ -1,0 +1,24 @@
+REQ: LANG-171 LANG-172 LANG-173
+<span class="hl-meta">diff --git a/highlight/table.go b/highlight/table.go</span>
+<span class="hl-meta">index 1234567..89abcde 100644</span>
+<span class="hl-meta">--- a/highlight/table.go</span>
+<span class="hl-meta">+++ b/highlight/table.go</span>
+<span class="hl-meta">@@ -10,7 +10,8 @@</span> func scan(w *writer, src []byte) {
+ 	for i := 0; i &lt; len(src); {
+<span class="hl-del">-		b := src[i]</span>
+<span class="hl-ins">+		b := src[i] // current byte</span>
+<span class="hl-ins">+		next := byte(0)</span>
+<span class="hl-del">--- this deleted line starts with two dashes</span>
+<span class="hl-ins">+++ and this added line with two pluses</span>
+ 		if isSpace(b) {
+<span class="hl-com">\ No newline at end of file</span>
+<span class="hl-meta">new file mode 100644</span>
+<span class="hl-meta">--- /dev/null</span>
+<span class="hl-meta">+++ b/docs/new.md</span>
+<span class="hl-meta">@@ -0,0 +1 @@</span>
+<span class="hl-ins">+# New</span>
+2c2
+<span class="hl-del">&lt; old line</span>
+<span class="hl-meta">---</span>
+<span class="hl-ins">&gt; new line</span>
+<span class="hl-meta">Binary files a/logo.png and b/logo.png differ</span>

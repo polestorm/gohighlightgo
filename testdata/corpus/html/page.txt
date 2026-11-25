@@ -1,0 +1,21 @@
+<!-- REQ: LANG-121 LANG-122 LANG-123 -->
+<!DOCTYPE html>
+<html lang=pl>
+<head>
+  <meta charset="utf-8">
+  <title>Zażółć &mdash; test</title>
+  <style>
+    body { color: #333; margin: 0 auto; }
+    /* </b> is not the end */
+  </style>
+  <script type="module">
+    const html = "<b>" + '</style>';
+    if (a < b && c > d) { console.log(`${a}`); }
+  </SCRIPT>
+</head>
+<body class="main" data-x='1' hidden>
+  <p>Text with <a href="https://example.com/?a=1&amp;b=2">a link</a> &amp; more.</p>
+  <img src=logo.png alt="">
+  <br/>
+</body>
+</html>

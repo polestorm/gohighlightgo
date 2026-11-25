@@ -1,0 +1,40 @@
+<span class="hl-com"># REQ: LANG-141 LANG-142 LANG-143 LANG-144 LANG-145 LANG-146</span>
+<span class="hl-meta">%YAML 1.2</span>
+<span class="hl-meta">---</span>
+<span class="hl-attr">name</span><span class="hl-op">:</span> gohighlightgo
+<span class="hl-attr">version</span><span class="hl-op">:</span> <span class="hl-num">1.5</span>
+<span class="hl-attr">count</span><span class="hl-op">:</span> <span class="hl-num">42</span>
+<span class="hl-attr">hex</span><span class="hl-op">:</span> <span class="hl-num">0x1F</span>
+<span class="hl-attr">octal</span><span class="hl-op">:</span> <span class="hl-num">0o17</span>
+<span class="hl-attr">infinite</span><span class="hl-op">:</span> <span class="hl-num">-.inf</span>
+<span class="hl-attr">empty</span><span class="hl-op">:</span> <span class="hl-builtin">~</span>
+<span class="hl-attr">enabled</span><span class="hl-op">:</span> <span class="hl-builtin">true</span>
+<span class="hl-attr">disabled</span><span class="hl-op">:</span> <span class="hl-builtin">False</span>
+<span class="hl-attr">nothing</span><span class="hl-op">:</span> <span class="hl-builtin">null</span>
+<span class="hl-attr">date</span><span class="hl-op">:</span> 2024-01-31
+<span class="hl-attr">url</span><span class="hl-op">:</span> http://example.com:8080/path <span class="hl-com"># comment after a value</span>
+<span class="hl-attr">"quoted key"</span><span class="hl-op">:</span> <span class="hl-str">"line</span><span class="hl-esc">\n</span><span class="hl-str"> with </span><span class="hl-esc">\"</span><span class="hl-str">escape</span><span class="hl-esc">\"</span><span class="hl-str"> and </span><span class="hl-esc">\u00e9</span><span class="hl-str">"</span>
+<span class="hl-attr">'single'</span><span class="hl-op">:</span> <span class="hl-str">'it</span><span class="hl-esc">''</span><span class="hl-str">s fine'</span>
+<span class="hl-attr">list</span><span class="hl-op">:</span>
+  <span class="hl-op">-</span> first
+  <span class="hl-op">-</span> <span class="hl-attr">second</span><span class="hl-op">:</span> nested
+  <span class="hl-op">-</span> [a, b, {<span class="hl-attr">c</span><span class="hl-op">:</span> <span class="hl-num">1</span>, <span class="hl-attr">d</span><span class="hl-op">:</span> <span class="hl-str">"x"</span>}]
+<span class="hl-op">?</span> complex key
+<span class="hl-op">:</span> complex value
+<span class="hl-attr">anchor</span><span class="hl-op">:</span> <span class="hl-meta">&amp;base</span>
+  <span class="hl-attr">a</span><span class="hl-op">:</span> <span class="hl-num">1</span>
+<span class="hl-attr">merged</span><span class="hl-op">:</span> <span class="hl-meta">*base</span>
+<span class="hl-attr">tagged</span><span class="hl-op">:</span> <span class="hl-meta">!!str</span> <span class="hl-num">123</span>
+<span class="hl-attr">custom</span><span class="hl-op">:</span> <span class="hl-meta">!mytag</span> value
+<span class="hl-attr">literal</span><span class="hl-op">:</span> <span class="hl-op">|</span>
+  <span class="hl-str">line one</span>
+    <span class="hl-str">indented line</span>
+
+  <span class="hl-str">after blank line</span>
+<span class="hl-attr">folded</span><span class="hl-op">:</span> <span class="hl-op">&gt;-</span>
+  <span class="hl-str">folded text</span>
+  <span class="hl-str">continues</span>
+<span class="hl-attr">next</span><span class="hl-op">:</span> done
+<span class="hl-attr">multi</span><span class="hl-op">:</span> <span class="hl-str">"first</span>
+<span class="hl-str">  second"</span>
+<span class="hl-meta">...</span>

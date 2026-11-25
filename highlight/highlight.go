@@ -17,7 +17,8 @@ type language struct {
 // i katalog korpusu.
 var languages = []*language{
 	&langGo, &langC, &langCpp, &langJava, &langJavaScript, &langTypeScript, &langPython, &langRust,
-	&langSQL, &langJSON, &langPascal,
+	&langSQL, &langJSON, &langPascal, &langXML, &langHTML, &langCSS, &langYAML, &langTOML, &langShell, &langDiff,
+	&langMarkdown,
 }
 
 var (

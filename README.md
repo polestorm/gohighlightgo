@@ -2,8 +2,8 @@
 
 Syntax highlighting for source code in pure Go: code in, HTML `<span>` elements out.
 
-Status: **early development**. Eleven languages work: Go, C, C++, Java, JavaScript, TypeScript, Python, Rust,
-SQL, JSON and Pascal/Delphi; see `docs/roadmap.md` for the remaining stages and `docs/adr/0001-scope-and-acceptance.md` for the scope.
+Status: **early development**. Nineteen languages work: Go, C, C++, Java, JavaScript, TypeScript, Python, Rust,
+SQL, JSON, Pascal/Delphi, XML, HTML, CSS, YAML, TOML, shell, diff and Markdown; see `docs/roadmap.md` for the remaining stages and `docs/adr/0001-scope-and-acceptance.md` for the scope.
 
 ## Goals
 

@@ -1,0 +1,32 @@
+<span class="hl-com"># REQ: LANG-161 LANG-162 LANG-163 LANG-164 LANG-165 LANG-166</span>
+<span class="hl-com">#!/usr/bin/env bash</span>
+<span class="hl-builtin">set</span> -euo pipefail
+
+<span class="hl-attr">NAME=</span><span class="hl-str">"world"</span> <span class="hl-attr">COUNT=</span>3 <span class="hl-fn">./run.sh</span> --verbose
+<span class="hl-builtin">readonly</span> DIR=<span class="hl-str">"</span><span class="hl-esc">$(</span><span class="hl-builtin">cd</span> <span class="hl-str">"</span><span class="hl-esc">$(</span><span class="hl-fn">dirname</span> <span class="hl-str">"</span><span class="hl-esc">${BASH_SOURCE[0]}</span><span class="hl-str">"</span><span class="hl-esc">)</span><span class="hl-str">"</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-builtin">pwd</span><span class="hl-esc">)</span><span class="hl-str">"</span>
+
+<span class="hl-fn">greet</span>() {
+    <span class="hl-builtin">local</span> who=<span class="hl-esc">${1:-$NAME}</span>
+    <span class="hl-builtin">echo</span> <span class="hl-str">"Hello, </span><span class="hl-esc">$who</span><span class="hl-str">! Exit code: </span><span class="hl-esc">$?</span><span class="hl-str"> in </span><span class="hl-esc">\$</span><span class="hl-str">HOME=</span><span class="hl-esc">$HOME</span><span class="hl-str">"</span> <span class="hl-str">'single $not'</span> <span class="hl-str">`date`</span>
+<span class="hl-kw">}</span>
+
+<span class="hl-kw">if</span> <span class="hl-kw">[[</span> -f <span class="hl-str">"</span><span class="hl-esc">$DIR</span><span class="hl-str">/config"</span> <span class="hl-kw">]]</span><span class="hl-op">;</span> <span class="hl-kw">then</span>
+    <span class="hl-builtin">source</span> <span class="hl-str">"</span><span class="hl-esc">$DIR</span><span class="hl-str">/config"</span>
+<span class="hl-kw">elif</span> <span class="hl-builtin">test</span> -d /tmp<span class="hl-op">;</span> <span class="hl-kw">then</span>
+    <span class="hl-fn">grep</span> -r <span class="hl-str">'pattern'</span> . <span class="hl-op">|</span> <span class="hl-fn">sort</span> <span class="hl-op">|</span> <span class="hl-fn">uniq</span> -c <span class="hl-op">&gt;</span> out.txt <span class="hl-num">2</span><span class="hl-op">&gt;&amp;</span><span class="hl-num">1</span>
+<span class="hl-kw">else</span>
+    <span class="hl-builtin">exit</span> <span class="hl-num">1</span>
+<span class="hl-kw">fi</span>
+
+<span class="hl-kw">for</span> f <span class="hl-kw">in</span> *.txt<span class="hl-op">;</span> <span class="hl-kw">do</span>
+    <span class="hl-fn">wc</span> -l <span class="hl-str">"</span><span class="hl-esc">$f</span><span class="hl-str">"</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-builtin">echo</span> done
+<span class="hl-kw">done</span>
+
+<span class="hl-fn">cat</span> <span class="hl-op">&lt;&lt;</span><span class="hl-meta">EOF</span>
+<span class="hl-str">Here document with $NAME</span>
+<span class="hl-meta">EOF</span>
+<span class="hl-fn">cat</span> <span class="hl-op">&lt;&lt;-</span><span class="hl-meta">'END'</span>
+<span class="hl-str">	literal $NAME</span>
+<span class="hl-meta">	END</span>
+<span class="hl-attr">count=</span><span class="hl-esc">$((</span>COUNT + <span class="hl-num">1</span><span class="hl-esc">))</span> <span class="hl-com"># arithmetic</span>
+<span class="hl-builtin">echo</span> escaped<span class="hl-esc">\ </span>space

@@ -5,11 +5,11 @@ zapisany bezpiecznie w HTML, z elementami `<span class="…">`. Cele: zero zale�
 wynik bezpieczny z konstrukcji, powtarzalny co do bajta, czas liniowy także dla danych złośliwych, mały kod.
 Projekt jest agnostyczny wobec odbiorców: **nie importuje `gomdgo`** ani żadnego innego parsera Markdown.
 
-Stan (2026-11-25): **etap 2 gotowy**. Silnik tabelowy, `HTML`, `Languages` i 11 języków (Go, C, C++, Java,
-JavaScript, TypeScript, Python, Rust, SQL, JSON, Pascal/Delphi) z korpusem, wymaganiami i testami H1–H4; postać
-wyniku ustala ADR 0002, rozszerzenia tabeli ADR 0003. Następny jest etap 3. Zacznij od `README.md`, potem
-`docs/adr/0001-scope-and-acceptance.md`, `docs/adr/0002-engine-and-output.md`, `docs/adr/0003-table-languages.md`,
-`docs/roadmap.md`, `docs/provenance.md`, `docs/notes-from-gomdgo.md` i `docs/adr/open-questions.md`.
+Stan (2026-11-25): **etap 3 gotowy**. `HTML`, `Languages` i 19 języków (z tabeli: Go, C, C++, Java, JavaScript,
+TypeScript, Python, Rust, SQL, JSON, Pascal/Delphi; z własnym skanerem: XML, HTML, CSS, YAML, TOML, powłoka, diff,
+Markdown) z korpusem, wymaganiami i testami H1–H4; postać wyniku ustala ADR 0002, tabela ADR 0003, własne skanery
+ADR 0004. Następny jest etap 4. Zacznij od `README.md`, potem `docs/adr/0001-scope-and-acceptance.md` i kolejne
+ADR, `docs/roadmap.md`, `docs/provenance.md`, `docs/notes-from-gomdgo.md` i `docs/adr/open-questions.md`.
 
 ## Po co i w jakim układzie
 

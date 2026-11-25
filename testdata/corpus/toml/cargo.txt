@@ -1,0 +1,27 @@
+# REQ: LANG-151 LANG-152 LANG-153 LANG-154
+title = "TOML example"
+"quoted key" = 'literal \n stays'
+
+[owner]
+name = "Tom Preston-Werner"
+dob = 1979-05-27T07:32:00-08:00
+time = 07:32:00
+
+[database.servers]
+enabled = true
+ports = [ 8000, 8001, 8002 ]
+temp_targets = { cpu = 79.5, case = 72.0 }
+site."google.com" = true
+
+[[products]]
+hex = 0xDEAD_BEEF
+oct = 0o755
+bin = 0b1101
+float = -3.1415e-2
+special = [ inf, -inf, nan ]
+desc = """
+Multi-line with "quotes" and \t escape \u00e9.
+"""
+raw = '''
+C:\Users\no\escapes
+'''

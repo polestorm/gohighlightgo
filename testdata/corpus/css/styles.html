@@ -1,0 +1,27 @@
+<span class="hl-com">/* REQ: LANG-131 LANG-132 LANG-133 LANG-134 LANG-135 */</span>
+<span class="hl-kw">@import</span> <span class="hl-fn">url</span>(<span class="hl-str">"theme.css"</span>);
+<span class="hl-kw">@charset</span> <span class="hl-str">"utf-8"</span>;
+
+<span class="hl-builtin">:root</span> {
+  <span class="hl-attr">--accent</span>: <span class="hl-num">#0a84ff</span>;
+  <span class="hl-attr">--gap</span>: <span class="hl-num">1.5rem</span>;
+}
+
+<span class="hl-tag">body</span>, <span class="hl-type">.page</span> <span class="hl-op">&gt;</span> <span class="hl-tag">main</span> <span class="hl-op">+</span> <span class="hl-tag">aside</span> <span class="hl-op">~</span> <span class="hl-tag">footer</span> {
+  <span class="hl-attr">margin</span>: <span class="hl-num">0</span> <span class="hl-builtin">auto</span> <span class="hl-kw">!important</span>;
+  <span class="hl-attr">font</span>: <span class="hl-builtin">italic</span> <span class="hl-builtin">bold</span> <span class="hl-num">12px</span><span class="hl-op">/</span><span class="hl-num">30px</span> Georgia, serif;
+  <span class="hl-attr">color</span>: <span class="hl-fn">rgb</span>(<span class="hl-num">10</span> <span class="hl-num">20</span> <span class="hl-num">30</span> <span class="hl-op">/</span> <span class="hl-num">50%</span>);
+  <span class="hl-attr">background</span>: <span class="hl-fn">url</span>(<span class="hl-str">img/bg.png</span>) no-repeat, <span class="hl-fn">var</span>(--accent);
+  <span class="hl-attr">width</span>: <span class="hl-fn">calc</span>(<span class="hl-num">100%</span> - <span class="hl-num">2</span> <span class="hl-op">*</span> <span class="hl-fn">var</span>(--gap));
+  <span class="hl-attr">content</span>: <span class="hl-str">"</span><span class="hl-esc">\201C </span><span class="hl-str">quote </span><span class="hl-esc">\"</span><span class="hl-str">x</span><span class="hl-esc">\"</span><span class="hl-str">"</span>;
+  <span class="hl-attr">transition</span>: opacity <span class="hl-num">.3s</span> ease-in-out, -webkit-transform <span class="hl-num">0.5s</span>;
+  <span class="hl-attr">z-index</span>: <span class="hl-num">-1</span>;
+}
+
+<span class="hl-tag">a</span><span class="hl-builtin">:hover</span>, <span class="hl-tag">a</span><span class="hl-builtin">::after</span>, <span class="hl-type">#header</span> <span class="hl-type">.nav</span> <span class="hl-tag">li</span><span class="hl-builtin">:nth-child</span>(<span class="hl-num">2n</span><span class="hl-op">+</span><span class="hl-num">1</span>) {
+  <span class="hl-attr">display</span>: <span class="hl-builtin">inline-block</span>;
+}
+
+<span class="hl-kw">@media</span> screen and (max-width: <span class="hl-num">600px</span>) {
+  <span class="hl-type">.grid</span> { <span class="hl-attr">grid-template-columns</span>: <span class="hl-fn">repeat</span>(<span class="hl-num">2</span>, <span class="hl-num">1fr</span>); }
+}
