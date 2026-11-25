@@ -1,0 +1,21 @@
+<span class="hl-com">// REQ: LANG-711 LANG-712 LANG-713 LANG-714</span>
+    <span class="hl-meta">.text</span>
+    <span class="hl-meta">.global</span> _start
+
+<span class="hl-fn">_start</span><span class="hl-op">:</span>
+    <span class="hl-kw">mov</span> <span class="hl-builtin">x0</span><span class="hl-op">,</span> <span class="hl-op">#</span><span class="hl-num">1</span>              <span class="hl-com">// stdout</span>
+    <span class="hl-kw">adr</span> <span class="hl-builtin">x1</span><span class="hl-op">,</span> msg
+    <span class="hl-kw">mov</span> <span class="hl-builtin">x2</span><span class="hl-op">,</span> <span class="hl-op">#</span><span class="hl-num">14</span>
+    <span class="hl-kw">mov</span> <span class="hl-builtin">x8</span><span class="hl-op">,</span> <span class="hl-op">#</span><span class="hl-num">64</span>             <span class="hl-com">@ write</span>
+    <span class="hl-kw">svc</span> <span class="hl-op">#</span><span class="hl-num">0</span>
+<span class="hl-fn">loop</span><span class="hl-op">:</span>
+    <span class="hl-kw">subs</span> <span class="hl-builtin">w3</span><span class="hl-op">,</span> <span class="hl-builtin">w3</span><span class="hl-op">,</span> <span class="hl-op">#</span><span class="hl-num">1</span>
+    <span class="hl-kw">b</span><span class="hl-meta">.ne</span> loop
+    <span class="hl-kw">ldr</span> <span class="hl-builtin">r0</span><span class="hl-op">,</span> <span class="hl-op">[</span><span class="hl-builtin">sp</span><span class="hl-op">,</span> <span class="hl-op">#</span><span class="hl-num">4</span><span class="hl-op">]</span>
+    <span class="hl-kw">str</span> <span class="hl-builtin">r1</span><span class="hl-op">,</span> <span class="hl-op">[</span><span class="hl-builtin">r2</span><span class="hl-op">]!</span>
+    <span class="hl-kw">mov</span> <span class="hl-builtin">x0</span><span class="hl-op">,</span> <span class="hl-op">#</span><span class="hl-num">0x1F</span>
+    <span class="hl-kw">ret</span>
+
+    <span class="hl-meta">.data</span>
+<span class="hl-fn">msg</span><span class="hl-op">:</span>
+    <span class="hl-meta">.ascii</span> <span class="hl-str">"Hello, world!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>

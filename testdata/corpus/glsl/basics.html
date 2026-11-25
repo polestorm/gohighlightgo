@@ -1,0 +1,19 @@
+<span class="hl-com">// REQ: LANG-671 LANG-672 LANG-673 LANG-674</span>
+<span class="hl-meta">#version</span> <span class="hl-num">330</span> core
+
+<span class="hl-kw">layout</span> (location <span class="hl-op">=</span> <span class="hl-num">0</span>) <span class="hl-kw">in</span> <span class="hl-type">vec3</span> aPos;
+<span class="hl-kw">uniform</span> <span class="hl-type">mat4</span> model;
+<span class="hl-kw">uniform</span> <span class="hl-type">sampler2D</span> tex;
+<span class="hl-kw">out</span> <span class="hl-type">vec4</span> FragColor;
+
+<span class="hl-com">/* Lighting. */</span>
+<span class="hl-type">float</span> <span class="hl-fn">lambert</span>(<span class="hl-type">vec3</span> n, <span class="hl-type">vec3</span> l) {
+    <span class="hl-kw">return</span> <span class="hl-builtin">max</span>(<span class="hl-builtin">dot</span>(<span class="hl-builtin">normalize</span>(n), <span class="hl-builtin">normalize</span>(l)), <span class="hl-num">0.0</span>);
+}
+
+<span class="hl-type">void</span> <span class="hl-fn">main</span>() {
+    <span class="hl-type">vec4</span> color <span class="hl-op">=</span> <span class="hl-builtin">texture</span>(tex, aPos.xy) <span class="hl-op">*</span> <span class="hl-num">1.5f</span>;
+    <span class="hl-kw">if</span> (color.a <span class="hl-op">&lt;</span> <span class="hl-num">0.1</span>) <span class="hl-kw">discard</span>;
+    FragColor <span class="hl-op">=</span> <span class="hl-builtin">mix</span>(color, <span class="hl-type">vec4</span>(<span class="hl-num">1.0</span>), <span class="hl-fn">lambert</span>(aPos, <span class="hl-type">vec3</span>(<span class="hl-num">0</span>, <span class="hl-num">1</span>, <span class="hl-num">0</span>)));
+    <span class="hl-builtin">gl_Position</span> <span class="hl-op">=</span> model <span class="hl-op">*</span> <span class="hl-type">vec4</span>(aPos, <span class="hl-num">1.0</span>);
+}

@@ -1,0 +1,20 @@
+# Verilog and SystemVerilog: IEEE 1800-2017, 5 Lexical conventions, Annex B Keywords; requirements/languages/verilog.md
+name     verilog systemverilog sv svh vh
+
+keyword  module endmodule input output inout wire reg logic always always_ff always_comb always_latch
+keyword  assign begin end if else case casez casex endcase default for while repeat forever initial
+keyword  posedge negedge parameter localparam function endfunction task endtask generate endgenerate
+keyword  genvar typedef struct enum packed interface endinterface modport class endclass package
+keyword  endpackage import automatic return unique priority
+type     integer real time bit byte int shortint longint signed unsigned
+builtin  null
+
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+escape        : x=2 octal=3
+sigil    $    : builtin
+sigil    `    : meta
+operators  +-*/%&|^!<>=:?~@#
+calls
+hook     verilog-number

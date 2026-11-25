@@ -1,0 +1,24 @@
+; REQ: LANG-701 LANG-702 LANG-703 LANG-704
+section .data
+    msg db "Hello, world!", 10
+    len equ $ - msg
+
+section .text
+    global _start
+
+_start:
+    mov rax, 1              ; sys_write
+    mov rdi, 1
+    lea rsi, [rel msg]
+    mov rdx, len
+    syscall
+.loop:
+    dec rcx
+    jnz .loop
+    xor edi, edi
+    mov eax, 60
+    syscall
+
+# GNU syntax
+    movq $0x1F, %rax
+    addq %rbx, %rax

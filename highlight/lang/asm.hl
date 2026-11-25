@@ -1,0 +1,20 @@
+# x86 assembly (NASM and GNU as): NASM manual (2.16) and the Intel SDM instruction set; requirements/languages/asm.md
+name     asm nasm x86asm gas s
+
+keyword  mov movzx movsx lea add sub inc dec mul imul div idiv neg and or xor not shl shr sar rol ror
+keyword  cmp test jmp je jne jz jnz jg jge jl jle ja jae jb jbe call ret push pop nop int syscall leave
+keyword  enter cdq cqo xchg cmove cmovne sete setne movq movl movb movw addq subq pushq popq leaq
+keyword  section segment global extern db dw dd dq resb resw resd resq equ times align bits default
+builtin  rax rbx rcx rdx rsi rdi rbp rsp r8 r9 r10 r11 r12 r13 r14 r15 eax ebx ecx edx esi edi ebp esp
+builtin  ax bx cx dx si di bp sp al bl cl dl ah bh ch dh rip
+type     byte word dword qword ptr
+fold-case
+
+line-comment   ; #
+block-comment  /* */
+string   " "  : escapes
+string   ' '
+sigil    .    : meta
+sigil    %    : builtin
+operators  +-*/:,[]$
+hook     asm-label

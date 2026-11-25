@@ -1,0 +1,13 @@
+# Tcl: Tcl(n) manual (the 12 rules) and the Tcl 8.6 built-in commands; requirements/languages/tcl.md
+name     tcl tk
+
+keyword  proc set if else elseif for foreach while switch return break continue expr global upvar
+keyword  namespace variable catch try finally error eval uplevel package source unset incr append list
+keyword  lindex llength lappend lsort string dict array regexp regsub after
+builtin  puts gets open close file format scan info exec
+
+string   " "  : escapes interp=dollar
+escape        : x=2 octal=3 u4
+sigil    $    : attr
+operators  +-*/%&|^!<>=?~
+hook     tcl

@@ -1,0 +1,19 @@
+# Common Lisp: ANSI Common Lisp (Common Lisp HyperSpec), 2 Syntax, 3 Evaluation and Compilation; requirements/languages/commonlisp.md
+name     commonlisp lisp cl el elisp emacs-lisp
+
+keyword  defun defmacro defvar defparameter defconstant defclass defmethod defgeneric defstruct
+keyword  lambda let let* flet labels if cond case when unless loop do dolist dotimes progn prog1 setf
+keyword  setq return return-from block tagbody go catch throw unwind-protect handler-case quote
+keyword  function in-package defpackage multiple-value-bind destructuring-bind and or not
+builtin  t nil car cdr cons list mapcar apply funcall format print princ length append reverse
+builtin  first rest nth gethash make-hash-table error
+
+ident-extra    !?*<>=/+-%&
+ident-part     !?*<>=/+-%&.
+line-comment   ;
+block-comment  #| |#  : nested
+string   " "  : escapes multiline
+sigil    :    : attr
+call-after-paren
+hook     lisp
+hook     apostrophe

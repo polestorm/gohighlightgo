@@ -1,0 +1,24 @@
+# D: D Language Specification (dlang.org/spec): Lexical, Attributes; requirements/languages/d.md
+name     d dlang
+
+keyword  abstract alias align asm assert auto body break case cast catch class const continue debug
+keyword  default delegate delete deprecated do else enum export extern final finally for foreach
+keyword  foreach_reverse function goto if immutable import in inout interface invariant is lazy mixin
+keyword  module new nothrow out override package pragma private protected public pure ref return scope
+keyword  shared static struct super switch synchronized template this throw try typeid typeof union
+keyword  unittest version while with __gshared __traits
+type     bool byte ubyte short ushort int uint long ulong cent ucent char wchar dchar float double real
+type     void string wstring dstring size_t ptrdiff_t
+builtin  true false null writeln writefln
+
+line-comment   //
+block-comment  /* */
+block-comment  /+ +/  : nested
+string   " "  : escapes multiline
+string   ` `  : multiline
+string   ' '  : escapes
+prefix   r    : literal
+escape        : x=2 octal=3 u4 U8
+sigil    @    : meta
+operators  +-*/%&|^!<>=:?~$
+calls

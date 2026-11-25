@@ -20,8 +20,10 @@ Swift 211–215, Lua 221–225, Scala 231–235, Dart 241–245, R 251–255, PH
 Zig 291–295, Perl 301–305, Objective-C 311–313, Elixir 321–325, Erlang 331–335, Clojure 341–345, F# 351–355,
 OCaml 361–365, Julia 371–375, MATLAB 381–385, Groovy 391–395, PowerShell 401–405, Visual Basic 411–415,
 Fortran 421–425, Makefile 431–434, Dockerfile 441–444, CMake 451–454, INI 461–464, properties 471–474,
-Protobuf 481–484, GraphQL 491–494, HCL 501–504, Nix 511–514, LaTeX 521–524, Vim 531–534, AsciiDoc 541–544;
-następny język od `LANG-551`). Każdy język z `Languages()` musi mieć plik
+Protobuf 481–484, GraphQL 491–494, HCL 501–504, Nix 511–514, LaTeX 521–524, Vim 531–534, AsciiDoc 541–544,
+Elm 551–554, Nim 561–564, Crystal 571–574, D 581–584, Ada 591–594, Prolog 601–604, Scheme 611–614,
+Racket 621–622, Common Lisp 631–634, Solidity 641–644, Verilog 651–654, VHDL 661–664, GLSL 671–674, Tcl 681–684,
+AWK 691–694, asembler x86 701–704, asembler ARM 711–714; następny język od `LANG-721`). Każdy język z `Languages()` musi mieć plik
 w `languages/` nazwany jego nazwą główną (`TestLanguageRequirements`).
 
 Pliki powstają razem z etapami w `../docs/roadmap.md`.

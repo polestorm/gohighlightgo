@@ -1,0 +1,23 @@
+<span class="hl-com">% REQ: LANG-601 LANG-602 LANG-603 LANG-604</span>
+<span class="hl-op">:-</span> <span class="hl-fn">module</span>(family, [parent<span class="hl-op">/</span><span class="hl-num">2</span>, grandparent<span class="hl-op">/</span><span class="hl-num">2</span>])<span class="hl-op">.</span>
+
+<span class="hl-com">/* Facts */</span>
+<span class="hl-fn">parent</span>(tom, bob)<span class="hl-op">.</span>
+<span class="hl-fn">parent</span>(bob, 'Ann Smith')<span class="hl-op">.</span>
+
+<span class="hl-fn">grandparent</span>(<span class="hl-type">X</span>, <span class="hl-type">Z</span>) <span class="hl-op">:-</span>
+    <span class="hl-fn">parent</span>(<span class="hl-type">X</span>, <span class="hl-type">Y</span>),
+    <span class="hl-fn">parent</span>(<span class="hl-type">Y</span>, <span class="hl-type">Z</span>)<span class="hl-op">.</span>
+
+<span class="hl-fn">count</span>([], <span class="hl-num">0</span>)<span class="hl-op">.</span>
+<span class="hl-fn">count</span>([_<span class="hl-op">|</span><span class="hl-type">T</span>], <span class="hl-type">N</span>) <span class="hl-op">:-</span>
+    <span class="hl-fn">count</span>(<span class="hl-type">T</span>, <span class="hl-type">N0</span>),
+    <span class="hl-type">N</span> <span class="hl-kw">is</span> <span class="hl-type">N0</span> <span class="hl-op">+</span> <span class="hl-num">1.</span>
+
+<span class="hl-fn">greet</span>(<span class="hl-type">Name</span>) <span class="hl-op">:-</span>
+    <span class="hl-builtin">format</span>(<span class="hl-str">"Hello, ~w!~n"</span>, [<span class="hl-type">Name</span>]),
+    <span class="hl-fn">atom_length</span>(<span class="hl-type">Name</span>, <span class="hl-type">Len</span>),
+    (   <span class="hl-type">Len</span> <span class="hl-op">&gt;</span> <span class="hl-num">3</span> <span class="hl-op">-&gt;</span> <span class="hl-builtin">writeln</span>(long) <span class="hl-op">;</span> <span class="hl-builtin">writeln</span>(short) ),
+    <span class="hl-type">X</span> <span class="hl-op">=</span> <span class="hl-num">0x1F</span>, <span class="hl-type">Y</span> <span class="hl-kw">is</span> <span class="hl-type">X</span> <span class="hl-kw">mod</span> <span class="hl-num">7</span>, <span class="hl-builtin">nl</span><span class="hl-op">.</span>
+
+main <span class="hl-op">:-</span> <span class="hl-builtin">findall</span>(<span class="hl-type">C</span>, <span class="hl-fn">parent</span>(_, <span class="hl-type">C</span>), <span class="hl-type">Cs</span>), <span class="hl-builtin">length</span>(<span class="hl-type">Cs</span>, <span class="hl-type">N</span>), <span class="hl-type">N</span> <span class="hl-op">&gt;</span> <span class="hl-num">0</span>, <span class="hl-op">!</span>, <span class="hl-fn">greet</span>(world)<span class="hl-op">.</span>

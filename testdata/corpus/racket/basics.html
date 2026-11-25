@@ -1,0 +1,17 @@
+<span class="hl-com">; REQ: LANG-621 LANG-622</span>
+<span class="hl-meta">#lang racket</span>
+(<span class="hl-kw">provide</span> greet)
+
+(<span class="hl-kw">struct</span> point (<span class="hl-fn">x</span> y) #:transparent)
+
+(<span class="hl-kw">define</span> (<span class="hl-fn">greet</span> name)
+  (<span class="hl-kw">match</span> name
+    [<span class="hl-str">"world"</span> (<span class="hl-builtin">printf</span> <span class="hl-str">"Hello, ~a!</span><span class="hl-esc">\n</span><span class="hl-str">"</span> name)]
+    [_ (<span class="hl-builtin">displayln</span> <span class="hl-str">"who?"</span>)]))
+
+(<span class="hl-kw">for/list</span> ([i (<span class="hl-fn">in-range</span> <span class="hl-num">3</span>)])
+  (<span class="hl-fn">*</span> i i))
+
+(<span class="hl-kw">define-syntax-rule</span> (<span class="hl-fn">unless*</span> c body) (<span class="hl-kw">if</span> c (<span class="hl-fn">void</span>) body))
+(<span class="hl-fn">greet</span> <span class="hl-str">"world"</span>)
+(<span class="hl-builtin">first</span> (<span class="hl-builtin">list</span> <span class="hl-builtin">#t</span> <span class="hl-builtin">#f</span> <span class="hl-meta">'sym</span>))

@@ -1,0 +1,15 @@
+# Elm: Elm syntax guide (elm-lang.org/docs/syntax) and Elm 0.19 core; requirements/languages/elm.md
+name     elm
+
+keyword  if then else case of let in type alias module exposing import as port where
+builtin  True False Just Nothing Ok Err identity always not toString Debug List Maybe Result String
+
+line-comment   --
+block-comment  {- -}  : nested
+string   """ """  : escapes multiline
+string   " "      : escapes
+escape        : u-braces
+number        : no-leading-dot
+operators  +-*/%^&|<>=:.!
+upper-type
+hook     apostrophe

@@ -1,0 +1,21 @@
+// REQ: LANG-711 LANG-712 LANG-713 LANG-714
+    .text
+    .global _start
+
+_start:
+    mov x0, #1              // stdout
+    adr x1, msg
+    mov x2, #14
+    mov x8, #64             @ write
+    svc #0
+loop:
+    subs w3, w3, #1
+    b.ne loop
+    ldr r0, [sp, #4]
+    str r1, [r2]!
+    mov x0, #0x1F
+    ret
+
+    .data
+msg:
+    .ascii "Hello, world!\n"

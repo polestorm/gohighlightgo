@@ -1,0 +1,21 @@
+<span class="hl-com">; REQ: LANG-631 LANG-632 LANG-633 LANG-634</span>
+<span class="hl-com">#| Block comment |#</span>
+(<span class="hl-kw">defpackage</span> <span class="hl-attr">:demo</span>
+  (<span class="hl-attr">:use</span> <span class="hl-attr">:common-lisp</span>)
+  (<span class="hl-attr">:export</span> #<span class="hl-attr">:greet</span>))
+(<span class="hl-kw">in-package</span> <span class="hl-attr">:demo</span>)
+
+(<span class="hl-kw">defparameter</span> *greeting* <span class="hl-str">"Hello"</span>)
+
+(<span class="hl-kw">defun</span> greet (<span class="hl-fn">name</span> &amp;key (<span class="hl-fn">times</span> <span class="hl-num">1</span>))
+  <span class="hl-str">"Greets NAME TIMES times."</span>
+  (<span class="hl-kw">let</span> ((<span class="hl-fn">text</span> (<span class="hl-builtin">format</span> <span class="hl-builtin">nil</span> <span class="hl-str">"~a, ~a!~%"</span> *greeting* name)))
+    (<span class="hl-kw">loop</span> repeat times collect text)))
+
+(<span class="hl-kw">defmacro</span> unless* (<span class="hl-fn">test</span> &amp;body body)
+  `(<span class="hl-kw">if</span> ,test <span class="hl-builtin">nil</span> (<span class="hl-kw">progn</span> ,@body)))
+
+(<span class="hl-kw">when</span> (<span class="hl-kw">and</span> <span class="hl-builtin">t</span> (<span class="hl-kw">not</span> <span class="hl-builtin">nil</span>))
+  (<span class="hl-builtin">print</span> (<span class="hl-fn">greet</span> <span class="hl-str">"world"</span> <span class="hl-attr">:times</span> <span class="hl-num">2</span>))
+  (<span class="hl-builtin">mapcar</span> #'<span class="hl-num">1</span>+ '(<span class="hl-num">1</span> <span class="hl-num">2</span> <span class="hl-num">3</span>))
+  (<span class="hl-kw">setf</span> (<span class="hl-builtin">gethash</span> <span class="hl-meta">'key</span> (<span class="hl-builtin">make-hash-table</span>)) <span class="hl-str">#\a</span>))

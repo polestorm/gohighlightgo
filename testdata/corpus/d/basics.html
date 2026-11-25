@@ -1,0 +1,26 @@
+<span class="hl-com">// REQ: LANG-581 LANG-582 LANG-583 LANG-584</span>
+<span class="hl-kw">module</span> demo;
+
+<span class="hl-kw">import</span> std.stdio;
+
+<span class="hl-com">/+ outer /+ nested +/ still a comment +/</span>
+<span class="hl-com">/* Block comment */</span>
+<span class="hl-kw">struct</span> Point { <span class="hl-type">int</span> x; <span class="hl-type">double</span> y <span class="hl-op">=</span> <span class="hl-num">1.5e3</span>; }
+
+<span class="hl-meta">@safe</span> <span class="hl-kw">pure</span> <span class="hl-kw">nothrow</span>
+<span class="hl-type">int</span> <span class="hl-fn">square</span>(<span class="hl-type">int</span> x) { <span class="hl-kw">return</span> x <span class="hl-op">*</span> x; }
+
+<span class="hl-type">void</span> <span class="hl-fn">main</span>()
+{
+    <span class="hl-kw">auto</span> name <span class="hl-op">=</span> <span class="hl-str">"world"</span>;
+    <span class="hl-type">string</span> text <span class="hl-op">=</span> <span class="hl-str">"Hello, "</span> <span class="hl-op">~</span> name <span class="hl-op">~</span> <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>;
+    <span class="hl-type">string</span> raw <span class="hl-op">=</span> <span class="hl-str">r"C:\temp\file"</span>;
+    <span class="hl-type">string</span> wysiwyg <span class="hl-op">=</span> <span class="hl-str">`back "ticks" \n`</span>;
+    <span class="hl-type">char</span> c <span class="hl-op">=</span> <span class="hl-str">'x'</span>;
+    <span class="hl-type">ulong</span> big <span class="hl-op">=</span> <span class="hl-num">0x1F</span> <span class="hl-op">+</span> <span class="hl-num">1_000UL</span>;
+    <span class="hl-kw">foreach</span> (i; <span class="hl-num">0</span> .. <span class="hl-num">3</span>)
+    {
+        <span class="hl-kw">if</span> (i <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-op">&amp;&amp;</span> c <span class="hl-op">!=</span> <span class="hl-str">'</span><span class="hl-esc">\0</span><span class="hl-str">'</span>)
+            <span class="hl-builtin">writeln</span>(text, raw, wysiwyg, <span class="hl-fn">square</span>(i), big, <span class="hl-builtin">true</span>, <span class="hl-builtin">null</span> <span class="hl-kw">is</span> <span class="hl-builtin">null</span>);
+    }
+}

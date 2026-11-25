@@ -1,0 +1,22 @@
+# REQ: LANG-681 LANG-682 LANG-683 LANG-684
+package require Tcl 8.6
+
+proc greet {name {times 1}} {
+    # Greets the name.
+    set text "Hello, $name!\n"
+    set result ""
+    for {set i 0} {$i < $times} {incr i} {
+        append result $text ; # trailing comment
+    }
+    return $result
+}
+
+set names [list alice bob]
+foreach n $names {
+    if {[string length $n] > 3} {
+        puts [greet $n 2]
+    } else {
+        puts "short: ${n} #notcomment"
+    }
+}
+set total [expr {0x1F + 1.5}]

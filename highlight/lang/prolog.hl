@@ -1,0 +1,16 @@
+# Prolog: ISO/IEC 13211-1 (Prolog: General core) and the SWI-Prolog manual; requirements/languages/prolog.md
+name     prolog
+
+keyword  is mod rem xor div rdiv
+builtin  true fail false write writeln nl atom number var nonvar is_list length append member findall
+builtin  bagof setof assert asserta assertz retract format halt not call
+
+line-comment   %
+block-comment  /* */
+string   " "  : escapes
+string   ' '  : escapes name
+string   ` `  : escapes
+escape        : x=2 octal=3
+operators  +-*/\^<>=:;|!.@#&$?~
+upper-type
+calls

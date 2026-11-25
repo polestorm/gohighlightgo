@@ -1,0 +1,19 @@
+// REQ: LANG-671 LANG-672 LANG-673 LANG-674
+#version 330 core
+
+layout (location = 0) in vec3 aPos;
+uniform mat4 model;
+uniform sampler2D tex;
+out vec4 FragColor;
+
+/* Lighting. */
+float lambert(vec3 n, vec3 l) {
+    return max(dot(normalize(n), normalize(l)), 0.0);
+}
+
+void main() {
+    vec4 color = texture(tex, aPos.xy) * 1.5f;
+    if (color.a < 0.1) discard;
+    FragColor = mix(color, vec4(1.0), lambert(aPos, vec3(0, 1, 0)));
+    gl_Position = model * vec4(aPos, 1.0);
+}

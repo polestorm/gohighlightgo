@@ -1,0 +1,31 @@
+<span class="hl-com">-- REQ: LANG-661 LANG-662 LANG-663 LANG-664</span>
+<span class="hl-kw">library</span> ieee;
+<span class="hl-kw">use</span> ieee.std_logic_1164.<span class="hl-kw">all</span>;
+<span class="hl-kw">use</span> ieee.numeric_std.<span class="hl-kw">all</span>;
+
+<span class="hl-kw">entity</span> counter <span class="hl-kw">is</span>
+  <span class="hl-kw">generic</span> (WIDTH <span class="hl-op">:</span> <span class="hl-type">natural</span> <span class="hl-op">:=</span> <span class="hl-num">8</span>);
+  <span class="hl-kw">port</span> (
+    clk   <span class="hl-op">:</span> <span class="hl-kw">in</span>  <span class="hl-type">std_logic</span>;
+    rst   <span class="hl-op">:</span> <span class="hl-kw">in</span>  <span class="hl-type">std_logic</span>;
+    count <span class="hl-op">:</span> <span class="hl-kw">out</span> <span class="hl-type">unsigned</span>(WIDTH <span class="hl-op">-</span> <span class="hl-num">1</span> <span class="hl-kw">downto</span> <span class="hl-num">0</span>)
+  );
+<span class="hl-kw">end</span> <span class="hl-kw">entity</span> counter;
+
+<span class="hl-kw">architecture</span> rtl <span class="hl-kw">of</span> counter <span class="hl-kw">is</span>
+  <span class="hl-kw">signal</span> value <span class="hl-op">:</span> <span class="hl-type">unsigned</span>(WIDTH <span class="hl-op">-</span> <span class="hl-num">1</span> <span class="hl-kw">downto</span> <span class="hl-num">0</span>) <span class="hl-op">:=</span> (<span class="hl-kw">others</span> <span class="hl-op">=&gt;</span> <span class="hl-str">'0'</span>);
+<span class="hl-kw">begin</span>
+  <span class="hl-kw">process</span> (clk)
+  <span class="hl-kw">begin</span>
+    <span class="hl-kw">if</span> <span class="hl-builtin">rising_edge</span>(clk) <span class="hl-kw">and</span> clk<span class="hl-meta">'event</span> <span class="hl-kw">then</span>
+      <span class="hl-kw">if</span> rst <span class="hl-op">=</span> <span class="hl-str">'1'</span> <span class="hl-kw">then</span>
+        value <span class="hl-op">&lt;=</span> (<span class="hl-kw">others</span> <span class="hl-op">=&gt;</span> <span class="hl-str">'0'</span>);
+      <span class="hl-kw">else</span>
+        value <span class="hl-op">&lt;=</span> value <span class="hl-op">+</span> <span class="hl-num">1</span>;
+      <span class="hl-kw">end</span> <span class="hl-kw">if</span>;
+    <span class="hl-kw">end</span> <span class="hl-kw">if</span>;
+  <span class="hl-kw">end</span> <span class="hl-kw">process</span>;
+  count <span class="hl-op">&lt;=</span> value;
+  <span class="hl-kw">report</span> <span class="hl-str">"done </span><span class="hl-esc">""</span><span class="hl-str">quoted</span><span class="hl-esc">""</span><span class="hl-str">"</span> <span class="hl-kw">severity</span> NOTE;
+  <span class="hl-kw">assert</span> <span class="hl-str">x"FF"</span> <span class="hl-op">/=</span> <span class="hl-str">b"0000_0001"</span>;
+<span class="hl-kw">END</span> <span class="hl-kw">ARCHITECTURE</span> rtl;

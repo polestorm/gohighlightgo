@@ -1,0 +1,23 @@
+-- REQ: LANG-591 LANG-592 LANG-593 LANG-594
+with Ada.Text_IO; use Ada.Text_IO;
+
+procedure Greeter is
+   type Index is range 1 .. 10;
+   Name  : constant String := "world";
+   Count : Natural := 16#1F# + 1_000;
+   Ratio : Float := 3.14;
+   C     : Character := 'x';
+   Done  : Boolean := False;
+
+   function Square (X : Integer) return Integer is
+   begin
+      return X * X;
+   end Square;
+begin
+   for I in Index'First .. Index'Last loop
+      if I > 1 and then not Done then
+         Put_Line ("Hello, " & Name & "! ""quoted""" & Integer'Image (Square (Integer (I))));
+      end if;
+   end loop;
+   Done := True;
+END Greeter;

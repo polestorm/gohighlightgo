@@ -1,0 +1,22 @@
+<span class="hl-com">; REQ: LANG-611 LANG-612 LANG-613 LANG-614</span>
+<span class="hl-com">#| Block comment</span>
+<span class="hl-com">   #| nested |# still a comment |#</span>
+(<span class="hl-kw">define</span> (<span class="hl-fn">square</span> x) (<span class="hl-fn">*</span> x x))
+
+(<span class="hl-kw">define</span> (<span class="hl-fn">greet</span> name times)
+  (<span class="hl-kw">let</span> loop ((<span class="hl-fn">i</span> <span class="hl-num">0</span>) (<span class="hl-fn">acc</span> <span class="hl-str">""</span>))
+    (<span class="hl-kw">if</span> (<span class="hl-fn">&lt;</span> i times)
+        (<span class="hl-fn">loop</span> (<span class="hl-fn">+</span> i <span class="hl-num">1</span>) (<span class="hl-builtin">string-append</span> acc <span class="hl-str">"Hello, "</span> name <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>))
+        acc)))
+
+(<span class="hl-kw">define-record-type</span> point
+  (<span class="hl-fn">make-point</span> x y)
+  point?
+  (<span class="hl-fn">x</span> point-x))
+
+(<span class="hl-builtin">display</span> (<span class="hl-fn">greet</span> <span class="hl-str">"world"</span> <span class="hl-num">2</span>))
+(<span class="hl-builtin">newline</span>)
+(<span class="hl-kw">define</span> flags (<span class="hl-builtin">list</span> <span class="hl-builtin">#t</span> <span class="hl-builtin">#f</span> <span class="hl-builtin">#true</span> <span class="hl-meta">'symbol</span> <span class="hl-str">#\a</span> <span class="hl-str">#\space</span>))
+(<span class="hl-kw">when</span> (<span class="hl-kw">and</span> (<span class="hl-builtin">pair?</span> flags) (<span class="hl-builtin">not</span> (<span class="hl-builtin">null?</span> flags)))
+  (<span class="hl-builtin">display</span> (<span class="hl-builtin">map</span> square '(<span class="hl-num">1</span> <span class="hl-num">2</span> <span class="hl-num">3</span>))))
+(<span class="hl-kw">set!</span> flags (<span class="hl-builtin">cons</span> <span class="hl-num">1.5</span> flags))

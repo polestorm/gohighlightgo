@@ -1,0 +1,22 @@
+<span class="hl-com"># REQ: LANG-681 LANG-682 LANG-683 LANG-684</span>
+<span class="hl-kw">package</span> require Tcl <span class="hl-num">8.6</span>
+
+<span class="hl-kw">proc</span> greet {name {times <span class="hl-num">1</span>}} {
+    <span class="hl-com"># Greets the name.</span>
+    <span class="hl-kw">set</span> text <span class="hl-str">"Hello, </span><span class="hl-esc">$name</span><span class="hl-str">!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>
+    <span class="hl-kw">set</span> result <span class="hl-str">""</span>
+    <span class="hl-kw">for</span> {<span class="hl-kw">set</span> i <span class="hl-num">0</span>} {<span class="hl-attr">$i</span> <span class="hl-op">&lt;</span> <span class="hl-attr">$times</span>} {<span class="hl-kw">incr</span> i} {
+        <span class="hl-kw">append</span> result <span class="hl-attr">$text</span> ; <span class="hl-com"># trailing comment</span>
+    }
+    <span class="hl-kw">return</span> <span class="hl-attr">$result</span>
+}
+
+<span class="hl-kw">set</span> names [<span class="hl-kw">list</span> alice bob]
+<span class="hl-kw">foreach</span> n <span class="hl-attr">$names</span> {
+    <span class="hl-kw">if</span> {[<span class="hl-kw">string</span> length <span class="hl-attr">$n</span>] <span class="hl-op">&gt;</span> <span class="hl-num">3</span>} {
+        <span class="hl-builtin">puts</span> [greet <span class="hl-attr">$n</span> <span class="hl-num">2</span>]
+    } <span class="hl-kw">else</span> {
+        <span class="hl-builtin">puts</span> <span class="hl-str">"short: </span><span class="hl-esc">${n}</span><span class="hl-str"> #notcomment"</span>
+    }
+}
+<span class="hl-kw">set</span> total [<span class="hl-kw">expr</span> {<span class="hl-num">0x1F</span> <span class="hl-op">+</span> <span class="hl-num">1.5</span>}]

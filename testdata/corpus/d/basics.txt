@@ -1,0 +1,26 @@
+// REQ: LANG-581 LANG-582 LANG-583 LANG-584
+module demo;
+
+import std.stdio;
+
+/+ outer /+ nested +/ still a comment +/
+/* Block comment */
+struct Point { int x; double y = 1.5e3; }
+
+@safe pure nothrow
+int square(int x) { return x * x; }
+
+void main()
+{
+    auto name = "world";
+    string text = "Hello, " ~ name ~ "!\n";
+    string raw = r"C:\temp\file";
+    string wysiwyg = `back "ticks" \n`;
+    char c = 'x';
+    ulong big = 0x1F + 1_000UL;
+    foreach (i; 0 .. 3)
+    {
+        if (i > 0 && c != '\0')
+            writeln(text, raw, wysiwyg, square(i), big, true, null is null);
+    }
+}

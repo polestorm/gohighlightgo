@@ -1,0 +1,28 @@
+<span class="hl-com">-- REQ: LANG-551 LANG-552 LANG-553 LANG-554</span>
+<span class="hl-kw">module</span> <span class="hl-type">Main</span> <span class="hl-kw">exposing</span> (main)
+
+<span class="hl-kw">import</span> <span class="hl-type">Html</span> <span class="hl-kw">exposing</span> (<span class="hl-type">Html</span>, text)
+
+<span class="hl-com">{- outer {- nested -} still a comment -}</span>
+<span class="hl-kw">type</span> <span class="hl-type">Shape</span>
+    <span class="hl-op">=</span> <span class="hl-type">Circle</span> <span class="hl-type">Float</span>
+    <span class="hl-op">|</span> <span class="hl-type">Rect</span> <span class="hl-type">Float</span> <span class="hl-type">Float</span>
+
+area <span class="hl-op">:</span> <span class="hl-type">Shape</span> <span class="hl-op">-&gt;</span> <span class="hl-type">Float</span>
+area shape <span class="hl-op">=</span>
+    <span class="hl-kw">case</span> shape <span class="hl-kw">of</span>
+        <span class="hl-type">Circle</span> r <span class="hl-op">-&gt;</span>
+            pi <span class="hl-op">*</span> r <span class="hl-op">^</span> <span class="hl-num">2</span>
+
+        <span class="hl-type">Rect</span> w h <span class="hl-op">-&gt;</span>
+            w <span class="hl-op">*</span> h
+
+main <span class="hl-op">:</span> <span class="hl-type">Html</span> msg
+main <span class="hl-op">=</span>
+    <span class="hl-kw">let</span>
+        name <span class="hl-op">=</span> <span class="hl-str">"world</span><span class="hl-esc">\u{1F600}</span><span class="hl-str">"</span>
+        c <span class="hl-op">=</span> <span class="hl-str">'x'</span>
+        doc <span class="hl-op">=</span> <span class="hl-str">"""multi "quoted"</span>
+<span class="hl-str">line"""</span>
+    <span class="hl-kw">in</span>
+    text (<span class="hl-str">"Hello, "</span> <span class="hl-op">++</span> name <span class="hl-op">++</span> <span class="hl-builtin">String</span><span class="hl-op">.</span>fromFloat (area (<span class="hl-type">Circle</span> <span class="hl-num">1.5</span>)) <span class="hl-op">++</span> <span class="hl-builtin">String</span><span class="hl-op">.</span>fromInt <span class="hl-num">0x1F</span>)

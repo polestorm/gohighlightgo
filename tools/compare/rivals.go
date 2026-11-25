@@ -18,7 +18,7 @@ import (
 )
 
 // chromaNames: nazwa leksera chroma dla naszej nazwy głównej, gdy się różni.
-var chromaNames = map[string]string{"sh": "bash", "pascal": "objectpascal"}
+var chromaNames = map[string]string{"sh": "bash", "pascal": "objectpascal", "commonlisp": "common-lisp"}
 
 // Sample to plik korpusu bez pierwszego wiersza (odwołania REQ).
 type Sample struct {

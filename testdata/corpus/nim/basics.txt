@@ -1,0 +1,24 @@
+# REQ: LANG-561 LANG-562 LANG-563 LANG-564
+## Module doc comment
+#[ outer #[ nested ]# still a comment ]#
+import std/strutils
+
+type
+  Shape = object
+    name: string
+    sides: int
+
+proc greet(name: string, times = 1): string =
+  result = ""
+  for i in 0 ..< times:
+    result.add("Hello, " & name & "!\n\x41")
+
+let raw = r"C:\temp\""quoted"""
+let multi = """Multi "quoted"
+line"""
+const c = 'x'
+var count: int = 0x1F + 1_000
+if count > 0 and not false:
+  echo greet("world", 2), raw, multi, c, 3.14
+else:
+  discard

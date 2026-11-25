@@ -1,0 +1,22 @@
+; REQ: LANG-611 LANG-612 LANG-613 LANG-614
+#| Block comment
+   #| nested |# still a comment |#
+(define (square x) (* x x))
+
+(define (greet name times)
+  (let loop ((i 0) (acc ""))
+    (if (< i times)
+        (loop (+ i 1) (string-append acc "Hello, " name "!\n"))
+        acc)))
+
+(define-record-type point
+  (make-point x y)
+  point?
+  (x point-x))
+
+(display (greet "world" 2))
+(newline)
+(define flags (list #t #f #true 'symbol #\a #\space))
+(when (and (pair? flags) (not (null? flags)))
+  (display (map square '(1 2 3))))
+(set! flags (cons 1.5 flags))

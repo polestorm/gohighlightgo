@@ -1,0 +1,23 @@
+# REQ: LANG-691 LANG-692 LANG-693 LANG-694
+BEGIN {
+    FS = ","
+    count = 0
+}
+
+# Lines with a number in the second field.
+$2 ~ /^[0-9]+$/ {
+    total += $2
+    count++
+    names[NR] = toupper($1)
+}
+
+/error/ && NF > 3 { print "bad line", NR > "/dev/stderr" }
+
+function avg(sum, n) {
+    return n > 0 ? sum / n : 0
+}
+
+END {
+    printf "count=%d avg=%.2f\n", count, avg(total, count)
+    for (i in names) delete names[i]
+}

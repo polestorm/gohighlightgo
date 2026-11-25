@@ -1,0 +1,7 @@
+# Racket: The Racket Reference (8.x), The Reader and syntactic forms; requirements/languages/racket.md
+extends  scheme
+name     racket rkt
+
+keyword  define-struct struct match provide require module module+ for for/list for/fold
+keyword  define-syntax-rule λ
+builtin  printf displayln first rest empty empty? hash hash-ref

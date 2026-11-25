@@ -1,0 +1,25 @@
+// REQ: LANG-651 LANG-652 LANG-653 LANG-654
+`timescale 1ns / 1ps
+`define WIDTH 8
+
+/* A simple counter. */
+module counter #(parameter WIDTH = `WIDTH) (
+    input  wire             clk,
+    input  wire             rst_n,
+    output reg [WIDTH-1:0]  count
+);
+    localparam MAX = 8'hFF;
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)
+            count <= 'b0;
+        else if (count == MAX)
+            count <= {WIDTH{1'b0}};
+        else
+            count <= count + 4'sd1;
+    end
+
+    initial begin
+        $display("counter width = %0d", WIDTH);
+    end
+endmodule

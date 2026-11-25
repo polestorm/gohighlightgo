@@ -1,0 +1,17 @@
+; REQ: LANG-621 LANG-622
+#lang racket
+(provide greet)
+
+(struct point (x y) #:transparent)
+
+(define (greet name)
+  (match name
+    ["world" (printf "Hello, ~a!\n" name)]
+    [_ (displayln "who?")]))
+
+(for/list ([i (in-range 3)])
+  (* i i))
+
+(define-syntax-rule (unless* c body) (if c (void) body))
+(greet "world")
+(first (list #t #f 'sym))

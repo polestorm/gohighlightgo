@@ -1,0 +1,28 @@
+-- REQ: LANG-551 LANG-552 LANG-553 LANG-554
+module Main exposing (main)
+
+import Html exposing (Html, text)
+
+{- outer {- nested -} still a comment -}
+type Shape
+    = Circle Float
+    | Rect Float Float
+
+area : Shape -> Float
+area shape =
+    case shape of
+        Circle r ->
+            pi * r ^ 2
+
+        Rect w h ->
+            w * h
+
+main : Html msg
+main =
+    let
+        name = "world\u{1F600}"
+        c = 'x'
+        doc = """multi "quoted"
+line"""
+    in
+    text ("Hello, " ++ name ++ String.fromFloat (area (Circle 1.5)) ++ String.fromInt 0x1F)

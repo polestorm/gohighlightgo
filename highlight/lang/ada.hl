@@ -1,0 +1,18 @@
+# Ada: Ada 2022 Reference Manual (ISO/IEC 8652:2023), 2 Lexical Elements, 2.9 Reserved Words; requirements/languages/ada.md
+name     ada adb ads
+
+keyword  abort abs abstract accept access aliased all and array at begin body case constant declare delay
+keyword  delta digits do else elsif end entry exception exit for function generic goto if in interface is
+keyword  limited loop mod new not null of or others out overriding package parallel pragma private
+keyword  procedure protected raise range record rem renames requeue return reverse select separate some
+keyword  subtype synchronized tagged task terminate then type until use when while with xor
+type     Integer Natural Positive Float Long_Float Boolean Character String Wide_String Duration
+builtin  True False Put_Line Put Get New_Line
+fold-case
+
+line-comment   --
+string   " "  : doubled
+number        : no-leading-dot
+operators  +-*/&|<>=:.
+calls
+hook     apostrophe

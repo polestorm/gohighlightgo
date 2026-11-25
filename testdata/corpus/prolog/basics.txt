@@ -1,0 +1,23 @@
+% REQ: LANG-601 LANG-602 LANG-603 LANG-604
+:- module(family, [parent/2, grandparent/2]).
+
+/* Facts */
+parent(tom, bob).
+parent(bob, 'Ann Smith').
+
+grandparent(X, Z) :-
+    parent(X, Y),
+    parent(Y, Z).
+
+count([], 0).
+count([_|T], N) :-
+    count(T, N0),
+    N is N0 + 1.
+
+greet(Name) :-
+    format("Hello, ~w!~n", [Name]),
+    atom_length(Name, Len),
+    (   Len > 3 -> writeln(long) ; writeln(short) ),
+    X = 0x1F, Y is X mod 7, nl.
+
+main :- findall(C, parent(_, C), Cs), length(Cs, N), N > 0, !, greet(world).

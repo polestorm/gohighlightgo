@@ -62,7 +62,7 @@ contain any letters.
 | `templates` | | | JavaScript template literals with `${…}` |
 | `regex` | | | JavaScript regular expression literals, decided by the previous token |
 | `keys` | | | a string followed by `:` is coloured `hl-attr` (JSON keys) |
-| `hook` | a hook | | a construct written in Go: `c-preprocessor`, `cpp`, `rust`, `json-minus`, `pascal`, `lua`, `swift`, `apostrophe`, `haskell`, `ruby`, `php`, `perl`, `elixir`, `matlab`, `dotted`, `variables`, `latex`, `vim`, `hcl`; may be repeated, tried in order |
+| `hook` | a hook | | a construct written in Go: `c-preprocessor`, `cpp`, `rust`, `json-minus`, `pascal`, `lua`, `swift`, `apostrophe`, `haskell`, `ruby`, `php`, `perl`, `elixir`, `matlab`, `dotted`, `variables`, `latex`, `vim`, `hcl`, `lisp`, `verilog-number`, `tcl`, `asm-label`; may be repeated, tried in order |
 
 **Strings.** `escapes`: `\` starts an escape sequence (shaped by `escape`); `multiline`: the string may cross line
 ends, otherwise an unclosed string ends before the line break; `doubled`: the closing delimiter written twice is an

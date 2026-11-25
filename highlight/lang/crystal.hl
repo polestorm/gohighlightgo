@@ -1,0 +1,20 @@
+# Crystal: Crystal language reference (1.11): Syntax and semantics, Literals; requirements/languages/crystal.md
+name     crystal cr
+
+keyword  abstract alias annotation as asm begin break case class def do else elsif end ensure enum extend
+keyword  for fun if in include instance_sizeof is_a? lib macro module next nil? of out pointerof private
+keyword  protected require rescue return select self sizeof struct super then type typeof uninitialized
+keyword  union unless until verbatim when while with yield
+builtin  true false nil puts print p pp raise getter setter property loop spawn
+
+line-comment   #
+string   " "  : escapes interp=hash
+string   ' '  : escapes
+string   ` `  : escapes interp=hash
+escape        : x=2 octal=3 u4 u-braces
+sigil    @$   : attr
+operators  +-*/%&|^!<>=?~
+upper-type
+calls
+regex
+hook     ruby

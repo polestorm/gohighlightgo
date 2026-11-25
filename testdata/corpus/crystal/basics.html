@@ -1,0 +1,26 @@
+<span class="hl-com"># REQ: LANG-571 LANG-572 LANG-573 LANG-574</span>
+<span class="hl-kw">require</span> <span class="hl-str">"json"</span>
+
+<span class="hl-kw">module</span> <span class="hl-type">Demo</span>
+  <span class="hl-type">VERSION</span> <span class="hl-op">=</span> <span class="hl-str">"1.0"</span>
+
+  <span class="hl-kw">class</span> <span class="hl-type">Greeter</span>
+    <span class="hl-builtin">getter</span> name : <span class="hl-type">String</span>
+    <span class="hl-attr">@@count</span> <span class="hl-op">=</span> <span class="hl-num">0</span>
+
+    <span class="hl-kw">def</span> <span class="hl-fn">initialize</span>(<span class="hl-attr">@name</span> : <span class="hl-type">String</span> <span class="hl-op">=</span> <span class="hl-str">"world"</span>)
+      <span class="hl-attr">@@count</span> <span class="hl-op">+=</span> <span class="hl-num">1</span>
+    <span class="hl-kw">end</span>
+
+    <span class="hl-kw">def</span> <span class="hl-fn">greet</span>(times : <span class="hl-type">Int32</span> <span class="hl-op">=</span> <span class="hl-num">1</span>) : <span class="hl-type">String</span>
+      text <span class="hl-op">=</span> <span class="hl-str">"Hello, </span><span class="hl-esc">#{@name}</span><span class="hl-str">! Count: </span><span class="hl-esc">#{@@count}\n</span><span class="hl-str">"</span>
+      words <span class="hl-op">=</span> <span class="hl-str">%w[alpha beta]</span>
+      opts <span class="hl-op">=</span> {<span class="hl-attr">key:</span> <span class="hl-attr">:value</span>, <span class="hl-attr">other:</span> <span class="hl-builtin">nil</span>}
+      <span class="hl-kw">return</span> text <span class="hl-op">*</span> times <span class="hl-kw">if</span> times.positive<span class="hl-op">?</span>
+      <span class="hl-builtin">raise</span> <span class="hl-str">"never"</span> <span class="hl-kw">unless</span> words.size <span class="hl-op">==</span> <span class="hl-num">2</span>
+      text
+    <span class="hl-kw">end</span>
+  <span class="hl-kw">end</span>
+<span class="hl-kw">end</span>
+
+<span class="hl-builtin">puts</span> <span class="hl-type">Demo</span>::<span class="hl-type">Greeter</span>.new.<span class="hl-fn">greet</span>(<span class="hl-num">2</span>), <span class="hl-num">0x1F</span>, <span class="hl-num">1_000_i64</span>, <span class="hl-num">3.14_f32</span>, <span class="hl-builtin">true</span>

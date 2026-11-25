@@ -1,0 +1,23 @@
+# VHDL: IEEE 1076-2019, 15 Lexical elements, 15.10 Reserved words; requirements/languages/vhdl.md
+name     vhdl vhd
+
+keyword  abs access after alias all and architecture array assert attribute begin block body buffer bus
+keyword  case component configuration constant disconnect downto else elsif end entity exit file for
+keyword  function generate generic group guarded if impure in inertial inout is label library linkage
+keyword  literal loop map mod nand new next nor not null of on open or others out package port postponed
+keyword  procedure process pure range record register reject rem report return rol ror select severity
+keyword  signal shared sla sll sra srl subtype then to transport type unaffected units until use variable
+keyword  wait when while with xnor xor
+type     std_logic std_logic_vector std_ulogic unsigned signed integer natural positive boolean bit
+type     bit_vector real time string character
+builtin  true false rising_edge falling_edge to_integer to_unsigned resize
+fold-case
+
+line-comment   --
+block-comment  /* */
+string   " "  : doubled
+prefix   x X b B o O
+number        : no-leading-dot
+operators  +-*/&|<>=:
+calls
+hook     apostrophe

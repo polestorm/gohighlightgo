@@ -1,0 +1,21 @@
+; REQ: LANG-631 LANG-632 LANG-633 LANG-634
+#| Block comment |#
+(defpackage :demo
+  (:use :common-lisp)
+  (:export #:greet))
+(in-package :demo)
+
+(defparameter *greeting* "Hello")
+
+(defun greet (name &key (times 1))
+  "Greets NAME TIMES times."
+  (let ((text (format nil "~a, ~a!~%" *greeting* name)))
+    (loop repeat times collect text)))
+
+(defmacro unless* (test &body body)
+  `(if ,test nil (progn ,@body)))
+
+(when (and t (not nil))
+  (print (greet "world" :times 2))
+  (mapcar #'1+ '(1 2 3))
+  (setf (gethash 'key (make-hash-table)) #\a))

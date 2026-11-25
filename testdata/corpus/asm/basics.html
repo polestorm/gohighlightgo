@@ -1,0 +1,24 @@
+<span class="hl-com">; REQ: LANG-701 LANG-702 LANG-703 LANG-704</span>
+<span class="hl-kw">section</span> <span class="hl-meta">.data</span>
+    msg <span class="hl-kw">db</span> <span class="hl-str">"Hello, world!"</span><span class="hl-op">,</span> <span class="hl-num">10</span>
+    len <span class="hl-kw">equ</span> <span class="hl-op">$</span> <span class="hl-op">-</span> msg
+
+<span class="hl-kw">section</span> <span class="hl-meta">.text</span>
+    <span class="hl-kw">global</span> _start
+
+<span class="hl-fn">_start</span><span class="hl-op">:</span>
+    <span class="hl-kw">mov</span> <span class="hl-builtin">rax</span><span class="hl-op">,</span> <span class="hl-num">1</span>              <span class="hl-com">; sys_write</span>
+    <span class="hl-kw">mov</span> <span class="hl-builtin">rdi</span><span class="hl-op">,</span> <span class="hl-num">1</span>
+    <span class="hl-kw">lea</span> <span class="hl-builtin">rsi</span><span class="hl-op">,</span> <span class="hl-op">[</span>rel msg<span class="hl-op">]</span>
+    <span class="hl-kw">mov</span> <span class="hl-builtin">rdx</span><span class="hl-op">,</span> len
+    <span class="hl-kw">syscall</span>
+<span class="hl-fn">.loop</span><span class="hl-op">:</span>
+    <span class="hl-kw">dec</span> <span class="hl-builtin">rcx</span>
+    <span class="hl-kw">jnz</span> <span class="hl-meta">.loop</span>
+    <span class="hl-kw">xor</span> <span class="hl-builtin">edi</span><span class="hl-op">,</span> <span class="hl-builtin">edi</span>
+    <span class="hl-kw">mov</span> <span class="hl-builtin">eax</span><span class="hl-op">,</span> <span class="hl-num">60</span>
+    <span class="hl-kw">syscall</span>
+
+<span class="hl-com"># GNU syntax</span>
+    <span class="hl-kw">movq</span> <span class="hl-op">$</span><span class="hl-num">0x1F</span><span class="hl-op">,</span> <span class="hl-builtin">%rax</span>
+    <span class="hl-kw">addq</span> <span class="hl-builtin">%rbx</span><span class="hl-op">,</span> <span class="hl-builtin">%rax</span>

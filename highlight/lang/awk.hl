@@ -1,0 +1,15 @@
+# AWK: POSIX.1-2024 awk utility description and The GNU Awk User's Guide; requirements/languages/awk.md
+name     awk gawk mawk nawk
+
+keyword  BEGIN END BEGINFILE ENDFILE function func if else while for do break continue next nextfile
+keyword  exit return delete in getline print printf
+builtin  length substr index split sub gsub match sprintf tolower toupper system close srand rand int
+builtin  sqrt exp log sin cos atan2 NR NF FNR FS OFS RS ORS FILENAME SUBSEP RSTART RLENGTH ENVIRON ARGC
+builtin  ARGV
+
+line-comment   #
+string   " "  : escapes
+escape        : octal=3
+operators  +-*/%^!<>=?:~|&$
+calls
+regex

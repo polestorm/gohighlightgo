@@ -1,0 +1,20 @@
+# Nim: Nim Manual (2.0), Lexical Analysis; requirements/languages/nim.md
+name     nim nims nimble
+
+keyword  addr and as asm bind block break case cast concept const continue converter defer discard
+keyword  distinct div do elif else end enum except export finally for from func if import in include
+keyword  interface is isnot iterator let macro method mixin mod nil not notin object of or out proc ptr
+keyword  raise ref return shl shr static template try tuple type using var when while xor yield
+type     int int8 int16 int32 int64 uint uint8 uint16 uint32 uint64 float float32 float64 bool char
+type     string cstring seq array set openArray void auto pointer
+builtin  true false echo len high low inc dec add newSeq assert doAssert result
+
+line-comment   #
+block-comment  #[ ]#  : nested
+string   """ """  : multiline
+string   " "      : escapes
+string   ' '      : escapes
+prefix   r R      : literal
+escape        : x=2 u-braces
+operators  +-*/%&|^!<>=:@~.$
+calls

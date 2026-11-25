@@ -1,0 +1,25 @@
+<span class="hl-com">// REQ: LANG-651 LANG-652 LANG-653 LANG-654</span>
+<span class="hl-meta">`timescale</span> <span class="hl-num">1ns</span> <span class="hl-op">/</span> <span class="hl-num">1ps</span>
+<span class="hl-meta">`define</span> WIDTH <span class="hl-num">8</span>
+
+<span class="hl-com">/* A simple counter. */</span>
+<span class="hl-kw">module</span> counter <span class="hl-op">#</span>(<span class="hl-kw">parameter</span> WIDTH <span class="hl-op">=</span> <span class="hl-meta">`WIDTH</span>) (
+    <span class="hl-kw">input</span>  <span class="hl-kw">wire</span>             clk,
+    <span class="hl-kw">input</span>  <span class="hl-kw">wire</span>             rst_n,
+    <span class="hl-kw">output</span> <span class="hl-kw">reg</span> [WIDTH<span class="hl-op">-</span><span class="hl-num">1</span><span class="hl-op">:</span><span class="hl-num">0</span>]  count
+);
+    <span class="hl-kw">localparam</span> MAX <span class="hl-op">=</span> <span class="hl-num">8'hFF</span>;
+
+    <span class="hl-kw">always</span> <span class="hl-op">@</span>(<span class="hl-kw">posedge</span> clk or <span class="hl-kw">negedge</span> rst_n) <span class="hl-kw">begin</span>
+        <span class="hl-kw">if</span> (<span class="hl-op">!</span>rst_n)
+            count <span class="hl-op">&lt;=</span> <span class="hl-num">'b0</span>;
+        <span class="hl-kw">else</span> <span class="hl-kw">if</span> (count <span class="hl-op">==</span> MAX)
+            count <span class="hl-op">&lt;=</span> {WIDTH{<span class="hl-num">1'b0</span>}};
+        <span class="hl-kw">else</span>
+            count <span class="hl-op">&lt;=</span> count <span class="hl-op">+</span> <span class="hl-num">4'sd1</span>;
+    <span class="hl-kw">end</span>
+
+    <span class="hl-kw">initial</span> <span class="hl-kw">begin</span>
+        <span class="hl-builtin">$display</span>(<span class="hl-str">"counter width = %0d"</span>, WIDTH);
+    <span class="hl-kw">end</span>
+<span class="hl-kw">endmodule</span>

@@ -1,0 +1,18 @@
+# Scheme: R7RS small (Revised7 Report on the Algorithmic Language Scheme), 2 Lexical conventions, 4 Expressions; requirements/languages/scheme.md
+name     scheme scm ss
+
+keyword  define lambda let let* letrec letrec* let-values if cond case and or when unless do begin quote
+keyword  quasiquote unquote set! define-syntax let-syntax syntax-rules else define-record-type
+keyword  define-values parameterize guard delay import export library
+builtin  car cdr cons list map for-each apply append length reverse display newline null? pair? list?
+builtin  equal? eq? eqv? not vector string-append number->string error
+
+ident-extra    !?*<>=/+-
+ident-part     !?*<>=/+-.:
+line-comment   ;
+block-comment  #| |#  : nested
+string   " "  : escapes multiline
+escape        : x=2
+call-after-paren
+hook     lisp
+hook     apostrophe

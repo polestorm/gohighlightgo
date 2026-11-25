@@ -39,6 +39,10 @@ var hooks = map[string]hookFunc{
 	"latex":          latexSpecial,
 	"vim":            vimSpecial,
 	"hcl":            hclSpecial,
+	"lisp":           lispSpecial,
+	"verilog-number": verilogNumber,
+	"tcl":            tclSpecial,
+	"asm-label":      asmLabel,
 }
 
 // DefinitionError reports an invalid language definition: the line (from 1) and what is wrong with it.

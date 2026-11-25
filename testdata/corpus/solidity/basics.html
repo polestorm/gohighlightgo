@@ -1,0 +1,28 @@
+<span class="hl-com">// REQ: LANG-641 LANG-642 LANG-643 LANG-644</span>
+<span class="hl-com">// SPDX-License-Identifier: MIT</span>
+<span class="hl-kw">pragma</span> solidity <span class="hl-op">^</span><span class="hl-num">0.8.20</span>;
+
+<span class="hl-com">/* A simple token. */</span>
+<span class="hl-kw">contract</span> Token {
+    <span class="hl-kw">mapping</span>(<span class="hl-type">address</span> <span class="hl-op">=&gt;</span> <span class="hl-type">uint256</span>) <span class="hl-kw">public</span> balances;
+    <span class="hl-type">address</span> <span class="hl-kw">public</span> owner;
+    <span class="hl-type">string</span> <span class="hl-kw">public</span> name <span class="hl-op">=</span> <span class="hl-str">"Demo"</span>;
+    <span class="hl-type">bytes32</span> <span class="hl-kw">constant</span> TAG <span class="hl-op">=</span> <span class="hl-str">hex"deadbeef"</span>;
+
+    <span class="hl-kw">event</span> <span class="hl-fn">Transfer</span>(<span class="hl-type">address</span> <span class="hl-kw">indexed</span> from, <span class="hl-type">address</span> <span class="hl-kw">indexed</span> to, <span class="hl-type">uint256</span> amount);
+    <span class="hl-kw">error</span> <span class="hl-fn">Insufficient</span>(<span class="hl-type">uint256</span> available);
+
+    <span class="hl-kw">constructor</span>() {
+        owner <span class="hl-op">=</span> <span class="hl-builtin">msg</span>.sender;
+        balances[<span class="hl-builtin">msg</span>.sender] <span class="hl-op">=</span> <span class="hl-num">1_000</span> <span class="hl-builtin">ether</span>;
+    }
+
+    <span class="hl-kw">function</span> <span class="hl-fn">transfer</span>(<span class="hl-type">address</span> to, <span class="hl-type">uint256</span> amount) <span class="hl-kw">external</span> <span class="hl-kw">returns</span> (<span class="hl-type">bool</span>) {
+        <span class="hl-kw">if</span> (balances[<span class="hl-builtin">msg</span>.sender] <span class="hl-op">&lt;</span> amount) <span class="hl-kw">revert</span> <span class="hl-fn">Insufficient</span>(balances[<span class="hl-builtin">msg</span>.sender]);
+        <span class="hl-kw">unchecked</span> { balances[<span class="hl-builtin">msg</span>.sender] <span class="hl-op">-=</span> amount; }
+        balances[to] <span class="hl-op">+=</span> amount;
+        <span class="hl-kw">emit</span> <span class="hl-fn">Transfer</span>(<span class="hl-builtin">msg</span>.sender, to, amount);
+        <span class="hl-builtin">require</span>(<span class="hl-builtin">block</span>.timestamp <span class="hl-op">&gt;</span> <span class="hl-num">0</span>, <span class="hl-str">unicode"ok ✓"</span>);
+        <span class="hl-kw">return</span> <span class="hl-builtin">true</span>;
+    }
+}

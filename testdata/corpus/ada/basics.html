@@ -1,0 +1,23 @@
+<span class="hl-com">-- REQ: LANG-591 LANG-592 LANG-593 LANG-594</span>
+<span class="hl-kw">with</span> Ada<span class="hl-op">.</span>Text_IO; <span class="hl-kw">use</span> Ada<span class="hl-op">.</span>Text_IO;
+
+<span class="hl-kw">procedure</span> Greeter <span class="hl-kw">is</span>
+   <span class="hl-kw">type</span> Index <span class="hl-kw">is</span> <span class="hl-kw">range</span> <span class="hl-num">1</span> <span class="hl-op">..</span> <span class="hl-num">10</span>;
+   Name  <span class="hl-op">:</span> <span class="hl-kw">constant</span> <span class="hl-type">String</span> <span class="hl-op">:=</span> <span class="hl-str">"world"</span>;
+   Count <span class="hl-op">:</span> <span class="hl-type">Natural</span> <span class="hl-op">:=</span> <span class="hl-num">16</span>#<span class="hl-num">1F</span># <span class="hl-op">+</span> <span class="hl-num">1_000</span>;
+   Ratio <span class="hl-op">:</span> <span class="hl-type">Float</span> <span class="hl-op">:=</span> <span class="hl-num">3.14</span>;
+   C     <span class="hl-op">:</span> <span class="hl-type">Character</span> <span class="hl-op">:=</span> <span class="hl-str">'x'</span>;
+   Done  <span class="hl-op">:</span> <span class="hl-type">Boolean</span> <span class="hl-op">:=</span> <span class="hl-builtin">False</span>;
+
+   <span class="hl-kw">function</span> <span class="hl-fn">Square</span> (X <span class="hl-op">:</span> <span class="hl-type">Integer</span>) <span class="hl-kw">return</span> <span class="hl-type">Integer</span> <span class="hl-kw">is</span>
+   <span class="hl-kw">begin</span>
+      <span class="hl-kw">return</span> X <span class="hl-op">*</span> X;
+   <span class="hl-kw">end</span> Square;
+<span class="hl-kw">begin</span>
+   <span class="hl-kw">for</span> I <span class="hl-kw">in</span> Index<span class="hl-meta">'First</span> <span class="hl-op">..</span> Index<span class="hl-meta">'Last</span> <span class="hl-kw">loop</span>
+      <span class="hl-kw">if</span> I <span class="hl-op">&gt;</span> <span class="hl-num">1</span> <span class="hl-kw">and</span> <span class="hl-kw">then</span> <span class="hl-kw">not</span> Done <span class="hl-kw">then</span>
+         <span class="hl-builtin">Put_Line</span> (<span class="hl-str">"Hello, "</span> <span class="hl-op">&amp;</span> Name <span class="hl-op">&amp;</span> <span class="hl-str">"! </span><span class="hl-esc">""</span><span class="hl-str">quoted</span><span class="hl-esc">""</span><span class="hl-str">"</span> <span class="hl-op">&amp;</span> <span class="hl-type">Integer</span><span class="hl-meta">'Image</span> (<span class="hl-fn">Square</span> (<span class="hl-type">Integer</span> (I))));
+      <span class="hl-kw">end</span> <span class="hl-kw">if</span>;
+   <span class="hl-kw">end</span> <span class="hl-kw">loop</span>;
+   Done <span class="hl-op">:=</span> <span class="hl-builtin">True</span>;
+<span class="hl-kw">END</span> Greeter;

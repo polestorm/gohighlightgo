@@ -1,0 +1,18 @@
+# GLSL: The OpenGL Shading Language 4.60 specification, 3 Basics, 4 Variables and Types, 8 Built-in Functions; requirements/languages/glsl.md
+name     glsl vert frag hlsl
+
+keyword  attribute const uniform varying buffer shared layout centroid flat smooth noperspective patch
+keyword  sample break continue do for while switch case default if else in out inout return discard
+keyword  struct precision highp mediump lowp invariant subroutine
+type     void bool int uint float double vec2 vec3 vec4 ivec2 ivec3 ivec4 uvec2 uvec3 uvec4 bvec2 bvec3
+type     bvec4 dvec2 dvec3 dvec4 mat2 mat3 mat4 mat2x2 mat3x3 mat4x4 sampler2D sampler3D samplerCube
+type     sampler2DShadow image2D
+builtin  true false gl_Position gl_FragCoord gl_FragColor gl_FragDepth gl_VertexID gl_InstanceID
+builtin  texture normalize dot cross mix clamp smoothstep step length distance reflect pow sin cos
+builtin  max min abs floor fract
+
+line-comment   //
+block-comment  /* */
+operators  +-*/%&|^!<>=:?~
+calls
+hook     c-preprocessor

@@ -1,0 +1,24 @@
+<span class="hl-com"># REQ: LANG-561 LANG-562 LANG-563 LANG-564</span>
+<span class="hl-com">## Module doc comment</span>
+<span class="hl-com">#[ outer #[ nested ]# still a comment ]#</span>
+<span class="hl-kw">import</span> std<span class="hl-op">/</span>strutils
+
+<span class="hl-kw">type</span>
+  Shape <span class="hl-op">=</span> <span class="hl-kw">object</span>
+    name<span class="hl-op">:</span> <span class="hl-type">string</span>
+    sides<span class="hl-op">:</span> <span class="hl-type">int</span>
+
+<span class="hl-kw">proc</span> <span class="hl-fn">greet</span>(name<span class="hl-op">:</span> <span class="hl-type">string</span>, times <span class="hl-op">=</span> <span class="hl-num">1</span>)<span class="hl-op">:</span> <span class="hl-type">string</span> <span class="hl-op">=</span>
+  <span class="hl-builtin">result</span> <span class="hl-op">=</span> <span class="hl-str">""</span>
+  <span class="hl-kw">for</span> i <span class="hl-kw">in</span> <span class="hl-num">0</span> <span class="hl-op">..&lt;</span> times<span class="hl-op">:</span>
+    <span class="hl-builtin">result</span><span class="hl-op">.</span><span class="hl-builtin">add</span>(<span class="hl-str">"Hello, "</span> <span class="hl-op">&amp;</span> name <span class="hl-op">&amp;</span> <span class="hl-str">"!</span><span class="hl-esc">\n\x41</span><span class="hl-str">"</span>)
+
+<span class="hl-kw">let</span> raw <span class="hl-op">=</span> <span class="hl-str">r"C:\temp\""quoted"""</span>
+<span class="hl-kw">let</span> multi <span class="hl-op">=</span> <span class="hl-str">"""Multi "quoted"</span>
+<span class="hl-str">line"""</span>
+<span class="hl-kw">const</span> c <span class="hl-op">=</span> <span class="hl-str">'x'</span>
+<span class="hl-kw">var</span> count<span class="hl-op">:</span> <span class="hl-type">int</span> <span class="hl-op">=</span> <span class="hl-num">0x1F</span> <span class="hl-op">+</span> <span class="hl-num">1_000</span>
+<span class="hl-kw">if</span> count <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-kw">and</span> <span class="hl-kw">not</span> <span class="hl-builtin">false</span><span class="hl-op">:</span>
+  <span class="hl-builtin">echo</span> <span class="hl-fn">greet</span>(<span class="hl-str">"world"</span>, <span class="hl-num">2</span>), raw, multi, c, <span class="hl-num">3.14</span>
+<span class="hl-kw">else</span><span class="hl-op">:</span>
+  <span class="hl-kw">discard</span>

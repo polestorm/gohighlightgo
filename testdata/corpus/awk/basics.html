@@ -1,0 +1,23 @@
+<span class="hl-com"># REQ: LANG-691 LANG-692 LANG-693 LANG-694</span>
+<span class="hl-kw">BEGIN</span> {
+    <span class="hl-builtin">FS</span> <span class="hl-op">=</span> <span class="hl-str">","</span>
+    count <span class="hl-op">=</span> <span class="hl-num">0</span>
+}
+
+<span class="hl-com"># Lines with a number in the second field.</span>
+<span class="hl-op">$</span><span class="hl-num">2</span> <span class="hl-op">~</span> <span class="hl-str">/^[0-9]+$/</span> {
+    total <span class="hl-op">+=</span> <span class="hl-op">$</span><span class="hl-num">2</span>
+    count<span class="hl-op">++</span>
+    names[<span class="hl-builtin">NR</span>] <span class="hl-op">=</span> <span class="hl-builtin">toupper</span>(<span class="hl-op">$</span><span class="hl-num">1</span>)
+}
+
+<span class="hl-op">/</span>error<span class="hl-op">/</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-builtin">NF</span> <span class="hl-op">&gt;</span> <span class="hl-num">3</span> { <span class="hl-kw">print</span> <span class="hl-str">"bad line"</span>, <span class="hl-builtin">NR</span> <span class="hl-op">&gt;</span> <span class="hl-str">"/dev/stderr"</span> }
+
+<span class="hl-kw">function</span> <span class="hl-fn">avg</span>(sum, n) {
+    <span class="hl-kw">return</span> n <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-op">?</span> sum <span class="hl-op">/</span> n <span class="hl-op">:</span> <span class="hl-num">0</span>
+}
+
+<span class="hl-kw">END</span> {
+    <span class="hl-kw">printf</span> <span class="hl-str">"count=%d avg=%.2f</span><span class="hl-esc">\n</span><span class="hl-str">"</span>, count, <span class="hl-fn">avg</span>(total, count)
+    <span class="hl-kw">for</span> (i <span class="hl-kw">in</span> names) <span class="hl-kw">delete</span> names[i]
+}
