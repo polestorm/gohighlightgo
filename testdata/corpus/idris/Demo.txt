@@ -1,0 +1,25 @@
+-- REQ: LANG-1191 LANG-1192 LANG-1193 LANG-1194
+module Demo
+
+import Data.Vect
+
+{- outer {- nested -} still a comment -}
+data Shape = Circle Double | Rect Double Double
+
+area : Shape -> Double
+area (Circle r) = 3.14 * r * r
+area (Rect w h) = w * h
+
+total
+append : Vect n a -> Vect m a -> Vect (n + m) a
+append [] ys = ys
+append (x :: xs) ys = x :: append xs ys
+
+interface Show' a where
+  show' : a -> String
+
+main : IO ()
+main = do
+  let c = 'x'
+  putStrLn ("Hello, Idris!\n" ++ show (area (Circle 1.5)))
+  printLn (Just 42, Nothing {a = Int}, True)

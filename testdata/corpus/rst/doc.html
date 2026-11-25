@@ -1,0 +1,36 @@
+<span class="hl-com">.. REQ: LANG-1081 LANG-1082 LANG-1083 LANG-1084</span>
+
+<span class="hl-meta">=====</span>
+<span class="hl-kw">Title</span>
+<span class="hl-meta">=====</span>
+
+<span class="hl-kw">Section</span>
+<span class="hl-meta">-------</span>
+
+<span class="hl-attr">:author:</span> Jan Kowalski
+<span class="hl-attr">:version:</span> 1.0
+
+Text with <span class="hl-str">``inline code``</span>, a <span class="hl-attr">:ref:</span><span class="hl-str">`target`</span> role and a <span class="hl-str">`link &lt;https://example.com&gt;`_</span>.
+
+<span class="hl-op">-</span> item one
+<span class="hl-op">*</span> item two
+<span class="hl-op">1.</span> ordered
+
+<span class="hl-attr">.. _target:</span>
+
+<span class="hl-meta">.. note::</span>
+
+   An admonition.
+
+<span class="hl-meta">.. code-block::</span> python
+<span class="hl-attr">   :linenos:</span>
+
+   <span class="hl-kw">def</span> <span class="hl-fn">main</span>()<span class="hl-op">:</span>
+       <span class="hl-builtin">print</span>(<span class="hl-str">"hi"</span>)
+
+A literal block follows::
+
+<span class="hl-str">    raw &lt;&amp;&gt; text</span>
+<span class="hl-str">    more text</span>
+
+Back to normal text.

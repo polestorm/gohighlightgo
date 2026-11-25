@@ -1,0 +1,29 @@
+<span class="hl-com">(* REQ: LANG-1231 LANG-1232 LANG-1233 LANG-1234 *)</span>
+<span class="hl-kw">Require</span> <span class="hl-kw">Import</span> Arith<span class="hl-op">.</span>
+
+<span class="hl-com">(* outer (* nested *) still a comment *)</span>
+<span class="hl-kw">Inductive</span> shape <span class="hl-op">:</span> <span class="hl-type">Type</span> <span class="hl-op">:=</span>
+  <span class="hl-op">|</span> Circle <span class="hl-op">:</span> <span class="hl-type">nat</span> <span class="hl-op">-&gt;</span> shape
+  <span class="hl-op">|</span> Rect <span class="hl-op">:</span> <span class="hl-type">nat</span> <span class="hl-op">-&gt;</span> <span class="hl-type">nat</span> <span class="hl-op">-&gt;</span> shape<span class="hl-op">.</span>
+
+<span class="hl-kw">Definition</span> area (s <span class="hl-op">:</span> shape) <span class="hl-op">:</span> <span class="hl-type">nat</span> <span class="hl-op">:=</span>
+  <span class="hl-kw">match</span> s <span class="hl-kw">with</span>
+  <span class="hl-op">|</span> Circle r <span class="hl-op">=&gt;</span> <span class="hl-num">3</span> <span class="hl-op">*</span> r <span class="hl-op">*</span> r
+  <span class="hl-op">|</span> Rect w h <span class="hl-op">=&gt;</span> w <span class="hl-op">*</span> h
+  <span class="hl-kw">end</span><span class="hl-op">.</span>
+
+<span class="hl-kw">Fixpoint</span> double (n <span class="hl-op">:</span> <span class="hl-type">nat</span>) <span class="hl-op">:</span> <span class="hl-type">nat</span> <span class="hl-op">:=</span>
+  <span class="hl-kw">match</span> n <span class="hl-kw">with</span>
+  <span class="hl-op">|</span> O <span class="hl-op">=&gt;</span> O
+  <span class="hl-op">|</span> S n' <span class="hl-op">=&gt;</span> S (S (double n'))
+  <span class="hl-kw">end</span><span class="hl-op">.</span>
+
+<span class="hl-kw">Theorem</span> double_plus <span class="hl-op">:</span> <span class="hl-kw">forall</span> n, double n <span class="hl-op">=</span> n <span class="hl-op">+</span> n<span class="hl-op">.</span>
+<span class="hl-kw">Proof</span><span class="hl-op">.</span>
+  <span class="hl-builtin">intros</span> n<span class="hl-op">.</span> <span class="hl-builtin">induction</span> n <span class="hl-kw">as</span> [<span class="hl-op">|</span> n' IH]<span class="hl-op">.</span>
+  <span class="hl-op">-</span> <span class="hl-builtin">reflexivity</span><span class="hl-op">.</span>
+  <span class="hl-op">-</span> <span class="hl-builtin">simpl</span><span class="hl-op">.</span> <span class="hl-builtin">rewrite</span> IH<span class="hl-op">.</span> <span class="hl-builtin">lia</span><span class="hl-op">.</span>
+<span class="hl-kw">Qed</span><span class="hl-op">.</span>
+
+<span class="hl-kw">Definition</span> greeting <span class="hl-op">:=</span> <span class="hl-str">"Hello, </span><span class="hl-esc">""</span><span class="hl-str">Coq</span><span class="hl-esc">""</span><span class="hl-str">!"</span><span class="hl-op">.</span>
+<span class="hl-kw">Compute</span> double <span class="hl-num">21.</span>

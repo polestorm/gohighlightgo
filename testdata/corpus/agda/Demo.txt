@@ -1,0 +1,25 @@
+-- REQ: LANG-1181 LANG-1182 LANG-1183 LANG-1184
+{-# OPTIONS --safe #-}
+module Demo where
+
+open import Data.Nat using (ℕ; zero; suc; _+_)
+
+{- outer {- nested -} still a comment -}
+data Bool : Set where
+  true  : Bool
+  false : Bool
+
+not : Bool → Bool
+not true  = false
+not false = true
+
+double : ℕ → ℕ
+double zero    = zero
+double (suc n) = suc (suc (double n))
+
+record Point : Set where
+  field
+    x y : ℕ
+
+greeting = "Hello, Agda!"
+two = 2

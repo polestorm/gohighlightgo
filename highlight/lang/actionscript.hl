@@ -1,0 +1,7 @@
+# ActionScript 3: ActionScript 3.0 Language Reference (Adobe), statements, keywords and directives; requirements/languages/actionscript.md
+extends  javascript
+name     actionscript as3 actionscript3
+
+keyword  package class interface extends implements public private protected internal override final
+keyword  dynamic native static const var function get set import include namespace use each
+type     int uint Number String Boolean void Object Array Vector XML Function

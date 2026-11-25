@@ -1,0 +1,25 @@
+<span class="hl-com">// REQ: LANG-1221 LANG-1222 LANG-1223 LANG-1224</span>
+<span class="hl-com">/* Block comment */</span>
+<span class="hl-kw">type</span> shape <span class="hl-op">=</span>
+  <span class="hl-op">|</span> <span class="hl-type">Circle</span>(<span class="hl-type">float</span>)
+  <span class="hl-op">|</span> <span class="hl-type">Rect</span>(<span class="hl-type">float</span>, <span class="hl-type">float</span>);
+
+<span class="hl-kw">let</span> area <span class="hl-op">=</span> shape <span class="hl-op">=&gt;</span>
+  <span class="hl-kw">switch</span> (shape) {
+  <span class="hl-op">|</span> <span class="hl-type">Circle</span>(r) <span class="hl-op">=&gt;</span> <span class="hl-num">3.14</span> <span class="hl-op">*.</span> r <span class="hl-op">*.</span> r
+  <span class="hl-op">|</span> <span class="hl-type">Rect</span>(w, h) <span class="hl-op">=&gt;</span> w <span class="hl-op">*.</span> h
+  };
+
+<span class="hl-kw">let</span> identity<span class="hl-op">:</span> <span class="hl-meta">'a</span> <span class="hl-op">=&gt;</span> <span class="hl-meta">'a</span> <span class="hl-op">=</span> x <span class="hl-op">=&gt;</span> x;
+
+[<span class="hl-meta">@react</span><span class="hl-op">.</span>component]
+<span class="hl-kw">let</span> make <span class="hl-op">=</span> (<span class="hl-op">~</span>name) <span class="hl-op">=&gt;</span> {
+  <span class="hl-kw">let</span> greeting <span class="hl-op">=</span> <span class="hl-str">"Hello, "</span> <span class="hl-op">++</span> name <span class="hl-op">++</span> <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>;
+  <span class="hl-kw">let</span> quoted <span class="hl-op">=</span> <span class="hl-str">{|raw "text" \n stays|}</span>;
+  <span class="hl-kw">let</span> c <span class="hl-op">=</span> <span class="hl-str">'x'</span>;
+  <span class="hl-type">Js</span><span class="hl-op">.</span><span class="hl-fn">log</span>(greeting <span class="hl-op">++</span> quoted <span class="hl-op">++</span> <span class="hl-type">String</span><span class="hl-op">.</span><span class="hl-fn">make</span>(<span class="hl-num">1</span>, c));
+  <span class="hl-op">&lt;</span>div<span class="hl-op">&gt;</span> {<span class="hl-type">React</span><span class="hl-op">.</span><span class="hl-type">string</span>(<span class="hl-str">"hi"</span>)} <span class="hl-op">&lt;/</span>div<span class="hl-op">&gt;</span>;
+};
+
+<span class="hl-kw">let</span> <span class="hl-kw">rec</span> fib <span class="hl-op">=</span> n <span class="hl-op">=&gt;</span> n <span class="hl-op">&lt;</span> <span class="hl-num">2</span> <span class="hl-op">?</span> n <span class="hl-op">:</span> <span class="hl-fn">fib</span>(n <span class="hl-op">-</span> <span class="hl-num">1</span>) <span class="hl-op">+</span> <span class="hl-fn">fib</span>(n <span class="hl-op">-</span> <span class="hl-num">2</span>);
+<span class="hl-kw">let</span> ok <span class="hl-op">=</span> <span class="hl-builtin">true</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-op">!</span><span class="hl-builtin">false</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-builtin">Some</span>(<span class="hl-num">0x1F</span>) <span class="hl-op">!=</span> <span class="hl-builtin">None</span>;

@@ -1,0 +1,23 @@
+<span class="hl-com">-- REQ: LANG-1151 LANG-1152</span>
+<span class="hl-kw">local</span> <span class="hl-kw">record</span> Point
+   x<span class="hl-op">:</span> <span class="hl-type">number</span>
+   y<span class="hl-op">:</span> <span class="hl-type">number</span>
+<span class="hl-kw">end</span>
+
+<span class="hl-kw">local</span> <span class="hl-kw">enum</span> Color
+   <span class="hl-str">"red"</span>
+   <span class="hl-str">"green"</span>
+<span class="hl-kw">end</span>
+
+<span class="hl-kw">global</span> <span class="hl-kw">function</span> <span class="hl-fn">greet</span>(name<span class="hl-op">:</span> <span class="hl-type">string</span>, times<span class="hl-op">:</span> <span class="hl-type">integer</span>)<span class="hl-op">:</span> <span class="hl-type">string</span>
+   <span class="hl-kw">local</span> text <span class="hl-op">=</span> <span class="hl-str">"Hello, "</span> .. name .. <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>
+   <span class="hl-kw">local</span> result <span class="hl-op">=</span> <span class="hl-str">""</span>
+   <span class="hl-kw">for</span> i <span class="hl-op">=</span> <span class="hl-num">1</span>, times <span class="hl-kw">do</span>
+      result <span class="hl-op">=</span> result .. text
+   <span class="hl-kw">end</span>
+   <span class="hl-kw">return</span> result
+<span class="hl-kw">end</span>
+
+<span class="hl-kw">local</span> p<span class="hl-op">:</span> Point <span class="hl-op">=</span> { x <span class="hl-op">=</span> <span class="hl-num">1.5</span>, y <span class="hl-op">=</span> <span class="hl-num">2</span> }
+<span class="hl-kw">local</span> c<span class="hl-op">:</span> Color <span class="hl-op">=</span> <span class="hl-str">"red"</span>
+<span class="hl-builtin">print</span>(<span class="hl-fn">greet</span>(<span class="hl-str">"teal"</span>, <span class="hl-num">2</span>), p.x, c <span class="hl-kw">as</span> <span class="hl-type">string</span>, <span class="hl-builtin">nil</span>)

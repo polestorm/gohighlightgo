@@ -1,0 +1,25 @@
+<span class="hl-com">-- REQ: LANG-1181 LANG-1182 LANG-1183 LANG-1184</span>
+<span class="hl-meta">{-# OPTIONS --safe #-}</span>
+<span class="hl-kw">module</span> <span class="hl-type">Demo</span> <span class="hl-kw">where</span>
+
+<span class="hl-kw">open</span> <span class="hl-kw">import</span> <span class="hl-type">Data</span><span class="hl-op">.</span><span class="hl-type">Nat</span> <span class="hl-kw">using</span> (ℕ; zero; suc; _+_)
+
+<span class="hl-com">{- outer {- nested -} still a comment -}</span>
+<span class="hl-kw">data</span> <span class="hl-type">Bool</span> <span class="hl-op">:</span> <span class="hl-type">Set</span> <span class="hl-kw">where</span>
+  true  <span class="hl-op">:</span> <span class="hl-type">Bool</span>
+  false <span class="hl-op">:</span> <span class="hl-type">Bool</span>
+
+not <span class="hl-op">:</span> <span class="hl-type">Bool</span> → <span class="hl-type">Bool</span>
+not true  <span class="hl-op">=</span> false
+not false <span class="hl-op">=</span> true
+
+double <span class="hl-op">:</span> ℕ → ℕ
+double zero    <span class="hl-op">=</span> zero
+double (suc n) <span class="hl-op">=</span> suc (suc (double n))
+
+<span class="hl-kw">record</span> <span class="hl-type">Point</span> <span class="hl-op">:</span> <span class="hl-type">Set</span> <span class="hl-kw">where</span>
+  <span class="hl-kw">field</span>
+    x y <span class="hl-op">:</span> ℕ
+
+greeting <span class="hl-op">=</span> <span class="hl-str">"Hello, Agda!"</span>
+two <span class="hl-op">=</span> <span class="hl-num">2</span>

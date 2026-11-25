@@ -1,0 +1,17 @@
+# PureScript: PureScript language reference (syntax, records, type classes); requirements/languages/purescript.md
+name     purescript purs
+
+keyword  module where import data type newtype class instance derive foreign let in do ado case of if then
+keyword  else forall infixl infixr infix as hiding
+type     Int Number String Boolean Char Array Effect Maybe Unit Record
+builtin  true false unit pure map bind log
+
+ident-part     '
+line-comment   --
+block-comment  {- -}  : nested
+string   """ """  : multiline
+string   " "      : escapes
+escape        : x=4
+operators  +-*/%&|^!<>=:?~.\$
+upper-type
+hook     apostrophe

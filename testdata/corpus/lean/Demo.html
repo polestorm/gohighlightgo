@@ -1,0 +1,23 @@
+<span class="hl-com">-- REQ: LANG-1171 LANG-1172 LANG-1173 LANG-1174</span>
+<span class="hl-com">/-- Documentation comment. -/</span>
+<span class="hl-kw">namespace</span> <span class="hl-type">Demo</span>
+
+<span class="hl-com">/- outer /- nested -/ still a comment -/</span>
+<span class="hl-kw">structure</span> <span class="hl-type">Point</span> <span class="hl-kw">where</span>
+  x <span class="hl-op">:</span> <span class="hl-type">Nat</span>
+  y <span class="hl-op">:</span> <span class="hl-type">Nat</span>
+  <span class="hl-kw">deriving</span> <span class="hl-type">Repr</span>
+
+<span class="hl-kw">def</span> area (w h <span class="hl-op">:</span> <span class="hl-type">Nat</span>) <span class="hl-op">:</span> <span class="hl-type">Nat</span> <span class="hl-op">:=</span> w <span class="hl-op">*</span> h
+
+<span class="hl-kw">theorem</span> area_comm (w h <span class="hl-op">:</span> <span class="hl-type">Nat</span>) <span class="hl-op">:</span> area w h <span class="hl-op">=</span> area h w <span class="hl-op">:=</span> <span class="hl-kw">by</span>
+  unfold area
+  <span class="hl-builtin">rw</span> [<span class="hl-type">Nat.mul_comm</span>]
+
+@[<span class="hl-builtin">simp</span>] <span class="hl-kw">theorem</span> zero_area (h <span class="hl-op">:</span> <span class="hl-type">Nat</span>) <span class="hl-op">:</span> area <span class="hl-num">0</span> h <span class="hl-op">=</span> <span class="hl-num">0</span> <span class="hl-op">:=</span> <span class="hl-kw">by</span> <span class="hl-builtin">simp</span> [area]
+
+<span class="hl-kw">def</span> greet (name <span class="hl-op">:</span> <span class="hl-type">String</span>) <span class="hl-op">:</span> <span class="hl-type">String</span> <span class="hl-op">:=</span> s!<span class="hl-str">"Hello, {name}!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>
+
+#eval greet <span class="hl-str">"lean"</span>
+<span class="hl-kw">example</span> <span class="hl-op">:</span> <span class="hl-num">2</span> <span class="hl-op">+</span> <span class="hl-num">2</span> <span class="hl-op">=</span> <span class="hl-num">4</span> <span class="hl-op">:=</span> <span class="hl-builtin">rfl</span>
+<span class="hl-kw">end</span> <span class="hl-type">Demo</span>

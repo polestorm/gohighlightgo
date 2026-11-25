@@ -1,0 +1,18 @@
+# F*: F* reference manual (Proof-oriented Programming in F*, lexical structure and keywords); requirements/languages/fstar.md
+name     fstar fst fsti
+
+keyword  module open let rec val type and assume assert match with fun function if then else begin end
+keyword  effect new_effect sub_effect layered_effect inline_for_extraction noextract private abstract
+keyword  unfold irreducible opaque friend include requires ensures decreases exists forall returns
+keyword  calc by introduce eliminate
+type     Type Type0 nat int bool unit string list option prop squash
+builtin  True False true false Some None
+
+ident-part     '
+line-comment   //
+block-comment  (* *)  : nested
+string   " "  : escapes
+escape        : x=2 u4
+operators  +-*/%&|^!<>=:?~@.
+upper-type
+hook     apostrophe

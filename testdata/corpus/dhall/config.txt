@@ -1,0 +1,20 @@
+-- REQ: LANG-1101 LANG-1102 LANG-1103 LANG-1104
+{- outer {- nested -} still a comment -}
+let Person = { name : Text, age : Natural }
+
+let greet = \(p : Person) -> "Hello, ${p.name}!"
+
+let people =
+      [ { name = "Ann", age = 30 }, { name = "Bob", age = 25 } ] : List Person
+
+let multi =
+      ''
+      Multi-line ${Natural/show 42}
+      ''
+
+in  { greetings = List/map Person Text greet people
+    , adults = Natural/isZero 0 && True
+    , missingValue = None Natural
+    , ratio = 1.5
+    , multi
+    }

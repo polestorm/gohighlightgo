@@ -1,0 +1,6 @@
+# Teal: Teal language reference (teal-language.org, tutorial and spec); requirements/languages/teal.md
+extends  lua
+name     teal tl
+
+keyword  record enum global type interface where as is
+type     number string boolean integer any thread

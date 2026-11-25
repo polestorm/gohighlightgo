@@ -1,0 +1,27 @@
+-- REQ: LANG-1201 LANG-1202 LANG-1203 LANG-1204
+module Main where
+
+import Prelude
+import Effect (Effect)
+import Effect.Console (log)
+
+{- outer {- nested -} still a comment -}
+data Shape = Circle Number | Rect Number Number
+
+area :: Shape -> Number
+area (Circle r) = 3.14 * r * r
+area (Rect w h) = w * h
+
+greet :: forall r. { name :: String | r } -> String
+greet person = "Hello, " <> person.name <> "!\n"
+
+multi :: String
+multi = """Multi "quoted"
+line"""
+
+main :: Effect Unit
+main = do
+  let c = 'x'
+      x' = 42
+  log (greet { name: "purs" })
+  when (x' > 0 && true) $ log (show (area (Circle 1.5)))

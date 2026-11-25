@@ -1,0 +1,18 @@
+<span class="hl-com">-- REQ: LANG-1141 LANG-1142</span>
+<span class="hl-com">--!strict</span>
+<span class="hl-kw">type</span> Point <span class="hl-op">=</span> { x<span class="hl-op">:</span> <span class="hl-type">number</span>, y<span class="hl-op">:</span> <span class="hl-type">number</span> }
+
+<span class="hl-kw">export</span> <span class="hl-kw">type</span> Shape <span class="hl-op">=</span> <span class="hl-str">"circle"</span> <span class="hl-op">|</span> <span class="hl-str">"square"</span>
+
+<span class="hl-kw">local</span> <span class="hl-kw">function</span> <span class="hl-fn">greet</span>(name<span class="hl-op">:</span> <span class="hl-type">string</span>, times<span class="hl-op">:</span> <span class="hl-type">number</span>?)<span class="hl-op">:</span> <span class="hl-type">string</span>
+	<span class="hl-kw">local</span> count <span class="hl-op">=</span> times <span class="hl-kw">or</span> <span class="hl-num">1</span>
+	<span class="hl-kw">local</span> text <span class="hl-op">=</span> <span class="hl-str">`Hello, </span><span class="hl-esc">{name}</span><span class="hl-str">! Count: </span><span class="hl-esc">{count + 1}</span><span class="hl-str">`</span>
+	<span class="hl-kw">for</span> i <span class="hl-op">=</span> <span class="hl-num">1</span>, count <span class="hl-kw">do</span>
+		<span class="hl-kw">if</span> i <span class="hl-op">%</span> <span class="hl-num">2</span> <span class="hl-op">==</span> <span class="hl-num">0</span> <span class="hl-kw">then</span> <span class="hl-kw">continue</span> <span class="hl-kw">end</span>
+		<span class="hl-builtin">print</span>(text)
+	<span class="hl-kw">end</span>
+	<span class="hl-kw">return</span> <span class="hl-kw">typeof</span>(text) <span class="hl-op">==</span> <span class="hl-str">"string"</span> <span class="hl-kw">and</span> text <span class="hl-kw">or</span> <span class="hl-str">""</span>
+<span class="hl-kw">end</span>
+
+<span class="hl-kw">local</span> p<span class="hl-op">:</span> Point <span class="hl-op">=</span> { x <span class="hl-op">=</span> <span class="hl-num">1.5</span>, y <span class="hl-op">=</span> <span class="hl-num">0x1F</span> }
+<span class="hl-builtin">print</span>(<span class="hl-fn">greet</span>(<span class="hl-str">"luau"</span>, <span class="hl-num">2</span>), p.x, <span class="hl-builtin">nil</span>, <span class="hl-builtin">true</span>)

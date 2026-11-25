@@ -1,0 +1,36 @@
+.. REQ: LANG-1081 LANG-1082 LANG-1083 LANG-1084
+
+=====
+Title
+=====
+
+Section
+-------
+
+:author: Jan Kowalski
+:version: 1.0
+
+Text with ``inline code``, a :ref:`target` role and a `link <https://example.com>`_.
+
+- item one
+* item two
+1. ordered
+
+.. _target:
+
+.. note::
+
+   An admonition.
+
+.. code-block:: python
+   :linenos:
+
+   def main():
+       print("hi")
+
+A literal block follows::
+
+    raw <&> text
+    more text
+
+Back to normal text.

@@ -1,0 +1,22 @@
+<span class="hl-com">// REQ: LANG-1121 LANG-1122</span>
+<span class="hl-kw">package</span> demo {
+    <span class="hl-kw">import</span> flash.display.Sprite;
+
+    <span class="hl-com">/* Block comment */</span>
+    <span class="hl-kw">public</span> <span class="hl-kw">class</span> Main <span class="hl-kw">extends</span> Sprite {
+        <span class="hl-kw">private</span> <span class="hl-kw">static</span> <span class="hl-kw">const</span> MAX<span class="hl-op">:</span><span class="hl-type">int</span> <span class="hl-op">=</span> <span class="hl-num">10</span>;
+        <span class="hl-kw">private</span> <span class="hl-kw">var</span> names<span class="hl-op">:</span><span class="hl-type">Vector</span>.<span class="hl-op">&lt;</span><span class="hl-type">String</span><span class="hl-op">&gt;</span> <span class="hl-op">=</span> <span class="hl-kw">new</span> <span class="hl-type">Vector</span>.<span class="hl-op">&lt;</span><span class="hl-type">String</span><span class="hl-op">&gt;</span>();
+
+        <span class="hl-kw">public</span> <span class="hl-kw">function</span> <span class="hl-fn">Main</span>() {
+            <span class="hl-kw">var</span> count<span class="hl-op">:</span><span class="hl-type">uint</span> <span class="hl-op">=</span> <span class="hl-num">0x1F</span>;
+            <span class="hl-kw">var</span> ratio<span class="hl-op">:</span><span class="hl-type">Number</span> <span class="hl-op">=</span> <span class="hl-num">3.14</span>;
+            <span class="hl-kw">for</span> <span class="hl-kw">each</span> (<span class="hl-kw">var</span> n<span class="hl-op">:</span><span class="hl-type">String</span> <span class="hl-kw">in</span> names) {
+                <span class="hl-fn">trace</span>(<span class="hl-str">"Hello, "</span> <span class="hl-op">+</span> n <span class="hl-op">+</span> <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>);
+            }
+            <span class="hl-kw">if</span> (count <span class="hl-op">&gt;</span> MAX <span class="hl-op">&amp;&amp;</span> ratio <span class="hl-op">!=</span> <span class="hl-num">0</span>) <span class="hl-fn">greet</span>(<span class="hl-builtin">null</span>);
+        }
+
+        <span class="hl-kw">override</span> <span class="hl-kw">public</span> <span class="hl-kw">function</span> <span class="hl-fn">toString</span>()<span class="hl-op">:</span><span class="hl-type">String</span> { <span class="hl-kw">return</span> <span class="hl-str">'Main'</span>; }
+        <span class="hl-kw">internal</span> <span class="hl-kw">function</span> <span class="hl-fn">greet</span>(target<span class="hl-op">:</span><span class="hl-type">Object</span>)<span class="hl-op">:</span><span class="hl-type">void</span> { }
+    }
+}

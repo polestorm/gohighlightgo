@@ -1,0 +1,25 @@
+// REQ: LANG-1221 LANG-1222 LANG-1223 LANG-1224
+/* Block comment */
+type shape =
+  | Circle(float)
+  | Rect(float, float);
+
+let area = shape =>
+  switch (shape) {
+  | Circle(r) => 3.14 *. r *. r
+  | Rect(w, h) => w *. h
+  };
+
+let identity: 'a => 'a = x => x;
+
+[@react.component]
+let make = (~name) => {
+  let greeting = "Hello, " ++ name ++ "!\n";
+  let quoted = {|raw "text" \n stays|};
+  let c = 'x';
+  Js.log(greeting ++ quoted ++ String.make(1, c));
+  <div> {React.string("hi")} </div>;
+};
+
+let rec fib = n => n < 2 ? n : fib(n - 1) + fib(n - 2);
+let ok = true && !false && Some(0x1F) != None;

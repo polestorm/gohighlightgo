@@ -1,0 +1,25 @@
+<span class="hl-com">// REQ: LANG-1161 LANG-1162 LANG-1163 LANG-1164</span>
+<span class="hl-kw">module</span> <span class="hl-type">Demo</span>
+
+<span class="hl-kw">open</span> <span class="hl-type">FStar</span><span class="hl-op">.</span><span class="hl-type">List</span><span class="hl-op">.</span><span class="hl-type">Tot</span>
+
+<span class="hl-com">(* outer (* nested *) still a comment *)</span>
+<span class="hl-kw">type</span> shape <span class="hl-op">=</span>
+  <span class="hl-op">|</span> <span class="hl-type">Circle</span> <span class="hl-op">:</span> radius<span class="hl-op">:</span><span class="hl-type">nat</span> <span class="hl-op">-&gt;</span> shape
+  <span class="hl-op">|</span> <span class="hl-type">Rect</span> <span class="hl-op">:</span> w<span class="hl-op">:</span><span class="hl-type">nat</span> <span class="hl-op">-&gt;</span> h<span class="hl-op">:</span><span class="hl-type">nat</span> <span class="hl-op">-&gt;</span> shape
+
+<span class="hl-kw">val</span> area <span class="hl-op">:</span> shape <span class="hl-op">-&gt;</span> <span class="hl-type">nat</span>
+<span class="hl-kw">let</span> area s <span class="hl-op">=</span>
+  <span class="hl-kw">match</span> s <span class="hl-kw">with</span>
+  <span class="hl-op">|</span> <span class="hl-type">Circle</span> r <span class="hl-op">-&gt;</span> <span class="hl-num">3</span> <span class="hl-op">*</span> r <span class="hl-op">*</span> r
+  <span class="hl-op">|</span> <span class="hl-type">Rect</span> w h <span class="hl-op">-&gt;</span> w <span class="hl-op">*</span> h
+
+<span class="hl-kw">let</span> <span class="hl-kw">rec</span> length' (#a<span class="hl-op">:</span><span class="hl-type">Type</span>) (l<span class="hl-op">:</span><span class="hl-type">list</span> a) <span class="hl-op">:</span> <span class="hl-type">Tot</span> <span class="hl-type">nat</span> (<span class="hl-kw">decreases</span> l) <span class="hl-op">=</span>
+  <span class="hl-kw">match</span> l <span class="hl-kw">with</span>
+  <span class="hl-op">|</span> [] <span class="hl-op">-&gt;</span> <span class="hl-num">0</span>
+  <span class="hl-op">|</span> _ <span class="hl-op">::</span> tl <span class="hl-op">-&gt;</span> <span class="hl-num">1</span> <span class="hl-op">+</span> length' tl
+
+<span class="hl-kw">let</span> lemma_area (s<span class="hl-op">:</span>shape) <span class="hl-op">:</span> <span class="hl-type">Lemma</span> (<span class="hl-kw">requires</span> <span class="hl-builtin">True</span>) (<span class="hl-kw">ensures</span> area s <span class="hl-op">&gt;=</span> <span class="hl-num">0</span>) <span class="hl-op">=</span> ()
+
+<span class="hl-kw">let</span> greeting <span class="hl-op">=</span> <span class="hl-str">"Hello, F*!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>
+<span class="hl-kw">let</span> id' (x<span class="hl-op">:</span><span class="hl-meta">'a</span>) <span class="hl-op">:</span> <span class="hl-meta">'a</span> <span class="hl-op">=</span> x

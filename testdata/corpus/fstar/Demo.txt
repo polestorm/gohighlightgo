@@ -1,0 +1,25 @@
+// REQ: LANG-1161 LANG-1162 LANG-1163 LANG-1164
+module Demo
+
+open FStar.List.Tot
+
+(* outer (* nested *) still a comment *)
+type shape =
+  | Circle : radius:nat -> shape
+  | Rect : w:nat -> h:nat -> shape
+
+val area : shape -> nat
+let area s =
+  match s with
+  | Circle r -> 3 * r * r
+  | Rect w h -> w * h
+
+let rec length' (#a:Type) (l:list a) : Tot nat (decreases l) =
+  match l with
+  | [] -> 0
+  | _ :: tl -> 1 + length' tl
+
+let lemma_area (s:shape) : Lemma (requires True) (ensures area s >= 0) = ()
+
+let greeting = "Hello, F*!\n"
+let id' (x:'a) : 'a = x

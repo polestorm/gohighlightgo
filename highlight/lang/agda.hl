@@ -1,0 +1,15 @@
+# Agda: Agda user manual (2.6), Lexical Structure and syntax; requirements/languages/agda.md
+name     agda
+
+keyword  data record where module import open let in field constructor postulate mutual abstract private
+keyword  infix infixl infixr instance pattern rewrite with syntax variable eta-equality
+keyword  no-eta-equality coinductive inductive public using hiding renaming to forall
+type     Set Prop Setω
+
+ident-part     '-
+line-comment   --
+block-comment  {- -}  : nested
+string   " "  : escapes
+operators  :=|.\
+upper-type
+hook     haskell

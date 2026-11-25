@@ -1,0 +1,15 @@
+# Dhall: The Dhall configuration language standard (dhall-lang/standard, grammar dhall.abnf); requirements/languages/dhall.md
+name     dhall
+
+keyword  if then else let in as using merge forall with toMap showConstructor assert missing
+type     Bool Natural Integer Double Text List Optional Type Kind Sort Date Time TimeZone
+builtin  True False None Some
+
+ident-part     /-
+line-comment   --
+block-comment  {- -}  : nested
+string   '' ''  : multiline interp=dollar-braces
+string   " "    : escapes interp=dollar-braces
+escape        : u-braces u4
+operators  +*=<>&|:\?#.-
+upper-type

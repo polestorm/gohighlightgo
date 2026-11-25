@@ -28,8 +28,10 @@ Oberon 751–754, MoonScript 761–764, fish 771–774, csh 781–784, pliki wsa
 SPARQL 811–814, Cypher 821–824, PL/SQL 831–832, T-SQL 841–842, Cython 851–852, Mojo 861–862, V 871–874,
 Odin 881–884, Hare 891–894, Gleam 901–904, Jinja 911–914, Handlebars 921–924, Liquid 931–933, ERB 941–944,
 szablony Go 951–954, CSV 961–963, TSV 971–972, JSON5 981–984, Hjson 991–994, KDL 1001–1004, RON 1011–1014,
-Jsonnet 1021–1024, Starlark 1031–1032, Bicep 1041–1044, Rego 1051–1054, Puppet 1061–1064; następny język od
-`LANG-1071`). Każdy język z `Languages()` musi mieć plik
+Jsonnet 1021–1024, Starlark 1031–1032, Bicep 1041–1044, Rego 1051–1054, Puppet 1061–1064, Org 1071–1074,
+reStructuredText 1081–1084, Textile 1091–1093, Dhall 1101–1104, Haxe 1111–1114, ActionScript 1121–1122,
+DFM 1131–1133, Luau 1141–1142, Teal 1151–1152, F* 1161–1164, Lean 1171–1174, Agda 1181–1184, Idris 1191–1194,
+PureScript 1201–1204, ReScript 1211–1214, Reason 1221–1224, Coq 1231–1234; następny język od `LANG-1241`). Każdy język z `Languages()` musi mieć plik
 w `languages/` nazwany jego nazwą główną (`TestLanguageRequirements`).
 
 Pliki powstają razem z etapami w `../docs/roadmap.md`.

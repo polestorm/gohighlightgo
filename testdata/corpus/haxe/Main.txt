@@ -1,0 +1,26 @@
+// REQ: LANG-1111 LANG-1112 LANG-1113 LANG-1114
+package demo;
+
+import haxe.ds.StringMap;
+
+/* Block comment */
+@:keep
+class Main {
+    static var count:Int = 0x1F;
+
+    @:noCompletion
+    public static function greet(name:String, times:Int = 1):String {
+        var text = 'Hello, $name! ${times + 1}\n';
+        var plain = "no $interpolation here";
+        return text + plain;
+    }
+
+    static function main() {
+        #if debug
+        trace("debug build");
+        #end
+        var map = new StringMap<Float>();
+        map.set("pi", 3.14);
+        if (count > 0 && !false) trace(greet("haxe", 2), null);
+    }
+}

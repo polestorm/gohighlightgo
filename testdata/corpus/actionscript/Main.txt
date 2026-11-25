@@ -1,0 +1,22 @@
+// REQ: LANG-1121 LANG-1122
+package demo {
+    import flash.display.Sprite;
+
+    /* Block comment */
+    public class Main extends Sprite {
+        private static const MAX:int = 10;
+        private var names:Vector.<String> = new Vector.<String>();
+
+        public function Main() {
+            var count:uint = 0x1F;
+            var ratio:Number = 3.14;
+            for each (var n:String in names) {
+                trace("Hello, " + n + "!\n");
+            }
+            if (count > MAX && ratio != 0) greet(null);
+        }
+
+        override public function toString():String { return 'Main'; }
+        internal function greet(target:Object):void { }
+    }
+}

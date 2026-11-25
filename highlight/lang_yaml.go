@@ -3,7 +3,7 @@ package highlight
 // YAML według YAML Ain't Markup Language, wersja 1.2.2 (schemat podstawowy, „Core Schema”);
 // wymagania: requirements/languages/yaml.md.
 var langYAML = language{
-	names: []string{"yaml", "yml"},
+	names: []string{"yaml", "yml", "ansible"},
 	scan:  scanYAML,
 }
 

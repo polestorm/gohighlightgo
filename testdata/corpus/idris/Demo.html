@@ -1,0 +1,25 @@
+<span class="hl-com">-- REQ: LANG-1191 LANG-1192 LANG-1193 LANG-1194</span>
+<span class="hl-kw">module</span> <span class="hl-type">Demo</span>
+
+<span class="hl-kw">import</span> <span class="hl-type">Data</span><span class="hl-op">.</span><span class="hl-type">Vect</span>
+
+<span class="hl-com">{- outer {- nested -} still a comment -}</span>
+<span class="hl-kw">data</span> <span class="hl-type">Shape</span> <span class="hl-op">=</span> <span class="hl-type">Circle</span> <span class="hl-type">Double</span> <span class="hl-op">|</span> <span class="hl-type">Rect</span> <span class="hl-type">Double</span> <span class="hl-type">Double</span>
+
+area <span class="hl-op">:</span> <span class="hl-type">Shape</span> <span class="hl-op">-&gt;</span> <span class="hl-type">Double</span>
+area (<span class="hl-type">Circle</span> r) <span class="hl-op">=</span> <span class="hl-num">3.14</span> <span class="hl-op">*</span> r <span class="hl-op">*</span> r
+area (<span class="hl-type">Rect</span> w h) <span class="hl-op">=</span> w <span class="hl-op">*</span> h
+
+<span class="hl-kw">total</span>
+append <span class="hl-op">:</span> <span class="hl-type">Vect</span> n a <span class="hl-op">-&gt;</span> <span class="hl-type">Vect</span> m a <span class="hl-op">-&gt;</span> <span class="hl-type">Vect</span> (n <span class="hl-op">+</span> m) a
+append [] ys <span class="hl-op">=</span> ys
+append (x <span class="hl-op">::</span> xs) ys <span class="hl-op">=</span> x <span class="hl-op">::</span> append xs ys
+
+<span class="hl-kw">interface</span> <span class="hl-type">Show'</span> a <span class="hl-kw">where</span>
+  show' <span class="hl-op">:</span> a <span class="hl-op">-&gt;</span> <span class="hl-type">String</span>
+
+main <span class="hl-op">:</span> <span class="hl-type">IO</span> ()
+main <span class="hl-op">=</span> <span class="hl-kw">do</span>
+  <span class="hl-kw">let</span> c <span class="hl-op">=</span> <span class="hl-str">'x'</span>
+  <span class="hl-builtin">putStrLn</span> (<span class="hl-str">"Hello, Idris!</span><span class="hl-esc">\n</span><span class="hl-str">"</span> <span class="hl-op">++</span> show (area (<span class="hl-type">Circle</span> <span class="hl-num">1.5</span>)))
+  <span class="hl-builtin">printLn</span> (<span class="hl-builtin">Just</span> <span class="hl-num">42</span>, <span class="hl-builtin">Nothing</span> {a <span class="hl-op">=</span> <span class="hl-type">Int</span>}, <span class="hl-builtin">True</span>)

@@ -1,0 +1,25 @@
+// REQ: LANG-1211 LANG-1212 LANG-1213 LANG-1214
+/* Block comment */
+type shape =
+  | Circle(float)
+  | Rect(float, float)
+
+let area = shape =>
+  switch shape {
+  | Circle(r) => 3.14 *. r *. r
+  | Rect(w, h) => w *. h
+  }
+
+@react.component
+let make = (~name: string) => {
+  let greeting = `Hello, ${name}! Count: ${Int.toString(0x1F)}`
+  let opt = Some(42)
+  switch opt {
+  | Some(n) if n > 0 => Console.log(greeting)
+  | _ => ()
+  }
+  <div> {React.string("hi")} </div>
+}
+
+let rec fib = n => n < 2 ? n : fib(n - 1) + fib(n - 2)
+let ok = true && !false

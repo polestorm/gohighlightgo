@@ -1,0 +1,20 @@
+<span class="hl-com">-- REQ: LANG-1101 LANG-1102 LANG-1103 LANG-1104</span>
+<span class="hl-com">{- outer {- nested -} still a comment -}</span>
+<span class="hl-kw">let</span> <span class="hl-type">Person</span> <span class="hl-op">=</span> { name <span class="hl-op">:</span> <span class="hl-type">Text</span>, age <span class="hl-op">:</span> <span class="hl-type">Natural</span> }
+
+<span class="hl-kw">let</span> greet <span class="hl-op">=</span> <span class="hl-op">\</span>(p <span class="hl-op">:</span> <span class="hl-type">Person</span>) <span class="hl-op">-&gt;</span> <span class="hl-str">"Hello, </span><span class="hl-esc">${p.name}</span><span class="hl-str">!"</span>
+
+<span class="hl-kw">let</span> people <span class="hl-op">=</span>
+      [ { name <span class="hl-op">=</span> <span class="hl-str">"Ann"</span>, age <span class="hl-op">=</span> <span class="hl-num">30</span> }, { name <span class="hl-op">=</span> <span class="hl-str">"Bob"</span>, age <span class="hl-op">=</span> <span class="hl-num">25</span> } ] <span class="hl-op">:</span> <span class="hl-type">List</span> <span class="hl-type">Person</span>
+
+<span class="hl-kw">let</span> multi <span class="hl-op">=</span>
+      <span class="hl-str">''</span>
+<span class="hl-str">      Multi-line </span><span class="hl-esc">${Natural/show 42}</span>
+<span class="hl-str">      ''</span>
+
+<span class="hl-kw">in</span>  { greetings <span class="hl-op">=</span> <span class="hl-type">List/map</span> <span class="hl-type">Person</span> <span class="hl-type">Text</span> greet people
+    , adults <span class="hl-op">=</span> <span class="hl-type">Natural/isZero</span> <span class="hl-num">0</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-builtin">True</span>
+    , missingValue <span class="hl-op">=</span> <span class="hl-builtin">None</span> <span class="hl-type">Natural</span>
+    , ratio <span class="hl-op">=</span> <span class="hl-num">1.5</span>
+    , multi
+    }

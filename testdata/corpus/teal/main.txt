@@ -1,0 +1,23 @@
+-- REQ: LANG-1151 LANG-1152
+local record Point
+   x: number
+   y: number
+end
+
+local enum Color
+   "red"
+   "green"
+end
+
+global function greet(name: string, times: integer): string
+   local text = "Hello, " .. name .. "!\n"
+   local result = ""
+   for i = 1, times do
+      result = result .. text
+   end
+   return result
+end
+
+local p: Point = { x = 1.5, y = 2 }
+local c: Color = "red"
+print(greet("teal", 2), p.x, c as string, nil)

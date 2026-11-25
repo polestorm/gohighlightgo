@@ -1,0 +1,21 @@
+# REQ: LANG-1071 LANG-1072 LANG-1073 LANG-1074
+#+TITLE: Notes
+#+AUTHOR: Jan
+* Heading one
+** Subheading with ~inline code~ and =verbatim=
+- item with a [[https://example.com][link]]
++ other item
+1. ordered
+
+#+BEGIN_SRC go
+func main() { fmt.Println("hi") }
+#+END_SRC
+
+#+begin_example
+Literal <&> text
+#+end_example
+
+#+BEGIN_QUOTE
+A quote.
+#+END_QUOTE
+Text with a=b and ~unclosed marker.

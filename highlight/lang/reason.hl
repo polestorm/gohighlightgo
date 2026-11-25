@@ -1,0 +1,18 @@
+# ReasonML: Reason documentation (reasonml.github.io): syntax cheatsheet, strings; requirements/languages/reason.md
+name     reason re rei reasonml
+
+keyword  let rec type module open include if else switch fun try exception external mutable and as
+keyword  assert lazy for while in to downto when of
+type     int float string bool unit array list option char
+builtin  true false None Some Ok Error
+
+line-comment   //
+block-comment  /* */
+string   {| |}  : multiline
+string   " "    : escapes
+escape        : x=2
+sigil    @    : meta
+operators  +-*/%&|^!<>=:?~.
+upper-type
+calls
+hook     apostrophe

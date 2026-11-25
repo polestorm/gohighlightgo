@@ -1,0 +1,17 @@
+# Idris 2: Idris 2 documentation, the reference (syntax, keywords); requirements/languages/idris.md
+name     idris idr idris2
+
+keyword  module import data record interface implementation where let in do case of if then else total
+keyword  partial covering public export private namespace mutual parameters using auto impossible with
+keyword  rewrite proof
+type     Type Nat Int Integer String Bool List Maybe IO Char Double
+builtin  True False Nothing Just Z S putStrLn printLn pure map
+
+ident-part     '
+line-comment   --
+block-comment  {- -}  : nested
+string   " "  : escapes
+escape        : x=2
+operators  +-*/%&|^!<>=:?~.\$
+upper-type
+hook     apostrophe

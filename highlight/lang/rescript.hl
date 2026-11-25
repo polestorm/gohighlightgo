@@ -1,0 +1,17 @@
+# ReScript: ReScript language manual (v11): overview, primitive types, string interpolation; requirements/languages/rescript.md
+name     rescript res resi
+
+keyword  let rec type module open include if else switch for while in to downto try catch exception
+keyword  external mutable and as assert lazy async await private constraint when
+type     int float string bool unit array list option promise char
+builtin  true false None Some Ok Error
+
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+string   ` `  : escapes multiline interp=dollar-braces
+escape        : x=2 u4
+sigil    @    : meta
+operators  +-*/%&|^!<>=:?~.
+upper-type
+calls

@@ -19,7 +19,7 @@ Compared with [chroma](https://github.com/alecthomas/chroma), the usual highligh
 
 - **Fast**: about 100 MB/s; 98.5–98.8% less time than chroma on the test inputs and 99% less than highlight on
   a document full of code.
-- **Small**: 4,932 lines of Go and 1,517 lines of language definitions, 419 kB added to a program, no
+- **Small**: 5,360 lines of Go and 1,718 lines of language definitions, 435 kB added to a program, no
   dependencies, nothing loaded at run time.
 - **Extensible without a release**: a language made of words, comments, strings and numbers is a short text
   file ([docs/definitions.md](docs/definitions.md)); a program adds its own with `highlight.Register`, the
@@ -34,7 +34,7 @@ Compared with [chroma](https://github.com/alecthomas/chroma), the usual highligh
 - **Made to be built on**: a single function, a stylesheet per theme, a command, and a few lines to connect it to
   a Markdown renderer (for example [gomdgo](https://github.com/polestorm/gomdgo)) behind a build tag.
 
-Where it is weaker: 107 languages instead of about 300 (more are on the way), two themes instead of dozens, no detection of the language
+Where it is weaker: 124 languages instead of about 300 (more are on the way), two themes instead of dozens, no detection of the language
 from the content, and lexical highlighting only (a conversion `T(x)` looks like a call). It is new.
 
 ## Contents
@@ -76,7 +76,7 @@ from the content, and lexical highlighting only (a conversion `T(x)` looks like 
 | Dockerfile | `dockerfile`, `docker`, `containerfile` |
 | INI, properties | `ini`, `cfg`, `conf`, `desktop`, `gitconfig`, `editorconfig`; `properties`, `props` |
 | Protocol Buffers, GraphQL | `protobuf`, `proto`, `proto3`; `graphql`, `gql` |
-| HCL (Terraform), Nix | `hcl`, `terraform`, `tf`, `tfvars`; `nix` |
+| HCL (Terraform, Packer), Nix | `hcl`, `terraform`, `tf`, `tfvars`, `packer`; `nix` |
 | LaTeX | `latex`, `tex`, `sty`, `cls` |
 | Vim script | `vim`, `vimscript`, `viml` |
 | AsciiDoc | `asciidoc`, `adoc`, `asc` (source blocks highlighted in their own language) |
@@ -103,6 +103,12 @@ from the content, and lexical highlighting only (a conversion `T(x)` looks like 
 | JSON5, Hjson, KDL, RON | `json5`; `hjson`; `kdl`; `ron` |
 | Jsonnet, Starlark | `jsonnet`, `libsonnet`; `starlark`, `bzl`, `bazel`, `star` |
 | Bicep, Rego, Puppet | `bicep`; `rego`; `puppet`, `pp` |
+| Org, reStructuredText, Textile | `org`, `orgmode`; `rst`, `restructuredtext`, `rest`; `textile` (code blocks in their own language) |
+| Dhall, Haxe, ActionScript | `dhall`; `haxe`, `hx`; `actionscript`, `as3` |
+| Delphi forms | `dfm`, `lfm`, `fmx` |
+| Luau, Teal | `luau`; `teal`, `tl` |
+| F*, Lean, Agda, Idris, Coq | `fstar`, `fst`; `lean`, `lean4`; `agda`; `idris`, `idr`; `coq`, `rocq` |
+| PureScript, ReScript, Reason | `purescript`, `purs`; `rescript`, `res`; `reason`, `re`, `reasonml` |
 | Ruby | `ruby`, `rb` |
 | Haskell | `haskell`, `hs` |
 | Zig | `zig` |
@@ -111,16 +117,16 @@ from the content, and lexical highlighting only (a conversion `T(x)` looks like 
 | Pascal, Delphi | `pascal`, `delphi`, `pas`, `objectpascal` |
 | XML, HTML | `xml`, `xsd`, `xsl`, `xslt`, `svg`, `plist`; `html`, `htm`, `xhtml` (with JavaScript in `<script>` and CSS in `<style>`) |
 | CSS | `css` |
-| YAML, TOML | `yaml`, `yml`; `toml` |
+| YAML, TOML | `yaml`, `yml`, `ansible`; `toml` |
 | Shell | `sh`, `bash`, `shell`, `zsh`, `ksh` |
 | diff | `diff`, `patch` |
 | Markdown | `markdown`, `md` (fenced code highlighted in its own language) |
 
 Names are matched without regard to case. Each language is described from its specification; what is
 highlighted, and where the highlighting is only an approximation, is listed in
-[requirements/languages/](requirements/languages/). Eighty-nine of them are definitions in
+[requirements/languages/](requirements/languages/). A hundred and three of them are definitions in
 [highlight/lang/](highlight/lang/); markup, CSS, YAML, TOML, shell, diff, Markdown, INI, properties, AsciiDoc,
-CSV, TSV and the template languages have scanners in Go.
+CSV, TSV, Org, reStructuredText, Textile and the template languages have scanners in Go.
 
 ## Usage
 
@@ -170,12 +176,12 @@ Complete adapters are in [docs/adapters/](docs/adapters/).
 
 | | gohighlightgo 0.1.0 | chroma 2.27.0 | highlight (QLMarkdown 1.5.7)[^hl] |
 |---|:---:|:---:|:---:|
-| Languages | 107 | 297 🥇 | 263 |
+| Languages | 124 | 297 🥇 | 263 |
 | New language without a new release | a text file (`Register`, `-def`) | an XML file (`NewXMLLexer`, `Register`) | a Lua file |
 | Themes | 2, and `auto` | 74 | 97 🥇 |
 | Dependencies[^deps] | 0 🥇 | 1 | a Lua interpreter |
-| Lines of code[^size] | 4,932 and 1,517 lines of definitions 🥇 | 31,199 and 279 lexer files (2.4 MB) | — |
-| Added to a program | 419 kB 🥇 | 4,774 kB | 3,416 kB and 2.7 MB of definitions and themes |
+| Lines of code[^size] | 5,360 and 1,718 lines of definitions 🥇 | 31,199 and 279 lexer files (2.4 MB) | — |
+| Added to a program | 435 kB 🥇 | 4,774 kB | 3,416 kB and 2.7 MB of definitions and themes |
 | Time, the corpus as 21 blocks (14.5 kB)[^bench] | 0.16 ms 🥇 | 13.3 ms | — |
 | Time, 1 MB of Go | 10.0 ms 🥇 | 690 ms | — |
 | Time, a document with 1.3 MB of code[^doc] | 17 ms 🥇 | — | 2,079 ms |
@@ -207,7 +213,7 @@ Complete adapters are in [docs/adapters/](docs/adapters/).
     HTML page with and without highlighting; the difference is the cost of highlighting. gohighlightgo: the
     `gomdgo-mermaid` command built with and without highlighting; highlight: QLMarkdown's command with
     `--syntax-highlight on` and `off`. Median of 15 runs of each process.
-[^safe]: Output for `</code></pre><script>alert(1)</script>` and an `<img onerror>` in each of the 98
+[^safe]: Output for `</code></pre><script>alert(1)</script>` and an `<img onerror>` in each of the 108
     languages that chroma also knows (`TestRivalsSafety`); for highlight, the same text in Go, HTML, XML, shell and Markdown blocks.
 
 ## Status
@@ -215,7 +221,7 @@ Complete adapters are in [docs/adapters/](docs/adapters/).
 Version 0.1.0: the planned languages, themes and command are done; hardening in progress. The API may still
 change before 1.0. Requires Go 1.22 or newer.
 
-- 107 languages, each with a requirements file and a corpus file whose output is checked byte for byte.
+- 124 languages, each with a requirements file and a corpus file whose output is checked byte for byte.
 - Language definitions: the 11 table languages moved to definition files without a single byte of output
   changing; any definition the parser accepts is fuzzed together with random code.
 - Safety and round trip (removing the tags gives back the input) are checked on every test input and in fuzzing.

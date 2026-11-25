@@ -1,0 +1,18 @@
+-- REQ: LANG-1141 LANG-1142
+--!strict
+type Point = { x: number, y: number }
+
+export type Shape = "circle" | "square"
+
+local function greet(name: string, times: number?): string
+	local count = times or 1
+	local text = `Hello, {name}! Count: {count + 1}`
+	for i = 1, count do
+		if i % 2 == 0 then continue end
+		print(text)
+	end
+	return typeof(text) == "string" and text or ""
+end
+
+local p: Point = { x = 1.5, y = 0x1F }
+print(greet("luau", 2), p.x, nil, true)

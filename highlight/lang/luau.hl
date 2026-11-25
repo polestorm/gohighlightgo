@@ -1,0 +1,7 @@
+# Luau: Luau language reference (luau.org: syntax, type checking, string interpolation); requirements/languages/luau.md
+extends  lua
+name     luau
+
+keyword  continue export type typeof
+type     number string boolean any never unknown thread buffer
+string   ` `  : escapes interp=braces

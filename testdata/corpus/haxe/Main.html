@@ -1,0 +1,26 @@
+<span class="hl-com">// REQ: LANG-1111 LANG-1112 LANG-1113 LANG-1114</span>
+<span class="hl-kw">package</span> demo;
+
+<span class="hl-kw">import</span> haxe<span class="hl-op">.</span>ds<span class="hl-op">.</span>StringMap;
+
+<span class="hl-com">/* Block comment */</span>
+@<span class="hl-op">:</span>keep
+<span class="hl-kw">class</span> Main {
+    <span class="hl-kw">static</span> <span class="hl-kw">var</span> count<span class="hl-op">:</span><span class="hl-type">Int</span> <span class="hl-op">=</span> <span class="hl-num">0x1F</span>;
+
+    @<span class="hl-op">:</span>noCompletion
+    <span class="hl-kw">public</span> <span class="hl-kw">static</span> <span class="hl-kw">function</span> <span class="hl-fn">greet</span>(name<span class="hl-op">:</span><span class="hl-type">String</span>, times<span class="hl-op">:</span><span class="hl-type">Int</span> <span class="hl-op">=</span> <span class="hl-num">1</span>)<span class="hl-op">:</span><span class="hl-type">String</span> {
+        <span class="hl-kw">var</span> text <span class="hl-op">=</span> <span class="hl-str">'Hello, </span><span class="hl-esc">$name</span><span class="hl-str">! </span><span class="hl-esc">${times + 1}\n</span><span class="hl-str">'</span>;
+        <span class="hl-kw">var</span> plain <span class="hl-op">=</span> <span class="hl-str">"no $interpolation here"</span>;
+        <span class="hl-kw">return</span> text <span class="hl-op">+</span> plain;
+    }
+
+    <span class="hl-kw">static</span> <span class="hl-kw">function</span> <span class="hl-fn">main</span>() {
+        <span class="hl-meta">#if</span> debug
+        <span class="hl-builtin">trace</span>(<span class="hl-str">"debug build"</span>);
+        <span class="hl-meta">#end</span>
+        <span class="hl-kw">var</span> map <span class="hl-op">=</span> <span class="hl-kw">new</span> StringMap<span class="hl-op">&lt;</span><span class="hl-type">Float</span><span class="hl-op">&gt;</span>();
+        map<span class="hl-op">.</span><span class="hl-fn">set</span>(<span class="hl-str">"pi"</span>, <span class="hl-num">3.14</span>);
+        <span class="hl-kw">if</span> (count <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-op">!</span><span class="hl-builtin">false</span>) <span class="hl-builtin">trace</span>(<span class="hl-fn">greet</span>(<span class="hl-str">"haxe"</span>, <span class="hl-num">2</span>), <span class="hl-builtin">null</span>);
+    }
+}

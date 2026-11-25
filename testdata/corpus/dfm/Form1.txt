@@ -1,0 +1,22 @@
+{ REQ: LANG-1131 LANG-1132 LANG-1133 }
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Main form '#13#10'second line'
+  ClientHeight = 300
+  Color = clBtnFace
+  Font.Name = 'Segoe UI'
+  OldCreateOrder = False
+  Visible = True
+  object Button1: TButton
+    Left = 8
+    Caption = 'It''s OK'
+    Tag = $FF
+    OnClick = Button1Click
+  end
+  inherited Panel1: TPanel
+    Items.Strings = (
+      'one'
+      'two')
+  end
+end

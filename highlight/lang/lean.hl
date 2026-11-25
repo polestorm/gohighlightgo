@@ -1,0 +1,18 @@
+# Lean 4: Lean language reference (lean-lang.org/doc/reference): lexical structure, commands, tactics; requirements/languages/lean.md
+name     lean lean4
+
+keyword  def theorem lemma example abbrev structure class instance inductive where with match fun let
+keyword  have show by do if then else for in return import open namespace section end variable universe
+keyword  axiom noncomputable private protected partial mutual deriving calc at from extends unsafe
+builtin  true false sorry rfl simp intro intros exact apply rw cases induction constructor omega decide
+builtin  trivial assumption
+
+ident-part     '.!?
+line-comment   --
+block-comment  /- -/  : nested
+string   " "  : escapes
+escape        : x=2 u4
+sigil    @    : meta
+operators  +-*/%&|^!<>=:?~
+upper-type
+hook     apostrophe

@@ -1,0 +1,23 @@
+-- REQ: LANG-1171 LANG-1172 LANG-1173 LANG-1174
+/-- Documentation comment. -/
+namespace Demo
+
+/- outer /- nested -/ still a comment -/
+structure Point where
+  x : Nat
+  y : Nat
+  deriving Repr
+
+def area (w h : Nat) : Nat := w * h
+
+theorem area_comm (w h : Nat) : area w h = area h w := by
+  unfold area
+  rw [Nat.mul_comm]
+
+@[simp] theorem zero_area (h : Nat) : area 0 h = 0 := by simp [area]
+
+def greet (name : String) : String := s!"Hello, {name}!\n"
+
+#eval greet "lean"
+example : 2 + 2 = 4 := rfl
+end Demo

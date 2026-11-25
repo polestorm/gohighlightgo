@@ -4,7 +4,7 @@
 
 | Id | Wymaganie |
 |---|---|
-| LANG-141 | Nazwy języka: `yaml`, `yml`. |
+| LANG-141 | Nazwy języka: `yaml`, `yml`, `ansible` (playbooki Ansible to YAML). |
 | LANG-142 | Klucz (skalar bez cudzysłowu albo napis), po którym stoi `:` z odstępem albo końcem wiersza, dostaje `hl-attr` (7.4, 8.2.2). |
 | LANG-143 | Napisy `"…"` (z ucieczkami jak w JSON oraz `\x`, `\U`; `hl-esc`) i `'…'` (z `''` jako `hl-esc`) dostają `hl-str` i mogą obejmować wiele wierszy (7.3). |
 | LANG-144 | Skalar bez cudzysłowu, który jest liczbą według schematu podstawowego (także `0x`, `0o`, `.inf`, `.nan`), dostaje `hl-num`; `null`, `~`, `true`, `false` (w zapisach ze schematu podstawowego) dostają `hl-builtin`; inne zostają bez klasy (10.3.2). |

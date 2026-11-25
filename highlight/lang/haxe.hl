@@ -1,0 +1,19 @@
+# Haxe: Haxe 4 Manual, Lexical and Syntax (keywords, strings, metadata, conditional compilation); requirements/languages/haxe.md
+name     haxe hx
+
+keyword  abstract break case cast catch class continue default do dynamic else enum extends extern final
+keyword  for function if implements import in inline interface macro new operator overload override
+keyword  package private public return static switch this throw try typedef untyped using var while
+type     Int Float String Bool Void Dynamic Array Map
+builtin  true false null trace
+
+ident-extra    $
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+string   ' '  : escapes interp=dollar
+escape        : x=2 u4 u-braces
+sigil    @    : meta
+operators  +-*/%&|^!<>=:?~.
+calls
+hook     c-preprocessor

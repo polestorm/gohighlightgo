@@ -1,0 +1,15 @@
+# Coq (Rocq): The Coq Reference Manual (8.19): vernacular commands, terms, tactics; requirements/languages/coq.md
+name     coq rocq v-coq
+
+keyword  Definition Theorem Lemma Remark Fact Corollary Proposition Example Proof Qed Defined Admitted
+keyword  Fixpoint CoFixpoint Inductive CoInductive Record Structure Class Instance Module End Section
+keyword  Variable Variables Hypothesis Axiom Parameter Require Import Export Open Scope Notation Let
+keyword  forall exists fun match with end if then else let in return as Check Compute Print Search
+type     Type Prop Set nat bool list option
+builtin  intros intro apply exact rewrite simpl reflexivity induction destruct auto unfold split
+builtin  assumption trivial lia omega discriminate inversion eauto true false
+
+ident-part     '
+block-comment  (* *)  : nested
+string   " "  : doubled
+operators  +-*/%&|^!<>=:?~.

@@ -1,0 +1,12 @@
+# Delphi forms (DFM): RAD Studio documentation, form files in text format; requirements/languages/dfm.md
+name     dfm lfm fmx
+
+keyword  object inherited inline end item
+builtin  True False nil
+fold-case
+
+string   ' '  : doubled
+key-names  =
+operators  =<>:.
+upper-type
+hook     pascal

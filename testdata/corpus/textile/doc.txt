@@ -1,0 +1,16 @@
+p. REQ: LANG-1091 LANG-1092 LANG-1093
+h1. Main heading
+
+h2. Section
+
+p. A paragraph with @inline code@ and a "link":https://example.com here.
+
+* first item
+** nested item
+# ordered item
+
+bq. A quotation.
+
+bc. func main() { fmt.Println("hi") }
+
+fn1. A footnote.
