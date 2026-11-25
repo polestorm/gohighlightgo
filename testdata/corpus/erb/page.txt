@@ -1,0 +1,18 @@
+<%# REQ: LANG-941 LANG-942 LANG-943 LANG-944 %>
+<!DOCTYPE html>
+<html>
+<body>
+  <h1><%= @page.title.upcase %></h1>
+  <% if @items.any? %>
+    <ul>
+    <% @items.each_with_index do |item, i| %>
+      <li class="<%= i.even? ? "even" : "odd" %>"><%= link_to item.name, item_path(item) %></li>
+    <% end %>
+    </ul>
+  <% else %>
+    <p>No items, :none</p>
+  <%- end -%>
+  <%# A comment that is not rendered %>
+  <p>Total: <%= number_with_delimiter(1_000 * 3) %></p>
+</body>
+</html>

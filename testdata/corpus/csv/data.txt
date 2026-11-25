@@ -1,0 +1,6 @@
+# REQ: LANG-961 LANG-962 LANG-963,name,city,score
+1,Ann,"Kraków, PL",98.5
+2,"Bob ""the builder""",Warsaw,-3
+3,Cecilia,"Multi
+line",0
+4;Dan;Gdańsk;42

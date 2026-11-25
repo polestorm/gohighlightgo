@@ -1,0 +1,18 @@
+<span class="hl-com">{{/* REQ: LANG-951 LANG-952 LANG-953 LANG-954 */}}</span>
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: <span class="hl-meta">{{</span> <span class="hl-attr">.Release.Name</span> <span class="hl-meta">}}</span>-config
+  labels:
+    app: <span class="hl-meta">{{</span> <span class="hl-attr">.Values.app</span> <span class="hl-op">|</span> quote <span class="hl-meta">}}</span>
+data:
+<span class="hl-meta">{{</span><span class="hl-op">-</span> <span class="hl-kw">range</span> <span class="hl-attr">$key</span>, <span class="hl-attr">$value</span> <span class="hl-op">:=</span> <span class="hl-attr">.Values.settings</span> <span class="hl-meta">}}</span>
+  <span class="hl-meta">{{</span> <span class="hl-attr">$key</span> <span class="hl-meta">}}</span>: <span class="hl-meta">{{</span> <span class="hl-attr">$value</span> <span class="hl-op">|</span> <span class="hl-builtin">printf</span> <span class="hl-str">"%q"</span> <span class="hl-meta">}}</span>
+<span class="hl-meta">{{</span><span class="hl-op">-</span> <span class="hl-kw">end</span> <span class="hl-meta">}}</span>
+<span class="hl-meta">{{</span><span class="hl-op">-</span> <span class="hl-kw">if</span> <span class="hl-builtin">and</span> <span class="hl-attr">.Values.enabled</span> (<span class="hl-builtin">gt</span> (<span class="hl-builtin">len</span> <span class="hl-attr">.Values.items</span>) <span class="hl-num">0</span>) <span class="hl-meta">}}</span>
+  enabled: "true"
+<span class="hl-meta">{{</span><span class="hl-op">-</span> <span class="hl-kw">else</span> <span class="hl-meta">}}</span>
+  enabled: "false"
+<span class="hl-meta">{{</span><span class="hl-op">-</span> <span class="hl-kw">end</span> <span class="hl-meta">}}</span>
+<span class="hl-meta">{{</span> <span class="hl-kw">define</span> <span class="hl-str">"greeting"</span> <span class="hl-meta">}}</span><span class="hl-tag">&lt;p&gt;</span>Hello, <span class="hl-meta">{{</span> <span class="hl-attr">.Name</span> <span class="hl-op">|</span> <span class="hl-builtin">html</span> <span class="hl-meta">}}</span>!<span class="hl-tag">&lt;/p&gt;</span><span class="hl-meta">{{</span> <span class="hl-kw">end</span> <span class="hl-meta">}}</span>
+<span class="hl-meta">{{</span> <span class="hl-kw">template</span> <span class="hl-str">"greeting"</span> . <span class="hl-meta">}}</span> <span class="hl-meta">{{</span> <span class="hl-kw">with</span> <span class="hl-attr">$x</span> <span class="hl-op">:=</span> <span class="hl-str">`raw`</span> <span class="hl-meta">}}{{</span> <span class="hl-attr">$x</span> <span class="hl-meta">}}{{</span> <span class="hl-kw">end</span> <span class="hl-meta">}}</span>

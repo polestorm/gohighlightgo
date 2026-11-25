@@ -1,0 +1,13 @@
+// REQ: LANG-981 LANG-982 LANG-983 LANG-984
+{
+  // Comment
+  unquoted: 'single quoted',
+  "quoted": "double \"escaped\"",
+  hex: 0x1F,
+  positive: +1.5e3,
+  leadingDot: .5,
+  special: [Infinity, -Infinity, NaN, null, true, false],
+  multi: "first \
+second",
+  /* trailing comma */ list: [1, 2, 3,],
+}

@@ -1,0 +1,18 @@
+{% comment %} REQ: LANG-931 LANG-932 LANG-933 {% endcomment %}
+<h1>{{ product.title | upcase }}</h1>
+{% assign total = 0 %}
+<ul>
+{% for variant in product.variants limit: 3 %}
+  <li class="{% cycle 'odd', 'even' %}">{{ variant.title }} - {{ variant.price | money }}</li>
+  {% assign total = total | plus: 1 %}
+{% else %}
+  <li>No variants</li>
+{% endfor %}
+</ul>
+{% if customer and customer.tags contains "vip" %}
+  <p>Welcome back, {{ customer.first_name | default: "friend" }}!</p>
+{% elsif product.available == false %}
+  <p>Sold out ({{ total }})</p>
+{% endif %}
+{%- capture greeting -%}Hello, {{ shop.name }}{%- endcapture -%}
+{{ greeting | strip }} {{ nil }} {{ empty }}

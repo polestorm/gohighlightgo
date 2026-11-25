@@ -1,0 +1,18 @@
+{{/* REQ: LANG-951 LANG-952 LANG-953 LANG-954 */}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-config
+  labels:
+    app: {{ .Values.app | quote }}
+data:
+{{- range $key, $value := .Values.settings }}
+  {{ $key }}: {{ $value | printf "%q" }}
+{{- end }}
+{{- if and .Values.enabled (gt (len .Values.items) 0) }}
+  enabled: "true"
+{{- else }}
+  enabled: "false"
+{{- end }}
+{{ define "greeting" }}<p>Hello, {{ .Name | html }}!</p>{{ end }}
+{{ template "greeting" . }} {{ with $x := `raw` }}{{ $x }}{{ end }}

@@ -1,0 +1,26 @@
+# REQ: LANG-1051 LANG-1052 LANG-1053 LANG-1054
+package authz
+
+import rego.v1
+
+default allow := false
+
+# Admins can do anything.
+allow if {
+    input.user.role == "admin"
+}
+
+allow if {
+    some i
+    input.method == "GET"
+    startswith(input.path, "/public/")
+    count(data.blocked[i]) < 3
+    not deny
+}
+
+deny contains msg if {
+    input.user.age < 18
+    msg := sprintf("user %s is too young", [input.user.name])
+}
+
+raw := `raw "string"`

@@ -1,0 +1,20 @@
+{# REQ: LANG-911 LANG-912 LANG-913 LANG-914 #}
+{% extends "base.html" %}
+{% block content %}
+<h1 class="title">{{ page.title | upper }}</h1>
+{# A template comment
+   over two lines. #}
+<ul>
+{%- for item in items if item.visible %}
+  <li><a href="{{ item.url }}">{{ item.name ~ " (" ~ loop.index ~ ")" }}</a></li>
+{%- else %}
+  <li>No items, count = {{ items | length }}</li>
+{%- endfor %}
+</ul>
+{% set total = 3 * 1.5 %}
+{% if user is defined and not user.banned %}Hello, {{ user.name|e }}!{% endif %}
+{% macro input(name, value='', type='text') -%}
+  <input type="{{ type }}" name="{{ name }}" value="{{ value }}">
+{%- endmacro %}
+{{ range(10) | sum }} {{ none }} {{ true }}
+{% endblock %}

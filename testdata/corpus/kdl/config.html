@@ -1,0 +1,15 @@
+<span class="hl-com">// REQ: LANG-1001 LANG-1002 LANG-1003 LANG-1004</span>
+package {
+  name <span class="hl-str">"gohighlightgo"</span>
+  version <span class="hl-str">"1.0.0"</span> <span class="hl-attr">release</span><span class="hl-op">=</span><span class="hl-builtin">#true</span>
+  dependencies {
+    go-std <span class="hl-str">"1.22"</span> <span class="hl-attr">optional</span><span class="hl-op">=</span><span class="hl-builtin">#false</span>
+  }
+  <span class="hl-com">/* outer /* nested */ still a comment */</span>
+  scripts {
+    build <span class="hl-str">r#"go build "./..." "#</span>
+    count <span class="hl-num">0x1F</span> <span class="hl-num">1_000</span> <span class="hl-num">3.14</span> <span class="hl-builtin">#null</span>
+  }
+  <span class="hl-op">/</span>- disabled-node <span class="hl-str">"slashdash"</span>
+  legacy <span class="hl-builtin">true</span> <span class="hl-builtin">false</span> <span class="hl-builtin">null</span>
+}

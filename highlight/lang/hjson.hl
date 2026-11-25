@@ -1,0 +1,13 @@
+# Hjson: Hjson syntax (hjson.github.io/syntax.html); requirements/languages/hjson.md
+name     hjson
+
+builtin  true false null
+
+line-comment   # //
+block-comment  /* */
+string   ''' '''  : multiline
+string   " "      : escapes
+string   ' '      : escapes
+escape        : u4
+key-names  :
+keys

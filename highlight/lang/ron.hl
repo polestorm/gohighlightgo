@@ -1,0 +1,13 @@
+# RON: Rusty Object Notation grammar (ron-rs/ron, docs/grammar.md); requirements/languages/ron.md
+name     ron
+
+builtin  true false Some None
+
+line-comment   //
+block-comment  /* */  : nested
+string   " "  : escapes multiline
+escape        : x=2 u-braces
+number        : no-leading-dot
+key-names  :
+upper-type
+hook     rust

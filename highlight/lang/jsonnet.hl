@@ -1,0 +1,17 @@
+# Jsonnet: Jsonnet language reference and specification (jsonnet.org/ref/spec.html); requirements/languages/jsonnet.md
+name     jsonnet libsonnet
+
+keyword  local function if then else for in import importstr importbin error assert self super
+keyword  tailstrict
+builtin  true false null std $
+
+line-comment   // #
+block-comment  /* */
+string   ||| |||  : multiline
+string   " "      : escapes
+string   ' '      : escapes
+prefix   @        : verbatim
+escape        : u4
+key-names  :
+operators  +-*/%&|^!<>=~.
+calls

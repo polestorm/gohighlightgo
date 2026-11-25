@@ -1,0 +1,23 @@
+<span class="hl-com">// REQ: LANG-1041 LANG-1042 LANG-1043 LANG-1044</span>
+<span class="hl-kw">targetScope</span> <span class="hl-op">=</span> <span class="hl-str">'resourceGroup'</span>
+
+<span class="hl-meta">@description</span>(<span class="hl-str">'Storage account name'</span>)
+<span class="hl-meta">@minLength</span>(<span class="hl-num">3</span>)
+<span class="hl-kw">param</span> storageName <span class="hl-type">string</span> <span class="hl-op">=</span> <span class="hl-str">'st</span><span class="hl-esc">${uniqueString(resourceGroup().id)}</span><span class="hl-str">'</span>
+<span class="hl-kw">param</span> location <span class="hl-type">string</span> <span class="hl-op">=</span> <span class="hl-builtin">resourceGroup</span>()<span class="hl-op">.</span>location
+<span class="hl-kw">param</span> count <span class="hl-type">int</span> <span class="hl-op">=</span> <span class="hl-num">3</span>
+
+<span class="hl-com">/* Storage account */</span>
+<span class="hl-kw">resource</span> storage <span class="hl-str">'Microsoft.Storage/storageAccounts@2023-01-01'</span> <span class="hl-op">=</span> {
+  name<span class="hl-op">:</span> storageName
+  location<span class="hl-op">:</span> location
+  sku<span class="hl-op">:</span> { name<span class="hl-op">:</span> <span class="hl-str">'Standard_LRS'</span> }
+  kind<span class="hl-op">:</span> <span class="hl-str">'StorageV2'</span>
+  properties<span class="hl-op">:</span> { supportsHttpsTrafficOnly<span class="hl-op">:</span> <span class="hl-builtin">true</span> }
+}
+
+<span class="hl-kw">var</span> multi <span class="hl-op">=</span> <span class="hl-str">'''</span>
+<span class="hl-str">Multi-line</span>
+<span class="hl-str">text'''</span>
+
+<span class="hl-kw">output</span> ids <span class="hl-type">array</span> <span class="hl-op">=</span> [<span class="hl-kw">for</span> i <span class="hl-kw">in</span> <span class="hl-fn">range</span>(<span class="hl-num">0</span>, count)<span class="hl-op">:</span> <span class="hl-str">'</span><span class="hl-esc">${storage.id}</span><span class="hl-str">-</span><span class="hl-esc">${i}</span><span class="hl-str">'</span>]

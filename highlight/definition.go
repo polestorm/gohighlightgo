@@ -81,9 +81,10 @@ func parseDefinition(src []byte, lookup func(string) *language) (*language, erro
 		fields := strings.Fields(line)
 		key := fields[0]
 		var values, opts []string
-		// Separatorem opcji jest ostatni samotny „:”, więc „:” może być też wartością (sigil : : attr).
+		// Separatorem opcji jest ostatni samotny „:”, więc „:” może być też wartością (sigil : : attr); „:” na
+		// samym końcu wiersza, bez opcji po nim, jest wartością (key-names :).
 		for k := len(fields) - 1; k >= 1; k-- {
-			if fields[k] == ":" {
+			if fields[k] == ":" && k < len(fields)-1 {
 				values, opts = fields[1:k], fields[k+1:]
 				break
 			}
@@ -178,6 +179,11 @@ func parseDefinition(src []byte, lookup func(string) *language) (*language, erro
 			for k := 0; k < len(values[0]); k++ {
 				t.sigils = append(t.sigils, sigil{char: values[0][k], class: c})
 			}
+		case "key-names":
+			if len(values) != 1 || len(opts) > 0 || strings.ContainsAny(values[0], "\"'`") {
+				return fail("key-names takes one group of separator characters, for example key-names :=")
+			}
+			t.keyNames = values[0]
 		case "line-string":
 			if len(values) == 0 || len(opts) > 0 {
 				return fail("line-string needs at least one prefix")

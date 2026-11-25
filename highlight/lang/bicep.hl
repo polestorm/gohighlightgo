@@ -1,0 +1,17 @@
+# Bicep: Bicep language documentation (Azure, file structure and syntax, data types); requirements/languages/bicep.md
+name     bicep
+
+keyword  targetScope param var resource module output existing if for in import metadata type func
+keyword  using extension with as
+type     string int bool object array
+builtin  true false null resourceGroup subscription tenant deployment concat format uniqueString
+builtin  toLower toUpper length union
+
+line-comment   //
+block-comment  /* */
+string   ''' '''  : multiline
+string   ' '      : escapes interp=dollar-braces
+escape        : u-braces
+sigil    @    : meta
+operators  +-*/%&|!<>=?:.
+calls

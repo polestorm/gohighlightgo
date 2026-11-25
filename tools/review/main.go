@@ -33,7 +33,7 @@ const defaultRef = "/Applications/QLMarkdown.app/Contents/Resources/qlmarkdown_c
 // refNames: nazwa języka dla odniesienia, gdy różni się od naszej nazwy głównej.
 var refNames = map[string]string{"pascal": "delphi", "objectivec": "objc", "fortran": "f90", "make": "makefile",
 	"latex": "tex", "protobuf": "pb", "commonlisp": "lisp", "armasm": "arm", "prolog": "pro", "scheme": "scm",
-	"vhdl": "vhd", "moonscript": "moon", "batch": "bat"}
+	"vhdl": "vhd", "moonscript": "moon", "batch": "bat", "puppet": "pp"}
 
 type side struct {
 	Light, Dark string // fragment HTML albo cała strona odniesienia
@@ -52,7 +52,7 @@ type entry struct {
 }
 
 var (
-	reqRef   = regexp.MustCompile(`\b[A-Z]{3,5}-\d{3}\b`)
+	reqRef   = regexp.MustCompile(`\b[A-Z]{3,5}-\d{3,4}\b`)
 	spanOpen = regexp.MustCompile(`<span class=["']([^"']+)["']`)
 	refPre   = regexp.MustCompile(`(?s)<pre class='hl'>.*?</pre>`)
 )

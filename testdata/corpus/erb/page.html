@@ -1,0 +1,18 @@
+<span class="hl-com">&lt;%# REQ: LANG-941 LANG-942 LANG-943 LANG-944 %&gt;</span>
+<span class="hl-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hl-tag">&lt;html&gt;</span>
+<span class="hl-tag">&lt;body&gt;</span>
+  <span class="hl-tag">&lt;h1&gt;</span><span class="hl-meta">&lt;%=</span> <span class="hl-attr">@page</span>.title.upcase <span class="hl-meta">%&gt;</span><span class="hl-tag">&lt;/h1&gt;</span>
+  <span class="hl-meta">&lt;%</span> <span class="hl-kw">if</span> <span class="hl-attr">@items</span>.any<span class="hl-op">?</span> <span class="hl-meta">%&gt;</span>
+    <span class="hl-tag">&lt;ul&gt;</span>
+    <span class="hl-meta">&lt;%</span> <span class="hl-attr">@items</span>.each_with_index <span class="hl-kw">do</span> <span class="hl-op">|</span>item, i<span class="hl-op">|</span> <span class="hl-meta">%&gt;</span>
+      <span class="hl-tag">&lt;li</span> <span class="hl-attr">class</span>=<span class="hl-str">"</span><span class="hl-meta">&lt;%=</span> i.even<span class="hl-op">?</span> <span class="hl-op">?</span> <span class="hl-str">"even"</span> : <span class="hl-str">"odd"</span> <span class="hl-meta">%&gt;</span>"&gt;<span class="hl-meta">&lt;%=</span> link_to item.name, <span class="hl-fn">item_path</span>(item) <span class="hl-meta">%&gt;</span><span class="hl-tag">&lt;/li&gt;</span>
+    <span class="hl-meta">&lt;%</span> <span class="hl-kw">end</span> <span class="hl-meta">%&gt;</span>
+    <span class="hl-tag">&lt;/ul&gt;</span>
+  <span class="hl-meta">&lt;%</span> <span class="hl-kw">else</span> <span class="hl-meta">%&gt;</span>
+    <span class="hl-tag">&lt;p&gt;</span>No items, :none<span class="hl-tag">&lt;/p&gt;</span>
+  <span class="hl-meta">&lt;%-</span> <span class="hl-kw">end</span> <span class="hl-op">-</span><span class="hl-meta">%&gt;</span>
+  <span class="hl-com">&lt;%# A comment that is not rendered %&gt;</span>
+  <span class="hl-tag">&lt;p&gt;</span>Total: <span class="hl-meta">&lt;%=</span> <span class="hl-fn">number_with_delimiter</span>(<span class="hl-num">1_000</span> <span class="hl-op">*</span> <span class="hl-num">3</span>) <span class="hl-meta">%&gt;</span><span class="hl-tag">&lt;/p&gt;</span>
+<span class="hl-tag">&lt;/body&gt;</span>
+<span class="hl-tag">&lt;/html&gt;</span>

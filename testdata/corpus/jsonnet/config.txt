@@ -1,0 +1,20 @@
+// REQ: LANG-1021 LANG-1022 LANG-1023 LANG-1024
+local lib = import 'lib.libsonnet';
+# Hash comment
+/* Block comment */
+local greet(name) = 'Hello, %s!' % name;
+
+{
+  name: 'gohighlightgo',
+  hidden:: std.length([1, 2, 3]),
+  visible::: self.hidden * 2,
+  greeting: greet($.name),
+  path: @'C:\temp\file',
+  text: |||
+    Multi-line
+    text
+  |||,
+  enabled: if std.isString(self.name) then true else false,
+  items: [x * 1.5 for x in std.range(1, 3)],
+  nothing: null,
+}

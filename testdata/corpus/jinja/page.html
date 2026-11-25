@@ -1,0 +1,20 @@
+<span class="hl-com">{# REQ: LANG-911 LANG-912 LANG-913 LANG-914 #}</span>
+<span class="hl-meta">{%</span> <span class="hl-kw">extends</span> <span class="hl-str">"base.html"</span> <span class="hl-meta">%}</span>
+<span class="hl-meta">{%</span> <span class="hl-kw">block</span> content <span class="hl-meta">%}</span>
+<span class="hl-tag">&lt;h1</span> <span class="hl-attr">class</span>=<span class="hl-str">"title"</span><span class="hl-tag">&gt;</span><span class="hl-meta">{{</span> page<span class="hl-op">.</span>title <span class="hl-op">|</span> upper <span class="hl-meta">}}</span><span class="hl-tag">&lt;/h1&gt;</span>
+<span class="hl-com">{# A template comment</span>
+<span class="hl-com">   over two lines. #}</span>
+<span class="hl-tag">&lt;ul&gt;</span>
+<span class="hl-meta">{%</span><span class="hl-op">-</span> <span class="hl-kw">for</span> item <span class="hl-kw">in</span> items <span class="hl-kw">if</span> item<span class="hl-op">.</span>visible <span class="hl-meta">%}</span>
+  <span class="hl-tag">&lt;li&gt;&lt;a</span> <span class="hl-attr">href</span>=<span class="hl-str">"</span><span class="hl-meta">{{</span> item<span class="hl-op">.</span>url <span class="hl-meta">}}</span>"&gt;<span class="hl-meta">{{</span> item<span class="hl-op">.</span>name <span class="hl-op">~</span> <span class="hl-str">" ("</span> <span class="hl-op">~</span> <span class="hl-builtin">loop</span><span class="hl-op">.</span>index <span class="hl-op">~</span> <span class="hl-str">")"</span> <span class="hl-meta">}}</span><span class="hl-tag">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="hl-meta">{%</span><span class="hl-op">-</span> <span class="hl-kw">else</span> <span class="hl-meta">%}</span>
+  <span class="hl-tag">&lt;li&gt;</span>No items, count = <span class="hl-meta">{{</span> items <span class="hl-op">|</span> length <span class="hl-meta">}}</span><span class="hl-tag">&lt;/li&gt;</span>
+<span class="hl-meta">{%</span><span class="hl-op">-</span> <span class="hl-kw">endfor</span> <span class="hl-meta">%}</span>
+<span class="hl-tag">&lt;/ul&gt;</span>
+<span class="hl-meta">{%</span> <span class="hl-kw">set</span> total <span class="hl-op">=</span> <span class="hl-num">3</span> <span class="hl-op">*</span> <span class="hl-num">1.5</span> <span class="hl-meta">%}</span>
+<span class="hl-meta">{%</span> <span class="hl-kw">if</span> user <span class="hl-kw">is</span> defined <span class="hl-kw">and</span> <span class="hl-kw">not</span> user<span class="hl-op">.</span>banned <span class="hl-meta">%}</span>Hello, <span class="hl-meta">{{</span> user<span class="hl-op">.</span>name<span class="hl-op">|</span>e <span class="hl-meta">}}</span>!<span class="hl-meta">{%</span> <span class="hl-kw">endif</span> <span class="hl-meta">%}</span>
+<span class="hl-meta">{%</span> <span class="hl-kw">macro</span> <span class="hl-fn">input</span>(name, value<span class="hl-op">=</span><span class="hl-str">''</span>, type<span class="hl-op">=</span><span class="hl-str">'text'</span>) <span class="hl-op">-</span><span class="hl-meta">%}</span>
+  <span class="hl-tag">&lt;input</span> <span class="hl-attr">type</span>=<span class="hl-str">"</span><span class="hl-meta">{{</span> type <span class="hl-meta">}}</span>" name="<span class="hl-meta">{{</span> name <span class="hl-meta">}}</span>" value="<span class="hl-meta">{{</span> value <span class="hl-meta">}}</span>"&gt;
+<span class="hl-meta">{%</span><span class="hl-op">-</span> <span class="hl-kw">endmacro</span> <span class="hl-meta">%}</span>
+<span class="hl-meta">{{</span> <span class="hl-builtin">range</span>(<span class="hl-num">10</span>) <span class="hl-op">|</span> sum <span class="hl-meta">}}</span> <span class="hl-meta">{{</span> <span class="hl-builtin">none</span> <span class="hl-meta">}}</span> <span class="hl-meta">{{</span> <span class="hl-builtin">true</span> <span class="hl-meta">}}</span>
+<span class="hl-meta">{%</span> <span class="hl-kw">endblock</span> <span class="hl-meta">%}</span>

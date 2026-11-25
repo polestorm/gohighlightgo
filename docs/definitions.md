@@ -33,7 +33,8 @@ calls
 ## Syntax
 
 One directive per line: a name, values separated by spaces, and optionally options after a lone `:` (the last
-one on the line, so `:` can also be a value: `sigil : : attr`). Lines that
+one on the line, so `:` can also be a value: `sigil : : attr`; a `:` that ends the line is a value:
+`key-names :`). Lines that
 start with `#` and empty lines are ignored. Values are printable ASCII without spaces, except words, which may
 contain any letters.
 
@@ -48,6 +49,7 @@ contain any letters.
 | `upper-type` | | | a name that starts with an upper-case letter and is not a listed word is coloured `hl-type` |
 | `sigil` | characters | a class: `attr`, `meta`, `builtin`, … | a character (once or twice) before a name gives the name that class: `sigil $ : attr` for PHP variables |
 | `line-string` | prefixes | | a string to the end of the line (`\\` in Zig) |
+| `key-names` | characters | | a name followed by one of these characters is coloured `hl-attr` (`key-names :` for object keys; `=` but not `==` or `=>`) |
 | `line-comment` | prefixes | | a comment to the end of the line |
 | `block-comment` | open close | `nested` | a comment between two delimiters; an unclosed one runs to the end |
 | `string` | open close | `escapes`, `multiline`, `doubled`, `name`, `interp=dollar`, `interp=dollar-braces`, `interp=braces`, `interp=hash` | see below |

@@ -1,6 +1,6 @@
 # Wymagania
 
-Każde wymaganie ma identyfikator `PREFIKS-nnn`. Testy i pliki korpusu odwołują się do nich przez
+Każde wymaganie ma identyfikator `PREFIKS-nnn` (od `LANG-1001` cztery cyfry). Testy i pliki korpusu odwołują się do nich przez
 `REQ: PREFIKS-nnn`; test `TestRequirementsCovered` sprawdza pokrycie w obie strony.
 
 | Prefiks | Plik | Zakres |
@@ -26,7 +26,10 @@ Racket 621–622, Common Lisp 631–634, Solidity 641–644, Verilog 651–654, 
 AWK 691–694, asembler x86 701–704, asembler ARM 711–714, COBOL 721–724, Smalltalk 731–734, Modula-2 741–744,
 Oberon 751–754, MoonScript 761–764, fish 771–774, csh 781–784, pliki wsadowe 791–794, XQuery 801–804,
 SPARQL 811–814, Cypher 821–824, PL/SQL 831–832, T-SQL 841–842, Cython 851–852, Mojo 861–862, V 871–874,
-Odin 881–884, Hare 891–894, Gleam 901–904; następny język od `LANG-911`). Każdy język z `Languages()` musi mieć plik
+Odin 881–884, Hare 891–894, Gleam 901–904, Jinja 911–914, Handlebars 921–924, Liquid 931–933, ERB 941–944,
+szablony Go 951–954, CSV 961–963, TSV 971–972, JSON5 981–984, Hjson 991–994, KDL 1001–1004, RON 1011–1014,
+Jsonnet 1021–1024, Starlark 1031–1032, Bicep 1041–1044, Rego 1051–1054, Puppet 1061–1064; następny język od
+`LANG-1071`). Każdy język z `Languages()` musi mieć plik
 w `languages/` nazwany jego nazwą główną (`TestLanguageRequirements`).
 
 Pliki powstają razem z etapami w `../docs/roadmap.md`.

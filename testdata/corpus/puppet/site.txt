@@ -1,0 +1,26 @@
+# REQ: LANG-1061 LANG-1062 LANG-1063 LANG-1064
+/* Web server class. */
+class webserver (
+  String  $docroot = '/var/www',
+  Integer $port    = 8080,
+  Boolean $enabled = true,
+) inherits webserver::params {
+  package { 'nginx':
+    ensure => installed,
+  }
+
+  file { "${docroot}/index.html":
+    ensure  => file,
+    content => "Hello from $facts['hostname'] on port ${port}\n",
+    mode    => '0644',
+    require => Package['nginx'],
+  }
+
+  if $enabled and $port > 1024 {
+    service { 'nginx': ensure => running }
+  } else {
+    notice('disabled')
+  }
+}
+
+node 'web01.example.com' { include webserver }

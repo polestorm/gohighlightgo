@@ -1,0 +1,15 @@
+// REQ: LANG-1001 LANG-1002 LANG-1003 LANG-1004
+package {
+  name "gohighlightgo"
+  version "1.0.0" release=#true
+  dependencies {
+    go-std "1.22" optional=#false
+  }
+  /* outer /* nested */ still a comment */
+  scripts {
+    build r#"go build "./..." "#
+    count 0x1F 1_000 3.14 #null
+  }
+  /- disabled-node "slashdash"
+  legacy true false null
+}

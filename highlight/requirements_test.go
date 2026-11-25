@@ -8,7 +8,7 @@ import (
 	"testing"
 )
 
-var reqRef = regexp.MustCompile(`\b[A-Z]{3,5}-\d{3}\b`)
+var reqRef = regexp.MustCompile(`\b[A-Z]{3,5}-\d{3,4}\b`)
 
 // corpusFiles zwraca pliki korpusu: testdata/corpus/<język>/<nazwa>.txt, każdy z wzorcem <nazwa>.html.
 func corpusFiles(t testing.TB) []string {

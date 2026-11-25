@@ -1,0 +1,13 @@
+# JSON5: The JSON5 Data Interchange Format (spec 1.0.0); requirements/languages/json5.md
+name     json5
+
+builtin  true false null Infinity NaN
+
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+string   ' '  : escapes
+escape        : continuation x=2 u4
+operators  +-
+key-names  :
+keys

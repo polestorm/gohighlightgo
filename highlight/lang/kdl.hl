@@ -1,0 +1,15 @@
+# KDL: The KDL Document Language specification (2.0.0); requirements/languages/kdl.md
+name     kdl
+
+builtin  #true #false #null #inf #-inf #nan true false null
+
+line-comment   //
+block-comment  /* */  : nested
+string   """ """  : escapes multiline
+string   " "      : escapes
+escape        : u-braces
+ident-extra    -#
+ident-part     -.
+key-names  =
+operators  =;/
+hook     rust

@@ -1,0 +1,16 @@
+# REQ: LANG-991 LANG-992 LANG-993 LANG-994
+{
+  // Comments are allowed
+  name: gohighlightgo
+  "quoted key": "value with \"quotes\""
+  version: 1.5
+  enabled: true
+  missing: null
+  /* block */
+  text:
+    '''
+    Multi-line
+    text
+    '''
+  list: [ 1, 2, 3 ]
+}

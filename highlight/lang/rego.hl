@@ -1,0 +1,13 @@
+# Rego: Open Policy Agent policy language reference (OPA 0.6x); requirements/languages/rego.md
+name     rego
+
+keyword  package import default not with as some every in if contains else
+builtin  true false null input data count sum max min sort concat contains startswith endswith
+builtin  sprintf lower upper split trim to_number is_string is_number object array set
+
+line-comment   #
+string   " "  : escapes
+string   ` `  : multiline
+escape        : u4
+operators  +-*/%&|!<>=:.
+calls

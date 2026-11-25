@@ -15,6 +15,7 @@ type table struct {
 	identPart     string           // bajty dozwolone w identyfikatorze, ale nie na początku (' w Haskellu)
 	upperType     bool             // identyfikator spoza słów, zaczynający się wielką literą, dostaje hl-type
 	lispCalls     bool             // identyfikator tuż po ( dostaje hl-fn (Clojure, Lisp)
+	keyNames      string           // identyfikator przed jednym z tych znaków (po odstępach) dostaje hl-attr
 	escapeChar    byte             // znak ucieczki w napisach; 0 oznacza \
 	sigils        []sigil          // znak przed nazwą, np. @ (adnotacje), $ (zmienne PHP)
 	lineStrings   []string         // przedrostki napisów do końca wiersza (\\ w Zigu)
@@ -209,6 +210,9 @@ func (t *table) scan(w *writer, src []byte) {
 		}
 		if j := t.identEnd(src, i); j > i {
 			c := t.wordClass(src[i:j])
+			if c == none && t.keyNames != "" && keyAfter(src, j, t.keyNames) {
+				c = attribute
+			}
 			if c == none && t.upperType && src[i] >= 'A' && src[i] <= 'Z' {
 				c = typeName
 			}
@@ -689,6 +693,18 @@ func parenAfter(src []byte, j int) bool {
 		j++
 	}
 	return j < len(src) && src[j] == '('
+}
+
+// keyAfter mówi, czy po src[j:] (po spacjach i tabulatorach) stoi jeden ze znaków seps, ale nie == ani =>
+// (porównanie i strzałka to nie przypisanie klucza).
+func keyAfter(src []byte, j int, seps string) bool {
+	for j < len(src) && (src[j] == ' ' || src[j] == '\t') {
+		j++
+	}
+	if j >= len(src) || strings.IndexByte(seps, src[j]) < 0 {
+		return false
+	}
+	return !(src[j] == '=' && j+1 < len(src) && (src[j+1] == '=' || src[j+1] == '>'))
 }
 
 // colonAfter mówi, czy po src[j:] (po spacjach i tabulatorach) stoi dwukropek.

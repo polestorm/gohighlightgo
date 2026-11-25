@@ -1,0 +1,16 @@
+// REQ: LANG-1011 LANG-1012 LANG-1013 LANG-1014
+/* outer /* nested */ still a comment */
+GameConfig(
+    window_size: (800, 600),
+    window_title: "PAC-MAN \"quoted\"",
+    fullscreen: false,
+    key: 'x',
+    raw: r#"raw "string""#,
+    mouse_sensitivity: 1.4,
+    difficulty_options: (
+        start_difficulty: Easy,
+        adaptive: Some(true),
+        limit: None,
+    ),
+    count: 0x1F,
+)

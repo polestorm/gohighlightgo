@@ -1,0 +1,26 @@
+<span class="hl-com"># REQ: LANG-1051 LANG-1052 LANG-1053 LANG-1054</span>
+<span class="hl-kw">package</span> authz
+
+<span class="hl-kw">import</span> rego<span class="hl-op">.</span>v1
+
+<span class="hl-kw">default</span> allow <span class="hl-op">:=</span> <span class="hl-builtin">false</span>
+
+<span class="hl-com"># Admins can do anything.</span>
+allow <span class="hl-kw">if</span> {
+    <span class="hl-builtin">input</span><span class="hl-op">.</span>user<span class="hl-op">.</span>role <span class="hl-op">==</span> <span class="hl-str">"admin"</span>
+}
+
+allow <span class="hl-kw">if</span> {
+    <span class="hl-kw">some</span> i
+    <span class="hl-builtin">input</span><span class="hl-op">.</span>method <span class="hl-op">==</span> <span class="hl-str">"GET"</span>
+    <span class="hl-builtin">startswith</span>(<span class="hl-builtin">input</span><span class="hl-op">.</span>path, <span class="hl-str">"/public/"</span>)
+    <span class="hl-builtin">count</span>(<span class="hl-builtin">data</span><span class="hl-op">.</span>blocked[i]) <span class="hl-op">&lt;</span> <span class="hl-num">3</span>
+    <span class="hl-kw">not</span> deny
+}
+
+deny <span class="hl-builtin">contains</span> msg <span class="hl-kw">if</span> {
+    <span class="hl-builtin">input</span><span class="hl-op">.</span>user<span class="hl-op">.</span>age <span class="hl-op">&lt;</span> <span class="hl-num">18</span>
+    msg <span class="hl-op">:=</span> <span class="hl-builtin">sprintf</span>(<span class="hl-str">"user %s is too young"</span>, [<span class="hl-builtin">input</span><span class="hl-op">.</span>user<span class="hl-op">.</span>name])
+}
+
+raw <span class="hl-op">:=</span> <span class="hl-str">`raw "string"`</span>

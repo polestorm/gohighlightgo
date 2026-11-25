@@ -1,0 +1,17 @@
+{{!-- REQ: LANG-921 LANG-922 LANG-923 LANG-924 --}}
+<div class="entry">
+  {{! A short comment }}
+  <h1>{{title}}</h1>
+  {{#if author}}
+    <p>By {{author.firstName}} {{author.lastName}}</p>
+  {{else}}
+    <p>Unknown author</p>
+  {{/if}}
+  <ul>
+  {{#each comments as |comment|}}
+    <li>{{@index}}: {{comment.body}} {{{comment.html}}}</li>
+  {{/each}}
+  </ul>
+  {{> footer year="2026" }}
+  {{#unless this.hidden}}{{lookup ../labels "name"}}{{/unless}}
+</div>

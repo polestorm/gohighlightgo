@@ -1,0 +1,23 @@
+// REQ: LANG-1041 LANG-1042 LANG-1043 LANG-1044
+targetScope = 'resourceGroup'
+
+@description('Storage account name')
+@minLength(3)
+param storageName string = 'st${uniqueString(resourceGroup().id)}'
+param location string = resourceGroup().location
+param count int = 3
+
+/* Storage account */
+resource storage 'Microsoft.Storage/storageAccounts@2023-01-01' = {
+  name: storageName
+  location: location
+  sku: { name: 'Standard_LRS' }
+  kind: 'StorageV2'
+  properties: { supportsHttpsTrafficOnly: true }
+}
+
+var multi = '''
+Multi-line
+text'''
+
+output ids array = [for i in range(0, count): '${storage.id}-${i}']

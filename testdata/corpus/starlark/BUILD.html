@@ -1,0 +1,16 @@
+<span class="hl-com"># REQ: LANG-1031 LANG-1032</span>
+<span class="hl-builtin">load</span>(<span class="hl-str">"@rules_go//go:def.bzl"</span>, <span class="hl-str">"go_library"</span>, <span class="hl-str">"go_binary"</span>)
+
+<span class="hl-builtin">go_library</span>(
+    name <span class="hl-op">=</span> <span class="hl-str">"highlight"</span>,
+    srcs <span class="hl-op">=</span> <span class="hl-builtin">glob</span>([<span class="hl-str">"*.go"</span>], exclude <span class="hl-op">=</span> [<span class="hl-str">"*_test.go"</span>]),
+    importpath <span class="hl-op">=</span> <span class="hl-str">"github.com/polestorm/gohighlightgo/highlight"</span>,
+    visibility <span class="hl-op">=</span> [<span class="hl-str">"//visibility:public"</span>],
+)
+
+<span class="hl-kw">def</span> <span class="hl-fn">_impl</span>(ctx)<span class="hl-op">:</span>
+    out <span class="hl-op">=</span> ctx.actions.<span class="hl-fn">declare_file</span>(ctx.label.name <span class="hl-op">+</span> <span class="hl-str">".txt"</span>)
+    ctx.actions.<span class="hl-fn">write</span>(out, <span class="hl-str">"hello</span><span class="hl-esc">\n</span><span class="hl-str">"</span>)
+    <span class="hl-kw">return</span> [<span class="hl-fn">DefaultInfo</span>(files <span class="hl-op">=</span> <span class="hl-builtin">depset</span>([out]))]
+
+greet <span class="hl-op">=</span> <span class="hl-builtin">rule</span>(implementation <span class="hl-op">=</span> _impl, attrs <span class="hl-op">=</span> {<span class="hl-str">"count"</span><span class="hl-op">:</span> <span class="hl-builtin">attr</span>.<span class="hl-type">int</span>(default <span class="hl-op">=</span> <span class="hl-num">1</span>)})

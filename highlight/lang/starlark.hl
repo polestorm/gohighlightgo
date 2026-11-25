@@ -1,0 +1,7 @@
+# Starlark: Starlark language specification (bazelbuild/starlark) and the Bazel build encyclopedia; requirements/languages/starlark.md
+extends  python
+name     starlark bzl bazel star skylark
+
+builtin  load struct depset select glob rule attr provider native repository_rule module_extension
+builtin  package exports_files filegroup genrule cc_library cc_binary go_library go_binary py_library
+builtin  py_binary

@@ -1,0 +1,26 @@
+<span class="hl-com"># REQ: LANG-1061 LANG-1062 LANG-1063 LANG-1064</span>
+<span class="hl-com">/* Web server class. */</span>
+<span class="hl-kw">class</span> <span class="hl-fn">webserver</span> (
+  <span class="hl-type">String</span>  <span class="hl-attr">$docroot</span> <span class="hl-op">=</span> <span class="hl-str">'/var/www'</span><span class="hl-op">,</span>
+  <span class="hl-type">Integer</span> <span class="hl-attr">$port</span>    <span class="hl-op">=</span> <span class="hl-num">8080</span><span class="hl-op">,</span>
+  <span class="hl-type">Boolean</span> <span class="hl-attr">$enabled</span> <span class="hl-op">=</span> <span class="hl-builtin">true</span><span class="hl-op">,</span>
+) <span class="hl-kw">inherits</span> webserver<span class="hl-op">::</span>params {
+  <span class="hl-type">package</span> { <span class="hl-str">'nginx'</span><span class="hl-op">:</span>
+    ensure <span class="hl-op">=&gt;</span> installed<span class="hl-op">,</span>
+  }
+
+  <span class="hl-type">file</span> { <span class="hl-str">"</span><span class="hl-esc">${docroot}</span><span class="hl-str">/index.html"</span><span class="hl-op">:</span>
+    ensure  <span class="hl-op">=&gt;</span> <span class="hl-type">file</span><span class="hl-op">,</span>
+    content <span class="hl-op">=&gt;</span> <span class="hl-str">"Hello from </span><span class="hl-esc">$facts</span><span class="hl-str">['hostname'] on port </span><span class="hl-esc">${port}\n</span><span class="hl-str">"</span><span class="hl-op">,</span>
+    mode    <span class="hl-op">=&gt;</span> <span class="hl-str">'0644'</span><span class="hl-op">,</span>
+    <span class="hl-kw">require</span> <span class="hl-op">=&gt;</span> Package[<span class="hl-str">'nginx'</span>]<span class="hl-op">,</span>
+  }
+
+  <span class="hl-kw">if</span> <span class="hl-attr">$enabled</span> <span class="hl-kw">and</span> <span class="hl-attr">$port</span> <span class="hl-op">&gt;</span> <span class="hl-num">1024</span> {
+    <span class="hl-type">service</span> { <span class="hl-str">'nginx'</span><span class="hl-op">:</span> ensure <span class="hl-op">=&gt;</span> running }
+  } <span class="hl-kw">else</span> {
+    <span class="hl-builtin">notice</span>(<span class="hl-str">'disabled'</span>)
+  }
+}
+
+<span class="hl-kw">node</span> <span class="hl-str">'web01.example.com'</span> { <span class="hl-kw">include</span> webserver }

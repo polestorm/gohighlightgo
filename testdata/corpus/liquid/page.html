@@ -1,0 +1,18 @@
+<span class="hl-meta">{%</span> <span class="hl-kw">comment</span> <span class="hl-meta">%}</span> REQ: LANG-931 LANG-932 LANG-933 <span class="hl-meta">{%</span> <span class="hl-kw">endcomment</span> <span class="hl-meta">%}</span>
+<span class="hl-tag">&lt;h1&gt;</span><span class="hl-meta">{{</span> product<span class="hl-op">.</span>title <span class="hl-op">|</span> upcase <span class="hl-meta">}}</span><span class="hl-tag">&lt;/h1&gt;</span>
+<span class="hl-meta">{%</span> <span class="hl-kw">assign</span> total <span class="hl-op">=</span> <span class="hl-num">0</span> <span class="hl-meta">%}</span>
+<span class="hl-tag">&lt;ul&gt;</span>
+<span class="hl-meta">{%</span> <span class="hl-kw">for</span> variant <span class="hl-kw">in</span> product<span class="hl-op">.</span>variants limit<span class="hl-op">:</span> <span class="hl-num">3</span> <span class="hl-meta">%}</span>
+  <span class="hl-tag">&lt;li</span> <span class="hl-attr">class</span>=<span class="hl-str">"</span><span class="hl-meta">{%</span> <span class="hl-kw">cycle</span> <span class="hl-str">'odd'</span>, <span class="hl-str">'even'</span> <span class="hl-meta">%}</span>"&gt;<span class="hl-meta">{{</span> variant<span class="hl-op">.</span>title <span class="hl-meta">}}</span> - <span class="hl-meta">{{</span> variant<span class="hl-op">.</span>price <span class="hl-op">|</span> money <span class="hl-meta">}}</span><span class="hl-tag">&lt;/li&gt;</span>
+  <span class="hl-meta">{%</span> <span class="hl-kw">assign</span> total <span class="hl-op">=</span> total <span class="hl-op">|</span> plus<span class="hl-op">:</span> <span class="hl-num">1</span> <span class="hl-meta">%}</span>
+<span class="hl-meta">{%</span> <span class="hl-kw">else</span> <span class="hl-meta">%}</span>
+  <span class="hl-tag">&lt;li&gt;</span>No variants<span class="hl-tag">&lt;/li&gt;</span>
+<span class="hl-meta">{%</span> <span class="hl-kw">endfor</span> <span class="hl-meta">%}</span>
+<span class="hl-tag">&lt;/ul&gt;</span>
+<span class="hl-meta">{%</span> <span class="hl-kw">if</span> customer <span class="hl-kw">and</span> customer<span class="hl-op">.</span>tags <span class="hl-kw">contains</span> <span class="hl-str">"vip"</span> <span class="hl-meta">%}</span>
+  <span class="hl-tag">&lt;p&gt;</span>Welcome back, <span class="hl-meta">{{</span> customer<span class="hl-op">.</span>first_name <span class="hl-op">|</span> default<span class="hl-op">:</span> <span class="hl-str">"friend"</span> <span class="hl-meta">}}</span>!<span class="hl-tag">&lt;/p&gt;</span>
+<span class="hl-meta">{%</span> <span class="hl-kw">elsif</span> product<span class="hl-op">.</span>available <span class="hl-op">==</span> <span class="hl-builtin">false</span> <span class="hl-meta">%}</span>
+  <span class="hl-tag">&lt;p&gt;</span>Sold out (<span class="hl-meta">{{</span> total <span class="hl-meta">}}</span>)<span class="hl-tag">&lt;/p&gt;</span>
+<span class="hl-meta">{%</span> <span class="hl-kw">endif</span> <span class="hl-meta">%}</span>
+<span class="hl-meta">{%</span><span class="hl-op">-</span> <span class="hl-kw">capture</span> greeting <span class="hl-op">-</span><span class="hl-meta">%}</span>Hello, <span class="hl-meta">{{</span> shop<span class="hl-op">.</span>name <span class="hl-meta">}}{%</span><span class="hl-op">-</span> <span class="hl-kw">endcapture</span> <span class="hl-op">-</span><span class="hl-meta">%}</span>
+<span class="hl-meta">{{</span> greeting <span class="hl-op">|</span> strip <span class="hl-meta">}}</span> <span class="hl-meta">{{</span> <span class="hl-builtin">nil</span> <span class="hl-meta">}}</span> <span class="hl-meta">{{</span> <span class="hl-builtin">empty</span> <span class="hl-meta">}}</span>

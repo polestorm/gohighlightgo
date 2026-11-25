@@ -1,0 +1,17 @@
+<span class="hl-com">{{!-- REQ: LANG-921 LANG-922 LANG-923 LANG-924 --}}</span>
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-str">"entry"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-com">{{! A short comment }}</span>
+  <span class="hl-tag">&lt;h1&gt;</span><span class="hl-meta">{{</span>title<span class="hl-meta">}}</span><span class="hl-tag">&lt;/h1&gt;</span>
+  <span class="hl-meta">{{</span><span class="hl-op">#</span><span class="hl-kw">if</span> author<span class="hl-meta">}}</span>
+    <span class="hl-tag">&lt;p&gt;</span>By <span class="hl-meta">{{</span>author<span class="hl-op">.</span>firstName<span class="hl-meta">}}</span> <span class="hl-meta">{{</span>author<span class="hl-op">.</span>lastName<span class="hl-meta">}}</span><span class="hl-tag">&lt;/p&gt;</span>
+  <span class="hl-meta">{{</span><span class="hl-kw">else</span><span class="hl-meta">}}</span>
+    <span class="hl-tag">&lt;p&gt;</span>Unknown author<span class="hl-tag">&lt;/p&gt;</span>
+  <span class="hl-meta">{{</span><span class="hl-op">/</span><span class="hl-kw">if</span><span class="hl-meta">}}</span>
+  <span class="hl-tag">&lt;ul&gt;</span>
+  <span class="hl-meta">{{</span><span class="hl-op">#</span><span class="hl-kw">each</span> comments as |comment|<span class="hl-meta">}}</span>
+    <span class="hl-tag">&lt;li&gt;</span><span class="hl-meta">{{</span><span class="hl-attr">@index</span><span class="hl-meta">}}</span>: <span class="hl-meta">{{</span>comment<span class="hl-op">.</span>body<span class="hl-meta">}}</span> <span class="hl-meta">{{{</span>comment<span class="hl-op">.</span>html<span class="hl-meta">}}}</span><span class="hl-tag">&lt;/li&gt;</span>
+  <span class="hl-meta">{{</span><span class="hl-op">/</span><span class="hl-kw">each</span><span class="hl-meta">}}</span>
+  <span class="hl-tag">&lt;/ul&gt;</span>
+  <span class="hl-meta">{{</span><span class="hl-op">&gt;</span> footer year<span class="hl-op">=</span><span class="hl-str">"2026"</span> <span class="hl-meta">}}</span>
+  <span class="hl-meta">{{</span><span class="hl-op">#</span><span class="hl-kw">unless</span> <span class="hl-builtin">this</span><span class="hl-op">.</span>hidden<span class="hl-meta">}}{{</span><span class="hl-kw">lookup</span> <span class="hl-op">../</span>labels <span class="hl-str">"name"</span><span class="hl-meta">}}{{</span><span class="hl-op">/</span><span class="hl-kw">unless</span><span class="hl-meta">}}</span>
+<span class="hl-tag">&lt;/div&gt;</span>

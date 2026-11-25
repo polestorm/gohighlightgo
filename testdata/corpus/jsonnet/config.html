@@ -1,0 +1,20 @@
+<span class="hl-com">// REQ: LANG-1021 LANG-1022 LANG-1023 LANG-1024</span>
+<span class="hl-kw">local</span> lib <span class="hl-op">=</span> <span class="hl-kw">import</span> <span class="hl-str">'lib.libsonnet'</span>;
+<span class="hl-com"># Hash comment</span>
+<span class="hl-com">/* Block comment */</span>
+<span class="hl-kw">local</span> <span class="hl-fn">greet</span>(name) <span class="hl-op">=</span> <span class="hl-str">'Hello, %s!'</span> <span class="hl-op">%</span> name;
+
+{
+  <span class="hl-attr">name</span>: <span class="hl-str">'gohighlightgo'</span>,
+  <span class="hl-attr">hidden</span>:: <span class="hl-builtin">std</span><span class="hl-op">.</span><span class="hl-fn">length</span>([<span class="hl-num">1</span>, <span class="hl-num">2</span>, <span class="hl-num">3</span>]),
+  <span class="hl-attr">visible</span>::: <span class="hl-kw">self</span><span class="hl-op">.</span>hidden <span class="hl-op">*</span> <span class="hl-num">2</span>,
+  <span class="hl-attr">greeting</span>: <span class="hl-fn">greet</span>($<span class="hl-op">.</span>name),
+  <span class="hl-attr">path</span>: <span class="hl-str">@'C:\temp\file'</span>,
+  <span class="hl-attr">text</span>: <span class="hl-str">|||</span>
+<span class="hl-str">    Multi-line</span>
+<span class="hl-str">    text</span>
+<span class="hl-str">  |||</span>,
+  <span class="hl-attr">enabled</span>: <span class="hl-kw">if</span> <span class="hl-builtin">std</span><span class="hl-op">.</span><span class="hl-fn">isString</span>(<span class="hl-kw">self</span><span class="hl-op">.</span>name) <span class="hl-kw">then</span> <span class="hl-builtin">true</span> <span class="hl-kw">else</span> <span class="hl-builtin">false</span>,
+  <span class="hl-attr">items</span>: [x <span class="hl-op">*</span> <span class="hl-num">1.5</span> <span class="hl-kw">for</span> x <span class="hl-kw">in</span> <span class="hl-builtin">std</span><span class="hl-op">.</span><span class="hl-fn">range</span>(<span class="hl-num">1</span>, <span class="hl-num">3</span>)],
+  <span class="hl-attr">nothing</span>: <span class="hl-builtin">null</span>,
+}
