@@ -76,6 +76,20 @@ func Chroma(lexer chroma.Lexer, code []byte) ([]byte, error) {
 	return b.Bytes(), nil
 }
 
+// ChromaKeepLF działa jak Chroma, ale bez zamiany końców wiersza na LF (opcja EnsureLF), żeby porównanie
+// zachowania tekstu dotyczyło działania leksera, a nie ustawienia domyślnego.
+func ChromaKeepLF(lexer chroma.Lexer, code []byte) ([]byte, error) {
+	it, err := lexer.Tokenise(&chroma.TokeniseOptions{State: "root", EnsureLF: false}, string(code))
+	if err != nil {
+		return nil, err
+	}
+	var b bytes.Buffer
+	if err := chromaFormatter.Format(&b, styles.Fallback, it); err != nil {
+		return nil, err
+	}
+	return b.Bytes(), nil
+}
+
 // ChromaLanguages zwraca liczbę lekserów chroma.
 func ChromaLanguages() int { return len(lexers.GlobalLexerRegistry.Lexers) }
 

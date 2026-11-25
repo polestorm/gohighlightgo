@@ -28,8 +28,9 @@ Compared with [chroma](https://github.com/alecthomas/chroma), the usual highligh
 - **Safe by construction**: the output contains only escaped text and `<span>` elements with classes from a
   fixed list of 14, never nested and never spanning a line break. An independent checker verifies this in the
   tests and in fuzzing, and removing the tags gives back the input.
-- **Linear time on hostile input**: one pass over the bytes, no regular expressions; 142 pathological cases are
-  timed in the test suite, and the library is fuzzed.
+- **Linear time on hostile input**: one pass over the bytes, no regular expressions; 283 pathological cases are
+  timed in the test suite, and the library is fuzzed. On 64 kB of hostile input chroma hangs or needs more than
+  15 s in 101 of 2,200 cases and highlight in 8 of 1,474; gohighlightgo in none of 3,278.
 - **Deterministic**: the same input gives the same output, byte for byte, documented and tested.
 - **Made to be built on**: a single function, a stylesheet per theme, a command, and a few lines to connect it to
   a Markdown renderer (for example [gomdgo](https://github.com/polestorm/gomdgo)) behind a build tag.
@@ -39,188 +40,11 @@ older tools (keywords, comments, strings and numbers; few context rules), no det
 
 ## Contents
 
-[Languages](#languages) · [Usage](#usage) · [Comparison](#comparison) · [Status](#status) ·
-[Documentation](#documentation) · [How the comparison was measured](#how-the-comparison-was-measured) ·
-[License](#license)
-
-## Languages
-
-| Language | Names |
-|---|---|
-| Go | `go`, `golang` |
-| C, C++ | `c`, `h`; `cpp`, `c++`, `cxx`, `cc`, `hpp`, `arduino`, `ino` |
-| Java | `java` |
-| JavaScript, TypeScript | `javascript`, `js`, `mjs`, `cjs`, `jsx`; `typescript`, `ts`, `mts`, `cts`, `tsx` |
-| C# | `csharp`, `cs`, `c#` |
-| Kotlin | `kotlin`, `kt`, `kts` |
-| Swift | `swift` |
-| Scala | `scala`, `sc` |
-| Dart | `dart` |
-| Python | `python`, `py`, `python3` |
-| Rust | `rust`, `rs` |
-| Lua | `lua` |
-| R | `r` |
-| PHP | `php` (with HTML outside `<?php … ?>`) |
-| Perl | `perl`, `pl`, `pm` |
-| Objective-C | `objectivec`, `objc`, `objective-c`, `m`, `mm` |
-| Elixir, Erlang | `elixir`, `ex`, `exs`; `erlang`, `erl` |
-| Clojure | `clojure`, `clj`, `cljs`, `cljc`, `edn` |
-| F#, OCaml | `fsharp`, `fs`, `f#`; `ocaml`, `ml`, `mli` |
-| Julia | `julia`, `jl` |
-| MATLAB | `matlab`, `octave` |
-| Groovy | `groovy`, `gradle`, `gvy` |
-| PowerShell | `powershell`, `ps1`, `pwsh`, `posh` |
-| Visual Basic | `vb`, `vbnet`, `visualbasic`, `vba`, `vbs`, `vbscript` |
-| Fortran | `fortran`, `f90`, `f95`, `f03`, `f08`, `for` |
-| Makefile, CMake | `make`, `makefile`, `mk`, `mak`; `cmake` |
-| Dockerfile | `dockerfile`, `docker`, `containerfile` |
-| INI, properties | `ini`, `cfg`, `conf`, `desktop`, `gitconfig`, `editorconfig`, `systemd`, `reg`; `properties`, `props` |
-| Protocol Buffers, GraphQL | `protobuf`, `proto`, `proto3`; `graphql`, `gql` |
-| HCL (Terraform, Packer), Nix | `hcl`, `terraform`, `tf`, `tfvars`, `packer`; `nix` |
-| LaTeX | `latex`, `tex`, `sty`, `cls` |
-| Vim script | `vim`, `vimscript`, `viml` |
-| AsciiDoc | `asciidoc`, `adoc`, `asc` (source blocks highlighted in their own language) |
-| Elm, Nim, Crystal, D | `elm`; `nim`, `nims`, `nimble`; `crystal`, `cr`; `d`, `dlang` |
-| Ada, Prolog | `ada`, `adb`, `ads`; `prolog` |
-| Scheme, Racket, Common Lisp | `scheme`, `scm`, `ss`; `racket`, `rkt`; `commonlisp`, `lisp`, `cl`, `el`, `elisp`, `emacs-lisp` |
-| Solidity | `solidity`, `sol` |
-| Verilog, VHDL | `verilog`, `systemverilog`, `sv`, `svh`, `vh`; `vhdl`, `vhd` |
-| GLSL | `glsl`, `vert`, `frag` |
-| Tcl, AWK | `tcl`, `tk`; `awk`, `gawk`, `mawk`, `nawk` |
-| Assembly | `asm`, `nasm`, `x86asm`, `gas`, `s`; `armasm`, `arm`, `aarch64`, `arm64` |
-| COBOL | `cobol`, `cbl`, `cob`, `cpy` (also the fixed format) |
-| Smalltalk | `smalltalk`, `st`, `squeak`, `pharo` |
-| Modula-2, Oberon | `modula2`, `modula-2`, `mod`, `def`; `oberon`, `ob`, `obn` |
-| MoonScript | `moonscript`, `moon` |
-| fish, csh | `fish`; `csh`, `tcsh` |
-| Windows batch | `batch`, `bat`, `cmd` |
-| XQuery, SPARQL, Cypher | `xquery`, `xq`, `xqy`; `sparql`, `rq`; `cypher`, `cql` |
-| PL/SQL, T-SQL | `plsql`, `pls`; `tsql`, `mssql`, `t-sql` |
-| Cython, Mojo | `cython`, `pyx`, `pxd`; `mojo` |
-| V, Odin, Hare, Gleam | `v`, `vlang`; `odin`; `hare`, `ha`; `gleam` |
-| Templates | `jinja` (also `django`, `twig`, `nunjucks`); `handlebars`, `mustache`; `liquid`; `erb`; `gotemplate`, `helm` (HTML outside the tags) |
-| CSV, TSV | `csv`; `tsv`, `tab` |
-| JSON5, Hjson, KDL, RON | `json5`; `hjson`; `kdl`; `ron` |
-| Jsonnet, Starlark | `jsonnet`, `libsonnet`; `starlark`, `bzl`, `bazel`, `star` |
-| Bicep, Rego, Puppet | `bicep`; `rego`; `puppet`, `pp` |
-| Org, reStructuredText, Textile | `org`, `orgmode`; `rst`, `restructuredtext`, `rest`; `textile` (code blocks in their own language) |
-| Dhall, Haxe, ActionScript | `dhall`; `haxe`, `hx`; `actionscript`, `as3` |
-| Delphi forms | `dfm`, `lfm`, `fmx` |
-| Luau, Teal | `luau`; `teal`, `tl` |
-| F*, Lean, Agda, Idris, Coq | `fstar`, `fst`; `lean`, `lean4`; `agda`; `idris`, `idr`; `coq`, `rocq` |
-| PureScript, ReScript, Reason | `purescript`, `purs`; `rescript`, `res`; `reason`, `re`, `reasonml` |
-| Ruby | `ruby`, `rb` |
-| Haskell | `haskell`, `hs` |
-| Zig | `zig` |
-| SQL | `sql` |
-| JSON | `json`, `jsonc` |
-| Pascal, Delphi | `pascal`, `delphi`, `pas`, `objectpascal` |
-| XML, HTML | `xml`, `xsd`, `xsl`, `xslt`, `svg`, `plist`; `html`, `htm`, `xhtml`, `vue`, `svelte` (with JavaScript in `<script>` and CSS in `<style>`) |
-| CSS | `css`, `scss`, `less` |
-| YAML, TOML | `yaml`, `yml`, `ansible`; `toml` |
-| Shell | `sh`, `bash`, `shell`, `zsh`, `ksh` |
-| diff | `diff`, `patch` |
-| Markdown | `markdown`, `md` (fenced code highlighted in its own language) |
-| Apex, Hack, Nemerle | `apex`; `hack`, `hh`; `nemerle` |
-| AutoHotkey, AutoIt | `autohotkey`, `ahk`; `autoit`, `au3` |
-| Ballerina, Chapel, Pony, Vala | `ballerina`, `bal`; `chapel`, `chpl`; `pony`; `vala` |
-| Clean, Roc, Mercury, Logtalk | `clean`; `roc`; `mercury`; `logtalk`, `lgt` |
-| CoffeeScript, LiveScript, QML | `coffeescript`, `coffee`; `livescript`, `ls`; `qml` |
-| Factor, Forth, J, Janet, Red | `factor`; `forth`, `fth`; `j`; `janet`; `red`, `rebol` |
-| OpenSCAD, PostScript, Pike | `openscad`, `scad`; `postscript`, `ps`, `eps`; `pike` |
-| Raku, REXX, Wolfram Language | `raku`, `perl6`; `rexx`; `wolfram`, `mathematica`, `wl` |
-| SAS, Stata, Zeek | `sas`; `stata`; `zeek`, `bro` |
-| ABAP, ANTLR, AppleScript | `abap`; `antlr`, `g4`; `applescript` |
-| BibTeX, Brainfuck, Cap'n Proto | `bibtex`, `bib`; `brainfuck`, `bf`; `capnp` |
-| Ceylon, Eiffel, Io, Modelica | `ceylon`; `eiffel`, `e`; `io`; `modelica`, `mo` |
-| Fennel, Hy | `fennel`, `fnl`; `hy` |
-| GDScript, Gherkin, gnuplot | `gdscript`, `gd`; `gherkin`, `cucumber`, `feature`; `gnuplot`, `gp` |
-| LLVM IR, WGSL, Smali | `llvm`, `ll`; `wgsl`; `smali` |
-| nginx, NSIS, RPM spec, DNS zone files | `nginx`; `nsis`, `nsi`; `rpmspec`, `spec`; `dnszone`, `zone` |
-| PL/pgSQL, PromQL | `plpgsql`, `postgresql`, `psql`; `promql` |
-| Standard ML, Thrift, Turtle, YANG | `sml`; `thrift`; `turtle`, `ttl`; `yang` |
-| SourcePawn, POV-Ray, HTTP | `sourcepawn`, `sp`; `povray`, `pov`; `http` |
-| Apache, Caddyfile, lighttpd | `apache`, `htaccess`; `caddyfile`; `lighttpd` |
-| BNF, EBNF | `bnf`, `abnf`; `ebnf` |
-| Berry, Boo, ChaiScript, Dylan, Wren, Squirrel, AngelScript | `berry`; `boo`; `chaiscript`; `dylan`; `wren`; `squirrel`; `angelscript` |
-| FreeBASIC, QBasic | `freebasic`, `fb`; `qbasic`, `qb` |
-| Isabelle, Whiley, Koka, Carbon | `isabelle`, `thy`; `whiley`; `koka`; `carbon` |
-| JSONata, Kusto, DAX, Power Query M, PRQL, Pig Latin | `jsonata`; `kusto`, `kql`; `dax`; `powerquery`, `pq`; `prql`; `pig` |
-| MiniZinc, Scilab, q (kdb+), APL, BQN | `minizinc`, `mzn`; `scilab`; `q`, `kdb`; `apl`; `bqn` |
-| MLIR, TableGen, Z80 assembly, OpenEdge ABL | `mlir`; `tablegen`, `td`; `z80`; `abl`, `progress` |
-| pkg-config, just, Meson, Ninja, GN, Kconfig | `pkgconfig`, `pc`; `justfile`, `just`; `meson`; `ninja`; `gn`; `kconfig` |
-| Devicetree, GNU ld scripts, Sieve, SNOBOL4 | `dts`, `dtsi`; `ld`, `lds`; `sieve`; `snobol` |
-| TypoScript, Pine Script, Logo, ink, EJS | `typoscript`; `pinescript`, `pine`; `logo`; `ink`; `ejs` |
-| HLSL, CUDA, OpenCL C, Metal | `hlsl`, `fx`; `cuda`, `cu`; `opencl`, `ocl`; `metal`, `msl` |
-| Graphviz DOT, PlantUML, Mermaid | `dot`, `graphviz`, `gv`; `plantuml`, `puml`; `mermaid`, `mmd` |
-| ASN.1, CUE, Pkl, Nickel, Smithy | `asn1`; `cue`; `pkl`; `nickel`, `ncl`; `smithy` |
-| Typst, roff (man pages), jq | `typst`, `typ`; `groff`, `roff`, `man`; `jq` |
-| Varnish VCL, HAProxy | `vcl`, `varnish`; `haproxy` |
-| Nushell, Elvish | `nushell`, `nu`; `elvish`, `elv` |
-| Maxima, AMPL, newLISP, MoonBit | `maxima`; `ampl`; `newlisp`; `moonbit`, `mbt` |
-| Cairo, Move, Vyper, Clarity | `cairo`; `move`; `vyper`, `vy`; `clarity` |
-| G-code, IEC 61131-3 Structured Text | `gcode`, `nc`; `structuredtext`, `iecst`, `scl` |
-| OpenQASM, Q# | `openqasm`, `qasm`; `qsharp`, `qs` |
-| PureBasic, Xojo | `purebasic`, `pb`; `xojo` |
-| 6502, 68000 and AVR assembly | `asm6502`, `6502`, `ca65`; `m68k`; `avrasm`, `avr` |
-| Inno Setup, LilyPond, Maple, MEL | `innosetup`, `iss`; `lilypond`, `ly`; `maple`; `mel` |
-| Icon, PL/I, TTCN-3, Oz, Frink | `icon`, `unicon`; `pli`, `pl1`; `ttcn3`; `oz`; `frink` |
-| Gambas, BlitzBasic, Clipper / xBase | `gambas`; `blitzbasic`, `blitzmax`; `clipper`, `harbour`, `foxpro` |
-| CFML, CLIPS, Web IDL | `cfml`, `cfscript`; `clips`; `webidl`, `idl` |
-| Cassandra CQL, ArangoDB AQL | `cassandra`; `aql` |
-| mcfunction, sed, Xorg, ISC dhcpd, CFEngine 3 | `mcfunction`; `sed`; `xorg`; `dhcpd`; `cfengine3`, `cf3` |
-| Turing, ALGOL 60/68, BCPL, Igor Pro | `turing`; `algol`, `algol68`; `bcpl`; `igor`, `ipf` |
-| UnrealScript, Papyrus, LSL | `unrealscript`, `uc`; `papyrus`, `psc`; `lsl` |
-
-Names are matched without regard to case. Each language is described from its specification; what is
-highlighted, and where the highlighting is only an approximation, is listed in
-[requirements/languages/](requirements/languages/). 133 of them are definitions in
-[highlight/lang/](highlight/lang/); markup, CSS, YAML, TOML, shell, diff, Markdown, INI, properties, AsciiDoc,
-CSV, TSV, Org, reStructuredText, Textile and the template languages have scanners in Go.
-
-## Usage
-
-```go
-out, ok := highlight.HTML("python", src)  // fragment: escaped code with <span class="hl-…">
-names := highlight.Languages()            // every accepted name and alias, sorted
-css, _ := highlight.ThemeCSS("light")     // "light" (the default), "dark" or "auto" (follows the system)
-err := highlight.Register(definition)     // add a language from a definition file (docs/definitions.md)
-```
-
-The classes are `hl-kw` (keyword), `hl-type`, `hl-builtin`, `hl-str`, `hl-esc` (escape in a string),
-`hl-num`, `hl-com` (comment), `hl-op`, `hl-fn` (name before a parenthesis), `hl-tag`, `hl-attr`, `hl-ins`,
-`hl-del` and `hl-meta` (preprocessor, annotations). The stylesheet applies inside an element with the class
-`hl`, so a block is written as `<pre class="hl"><code class="language-go">…</code></pre>`. Invalid UTF-8 and NUL
-bytes are replaced with U+FFFD.
-
-### Command line
-
-```sh
-go install github.com/polestorm/gohighlightgo/cmd/gohighlightgo@latest
-gohighlightgo main.go > main.html                  # fragment; the language comes from the extension
-gohighlightgo -lang sql -standalone -theme dark < q.sql > q.html
-gohighlightgo -list
-gohighlightgo -def mylang.hl -lang mylang code.txt  # a language from a definition file
-```
-
-### With gomdgo
-
-gomdgo hands fenced code blocks to the caller through `Config.CodeBlocks` (language names match without regard
-to case). The adapter lives in the caller's module, so neither library depends on the other:
-
-```go
-blocks := map[string]markdown.CodeBlockFunc{}
-for _, name := range highlight.Languages() {
-	blocks[name] = func(b markdown.CodeBlock) ([]byte, error) {
-		code, _ := highlight.HTML(b.Lang, b.Code)
-		return wrap(b.Lang, code), nil // <pre class="hl"><code class="language-…">…</code></pre>
-	}
-}
-```
-
-A program that wants highlighting to be optional puts the adapter in a file with a build tag
-(`//go:build highlight`), so `go build -tags highlight` includes it and a plain `go build` leaves it out.
-Complete adapters are in [docs/adapters/](docs/adapters/).
+- [Why gohighlightgo](#why-gohighlightgo) · [Comparison](#comparison) · [Status](#status) ·
+  [Documentation](#documentation) · [How the comparison was measured](#how-the-comparison-was-measured) ·
+  [License](#license)
+- [Usage](docs/usage.md): the API, classes and stylesheets, command line, connecting to a Markdown renderer
+- [Languages](docs/languages.md): the 298 languages and the names each one accepts
 
 ## Comparison
 
@@ -241,8 +65,13 @@ Complete adapters are in [docs/adapters/](docs/adapters/).
 | HTML in the code is escaped[^safe] | yes | yes | yes |
 | Guarantees hold for added languages | yes, by construction 🥇 | not documented | not documented |
 | Elements span line breaks | never 🥇 | yes (whitespace) | — |
-| Time on hostile input | linear, tested | not documented | not documented |
-| Deterministic output | yes, documented and tested | not documented | not documented |
+| Hostile input, 64 kB: hang or over 15 s[^hostile] | 0 of 3,278 🥇 | 101 of 2,200 (59 languages) | 8 of 1,474 (8 languages) |
+| Hostile input: input ×16 costs time ×96 or more | 0 🥇 | 11 (7 languages) | 15 (6 languages) |
+| Hostile input: linear, but over 1 s for 64 kB | 0 🥇 | 119 (38 languages) | 1 |
+| Hangs on ordinary non-ASCII text | no 🥇 | yes, JSONata (`zażółć`, `日本`) | no |
+| Crashes on input | no 🥇 | yes, YANG (`/*` repeated) | no |
+| Removing the tags gives back the input[^text] | yes, 298 languages 🥇 | not in 15 of 200 (a lone CR, for example C, C++, JavaScript, Rust; also tabs and the last line in diff, make, just) | — |
+| Deterministic output | yes, documented and tested | yes, in the same test | — |
 | Language detection from the content | no | yes | — |
 | Command line | yes | yes | yes |
 | License | Apache 2.0 | MIT | GPL 3.0 |
@@ -263,6 +92,19 @@ Complete adapters are in [docs/adapters/](docs/adapters/).
     HTML page with and without highlighting; the difference is the cost of highlighting. gohighlightgo: the
     `gomdgo-mermaid` command built with and without highlighting; highlight: QLMarkdown's command with
     `--syntax-highlight on` and `off`. Median of 15 runs of each process.
+[^hostile]: `go run ./cmd/rivalprobe` in `tools/compare`, 2026-11-25, chroma 2.27.0 and QLMarkdown 1.5.7 on one
+    Apple-silicon laptop, four processes at a time. Eleven hostile patterns (unclosed `"`, `'`, `` ` ``, `/*`, `(*`,
+    `<!--`, `<`, `${`, `#`, `\`, `[[`, each followed by `a `), repeated to about 4 kB and 64 kB, in every language
+    the library knows: 298 for gohighlightgo, 200 for chroma, 134 for highlight. Every call of chroma and highlight
+    runs in its own process, which is killed after 15 s; "hang or over 15 s" does not tell a hang from a very slow
+    run. highlight is timed as the whole QLMarkdown command on a Markdown document with one code block, so its times
+    include starting the program; that makes a slow-down harder to detect, not easier. The inputs are written to be
+    hostile: ordinary code is highlighted by all three without trouble, and the difference matters for untrusted
+    input such as previews and pasted code.
+[^text]: The corpus and seven awkward inputs (CRLF, a lone CR, tabs, no final newline, invalid UTF-8, NUL, non-ASCII
+    text) in each language; for invalid UTF-8 and NUL a U+FFFD in their place counts as kept, for both libraries.
+    chroma runs without its default conversion of line ends to LF (`EnsureLF: false`). highlight's output passes
+    through Markdown, so it is not compared.
 [^safe]: Output for `</code></pre><script>alert(1)</script>` and an `<img onerror>` in each of the 200
     languages that chroma also knows (`TestRivalsSafety`); for highlight, the same text in Go, HTML, XML, shell and Markdown blocks.
 
@@ -281,7 +123,7 @@ change before 1.0. Requires Go 1.22 or newer.
 
 ## Documentation
 
-- This README and the package documentation (`go doc github.com/polestorm/gohighlightgo/highlight`).
+- This README, [`docs/usage.md`](docs/usage.md), [`docs/languages.md`](docs/languages.md) and the package documentation (`go doc github.com/polestorm/gohighlightgo/highlight`).
 - [`docs/definitions.md`](docs/definitions.md): the format of language definitions.
 - In Polish: [`docs/provenance.md`](docs/provenance.md) (sources and clean-room rules),
   [`docs/testing.md`](docs/testing.md) (tests, measurements, comparison), [`requirements/`](requirements/)
@@ -296,6 +138,10 @@ gohighlightgo and chroma are run through their public API on the same inputs by 
 `TestRivalsSafety` and `BenchmarkRivals` in `tools/compare` (a separate module, so the library itself has no
 dependencies). highlight is not available as a Go library, so it is measured as a whole program, the way it is
 used in practice, and its share is the difference between runs with and without highlighting.
+
+The hostile-input rows come from `tools/compare/cmd/rivalprobe`, which runs every call of chroma and highlight
+in a separate process with a time limit, so a hang is recorded and the measurement goes on. It writes a progress
+page and a JSON summary; the numbers and the method are in `docs/testing.md`.
 
 The corpus is small and written to cover each language's specification, not to imitate typical code; the 1 MB
 and 1.3 MB inputs are the corpus repeated. The three highlighters split code into tokens differently (chroma
