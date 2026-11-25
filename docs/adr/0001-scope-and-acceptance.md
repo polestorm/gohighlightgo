@@ -17,7 +17,8 @@ w naszym stylu: mały kod, zero zależności, bezpieczny wynik, czas liniowy.
 
 1. Biblioteka zamienia (język, kod) na fragment HTML: tekst kodu po ucieczce HTML, pocięty elementami
    `<span class="…">`. Nie dodaje `<pre>` ani `<code>`; to robi wywołujący.
-2. Kilkanaście do kilkudziesięciu języków, nie setki. Pierwsza lista (kolejność w `docs/roadmap.md`):
+2. Kilkanaście do kilkudziesięciu języków, nie setki (zmienione w ADR 0009: cel to liczba języków na poziomie
+   konkurencji). Pierwsza lista (kolejność w `docs/roadmap.md`):
    Go, C, C++, Java, JavaScript, TypeScript, Python, Rust, SQL, JSON, potem HTML/XML, CSS, YAML, TOML,
    powłoka, diff, Markdown, Pascal/Delphi. Język nieznany: `ok == false`, wywołujący zapisuje blok zwyczajnie.
 3. Dokładność leksykalna: słowa kluczowe, typy i nazwy wbudowane, napisy, komentarze, liczby, operatory,

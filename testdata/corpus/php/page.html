@@ -1,0 +1,37 @@
+<span class="hl-com">&lt;!-- REQ: LANG-261 LANG-262 LANG-263 LANG-264 LANG-265 --&gt;</span>
+<span class="hl-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hl-tag">&lt;html&gt;</span>
+<span class="hl-tag">&lt;body&gt;</span>
+<span class="hl-meta">&lt;?php</span>
+<span class="hl-kw">declare</span>(strict_types<span class="hl-op">=</span><span class="hl-num">1</span>);
+
+<span class="hl-kw">namespace</span> App;
+
+<span class="hl-meta">#[Attribute</span>]
+<span class="hl-kw">final</span> <span class="hl-kw">class</span> Greeter
+{
+    <span class="hl-kw">public</span> <span class="hl-kw">function</span> <span class="hl-fn">__construct</span>(<span class="hl-kw">private</span> <span class="hl-kw">readonly</span> <span class="hl-type">string</span> <span class="hl-attr">$name</span> <span class="hl-op">=</span> <span class="hl-str">'world'</span>) {}
+
+    <span class="hl-kw">public</span> <span class="hl-kw">function</span> <span class="hl-fn">greet</span>(<span class="hl-type">int</span> <span class="hl-attr">$times</span>)<span class="hl-op">:</span> <span class="hl-type">string</span>
+    {
+        <span class="hl-com">// line comment</span>
+        <span class="hl-com"># hash comment</span>
+        <span class="hl-com">/* block comment */</span>
+        <span class="hl-attr">$text</span> <span class="hl-op">=</span> <span class="hl-str">"Hello, </span><span class="hl-esc">$this</span><span class="hl-str">-&gt;name! {</span><span class="hl-esc">$times</span><span class="hl-str">}x </span><span class="hl-esc">${times}\n\x41</span><span class="hl-str">"</span>;
+        <span class="hl-attr">$raw</span> <span class="hl-op">=</span> <span class="hl-str">'single </span><span class="hl-esc">\'</span><span class="hl-str">quoted</span><span class="hl-esc">\'</span><span class="hl-str"> $notvar'</span>;
+        <span class="hl-attr">$doc</span> <span class="hl-op">=</span> <span class="hl-op">&lt;&lt;&lt;</span><span class="hl-meta">EOT</span>
+<span class="hl-str">            Heredoc with $name</span>
+            <span class="hl-meta">EOT</span>;
+        <span class="hl-attr">$now</span> <span class="hl-op">=</span> <span class="hl-op">&lt;&lt;&lt;</span><span class="hl-meta">'NOW'</span>
+<span class="hl-str">        Nowdoc $plain</span>
+        <span class="hl-meta">NOW</span>;
+        <span class="hl-kw">return</span> <span class="hl-fn">str_repeat</span>(<span class="hl-attr">$text</span>, <span class="hl-attr">$times</span>) <span class="hl-op">.</span> <span class="hl-attr">$raw</span> <span class="hl-op">.</span> <span class="hl-attr">$doc</span> <span class="hl-op">.</span> <span class="hl-attr">$now</span>;
+    }
+}
+
+<span class="hl-attr">$g</span> <span class="hl-op">=</span> <span class="hl-kw">new</span> <span class="hl-fn">Greeter</span>();
+<span class="hl-kw">echo</span> <span class="hl-attr">$g</span><span class="hl-op">-&gt;</span><span class="hl-fn">greet</span>(<span class="hl-num">2</span>), PHP_EOL, <span class="hl-builtin">NULL</span> <span class="hl-op">??</span> <span class="hl-builtin">TRUE</span>, <span class="hl-num">0x1F</span> <span class="hl-op">+</span> <span class="hl-num">1_000</span> <span class="hl-op">+</span> <span class="hl-num">1.5e3</span>;
+<span class="hl-meta">?&gt;</span>
+<span class="hl-tag">&lt;p&gt;</span>Total: <span class="hl-meta">&lt;?=</span> <span class="hl-builtin">count</span>([<span class="hl-num">1</span>, <span class="hl-num">2</span>, <span class="hl-num">3</span>]) <span class="hl-meta">?&gt;</span><span class="hl-tag">&lt;/p&gt;</span>
+<span class="hl-tag">&lt;/body&gt;</span>
+<span class="hl-tag">&lt;/html&gt;</span>

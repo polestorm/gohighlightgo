@@ -1,0 +1,23 @@
+# PHP: PHP Manual (PHP 8.3), Language Reference: Basic syntax, Types, Strings, Attributes; requirements/languages/php.md
+name     php
+
+keyword  abstract and as break callable case catch class clone const continue declare default do echo
+keyword  else elseif empty enddeclare endfor endforeach endif endswitch endwhile enum extends final finally
+keyword  fn for foreach function global goto if implements include include_once instanceof insteadof
+keyword  interface isset list match namespace new or print private protected public readonly require
+keyword  require_once return static switch throw trait try unset use var while xor yield
+type     int float bool string array object iterable void mixed never self parent
+builtin  true false null die exit count strlen str_replace sprintf printf implode explode array_map
+builtin  array_filter array_keys array_values in_array is_null json_encode json_decode var_dump
+fold-case
+
+line-comment   // #
+block-comment  /* */
+string   " "  : escapes interp=dollar
+string   ' '  : escapes
+string   ` `  : escapes interp=dollar
+escape        : x=2 octal=3 u-braces
+sigil    $    : attr
+operators  +-*/%&|^!<>=:?~.@
+calls
+hook     php

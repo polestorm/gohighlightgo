@@ -11,7 +11,9 @@ Markdown) z korpusem, wymaganiami i testami H1–H4; postać wyniku ustala ADR 0
 ADR 0004. Etapy 4–5 gotowe: motywy (ADR 0006), polecenie `cmd/gohighlightgo` (ADR 0005), strona przeglądu
 `tools/review`, H5 i H6 (`tools/compare`, chroma i highlight); README po angielsku z porównaniem; wydanie v0.1.0
 przed 24 h fuzzingu (ADR 0007); adaptery u odbiorców po wydaniu (łatki w `docs/adapters/`). Etap 7: języki z tabeli
-to pliki `highlight/lang/*.hl` (ADR 0008, format w `docs/definitions.md`), `Register` i `-def`; 26 języków. Zacznij od `README.md`, potem `docs/adr/0001-scope-and-acceptance.md` i kolejne
+to pliki `highlight/lang/*.hl` (ADR 0008, format w `docs/definitions.md`), `Register` i `-def`. Etap 8 (ADR 0009): cel to
+liczba języków jak u konkurencji (~260–300); dziś 30. Fuzzing według reguły z globalnego CLAUDE.md (Synology;
+lokalnie najwyżej 2 min, `-parallel 2`). Zacznij od `README.md`, potem `docs/adr/0001-scope-and-acceptance.md` i kolejne
 ADR, `docs/roadmap.md`, `docs/provenance.md`, `docs/notes-from-gomdgo.md` i `docs/adr/open-questions.md`.
 
 ## Po co i w jakim układzie

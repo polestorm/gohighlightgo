@@ -1,0 +1,19 @@
+# Haskell: Haskell 2010 Language Report, chapter 2 "Lexical Structure", and the Prelude; requirements/languages/haskell.md
+name     haskell hs
+
+keyword  case class data default deriving do else foreign if import in infix infixl infixr instance let
+keyword  module newtype of then type where forall qualified hiding family pattern mdo proc rec
+builtin  True False Nothing Just Left Right LT EQ GT otherwise map filter foldr foldl show print putStrLn
+builtin  putStr getLine return pure fmap mapM_ mapM sequence concat concatMap zip zipWith length head tail
+builtin  fst snd id const flip error undefined not null elem maybe either read
+
+ident-part     '
+line-comment   --
+block-comment  {- -}  : nested
+string   " "  : escapes
+escape        : x=any octal=3
+number        : no-leading-dot
+operators  !#$%&*+./<=>?@\^|-~:
+upper-type
+hook     haskell
+hook     apostrophe

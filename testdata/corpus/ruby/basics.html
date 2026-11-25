@@ -1,0 +1,37 @@
+<span class="hl-com"># REQ: LANG-271 LANG-272 LANG-273 LANG-274 LANG-275</span>
+<span class="hl-builtin">require</span> <span class="hl-str">'json'</span>
+
+<span class="hl-com">=begin</span>
+<span class="hl-com">Block comment</span>
+<span class="hl-com">=end</span>
+<span class="hl-kw">module</span> <span class="hl-type">Demo</span>
+  <span class="hl-type">VERSION</span> <span class="hl-op">=</span> <span class="hl-str">"1.0"</span>
+
+  <span class="hl-kw">class</span> <span class="hl-type">Greeter</span>
+    <span class="hl-builtin">attr_accessor</span> <span class="hl-attr">:name</span>
+    <span class="hl-attr">@@count</span> <span class="hl-op">=</span> <span class="hl-num">0</span>
+
+    <span class="hl-kw">def</span> <span class="hl-fn">initialize</span>(name <span class="hl-op">=</span> <span class="hl-str">"world"</span>)
+      <span class="hl-attr">@name</span> <span class="hl-op">=</span> name
+      <span class="hl-attr">@@count</span> <span class="hl-op">+=</span> <span class="hl-num">1</span>
+      <span class="hl-attr">$last</span> <span class="hl-op">=</span> <span class="hl-builtin">self</span>
+    <span class="hl-kw">end</span>
+
+    <span class="hl-kw">def</span> <span class="hl-fn">greet</span>(<span class="hl-attr">times:</span> <span class="hl-num">1</span>)
+      text <span class="hl-op">=</span> <span class="hl-str">"Hello, </span><span class="hl-esc">#{@name}</span><span class="hl-str">! Count: </span><span class="hl-esc">#{@@count}\n</span><span class="hl-str">"</span>
+      words <span class="hl-op">=</span> <span class="hl-str">%w[alpha beta gamma]</span>
+      syms <span class="hl-op">=</span> <span class="hl-str">%i(one two)</span>
+      pattern <span class="hl-op">=</span> <span class="hl-str">/\d+ "quoted"/i</span>
+      doc <span class="hl-op">=</span> <span class="hl-op">&lt;&lt;~</span><span class="hl-meta">EOS</span>
+<span class="hl-str">        Heredoc with #{name}</span>
+<span class="hl-str">          indented</span>
+      <span class="hl-meta">EOS</span>
+      ratio <span class="hl-op">=</span> <span class="hl-num">10</span> <span class="hl-op">%</span> <span class="hl-num">3</span>
+      opts <span class="hl-op">=</span> { <span class="hl-attr">key:</span> <span class="hl-attr">:value</span>, <span class="hl-attr">other:</span> <span class="hl-builtin">nil</span> }
+      <span class="hl-kw">return</span> text <span class="hl-op">*</span> times <span class="hl-kw">if</span> times.positive<span class="hl-op">?</span>
+      <span class="hl-builtin">puts</span> doc, words, syms, pattern, ratio, opts, <span class="hl-num">0x1F</span>, <span class="hl-num">1_000</span>, <span class="hl-num">3.14</span>, <span class="hl-kw">defined</span><span class="hl-op">?</span>(x)
+    <span class="hl-kw">end</span>
+  <span class="hl-kw">end</span>
+<span class="hl-kw">end</span>
+
+<span class="hl-type">Demo</span>::<span class="hl-type">Greeter</span>.new.<span class="hl-fn">greet</span>(<span class="hl-attr">times:</span> <span class="hl-num">2</span>) <span class="hl-kw">unless</span> <span class="hl-builtin">false</span>

@@ -1,0 +1,28 @@
+<span class="hl-com">// REQ: LANG-291 LANG-292 LANG-293 LANG-294 LANG-295</span>
+<span class="hl-com">//! Module doc comment</span>
+<span class="hl-kw">const</span> std <span class="hl-op">=</span> <span class="hl-builtin">@import</span>(<span class="hl-str">"std"</span>);
+
+<span class="hl-com">/// Doc comment for Point.</span>
+<span class="hl-kw">const</span> Point <span class="hl-op">=</span> <span class="hl-kw">struct</span> {
+    x<span class="hl-op">:</span> <span class="hl-type">i32</span>,
+    y<span class="hl-op">:</span> <span class="hl-type">f64</span> <span class="hl-op">=</span> <span class="hl-num">1.5e3</span>,
+};
+
+<span class="hl-kw">pub</span> <span class="hl-kw">fn</span> <span class="hl-fn">main</span>() <span class="hl-op">!</span><span class="hl-type">void</span> {
+    <span class="hl-kw">const</span> stdout <span class="hl-op">=</span> std<span class="hl-op">.</span>io<span class="hl-op">.</span><span class="hl-fn">getStdOut</span>()<span class="hl-op">.</span><span class="hl-fn">writer</span>();
+    <span class="hl-kw">var</span> count<span class="hl-op">:</span> <span class="hl-type">usize</span> <span class="hl-op">=</span> <span class="hl-num">0x1F</span> <span class="hl-op">+</span> <span class="hl-num">0o17</span> <span class="hl-op">+</span> <span class="hl-num">0b1010</span> <span class="hl-op">+</span> <span class="hl-num">1_000</span>;
+    <span class="hl-kw">const</span> c<span class="hl-op">:</span> <span class="hl-type">u8</span> <span class="hl-op">=</span> <span class="hl-str">'a'</span>;
+    <span class="hl-kw">const</span> nl <span class="hl-op">=</span> <span class="hl-str">'</span><span class="hl-esc">\n</span><span class="hl-str">'</span>;
+    <span class="hl-kw">const</span> text <span class="hl-op">=</span> <span class="hl-str">"Hello, </span><span class="hl-esc">\x41\u{1F600}\n</span><span class="hl-str">"</span>;
+    <span class="hl-kw">const</span> multi <span class="hl-op">=</span>
+        <span class="hl-str">\\first line "quoted"</span>
+        <span class="hl-str">\\second line \n stays</span>
+    ;
+    <span class="hl-kw">const</span> n <span class="hl-op">=</span> <span class="hl-builtin">@as</span>(<span class="hl-type">u32</span>, <span class="hl-builtin">@intCast</span>(count));
+    <span class="hl-kw">if</span> (n <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-kw">and</span> c <span class="hl-op">!=</span> nl) {
+        <span class="hl-kw">try</span> stdout<span class="hl-op">.</span><span class="hl-fn">print</span>(<span class="hl-str">"{s} {s} {d}</span><span class="hl-esc">\n</span><span class="hl-str">"</span>, <span class="hl-op">.</span>{ text, multi, n });
+    } <span class="hl-kw">else</span> <span class="hl-kw">unreachable</span>;
+    count <span class="hl-op">+=</span> <span class="hl-num">1</span>;
+    <span class="hl-kw">const</span> opt<span class="hl-op">:</span> <span class="hl-op">?</span><span class="hl-type">i32</span> <span class="hl-op">=</span> <span class="hl-builtin">null</span>;
+    _ <span class="hl-op">=</span> opt <span class="hl-kw">orelse</span> <span class="hl-builtin">undefined</span>;
+}

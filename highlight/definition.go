@@ -19,7 +19,7 @@ var builtinDefinitions embed.FS
 const maxDefinition = 64 << 10
 
 // hooks: konstrukcje spoza tabeli, napisane w Go; definicja może je włączyć nazwą, ale nie może ich zmienić.
-var hooks = map[string]func(t *table, w *writer, src []byte, i int) int{
+var hooks = map[string]hookFunc{
 	"c-preprocessor": cPreprocessor,
 	"cpp":            cppSpecial,
 	"rust":           rustSpecial,
@@ -28,6 +28,9 @@ var hooks = map[string]func(t *table, w *writer, src []byte, i int) int{
 	"lua":            luaSpecial,
 	"swift":          swiftSpecial,
 	"apostrophe":     apostropheSpecial,
+	"haskell":        haskellPragma,
+	"ruby":           rubySpecial,
+	"php":            phpSpecial,
 }
 
 // DefinitionError reports an invalid language definition: the line (from 1) and what is wrong with it.
@@ -77,7 +80,7 @@ func parseDefinition(src []byte, lookup func(string) *language) (*language, erro
 			}
 		}
 		if key != "keyword" && key != "type" && key != "builtin" && key != "string" && key != "prefix" && key != "block-comment" {
-			if seen[key] && key != "name" && key != "line-comment" {
+			if seen[key] && key != "name" && key != "line-comment" && key != "hook" && key != "sigil" && key != "line-string" {
 				return fail("%s given twice", key)
 			}
 		}
@@ -113,7 +116,7 @@ func parseDefinition(src []byte, lookup func(string) *language) (*language, erro
 				}
 				t.words[v] = c
 			}
-		case "fold-case", "calls", "macros", "decorators", "templates", "keys", "regex":
+		case "fold-case", "calls", "macros", "decorators", "templates", "keys", "regex", "upper-type":
 			if len(values) > 0 || len(opts) > 0 {
 				return fail("%s takes no values", key)
 			}
@@ -125,7 +128,9 @@ func parseDefinition(src []byte, lookup func(string) *language) (*language, erro
 			case "macros":
 				t.macros = true
 			case "decorators":
-				t.decorators = true
+				t.sigils = append(t.sigils, sigil{char: '@', class: meta})
+			case "upper-type":
+				t.upperType = true
 			case "templates":
 				t.templates = true
 			case "keys":
@@ -138,6 +143,27 @@ func parseDefinition(src []byte, lookup func(string) *language) (*language, erro
 				return fail("ident-extra takes one group of punctuation characters, without quotes")
 			}
 			t.identExtra = values[0]
+		case "ident-part":
+			if len(values) != 1 || len(opts) > 0 || strings.ContainsAny(values[0], "\"`") {
+				return fail("ident-part takes one group of punctuation characters")
+			}
+			t.identPart = values[0]
+		case "sigil":
+			if len(values) != 1 || len(opts) != 1 {
+				return fail("sigil takes characters and a class after a colon: sigil $ : attr")
+			}
+			c, ok := classByName[opts[0]]
+			if !ok {
+				return fail("sigil: unknown class %q", opts[0])
+			}
+			for k := 0; k < len(values[0]); k++ {
+				t.sigils = append(t.sigils, sigil{char: values[0][k], class: c})
+			}
+		case "line-string":
+			if len(values) == 0 || len(opts) > 0 {
+				return fail("line-string needs at least one prefix")
+			}
+			t.lineStrings = append(t.lineStrings, values...)
 		case "line-comment":
 			if len(values) == 0 || len(opts) > 0 {
 				return fail("line-comment needs at least one prefix")
@@ -174,6 +200,8 @@ func parseDefinition(src []byte, lookup func(string) *language) (*language, erro
 					q.interp = '$'
 				case "interp=braces":
 					q.interp = '{'
+				case "interp=hash":
+					q.interp = '#'
 				default:
 					return fail("string: unknown option %q", o)
 				}
@@ -276,7 +304,7 @@ func parseDefinition(src []byte, lookup func(string) *language) (*language, erro
 			if len(values) != 1 || len(opts) > 0 || hooks[values[0]] == nil {
 				return fail("hook: unknown hook %q (known: %s)", strings.Join(values, " "), strings.Join(hookNames(), ", "))
 			}
-			t.special = hooks[values[0]]
+			t.specials = append(t.specials, hooks[values[0]])
 		default:
 			return fail("unknown directive %q", key)
 		}
@@ -307,6 +335,9 @@ func (t *table) clone() *table {
 	c.blockComments = slices.Clone(t.blockComments)
 	c.quotes = slices.Clone(t.quotes)
 	c.prefixes = slices.Clone(t.prefixes)
+	c.sigils = slices.Clone(t.sigils)
+	c.lineStrings = slices.Clone(t.lineStrings)
+	c.specials = slices.Clone(t.specials)
 	return &c
 }
 
@@ -410,3 +441,7 @@ func sprintf(format string, a ...any) string {
 	}
 	return b.String()
 }
+
+// classByName: nazwy klas w definicjach (bez przedrostka hl-), dla dyrektywy sigil.
+var classByName = map[string]class{"kw": keyword, "type": typeName, "builtin": builtin, "str": str, "esc": escape,
+	"num": number, "com": comment, "op": operator, "fn": call, "tag": tag, "attr": attribute, "meta": meta}

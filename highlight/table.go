@@ -12,6 +12,10 @@ type table struct {
 	words         map[string]class // słowa kluczowe, typy i nazwy wbudowane; przy foldCase małymi literami
 	foldCase      bool             // słowa bez rozróżniania wielkości liter (SQL, Pascal)
 	identExtra    string           // dodatkowe bajty identyfikatora poza literami, cyframi i _ (np. $ w JS)
+	identPart     string           // bajty dozwolone w identyfikatorze, ale nie na początku (' w Haskellu)
+	upperType     bool             // identyfikator spoza słów, zaczynający się wielką literą, dostaje hl-type
+	sigils        []sigil          // znak przed nazwą, np. @ (adnotacje), $ (zmienne PHP)
+	lineStrings   []string         // przedrostki napisów do końca wiersza (\\ w Zigu)
 	lineComments  []string         // przedrostki komentarzy do końca wiersza
 	blockComments []blockComment
 	quotes        []quote
@@ -22,14 +26,23 @@ type table struct {
 	operators     string // znaki, które dostają hl-op
 	calls         bool   // identyfikator przed ( dostaje hl-fn
 	macros        bool   // identyfikator przed ! (nie !=) dostaje hl-fn (makra w Ruście)
-	decorators    bool   // @nazwa dostaje hl-meta (adnotacje i dekoratory)
 	templates     bool   // `…${…}…` z wyrażeniami wewnątrz (JS, TS)
 	keys          bool   // napis przed dwukropkiem dostaje hl-attr (klucze JSON)
 	regex         bool   // /…/flagi po tokenie, po którym nie może stać dzielenie, dostaje hl-str (JS, TS)
 
-	// special obsługuje konstrukcje spoza tabeli (preprocesor, napisy surowe z ogranicznikiem, czasy życia).
-	// Woła się go na początku każdego tokenu; zwraca koniec tego, co zapisał, albo i, gdy nic nie rozpoznał.
-	special func(t *table, w *writer, src []byte, i int) int
+	// specials obsługują konstrukcje spoza tabeli (preprocesor, napisy surowe z ogranicznikiem, czasy życia).
+	// Woła się je po kolei na początku każdego tokenu; każdy zwraca koniec tego, co zapisał, albo i, gdy nic
+	// nie rozpoznał.
+	specials []hookFunc
+}
+
+// hookFunc to konstrukcja spoza tabeli napisana w Go (hak).
+type hookFunc func(t *table, w *writer, src []byte, i int) int
+
+// sigil to znak przed nazwą (raz albo dwa razy: @@x w Rubym), który daje nazwie klasę.
+type sigil struct {
+	char  byte
+	class class
 }
 
 type blockComment struct {
@@ -116,11 +129,14 @@ func (t *table) scan(w *writer, src []byte) {
 			i = j
 			continue
 		}
-		if t.special != nil {
-			if j := t.special(t, w, src, i); j > i {
-				i = j
-				continue
-			}
+		if j := t.runHooks(w, src, i); j > i {
+			i = j
+			continue
+		}
+		if j := t.lineString(src, i); j > i {
+			w.emit(str, src[i:j])
+			i = j
+			continue
 		}
 		if j := t.comment(src, i); j > i {
 			w.emit(comment, src[i:j])
@@ -184,15 +200,16 @@ func (t *table) scan(w *writer, src []byte) {
 			i = j
 			continue
 		}
-		if t.decorators && b == '@' && i+1 < len(src) {
-			if j := t.identEnd(src, i+1); j > i+1 {
-				w.emit(meta, src[i:j])
-				i = j
-				continue
-			}
+		if c, j := t.sigilAt(src, i); j > i {
+			w.emit(c, src[i:j])
+			i = j
+			continue
 		}
 		if j := t.identEnd(src, i); j > i {
 			c := t.wordClass(src[i:j])
+			if c == none && t.upperType && src[i] >= 'A' && src[i] <= 'Z' {
+				c = typeName
+			}
 			if c == none && t.calls && parenAfter(src, j) {
 				c = call
 			}
@@ -260,12 +277,49 @@ func (t *table) identEnd(src []byte, i int) int {
 	j := i + size
 	for j < len(src) {
 		r, size := utf8.DecodeRune(src[j:])
-		if !isIdentPart(r) && !t.isExtra(r) {
+		if !isIdentPart(r) && !t.isExtra(r) && !(r < utf8.RuneSelf && t.identPart != "" && strings.IndexByte(t.identPart, byte(r)) >= 0) {
 			break
 		}
 		j += size
 	}
 	return j
+}
+
+// runHooks woła haki języka po kolei; zwraca koniec zapisanego przez pierwszy, który coś rozpoznał, albo i.
+func (t *table) runHooks(w *writer, src []byte, i int) int {
+	for _, h := range t.specials {
+		if j := h(t, w, src, i); j > i {
+			return j
+		}
+	}
+	return i
+}
+
+// sigilAt rozpoznaje znak sigil (powtórzony) z nazwą po nim; zwraca klasę i koniec albo i.
+func (t *table) sigilAt(src []byte, i int) (class, int) {
+	for _, s := range t.sigils {
+		if src[i] != s.char {
+			continue
+		}
+		k := i + 1
+		if k < len(src) && src[k] == s.char {
+			k++ // najwyżej dwa znaki (@@x w Rubym), żeby seria bez nazwy nie była liczona od nowa w każdym miejscu
+		}
+		if j := t.identEnd(src, k); j > k {
+			return s.class, j
+		}
+	}
+	return none, i
+}
+
+// lineString zwraca koniec napisu do końca wiersza zaczynającego się w src[i] albo i.
+func (t *table) lineString(src []byte, i int) int {
+	for _, p := range t.lineStrings {
+		if hasPrefix(src[i:], p) {
+			return lineEnd(src, i)
+		}
+	}
+	return i
 }
 
 func (t *table) isExtra(r rune) bool {
@@ -479,6 +533,8 @@ func interpLen(src []byte, j int, kind byte) int {
 	switch {
 	case kind == '{' && next == '{':
 		return 2
+	case kind == '#' && next == '{':
+		return bracketLen(src, j, '{', '}', j+1)
 	case kind == '$' && next == '{':
 		return bracketLen(src, j, '{', '}', j+1)
 	case kind == '{':

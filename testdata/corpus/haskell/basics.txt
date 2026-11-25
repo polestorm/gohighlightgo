@@ -1,0 +1,27 @@
+-- REQ: LANG-281 LANG-282 LANG-283 LANG-284 LANG-285
+{-# LANGUAGE ScopedTypeVariables #-}
+module Main (main) where
+
+import qualified Data.Map as Map
+import Data.List (foldl')
+
+{- outer {- nested -} still a comment -}
+data Shape = Circle Double | Rect Double Double
+  deriving (Show, Eq)
+
+area :: Shape -> Double
+area (Circle r) = pi * r ^ 2
+area (Rect w h) = w * h
+
+sumAll :: [Int] -> Int
+sumAll xs = foldl' (+) 0 xs
+
+main :: IO ()
+main = do
+  let x' = 0x1F + 1_000 + 3.14e-2
+      c = 'a'
+      nl = '\n'
+      name = 'Circle
+  putStrLn ("Hello, " ++ show (area (Circle 1.5)) ++ "\t\x41")
+  mapM_ print [Just 1, Nothing]
+  if x' > 0 && not (null "abc") then return () else error "never"

@@ -1,0 +1,27 @@
+<span class="hl-com">-- REQ: LANG-281 LANG-282 LANG-283 LANG-284 LANG-285</span>
+<span class="hl-meta">{-# LANGUAGE ScopedTypeVariables #-}</span>
+<span class="hl-kw">module</span> <span class="hl-type">Main</span> (main) <span class="hl-kw">where</span>
+
+<span class="hl-kw">import</span> <span class="hl-kw">qualified</span> <span class="hl-type">Data</span><span class="hl-op">.</span><span class="hl-type">Map</span> as <span class="hl-type">Map</span>
+<span class="hl-kw">import</span> <span class="hl-type">Data</span><span class="hl-op">.</span><span class="hl-type">List</span> (foldl')
+
+<span class="hl-com">{- outer {- nested -} still a comment -}</span>
+<span class="hl-kw">data</span> <span class="hl-type">Shape</span> <span class="hl-op">=</span> <span class="hl-type">Circle</span> <span class="hl-type">Double</span> <span class="hl-op">|</span> <span class="hl-type">Rect</span> <span class="hl-type">Double</span> <span class="hl-type">Double</span>
+  <span class="hl-kw">deriving</span> (<span class="hl-type">Show</span>, <span class="hl-type">Eq</span>)
+
+area <span class="hl-op">::</span> <span class="hl-type">Shape</span> <span class="hl-op">-&gt;</span> <span class="hl-type">Double</span>
+area (<span class="hl-type">Circle</span> r) <span class="hl-op">=</span> pi <span class="hl-op">*</span> r <span class="hl-op">^</span> <span class="hl-num">2</span>
+area (<span class="hl-type">Rect</span> w h) <span class="hl-op">=</span> w <span class="hl-op">*</span> h
+
+sumAll <span class="hl-op">::</span> [<span class="hl-type">Int</span>] <span class="hl-op">-&gt;</span> <span class="hl-type">Int</span>
+sumAll xs <span class="hl-op">=</span> foldl' (<span class="hl-op">+</span>) <span class="hl-num">0</span> xs
+
+main <span class="hl-op">::</span> <span class="hl-type">IO</span> ()
+main <span class="hl-op">=</span> <span class="hl-kw">do</span>
+  <span class="hl-kw">let</span> x' <span class="hl-op">=</span> <span class="hl-num">0x1F</span> <span class="hl-op">+</span> <span class="hl-num">1_000</span> <span class="hl-op">+</span> <span class="hl-num">3.14e-2</span>
+      c <span class="hl-op">=</span> <span class="hl-str">'a'</span>
+      nl <span class="hl-op">=</span> <span class="hl-str">'</span><span class="hl-esc">\n</span><span class="hl-str">'</span>
+      name <span class="hl-op">=</span> <span class="hl-meta">'Circle</span>
+  <span class="hl-builtin">putStrLn</span> (<span class="hl-str">"Hello, "</span> <span class="hl-op">++</span> <span class="hl-builtin">show</span> (area (<span class="hl-type">Circle</span> <span class="hl-num">1.5</span>)) <span class="hl-op">++</span> <span class="hl-str">"</span><span class="hl-esc">\t\x41</span><span class="hl-str">"</span>)
+  <span class="hl-builtin">mapM_</span> <span class="hl-builtin">print</span> [<span class="hl-builtin">Just</span> <span class="hl-num">1</span>, <span class="hl-builtin">Nothing</span>]
+  <span class="hl-kw">if</span> x' <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-builtin">not</span> (<span class="hl-builtin">null</span> <span class="hl-str">"abc"</span>) <span class="hl-kw">then</span> <span class="hl-builtin">return</span> () <span class="hl-kw">else</span> <span class="hl-builtin">error</span> <span class="hl-str">"never"</span>

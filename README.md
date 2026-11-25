@@ -19,7 +19,7 @@ Compared with [chroma](https://github.com/alecthomas/chroma), the usual highligh
 
 - **Fast**: about 100 MB/s; 98.5–98.8% less time than chroma on the test inputs and 99% less than highlight on
   a document full of code.
-- **Small**: 3,429 lines of Go and 365 lines of language definitions, 268 kB added to a program, no
+- **Small**: 3,789 lines of Go and 449 lines of language definitions, 285 kB added to a program, no
   dependencies, nothing loaded at run time.
 - **Extensible without a release**: a language made of words, comments, strings and numbers is a short text
   file ([docs/definitions.md](docs/definitions.md)); a program adds its own with `highlight.Register`, the
@@ -34,7 +34,7 @@ Compared with [chroma](https://github.com/alecthomas/chroma), the usual highligh
 - **Made to be built on**: a single function, a stylesheet per theme, a command, and a few lines to connect it to
   a Markdown renderer (for example [gomdgo](https://github.com/polestorm/gomdgo)) behind a build tag.
 
-Where it is weaker: 26 languages instead of about 300, two themes instead of dozens, no detection of the language
+Where it is weaker: 30 languages instead of about 300 (more are on the way), two themes instead of dozens, no detection of the language
 from the content, and lexical highlighting only (a conversion `T(x)` looks like a call). It is new.
 
 ## Contents
@@ -60,6 +60,10 @@ from the content, and lexical highlighting only (a conversion `T(x)` looks like 
 | Rust | `rust`, `rs` |
 | Lua | `lua` |
 | R | `r` |
+| PHP | `php` (with HTML outside `<?php … ?>`) |
+| Ruby | `ruby`, `rb` |
+| Haskell | `haskell`, `hs` |
+| Zig | `zig` |
 | SQL | `sql` |
 | JSON | `json`, `jsonc` |
 | Pascal, Delphi | `pascal`, `delphi`, `pas`, `objectpascal` |
@@ -72,7 +76,7 @@ from the content, and lexical highlighting only (a conversion `T(x)` looks like 
 
 Names are matched without regard to case. Each language is described from its specification; what is
 highlighted, and where the highlighting is only an approximation, is listed in
-[requirements/languages/](requirements/languages/). Eighteen of them are definitions in
+[requirements/languages/](requirements/languages/). Twenty-two of them are definitions in
 [highlight/lang/](highlight/lang/); markup, CSS, YAML, TOML, shell, diff and Markdown have scanners in Go.
 
 ## Usage
@@ -123,12 +127,12 @@ Complete adapters are in [docs/adapters/](docs/adapters/).
 
 | | gohighlightgo 0.1.0 | chroma 2.27.0 | highlight (QLMarkdown 1.5.7)[^hl] |
 |---|:---:|:---:|:---:|
-| Languages | 26 | 297 🥇 | 263 |
+| Languages | 30 | 297 🥇 | 263 |
 | New language without a new release | a text file (`Register`, `-def`) | an XML file (`NewXMLLexer`, `Register`) | a Lua file |
 | Themes | 2, and `auto` | 74 | 97 🥇 |
 | Dependencies[^deps] | 0 🥇 | 1 | a Lua interpreter |
-| Lines of code[^size] | 3,429 and 365 lines of definitions 🥇 | 31,199 and 279 lexer files (2.4 MB) | — |
-| Added to a program | 268 kB 🥇 | 4,774 kB | 3,416 kB and 2.7 MB of definitions and themes |
+| Lines of code[^size] | 3,789 and 449 lines of definitions 🥇 | 31,199 and 279 lexer files (2.4 MB) | — |
+| Added to a program | 285 kB 🥇 | 4,774 kB | 3,416 kB and 2.7 MB of definitions and themes |
 | Time, the corpus as 21 blocks (14.5 kB)[^bench] | 0.16 ms 🥇 | 13.3 ms | — |
 | Time, 1 MB of Go | 10.0 ms 🥇 | 690 ms | — |
 | Time, a document with 1.3 MB of code[^doc] | 17 ms 🥇 | — | 2,079 ms |
@@ -160,7 +164,7 @@ Complete adapters are in [docs/adapters/](docs/adapters/).
     HTML page with and without highlighting; the difference is the cost of highlighting. gohighlightgo: the
     `gomdgo-mermaid` command built with and without highlighting; highlight: QLMarkdown's command with
     `--syntax-highlight on` and `off`. Median of 15 runs of each process.
-[^safe]: Output for `</code></pre><script>alert(1)</script>` and an `<img onerror>` in each of the 26
+[^safe]: Output for `</code></pre><script>alert(1)</script>` and an `<img onerror>` in each of the 30
     languages (`TestRivalsSafety`); for highlight, the same text in Go, HTML, XML, shell and Markdown blocks.
 
 ## Status
@@ -168,7 +172,7 @@ Complete adapters are in [docs/adapters/](docs/adapters/).
 Version 0.1.0: the planned languages, themes and command are done; hardening in progress. The API may still
 change before 1.0. Requires Go 1.22 or newer.
 
-- 26 languages, each with a requirements file and a corpus file whose output is checked byte for byte.
+- 30 languages, each with a requirements file and a corpus file whose output is checked byte for byte.
 - Language definitions: the 11 table languages moved to definition files without a single byte of output
   changing; any definition the parser accepts is fuzzed together with random code.
 - Safety and round trip (removing the tags gives back the input) are checked on every test input and in fuzzing.

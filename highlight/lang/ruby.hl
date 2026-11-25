@@ -1,0 +1,21 @@
+# Ruby: Ruby 3.3 documentation, "Ruby Syntax" (keywords, literals, comments); requirements/languages/ruby.md
+name     ruby rb
+
+keyword  BEGIN END alias and begin break case class def defined do else elsif end ensure for if in module
+keyword  next not or redo rescue retry return super then undef unless until when while yield __FILE__
+keyword  __LINE__ __method__ __dir__
+builtin  true false nil self puts print p pp require require_relative attr_accessor attr_reader
+builtin  attr_writer include extend prepend raise lambda proc loop private protected public
+builtin  module_function catch throw
+
+line-comment   #
+string   " "  : escapes interp=hash
+string   ' '  : escapes
+string   ` `  : escapes interp=hash
+escape        : x=2 octal=3 u4 u-braces
+sigil    @$   : attr
+operators  +-*/%&|^!<>=?~
+upper-type
+calls
+regex
+hook     ruby

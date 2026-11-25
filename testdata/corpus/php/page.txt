@@ -1,0 +1,37 @@
+<!-- REQ: LANG-261 LANG-262 LANG-263 LANG-264 LANG-265 -->
+<!DOCTYPE html>
+<html>
+<body>
+<?php
+declare(strict_types=1);
+
+namespace App;
+
+#[Attribute]
+final class Greeter
+{
+    public function __construct(private readonly string $name = 'world') {}
+
+    public function greet(int $times): string
+    {
+        // line comment
+        # hash comment
+        /* block comment */
+        $text = "Hello, $this->name! {$times}x ${times}\n\x41";
+        $raw = 'single \'quoted\' $notvar';
+        $doc = <<<EOT
+            Heredoc with $name
+            EOT;
+        $now = <<<'NOW'
+        Nowdoc $plain
+        NOW;
+        return str_repeat($text, $times) . $raw . $doc . $now;
+    }
+}
+
+$g = new Greeter();
+echo $g->greet(2), PHP_EOL, NULL ?? TRUE, 0x1F + 1_000 + 1.5e3;
+?>
+<p>Total: <?= count([1, 2, 3]) ?></p>
+</body>
+</html>

@@ -1,0 +1,37 @@
+# REQ: LANG-271 LANG-272 LANG-273 LANG-274 LANG-275
+require 'json'
+
+=begin
+Block comment
+=end
+module Demo
+  VERSION = "1.0"
+
+  class Greeter
+    attr_accessor :name
+    @@count = 0
+
+    def initialize(name = "world")
+      @name = name
+      @@count += 1
+      $last = self
+    end
+
+    def greet(times: 1)
+      text = "Hello, #{@name}! Count: #{@@count}\n"
+      words = %w[alpha beta gamma]
+      syms = %i(one two)
+      pattern = /\d+ "quoted"/i
+      doc = <<~EOS
+        Heredoc with #{name}
+          indented
+      EOS
+      ratio = 10 % 3
+      opts = { key: :value, other: nil }
+      return text * times if times.positive?
+      puts doc, words, syms, pattern, ratio, opts, 0x1F, 1_000, 3.14, defined?(x)
+    end
+  end
+end
+
+Demo::Greeter.new.greet(times: 2) unless false

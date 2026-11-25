@@ -43,26 +43,30 @@ contain any letters.
 | `keyword`, `type`, `builtin` | words | | words coloured `hl-kw`, `hl-type`, `hl-builtin`; at most 32 bytes each; may be repeated |
 | `fold-case` | | | words match without regard to case (SQL, Pascal) |
 | `ident-extra` | characters | | punctuation allowed in identifiers besides letters, digits and `_` (for example `$`) |
+| `ident-part` | characters | | punctuation allowed inside identifiers but not at their start (`'` in Haskell: `foldl'`) |
+| `upper-type` | | | a name that starts with an upper-case letter and is not a listed word is coloured `hl-type` |
+| `sigil` | characters | a class: `attr`, `meta`, `builtin`, … | a character (once or twice) before a name gives the name that class: `sigil $ : attr` for PHP variables |
+| `line-string` | prefixes | | a string to the end of the line (`\\` in Zig) |
 | `line-comment` | prefixes | | a comment to the end of the line |
 | `block-comment` | open close | `nested` | a comment between two delimiters; an unclosed one runs to the end |
-| `string` | open close | `escapes`, `multiline`, `doubled`, `name`, `interp=dollar`, `interp=braces` | see below |
+| `string` | open close | `escapes`, `multiline`, `doubled`, `name`, `interp=dollar`, `interp=braces`, `interp=hash` | see below |
 | `prefix` | prefixes | `raw`, `literal`, `verbatim`, `interp=dollar`, `interp=braces`, `any-case` | see below |
 | `escape` | | `continuation`, `x=N` or `x=any`, `octal=N`, `u4`, `U8`, `u-braces`, `java-u`, `named`, `paren` | escape sequences after `\` in strings with `escapes` |
 | `number` | | `no-leading-dot`, `dot-ident`, `quote-sep` | differences in number syntax |
 | `operators` | characters | | characters coloured `hl-op` |
 | `calls` | | | a name followed by `(` is coloured `hl-fn` |
 | `macros` | | | a name followed by `!` (not `!=`) is coloured `hl-fn` |
-| `decorators` | | | `@name` is coloured `hl-meta` |
+| `decorators` | | | `@name` is coloured `hl-meta` (the same as `sigil @ : meta`) |
 | `templates` | | | JavaScript template literals with `${…}` |
 | `regex` | | | JavaScript regular expression literals, decided by the previous token |
 | `keys` | | | a string followed by `:` is coloured `hl-attr` (JSON keys) |
-| `hook` | a hook | | a construct written in Go: `c-preprocessor`, `cpp`, `rust`, `json-minus`, `pascal`, `lua`, `swift`, `apostrophe` |
+| `hook` | a hook | | a construct written in Go: `c-preprocessor`, `cpp`, `rust`, `json-minus`, `pascal`, `lua`, `swift`, `apostrophe`, `haskell`, `ruby`, `php`; may be repeated, tried in order |
 
 **Strings.** `escapes`: `\` starts an escape sequence (shaped by `escape`); `multiline`: the string may cross line
 ends, otherwise an unclosed string ends before the line break; `doubled`: the closing delimiter written twice is an
 escape (`''` in SQL); `name`: a quoted name, not a string, so it gets no class (`"column"` in SQL);
 `interp=dollar`: `$name` and `${…}` are coloured `hl-esc`; `interp=braces`: `{…}` is coloured `hl-esc` and `{{` is
-an escape. The first matching delimiter wins, so longer ones (`"""`) go first.
+an escape; `interp=hash`: `#{…}` is coloured `hl-esc` (Ruby). The first matching delimiter wins, so longer ones (`"""`) go first.
 
 **Prefixes** are glued to a string: `u8"…"`, `r"…"`, `@"…"`. `raw`: no escape sequences, but `\` still protects
 the next character from closing the string (Python); `literal`: `\` is an ordinary character (Dart); `verbatim`:
