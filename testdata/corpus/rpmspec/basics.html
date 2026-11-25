@@ -1,0 +1,23 @@
+<span class="hl-com"># REQ: LANG-1741 LANG-1742 LANG-1743 LANG-1744</span>
+<span class="hl-kw">Name</span>:           hello
+<span class="hl-kw">Version</span>:        <span class="hl-num">1.0</span>
+<span class="hl-kw">Release</span>:        <span class="hl-num">1</span>%<span class="hl-op">{</span>?dist<span class="hl-op">}</span>
+<span class="hl-kw">Summary</span>:        Says hello
+<span class="hl-kw">License</span>:        Apache-<span class="hl-num">2.0</span>
+<span class="hl-kw">BuildRequires</span>:  golang <span class="hl-op">&gt;=</span> <span class="hl-num">1.22</span>
+
+<span class="hl-builtin">%description</span>
+A small greeting program.
+
+<span class="hl-builtin">%prep</span>
+<span class="hl-builtin">%autosetup</span>
+
+<span class="hl-builtin">%build</span>
+go <span class="hl-builtin">build</span> -o hello ./cmd/hello
+
+<span class="hl-builtin">%install</span>
+<span class="hl-builtin">install</span> -D -m <span class="hl-num">0755</span> hello %<span class="hl-op">{</span>buildroot<span class="hl-op">}</span>%<span class="hl-op">{</span>_bindir<span class="hl-op">}</span>/hello
+
+<span class="hl-builtin">%files</span>
+<span class="hl-builtin">%license</span> LICENSE
+%<span class="hl-op">{</span>_bindir<span class="hl-op">}</span>/hello

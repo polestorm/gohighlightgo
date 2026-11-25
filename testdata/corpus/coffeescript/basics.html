@@ -1,0 +1,16 @@
+<span class="hl-com"># REQ: LANG-1301 LANG-1302 LANG-1303</span>
+<span class="hl-com">###</span>
+<span class="hl-com">Block comment</span>
+<span class="hl-com">###</span>
+<span class="hl-kw">class</span> Greeter <span class="hl-kw">extends</span> Base
+  constructor<span class="hl-op">:</span> (<span class="hl-attr">@name</span> <span class="hl-op">=</span> <span class="hl-str">"world"</span>) <span class="hl-op">-&gt;</span>
+    <span class="hl-kw">super</span>()
+
+  greet<span class="hl-op">:</span> (times <span class="hl-op">=</span> <span class="hl-num">1</span>) <span class="hl-op">=&gt;</span>
+    text <span class="hl-op">=</span> <span class="hl-str">"Hello, </span><span class="hl-esc">#{@name}</span><span class="hl-str">! Count: </span><span class="hl-esc">#{times + 1}\n</span><span class="hl-str">"</span>
+    raw <span class="hl-op">=</span> <span class="hl-str">'single #{not}'</span>
+    pattern <span class="hl-op">=</span> <span class="hl-str">/\d+ "quoted"/i</span>
+    (text <span class="hl-kw">for</span> i <span class="hl-kw">in</span> [<span class="hl-num">1</span>..times]).<span class="hl-fn">join</span>(<span class="hl-str">''</span>) <span class="hl-kw">unless</span> <span class="hl-builtin">no</span>
+
+greeter <span class="hl-op">=</span> <span class="hl-kw">new</span> Greeter <span class="hl-str">'coffee'</span>
+console.log greeter.<span class="hl-fn">greet</span>(<span class="hl-num">2</span>), <span class="hl-num">0x1F</span>, <span class="hl-builtin">null</span>, <span class="hl-builtin">undefined</span>, <span class="hl-builtin">yes</span>

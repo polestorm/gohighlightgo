@@ -1,0 +1,5 @@
+# Nemerle: Nemerle language documentation (nemerle.org): grammar and keywords; requirements/languages/nemerle.md
+extends  csharp
+name     nemerle n
+
+keyword  def mutable match macro module variant when unless syntax implements

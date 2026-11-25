@@ -1,0 +1,16 @@
+<span class="hl-com"># REQ: LANG-1321 LANG-1322 LANG-1323</span>
+<span class="hl-kw">app</span> [main] { pf<span class="hl-op">:</span> <span class="hl-kw">platform</span> <span class="hl-str">"https://example.com/basic-cli.tar.br"</span> }
+
+<span class="hl-kw">import</span> pf<span class="hl-op">.</span><span class="hl-type">Stdout</span>
+
+<span class="hl-type">Shape</span> <span class="hl-op">:</span> [<span class="hl-type">Circle</span> <span class="hl-type">F64</span>, <span class="hl-type">Rect</span> <span class="hl-type">F64</span> <span class="hl-type">F64</span>]
+
+area <span class="hl-op">:</span> <span class="hl-type">Shape</span> <span class="hl-op">-&gt;</span> <span class="hl-type">F64</span>
+area <span class="hl-op">=</span> <span class="hl-op">\</span>shape <span class="hl-op">-&gt;</span>
+    <span class="hl-kw">when</span> shape <span class="hl-kw">is</span>
+        <span class="hl-type">Circle</span> r <span class="hl-op">-&gt;</span> <span class="hl-num">3.14</span> <span class="hl-op">*</span> r <span class="hl-op">*</span> r
+        <span class="hl-type">Rect</span> w h <span class="hl-op">-&gt;</span> w <span class="hl-op">*</span> h
+
+main <span class="hl-op">=</span>
+    name <span class="hl-op">=</span> <span class="hl-str">"Roc"</span>
+    <span class="hl-type">Stdout</span><span class="hl-op">.</span>line<span class="hl-op">!</span> <span class="hl-str">"Hello, </span><span class="hl-esc">$(name)</span><span class="hl-str">! Count: 0x1F"</span>

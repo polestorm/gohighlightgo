@@ -1,0 +1,14 @@
+# REQ: LANG-2171 LANG-2172 LANG-2173 LANG-2174
+mainmenu "Demo configuration"
+menu "Features"
+config DEMO_GREETER
+	bool "Enable the greeter"
+	default y
+	depends on NET && !EMBEDDED
+	help
+	  Prints a greeting.
+config DEMO_TIMES
+	int "Greeting count"
+	range 1 31
+	default 2
+endmenu

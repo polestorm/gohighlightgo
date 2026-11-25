@@ -1,0 +1,5 @@
+ REQ: LANG-1881 LANG-1882 LANG-1883
+<postal-address> ::= <name-part> <street-address> <zip-part>
+<name-part>      ::= <personal-part> <last-name> <EOL> | <personal-part> <name-part>
+<zip-part>       ::= <town-name> "," <state-code> <ZIP-code> <EOL>
+<opt-suffix>     ::= "Sr." | "Jr." | ""

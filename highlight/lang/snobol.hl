@@ -1,0 +1,8 @@
+# SNOBOL4: The SNOBOL4 Programming Language (Griswold, Poage, Polonsky), 2nd edition; requirements/languages/snobol.md
+name     snobol snobol4 sno
+keyword  END DEFINE RETURN FRETURN NRETURN
+builtin  OUTPUT INPUT SIZE DUPL TRIM SPAN BREAK ANY NOTANY LEN POS RPOS TAB RTAB ARB REM FAIL SUCCEED
+string   " "
+string   ' '
+operators  =:|$.*()+-/
+hook     cobol

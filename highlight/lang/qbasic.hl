@@ -1,0 +1,11 @@
+# QBasic: QBasic/QuickBASIC 4.5 language reference; requirements/languages/qbasic.md
+name     qbasic quickbasic qb
+keyword  DIM AS INTEGER LONG SINGLE DOUBLE STRING FUNCTION SUB END IF THEN ELSE ELSEIF FOR TO STEP NEXT
+keyword  DO LOOP WHILE UNTIL WEND SELECT CASE GOTO GOSUB RETURN PRINT INPUT LET CLS SCREEN DECLARE CALL
+keyword  AND OR NOT MOD SHARED CONST
+builtin  LEN MID$ LEFT$ RIGHT$ STR$ VAL CHR$ ASC RND TIMER INKEY$
+ident-part     $%!#&
+fold-case
+line-comment   ' REM
+string   " "
+operators  +-*/\^=<>

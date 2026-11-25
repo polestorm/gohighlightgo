@@ -1,0 +1,8 @@
+# APL: ISO/IEC 13751 (Extended APL) and the Dyalog APL Language Reference; requirements/languages/apl.md
+name     apl dyalog
+keyword  :If :Else :ElseIf :EndIf :For :In :EndFor :While :EndWhile :Repeat :Until :Return :Namespace
+keyword  :EndNamespace :Class :EndClass
+line-comment   ⍝
+string   ' '  : doubled
+string   " "
+operators  +-*/<>=,.:;()[]{}

@@ -1,0 +1,12 @@
+# Apache HTTP Server configuration: Apache HTTP Server 2.4 documentation: configuration files and directive index; requirements/languages/apache.md
+name     apache apacheconf htaccess
+keyword  ServerRoot ServerName ServerAdmin Listen DocumentRoot DirectoryIndex ErrorLog CustomLog LogLevel
+keyword  LoadModule Include IncludeOptional Options AllowOverride Require Order Allow Deny Redirect
+keyword  RewriteEngine RewriteRule RewriteCond Alias ScriptAlias ProxyPass ProxyPassReverse Header
+keyword  SetEnv SSLEngine SSLCertificateFile SSLCertificateKeyFile AddType AddHandler
+builtin  On Off all granted denied None Indexes FollowSymLinks
+fold-case
+line-comment   #
+string   " "  : escapes
+operators  <>/
+hook     variables

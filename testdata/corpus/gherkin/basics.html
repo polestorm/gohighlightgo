@@ -1,0 +1,22 @@
+<span class="hl-com"># REQ: LANG-1641 LANG-1642 LANG-1643 LANG-1644</span>
+<span class="hl-meta">@smoke</span>
+<span class="hl-kw">Feature</span><span class="hl-op">:</span> Greeting
+  <span class="hl-kw">Background</span><span class="hl-op">:</span>
+    <span class="hl-kw">Given</span> a greeter named <span class="hl-str">"world"</span>
+
+  <span class="hl-kw">Scenario</span> <span class="hl-kw">Outline</span><span class="hl-op">:</span> Greet several times
+    <span class="hl-kw">When</span> I greet &lt;times&gt; times
+    <span class="hl-kw">Then</span> I see <span class="hl-str">"Hello, world!"</span>
+    <span class="hl-kw">And</span> the log has &lt;times&gt; lines
+
+    <span class="hl-kw">Examples</span><span class="hl-op">:</span>
+      <span class="hl-op">|</span> times <span class="hl-op">|</span>
+      <span class="hl-op">|</span> <span class="hl-num">1</span>     <span class="hl-op">|</span>
+      <span class="hl-op">|</span> <span class="hl-num">3</span>     <span class="hl-op">|</span>
+
+  <span class="hl-kw">Scenario</span><span class="hl-op">:</span> Multi-line text
+    <span class="hl-kw">Given</span> the text
+      <span class="hl-str">"""</span>
+<span class="hl-str">      Hello,</span>
+<span class="hl-str">      world</span>
+<span class="hl-str">      """</span>

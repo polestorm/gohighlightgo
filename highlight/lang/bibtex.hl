@@ -1,0 +1,6 @@
+# BibTeX: BibTeXing (O. Patashnik) and the biblatex documentation: entry syntax; requirements/languages/bibtex.md
+name     bibtex bib biblatex
+sigil    @    : kw
+string   " "  : escapes
+key-names  =
+operators  =#,

@@ -1,0 +1,12 @@
+# Sieve: RFC 5228 (Sieve: An Email Filtering Language); requirements/languages/sieve.md
+name     sieve siv
+keyword  require if elsif else stop keep discard redirect fileinto reject vacation anyof allof not
+keyword  header address envelope size exists true false
+builtin  :is :contains :matches :over :under :all :localpart :domain
+ident-part     :
+line-comment   #
+block-comment  /* */
+string   " "  : escapes
+string   text: .
+sigil    :    : attr
+operators  [],;{}

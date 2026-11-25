@@ -1,5 +1,5 @@
 # JavaScript: ECMAScript 2024 (ECMA-262, 15th edition); requirements/languages/javascript.md
-name     javascript js mjs cjs
+name     javascript js mjs cjs jsx
 
 keyword  async await break case catch class const continue debugger default delete
 keyword  do else enum export extends finally for function if implements import in instanceof interface let new

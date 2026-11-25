@@ -1,0 +1,13 @@
+' REQ: LANG-2781 LANG-2782 LANG-2783 LANG-2784
+' Greeter module
+Public Function Greet(Name As String, Optional Times As Integer = 1) As String
+  Dim Text As String = "Hello, " & Name & "!\n"
+  Dim i As Integer
+  For i = 1 To Times
+    Print Text
+  Next
+  Return Text
+End
+Public Sub Main()
+  If Len(Greet("gambas", 2)) > 0 And True Then Print &H1F
+End

@@ -1,0 +1,13 @@
+; REQ: LANG-1261 LANG-1262 LANG-1263
+#include <MsgBoxConstants.au3>
+#cs
+Block comment
+#ce
+Local $sName = "world", $iCount = 3
+Func Greet($sWho, $iTimes = 1)
+    For $i = 1 To $iTimes
+        ConsoleWrite("Hello, " & $sWho & "! ""quoted""" & @CRLF)
+    Next
+    Return StringLen($sWho)
+EndFunc
+If $iCount > 0 And Not False Then MsgBox($MB_OK, "Title", Greet($sName, 2))

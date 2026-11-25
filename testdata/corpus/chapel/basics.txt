@@ -1,0 +1,12 @@
+// REQ: LANG-1281 LANG-1282 LANG-1283
+/* outer /* nested */ still a comment */
+config const n = 10;
+record Point { var x, y: real; }
+
+proc greet(name: string, times: int = 1): string {
+  var text = "Hello, " + name + "!\n";
+  return text * times;
+}
+
+forall i in 1..n with (+ reduce sum) do sum += i;
+coforall loc in Locales do on loc do writeln("on ", here.id, " ", 0x1F, true);

@@ -1,0 +1,16 @@
+// REQ: LANG-2181 LANG-2182 LANG-2183 LANG-2184
+/dts-v1/;
+#include <dt-bindings/gpio/gpio.h>
+/ {
+	model = "Demo board";
+	compatible = "acme,demo";
+	/* LEDs */
+	leds {
+		compatible = "gpio-leds";
+		led0: led@0 {
+			gpios = <&gpio1 18 GPIO_ACTIVE_HIGH>;
+			status = "okay";
+		};
+	};
+};
+&uart0 { status = "disabled"; };

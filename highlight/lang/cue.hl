@@ -1,0 +1,12 @@
+# CUE: The CUE Language Specification (cuelang.org/docs/reference/spec); requirements/languages/cue.md
+name     cue
+keyword  package import let if for in
+type     string int float number bool bytes null
+builtin  true false _ close len
+line-comment   //
+string   """ """  : escapes multiline
+string   " "      : escapes
+string   ' '      : escapes
+escape        : paren
+operators  +-*/&|!<>=:?.
+calls

@@ -1,0 +1,16 @@
+<span class="hl-com">// REQ: LANG-1781 LANG-1782 LANG-1783 LANG-1784</span>
+<span class="hl-kw">struct</span> VertexOut {
+    <span class="hl-meta">@builtin</span>(position) pos<span class="hl-op">:</span> <span class="hl-type">vec4f</span>,
+    <span class="hl-meta">@location</span>(<span class="hl-num">0</span>) color<span class="hl-op">:</span> <span class="hl-type">vec3f</span>,
+};
+
+<span class="hl-meta">@group</span>(<span class="hl-num">0</span>) <span class="hl-meta">@binding</span>(<span class="hl-num">0</span>) <span class="hl-kw">var</span><span class="hl-op">&lt;</span>uniform<span class="hl-op">&gt;</span> mvp<span class="hl-op">:</span> <span class="hl-type">mat4x4f</span>;
+
+<span class="hl-com">/* Vertex shader */</span>
+<span class="hl-meta">@vertex</span>
+<span class="hl-kw">fn</span> <span class="hl-fn">vs_main</span>(<span class="hl-meta">@location</span>(<span class="hl-num">0</span>) p<span class="hl-op">:</span> <span class="hl-type">vec3f</span>) <span class="hl-op">-&gt;</span> VertexOut {
+    <span class="hl-kw">var</span> out<span class="hl-op">:</span> VertexOut;
+    out<span class="hl-op">.</span>pos <span class="hl-op">=</span> mvp <span class="hl-op">*</span> <span class="hl-type">vec4f</span>(p, <span class="hl-num">1.0</span>);
+    out<span class="hl-op">.</span>color <span class="hl-op">=</span> <span class="hl-builtin">clamp</span>(p <span class="hl-op">*</span> <span class="hl-num">0.5</span> <span class="hl-op">+</span> <span class="hl-num">0.5</span>, <span class="hl-type">vec3f</span>(<span class="hl-num">0.0</span>), <span class="hl-type">vec3f</span>(<span class="hl-num">1.0</span>));
+    <span class="hl-kw">return</span> out;
+}

@@ -1,0 +1,12 @@
+# Clarity: Clarity language reference (docs.stacks.co); requirements/languages/clarity.md
+name     clarity clar
+keyword  define-public define-private define-read-only define-constant define-data-var define-map
+keyword  define-fungible-token define-non-fungible-token let begin if match asserts! unwrap! try!
+type     uint int bool principal buff string-ascii string-utf8 list tuple response optional
+builtin  true false none some ok err tx-sender block-height var-get var-set map-get? map-set
+ident-extra    !?*<>=/+-
+ident-part     !?*<>=/+-
+line-comment   ;;
+string   " "  : escapes
+prefix   u
+call-after-paren

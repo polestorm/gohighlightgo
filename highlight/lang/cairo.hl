@@ -1,0 +1,13 @@
+# Cairo: The Cairo Programming Language book (Starknet, 2.x); requirements/languages/cairo.md
+name     cairo
+keyword  fn let mut const if else match loop while break continue return struct enum trait impl mod
+keyword  use pub ref self Self as of type extern nopanic
+type     felt252 u8 u16 u32 u64 u128 u256 usize bool ByteArray Array ContractAddress
+builtin  true false None Some Ok Err assert panic println
+line-comment   //
+string   " "  : escapes
+string   ' '  : escapes
+sigil    #    : meta
+operators  +-*/%&|^!<>=:?~.
+calls
+hook     rust

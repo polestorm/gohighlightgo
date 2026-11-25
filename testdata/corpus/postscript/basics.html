@@ -1,0 +1,13 @@
+<span class="hl-com">% REQ: LANG-1441 LANG-1442 LANG-1443</span>
+<span class="hl-com">%!PS-Adobe-3.0</span>
+<span class="hl-attr">/Helvetica</span> <span class="hl-builtin">findfont</span> <span class="hl-num">12</span> <span class="hl-builtin">scalefont</span> <span class="hl-builtin">setfont</span>
+<span class="hl-attr">/square</span> <span class="hl-op">{</span> <span class="hl-builtin">dup</span> <span class="hl-builtin">mul</span> <span class="hl-op">}</span> <span class="hl-kw">def</span>
+<span class="hl-attr">/greet</span> <span class="hl-op">{</span>
+  <span class="hl-num">72</span> <span class="hl-num">720</span> <span class="hl-builtin">moveto</span>
+  <span class="hl-str">(Hello, </span><span class="hl-esc">\(</span><span class="hl-str">PostScript</span><span class="hl-esc">\)</span><span class="hl-str"> world!)</span> <span class="hl-builtin">show</span>
+<span class="hl-op">}</span> <span class="hl-kw">def</span>
+<span class="hl-builtin">newpath</span> <span class="hl-num">100</span> <span class="hl-num">100</span> <span class="hl-builtin">moveto</span> <span class="hl-num">200</span> <span class="hl-num">200</span> <span class="hl-builtin">lineto</span> <span class="hl-builtin">closepath</span> <span class="hl-builtin">stroke</span>
+greet
+<span class="hl-num">3</span> square <span class="hl-num">0.5</span> <span class="hl-builtin">setgray</span>
+<span class="hl-str">&lt;~87cURD]i,"Ebo80~&gt;</span>
+<span class="hl-builtin">showpage</span>

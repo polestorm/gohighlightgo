@@ -1,0 +1,12 @@
+<span class="hl-op">//</span> REQ: LANG<span class="hl-op">-</span><span class="hl-num">2111</span> LANG<span class="hl-op">-</span><span class="hl-num">2112</span> LANG<span class="hl-op">-</span><span class="hl-num">2113</span> LANG<span class="hl-op">-</span><span class="hl-num">2114</span>
+<span class="hl-com">; Print a message</span>
+        <span class="hl-kw">org</span> $<span class="hl-num">8000</span>
+<span class="hl-fn">start</span>:  <span class="hl-kw">ld</span> <span class="hl-builtin">hl</span><span class="hl-op">,</span> message
+<span class="hl-fn">loop</span>:   <span class="hl-kw">ld</span> <span class="hl-builtin">a</span><span class="hl-op">,</span> <span class="hl-op">(</span><span class="hl-builtin">hl</span><span class="hl-op">)</span>
+        <span class="hl-kw">cp</span> <span class="hl-num">0</span>
+        <span class="hl-kw">jr</span> <span class="hl-builtin">z</span><span class="hl-op">,</span> done
+        <span class="hl-kw">call</span> $<span class="hl-num">0010</span>
+        <span class="hl-kw">inc</span> <span class="hl-builtin">hl</span>
+        <span class="hl-kw">djnz</span> loop
+<span class="hl-fn">done</span>:   <span class="hl-kw">ret</span>
+<span class="hl-fn">message</span>: <span class="hl-kw">db</span> <span class="hl-str">"Hello, Z80!"</span><span class="hl-op">,</span> <span class="hl-num">13</span><span class="hl-op">,</span> <span class="hl-num">0</span>

@@ -1,0 +1,10 @@
+<span class="hl-com">// REQ: LANG-2611 LANG-2612 LANG-2613 LANG-2614</span>
+<span class="hl-kw">OPENQASM</span> <span class="hl-num">3.0</span>;
+<span class="hl-kw">include</span> <span class="hl-str">"stdgates.inc"</span>;
+<span class="hl-com">// Bell pair</span>
+<span class="hl-kw">qubit</span><span class="hl-op">[</span><span class="hl-num">2</span><span class="hl-op">]</span> q;
+<span class="hl-kw">bit</span><span class="hl-op">[</span><span class="hl-num">2</span><span class="hl-op">]</span> c;
+<span class="hl-builtin">h</span> q<span class="hl-op">[</span><span class="hl-num">0</span><span class="hl-op">]</span>;
+<span class="hl-builtin">cx</span> q<span class="hl-op">[</span><span class="hl-num">0</span><span class="hl-op">]</span>, q<span class="hl-op">[</span><span class="hl-num">1</span><span class="hl-op">]</span>;
+c <span class="hl-op">=</span> <span class="hl-kw">measure</span> q;
+<span class="hl-kw">if</span> (c<span class="hl-op">[</span><span class="hl-num">0</span><span class="hl-op">]</span> <span class="hl-op">==</span> <span class="hl-num">1</span>) { <span class="hl-builtin">x</span> q<span class="hl-op">[</span><span class="hl-num">1</span><span class="hl-op">]</span>; }

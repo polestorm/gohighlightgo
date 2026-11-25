@@ -1,0 +1,11 @@
+# REQ: LANG-2711 LANG-2712 LANG-2713 LANG-2714
+# Factorial
+fact := proc(n::nonnegint)
+  local r, i;
+  r := 1;
+  for i from 2 to n do r := r * i end do;
+  return r
+end proc:
+(* block comment *)
+fact(5); evalf(Pi, 31);
+solve(x^2 - 4 = 0, x);

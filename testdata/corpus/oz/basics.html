@@ -1,0 +1,12 @@
+<span class="hl-com">% REQ: LANG-2761 LANG-2762 LANG-2763 LANG-2764</span>
+<span class="hl-kw">declare</span>
+<span class="hl-com">% Factorial</span>
+<span class="hl-kw">fun</span> {<span class="hl-type">Fact</span> <span class="hl-type">N</span>}
+   <span class="hl-kw">if</span> <span class="hl-type">N</span> <span class="hl-op">==</span> <span class="hl-num">0</span> <span class="hl-kw">then</span> <span class="hl-num">1</span> <span class="hl-kw">else</span> <span class="hl-type">N</span> <span class="hl-op">*</span> {<span class="hl-type">Fact</span> <span class="hl-type">N</span> <span class="hl-op">-</span> <span class="hl-num">1</span>} <span class="hl-kw">end</span>
+<span class="hl-kw">end</span>
+<span class="hl-com">/* block comment */</span>
+<span class="hl-kw">local</span> <span class="hl-type">X</span> <span class="hl-type">Y</span> <span class="hl-kw">in</span>
+   <span class="hl-type">X</span> <span class="hl-op">=</span> {<span class="hl-type">Fact</span> <span class="hl-num">5</span>}
+   <span class="hl-type">Y</span> <span class="hl-op">=</span> <span class="hl-str">"Hello, Oz!"</span>
+   {<span class="hl-builtin">Browse</span> <span class="hl-type">X</span><span class="hl-op">#</span><span class="hl-type">Y</span>}
+<span class="hl-kw">end</span>

@@ -1,0 +1,12 @@
+// REQ: LANG-1991 LANG-1992 LANG-1993 LANG-1994
+// A small function
+func.func @square(%x: i32) -> i32 {
+  %0 = arith.muli %x, %x : i32
+  %c = arith.constant 31 : i32
+  %cmp = arith.cmpi sgt, %0, %c : i32
+  cf.cond_br %cmp, ^big, ^small
+^big:
+  return %0 : i32
+^small:
+  return %c : i32
+}

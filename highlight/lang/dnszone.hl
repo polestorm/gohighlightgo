@@ -1,0 +1,10 @@
+# pliki strefy DNS: RFC 1035, 5 Master Files (zone file format); requirements/languages/dnszone.md
+name     dnszone zone bind
+keyword  $ORIGIN $TTL $INCLUDE
+builtin  IN CH HS A AAAA CNAME MX NS PTR SOA SRV TXT CAA DS DNSKEY RRSIG NSEC SPF
+ident-extra    $
+ident-part     -.
+line-comment   ;
+string   " "  : escapes
+sigil    @    : attr
+operators  ()

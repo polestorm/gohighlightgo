@@ -1,0 +1,15 @@
+<span class="hl-com">-- REQ: LANG-1721 LANG-1722</span>
+<span class="hl-kw">CREATE</span> <span class="hl-kw">OR</span> REPLACE <span class="hl-kw">FUNCTION</span> greet(p_name <span class="hl-type">TEXT</span>, p_times <span class="hl-type">INT</span> <span class="hl-kw">DEFAULT</span> <span class="hl-num">1</span>)
+<span class="hl-kw">RETURNS</span> <span class="hl-type">TEXT</span> <span class="hl-kw">AS</span> $$
+<span class="hl-kw">DECLARE</span>
+  v_text <span class="hl-type">TEXT</span> <span class="hl-op">:=</span> <span class="hl-str">'Hello, '</span> <span class="hl-op">||</span> p_name <span class="hl-op">||</span> <span class="hl-str">'!'</span>;
+  i <span class="hl-type">INT</span>;
+<span class="hl-kw">BEGIN</span>
+  <span class="hl-kw">FOR</span> i <span class="hl-kw">IN</span> <span class="hl-num">1</span>..p_times <span class="hl-kw">LOOP</span>
+    <span class="hl-kw">RAISE</span> <span class="hl-kw">NOTICE</span> <span class="hl-str">'% (%)'</span>, v_text, i;
+  <span class="hl-kw">END</span> <span class="hl-kw">LOOP</span>;
+  <span class="hl-kw">RETURN</span> v_text;
+<span class="hl-kw">EXCEPTION</span>
+  <span class="hl-kw">WHEN</span> others <span class="hl-kw">THEN</span> <span class="hl-kw">RETURN</span> <span class="hl-builtin">NULL</span>;
+<span class="hl-kw">END</span>;
+$$ <span class="hl-kw">LANGUAGE</span> plpgsql;

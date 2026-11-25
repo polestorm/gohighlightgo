@@ -1,0 +1,10 @@
+<span class="hl-com">// REQ: LANG-2121 LANG-2122 LANG-2123 LANG-2124</span>
+<span class="hl-com">// Failed requests per hour</span>
+<span class="hl-kw">let</span> threshold <span class="hl-op">=</span> <span class="hl-num">5</span>;
+requests
+<span class="hl-op">|</span> <span class="hl-kw">where</span> timestamp <span class="hl-op">&gt;</span> <span class="hl-kw">ago</span><span class="hl-op">(</span><span class="hl-num">1d</span><span class="hl-op">)</span> <span class="hl-kw">and</span> success <span class="hl-op">==</span> <span class="hl-builtin">false</span>
+<span class="hl-op">|</span> <span class="hl-kw">extend</span> path <span class="hl-op">=</span> <span class="hl-builtin">tostring</span><span class="hl-op">(</span><span class="hl-fn">split</span><span class="hl-op">(</span>url<span class="hl-op">,</span> <span class="hl-str">"?"</span><span class="hl-op">)[</span><span class="hl-num">0</span><span class="hl-op">])</span>
+<span class="hl-op">|</span> <span class="hl-kw">summarize</span> failures <span class="hl-op">=</span> <span class="hl-builtin">count</span><span class="hl-op">()</span> <span class="hl-kw">by</span> <span class="hl-builtin">bin</span><span class="hl-op">(</span>timestamp<span class="hl-op">,</span> <span class="hl-num">1h</span><span class="hl-op">),</span> path
+<span class="hl-op">|</span> <span class="hl-kw">where</span> failures <span class="hl-op">&gt;</span> threshold
+<span class="hl-op">|</span> <span class="hl-kw">order</span> <span class="hl-kw">by</span> failures <span class="hl-kw">desc</span>
+<span class="hl-op">|</span> <span class="hl-kw">render</span> timechart

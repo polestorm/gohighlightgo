@@ -1,0 +1,8 @@
+-- REQ: LANG-2011 LANG-2012 LANG-2013 LANG-2014
+/* Word count */
+lines = LOAD 'input.txt' USING PigStorage('\t') AS (line:chararray);
+words = FOREACH lines GENERATE FLATTEN(TOKENIZE(line)) AS word;
+grouped = GROUP words BY word;
+counts = FOREACH grouped GENERATE group, COUNT(words) AS n;
+big = FILTER counts BY n > 10 AND word IS NOT NULL;
+STORE big INTO 'out' USING PigStorage(',');

@@ -1,0 +1,16 @@
+# REQ: LANG-1321 LANG-1322 LANG-1323
+app [main] { pf: platform "https://example.com/basic-cli.tar.br" }
+
+import pf.Stdout
+
+Shape : [Circle F64, Rect F64 F64]
+
+area : Shape -> F64
+area = \shape ->
+    when shape is
+        Circle r -> 3.14 * r * r
+        Rect w h -> w * h
+
+main =
+    name = "Roc"
+    Stdout.line! "Hello, $(name)! Count: 0x1F"

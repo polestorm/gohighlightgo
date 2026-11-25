@@ -1,0 +1,10 @@
+# Io: Io Programming Guide (iolanguage.org); requirements/languages/io.md
+name     io
+keyword  method block if then else while for loop return break continue clone do self call
+builtin  true false nil Object Lobby writeln println
+line-comment   // #
+block-comment  /* */
+string   """ """  : multiline
+string   " "      : escapes
+operators  +-*/%&|^!<>=:?~.
+upper-type

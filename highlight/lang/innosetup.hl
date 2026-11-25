@@ -1,0 +1,14 @@
+# Inno Setup: Inno Setup Help: script format; requirements/languages/innosetup.md
+name     innosetup iss inno
+keyword  Setup Files Icons Run UninstallRun Registry Dirs Tasks Languages Code Types Components
+keyword  begin end procedure function var if then else for to do while const
+builtin  AppName AppVersion DefaultDirName OutputBaseFilename Source DestDir Flags Name Filename
+builtin  ignoreversion recursesubdirs True False
+fold-case
+line-comment   ; //
+block-comment  { }
+string   " "  : doubled
+string   ' '  : doubled
+key-names  :=
+operators  []=;:{}
+hook     c-preprocessor

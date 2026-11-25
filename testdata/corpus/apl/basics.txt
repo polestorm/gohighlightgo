@@ -1,0 +1,10 @@
+⍝ REQ: LANG-2281 LANG-2282 LANG-2283 LANG-2284
+avg ← {(+/⍵)÷≢⍵}
+avg 1 2 3 4
+squares ← ×⍨⍳10
+'It''s APL'
+Greet ← {'Hello, ',⍵,'!'}
+Greet 'world'
+:If 0<≢squares
+    ⎕← squares
+:EndIf

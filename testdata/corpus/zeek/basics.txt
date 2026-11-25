@@ -1,0 +1,19 @@
+# REQ: LANG-1531 LANG-1532 LANG-1533
+@load base/frameworks/notice
+
+module Demo;
+
+export {
+    type Info: record {
+        ts: time &log;
+        host: addr &log;
+        count: count &default=0;
+    };
+    global greet: function(name: string): string;
+}
+
+event connection_established(c: connection) {
+    local who = c$id$orig_h;
+    if (who in 10.0.0.0/8 && T)
+        print fmt("Hello, %s! %d", who, 0x1F);
+}

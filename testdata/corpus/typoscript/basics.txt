@@ -1,0 +1,15 @@
+# REQ: LANG-2091 LANG-2092 LANG-2093 LANG-2094
+# Page setup
+page = PAGE
+page {
+  typeNum = 0
+  10 = FLUIDTEMPLATE
+  10.file = EXT:site/Resources/Private/Templates/Default.html
+  includeCSS.main = EXT:site/Resources/Public/Css/main.css
+}
+/* Footer text */
+lib.footer = TEXT
+lib.footer.value = Hello, world!
+[page["uid"] == 1]
+  page.10.variables.home = TEXT
+[END]

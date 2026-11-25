@@ -1,0 +1,14 @@
+# Papyrus: Creation Kit wiki: Papyrus language reference (Bethesda); requirements/languages/papyrus.md
+name     papyrus psc
+keyword  Scriptname extends Function EndFunction Event EndEvent Property EndProperty Auto AutoReadOnly
+keyword  If ElseIf Else EndIf While EndWhile Return State EndState Import Global Native Conditional
+keyword  New As Self Parent Hidden
+type     Int Float Bool String Actor ObjectReference Form Quest
+builtin  True False None Debug
+fold-case
+line-comment   ;
+block-comment  {; ;}
+block-comment  { }
+string   " "  : escapes
+operators  +-*/%=<>!&|.
+calls

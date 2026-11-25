@@ -1,0 +1,10 @@
+# PlantUML: PlantUML Language Reference Guide; requirements/languages/plantuml.md
+name     plantuml puml uml
+keyword  @startuml @enduml participant actor boundary control entity database collections queue class
+keyword  interface abstract enum package namespace note left right of over end as alt else opt loop
+keyword  group activate deactivate title skinparam start stop if then endif while endwhile usecase
+line-comment   '
+block-comment  /' '/
+string   " "
+operators  ->.:|*+#-<>=
+ident-extra    @

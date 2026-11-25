@@ -1,0 +1,11 @@
+// REQ: LANG-2081 LANG-2082 LANG-2083 LANG-2084
+// Instruction definitions
+class Inst<string asm, list<dag> pattern> {
+  string AsmString = asm;
+  list<dag> Pattern = pattern;
+  bits<8> Opcode = 0x1F;
+}
+let isBranch = 1 in
+def JMP : Inst<"jmp $dst", []>;
+defvar count = !add(1, 2);
+def ADD : Inst<"add $a, $b", [(set GPR:$a, (add GPR:$a, GPR:$b))]>;

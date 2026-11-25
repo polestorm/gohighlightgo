@@ -1,0 +1,10 @@
+<span class="hl-com">/* REQ: LANG-2001 LANG-2002 LANG-2003 LANG-2004</span>
+<span class="hl-com">*/</span>
+<span class="hl-com">/* Greets customers */</span>
+<span class="hl-kw">DEFINE</span> <span class="hl-kw">VARIABLE</span> cName <span class="hl-kw">AS</span> <span class="hl-type">CHARACTER</span> <span class="hl-kw">NO-UNDO</span> <span class="hl-kw">INITIAL</span> <span class="hl-str">"world"</span><span class="hl-op">.</span>
+<span class="hl-kw">DEFINE</span> <span class="hl-kw">VARIABLE</span> iCount <span class="hl-kw">AS</span> <span class="hl-type">INTEGER</span> <span class="hl-kw">NO-UNDO</span><span class="hl-op">.</span>
+<span class="hl-kw">FOR</span> <span class="hl-kw">EACH</span> Customer <span class="hl-kw">NO-LOCK</span> <span class="hl-kw">WHERE</span> Customer<span class="hl-op">.</span>Balance <span class="hl-op">&gt;</span> <span class="hl-num">0</span><span class="hl-op">:</span>
+    iCount <span class="hl-op">=</span> iCount <span class="hl-op">+</span> <span class="hl-num">1.</span>
+    <span class="hl-kw">DISPLAY</span> Customer<span class="hl-op">.</span>Name <span class="hl-str">"Hello, </span><span class="hl-esc">~"</span><span class="hl-str">quoted</span><span class="hl-esc">~"</span><span class="hl-str">"</span><span class="hl-op">.</span>
+<span class="hl-kw">END</span><span class="hl-op">.</span>
+<span class="hl-kw">IF</span> iCount <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-kw">AND</span> <span class="hl-builtin">TRUE</span> <span class="hl-kw">THEN</span> <span class="hl-kw">MESSAGE</span> <span class="hl-str">"Done"</span> iCount VIEW-AS ALERT-BOX<span class="hl-op">.</span>

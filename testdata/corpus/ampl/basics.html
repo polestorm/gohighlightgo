@@ -1,0 +1,12 @@
+<span class="hl-com"># REQ: LANG-2651 LANG-2652 LANG-2653 LANG-2654</span>
+<span class="hl-com"># Diet problem</span>
+<span class="hl-kw">set</span> FOOD<span class="hl-op">;</span>
+<span class="hl-kw">param</span> cost <span class="hl-op">{</span>FOOD<span class="hl-op">}</span> <span class="hl-op">&gt;</span> <span class="hl-num">0</span><span class="hl-op">;</span>
+<span class="hl-kw">param</span> limit <span class="hl-kw">default</span> <span class="hl-num">100</span><span class="hl-op">;</span>
+<span class="hl-kw">var</span> Buy <span class="hl-op">{</span>j <span class="hl-kw">in</span> FOOD<span class="hl-op">}</span> <span class="hl-op">&gt;=</span> <span class="hl-num">0</span><span class="hl-op">,</span> <span class="hl-op">&lt;=</span> limit<span class="hl-op">;</span>
+<span class="hl-com">/* objective */</span>
+<span class="hl-kw">minimize</span> Total_Cost<span class="hl-op">:</span> <span class="hl-kw">sum</span> <span class="hl-op">{</span>j <span class="hl-kw">in</span> FOOD<span class="hl-op">}</span> cost<span class="hl-op">[</span>j<span class="hl-op">]</span> <span class="hl-op">*</span> Buy<span class="hl-op">[</span>j<span class="hl-op">];</span>
+<span class="hl-kw">subject</span> <span class="hl-kw">to</span> Budget<span class="hl-op">:</span> <span class="hl-kw">sum</span> <span class="hl-op">{</span>j <span class="hl-kw">in</span> FOOD<span class="hl-op">}</span> Buy<span class="hl-op">[</span>j<span class="hl-op">]</span> <span class="hl-op">&lt;=</span> <span class="hl-num">31</span><span class="hl-op">;</span>
+<span class="hl-kw">option</span> solver <span class="hl-str">'cplex'</span><span class="hl-op">;</span>
+<span class="hl-kw">solve</span><span class="hl-op">;</span>
+<span class="hl-kw">display</span> Buy<span class="hl-op">;</span>

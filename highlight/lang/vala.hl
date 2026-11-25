@@ -1,0 +1,20 @@
+# Vala: Vala Reference Manual (valadoc.org, wiki.gnome.org/Projects/Vala/Manual): lexical structure; requirements/languages/vala.md
+name     vala vapi
+
+keyword  class interface struct enum errordomain namespace using public private protected internal static
+keyword  abstract virtual override async yield new delete if else for foreach in while do switch case
+keyword  default break continue return try catch finally throw throws var unowned owned weak signal
+keyword  construct get set requires ensures lock is as sizeof typeof
+type     int uint bool string double float char void long ulong int8 uint8 int64 uint64 size_t unichar
+builtin  true false null this base print
+
+line-comment   //
+block-comment  /* */
+string   """ """  : multiline
+string   " "      : escapes
+string   ' '      : escapes
+prefix   @        : interp=dollar
+escape        : x=2 u4
+operators  +-*/%&|^!<>=:?~.
+calls
+hook     c-preprocessor

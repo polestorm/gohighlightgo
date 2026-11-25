@@ -1,0 +1,12 @@
+# WGSL: WebGPU Shading Language (W3C Working Draft), 15 Keyword and Token Summary; requirements/languages/wgsl.md
+name     wgsl
+keyword  fn let var const override struct alias if else switch case default loop for while break continue
+keyword  return discard enable requires diagnostic
+type     bool i32 u32 f32 f16 vec2 vec3 vec4 mat2x2 mat3x3 mat4x4 array atomic ptr sampler texture_2d
+type     vec2f vec3f vec4f vec2i vec3u mat4x4f
+builtin  true false dot cross normalize length mix clamp max min abs select textureSample
+line-comment   //
+block-comment  /* */  : nested
+sigil    @    : meta
+operators  +-*/%&|^!<>=:?~.
+calls

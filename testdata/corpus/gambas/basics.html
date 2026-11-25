@@ -1,0 +1,13 @@
+<span class="hl-com">' REQ: LANG-2781 LANG-2782 LANG-2783 LANG-2784</span>
+<span class="hl-com">' Greeter module</span>
+<span class="hl-kw">Public</span> <span class="hl-kw">Function</span> <span class="hl-fn">Greet</span>(Name <span class="hl-kw">As</span> <span class="hl-type">String</span>, Optional Times <span class="hl-kw">As</span> <span class="hl-type">Integer</span> <span class="hl-op">=</span> <span class="hl-num">1</span>) <span class="hl-kw">As</span> <span class="hl-type">String</span>
+  <span class="hl-kw">Dim</span> Text <span class="hl-kw">As</span> <span class="hl-type">String</span> <span class="hl-op">=</span> <span class="hl-str">"Hello, "</span> <span class="hl-op">&amp;</span> Name <span class="hl-op">&amp;</span> <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>
+  <span class="hl-kw">Dim</span> i <span class="hl-kw">As</span> <span class="hl-type">Integer</span>
+  <span class="hl-kw">For</span> i <span class="hl-op">=</span> <span class="hl-num">1</span> <span class="hl-kw">To</span> Times
+    <span class="hl-kw">Print</span> Text
+  <span class="hl-kw">Next</span>
+  <span class="hl-kw">Return</span> Text
+<span class="hl-kw">End</span>
+<span class="hl-kw">Public</span> <span class="hl-kw">Sub</span> <span class="hl-fn">Main</span>()
+  <span class="hl-kw">If</span> <span class="hl-builtin">Len</span>(<span class="hl-fn">Greet</span>(<span class="hl-str">"gambas"</span>, <span class="hl-num">2</span>)) <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-kw">And</span> <span class="hl-builtin">True</span> <span class="hl-kw">Then</span> <span class="hl-kw">Print</span> <span class="hl-op">&amp;</span>H1F
+<span class="hl-kw">End</span>

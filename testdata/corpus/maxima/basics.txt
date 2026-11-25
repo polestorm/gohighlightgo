@@ -1,0 +1,8 @@
+/* REQ: LANG-2521 LANG-2522 LANG-2523 LANG-2524
+*/
+/* Calculus examples */
+f(x) := x^2 * sin(x)$
+df: diff(f(x), x);
+integrate(f(x), x, 0, %pi);
+solve(x^2 - 4 = 0, x);
+for i from 1 thru 3 do print("i = ", i);

@@ -1,0 +1,13 @@
+<span class="hl-com">// REQ: LANG-1241 LANG-1242 LANG-1243</span>
+<span class="hl-com">/* Trigger handler */</span>
+<span class="hl-kw">public</span> <span class="hl-kw">with</span> <span class="hl-kw">sharing</span> <span class="hl-kw">class</span> AccountService {
+    <span class="hl-meta">@AuraEnabled</span>
+    <span class="hl-kw">public</span> <span class="hl-kw">static</span> <span class="hl-type">List</span><span class="hl-op">&lt;</span>Account<span class="hl-op">&gt;</span> <span class="hl-fn">findByName</span>(<span class="hl-type">String</span> name) {
+        <span class="hl-type">Integer</span> count <span class="hl-op">=</span> <span class="hl-num">0</span>;
+        <span class="hl-type">List</span><span class="hl-op">&lt;</span>Account<span class="hl-op">&gt;</span> accounts <span class="hl-op">=</span> [<span class="hl-kw">SELECT</span> <span class="hl-type">Id</span>, Name <span class="hl-kw">FROM</span> Account <span class="hl-kw">WHERE</span> Name <span class="hl-op">=</span> <span class="hl-op">:</span>name <span class="hl-kw">LIMIT</span> <span class="hl-num">10</span>];
+        <span class="hl-kw">for</span> (Account a <span class="hl-op">:</span> accounts) { count<span class="hl-op">++</span>; }
+        <span class="hl-builtin">System</span>.<span class="hl-fn">debug</span>(<span class="hl-str">'Found '</span> <span class="hl-op">+</span> count <span class="hl-op">+</span> <span class="hl-str">' accounts</span><span class="hl-esc">\n</span><span class="hl-str">'</span>);
+        <span class="hl-kw">if</span> (accounts.<span class="hl-fn">isEmpty</span>() <span class="hl-op">&amp;&amp;</span> <span class="hl-builtin">true</span>) <span class="hl-kw">insert</span> <span class="hl-kw">new</span> <span class="hl-fn">Account</span>(Name <span class="hl-op">=</span> name);
+        <span class="hl-kw">return</span> accounts;
+    }
+}

@@ -1,0 +1,14 @@
+; REQ: LANG-1711 LANG-1712 LANG-1713 LANG-1714
+!include "MUI2.nsh"
+Name "Demo"
+OutFile "demo-setup.exe"
+InstallDir "$PROGRAMFILES\Demo"
+RequestExecutionLevel admin
+/* Main section */
+Section "Install"
+  SetOutPath $INSTDIR
+  File "demo.exe"
+  WriteRegStr HKLM "Software\Demo" "Path" "$INSTDIR"
+  StrCpy $0 "${NSIS_VERSION}"
+  MessageBox MB_OK "Installed $\r$\n version $0"
+SectionEnd

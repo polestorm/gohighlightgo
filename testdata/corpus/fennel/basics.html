@@ -1,0 +1,10 @@
+<span class="hl-com">; REQ: LANG-1621 LANG-1622 LANG-1623 LANG-1624</span>
+(<span class="hl-kw">local</span> greeting <span class="hl-str">"Hello"</span>)
+(<span class="hl-kw">fn</span> greet [name times]
+  <span class="hl-str">"Greets name times times."</span>
+  (<span class="hl-kw">for</span> [i <span class="hl-num">1</span> (<span class="hl-fn">or</span> times <span class="hl-num">1</span>)]
+    (<span class="hl-builtin">print</span> (.. greeting <span class="hl-str">", "</span> name <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>))))
+(<span class="hl-kw">let</span> [config {<span class="hl-attr">:name</span> <span class="hl-str">"world"</span> <span class="hl-attr">:times</span> <span class="hl-num">2</span>}]
+  (<span class="hl-kw">when</span> (<span class="hl-fn">and</span> config <span class="hl-builtin">true</span>)
+    (<span class="hl-fn">greet</span> config.name config.times)))
+(<span class="hl-kw">each</span> [k v (<span class="hl-builtin">pairs</span> {<span class="hl-attr">:a</span> <span class="hl-num">1</span> <span class="hl-attr">:b</span> <span class="hl-num">2.5</span>})] (<span class="hl-builtin">print</span> k v))

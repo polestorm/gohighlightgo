@@ -6,6 +6,7 @@ import (
 	"slices"
 	"strconv"
 	"strings"
+	"unicode/utf8"
 )
 
 // Definicje języków z tabeli w formacie opisanym w docs/definitions.md (ADR 0008). Wbudowane leżą
@@ -92,9 +93,16 @@ func parseDefinition(src []byte, lookup func(string) *language) (*language, erro
 		if values == nil && opts == nil {
 			values = fields[1:]
 		}
+		// Dyrektywy działające na pojedynczych bajtach wymagają ASCII; ograniczniki komentarzy i napisów mogą
+		// być dowolnymi znakami bez odstępów (⍝ w APL).
+		byteSets := map[string]bool{"operators": true, "ident-extra": true, "ident-part": true, "sigil": true,
+			"key-names": true, "prefix": true, "escape": true}
 		for _, v := range values {
-			if !isPrintableASCII(v) && key != "name" && key != "keyword" && key != "type" && key != "builtin" {
+			if byteSets[key] && !isPrintableASCII(v) {
 				return fail("%s: %q is not printable ASCII", key, v)
+			}
+			if !validDelimiter(v) {
+				return fail("%s: %q is not valid UTF-8 text", key, v)
 			}
 		}
 		if key != "keyword" && key != "type" && key != "builtin" && key != "string" && key != "prefix" && key != "block-comment" {
@@ -489,3 +497,17 @@ func sprintf(format string, a ...any) string {
 // classByName: nazwy klas w definicjach (bez przedrostka hl-), dla dyrektywy sigil.
 var classByName = map[string]class{"kw": keyword, "type": typeName, "builtin": builtin, "str": str, "esc": escape,
 	"num": number, "com": comment, "op": operator, "fn": call, "tag": tag, "attr": attribute, "meta": meta}
+
+// validDelimiter: wartość spoza ASCII musi być poprawnym UTF-8 bez znaków sterujących, żeby dopasowanie
+// zawsze obejmowało całe znaki, a wynik pozostał poprawnym UTF-8.
+func validDelimiter(v string) bool {
+	if !utf8.ValidString(v) {
+		return false
+	}
+	for _, r := range v {
+		if r < 0x20 || r == 0x7f || (r >= 0x80 && r < 0xa0) {
+			return false
+		}
+	}
+	return true
+}

@@ -1,0 +1,12 @@
+<span class="hl-com">// REQ: LANG-2541 LANG-2542 LANG-2543 LANG-2544</span>
+<span class="hl-com">// A point</span>
+<span class="hl-kw">struct</span> <span class="hl-type">Point</span> { x <span class="hl-op">:</span> <span class="hl-type">Double</span>; y <span class="hl-op">:</span> <span class="hl-type">Double</span> } <span class="hl-kw">derive</span>(<span class="hl-type">Show</span>)
+<span class="hl-kw">fn</span> <span class="hl-type">Point</span><span class="hl-op">::</span><span class="hl-fn">norm</span>(<span class="hl-builtin">self</span> <span class="hl-op">:</span> <span class="hl-type">Point</span>) <span class="hl-op">-&gt;</span> <span class="hl-type">Double</span> {
+  (<span class="hl-builtin">self</span><span class="hl-op">.</span>x <span class="hl-op">*</span> <span class="hl-builtin">self</span><span class="hl-op">.</span>x <span class="hl-op">+</span> <span class="hl-builtin">self</span><span class="hl-op">.</span>y <span class="hl-op">*</span> <span class="hl-builtin">self</span><span class="hl-op">.</span>y)<span class="hl-op">.</span><span class="hl-fn">sqrt</span>()
+}
+<span class="hl-kw">fn</span> main {
+  <span class="hl-kw">let</span> p <span class="hl-op">=</span> { x<span class="hl-op">:</span> <span class="hl-num">3.0</span>, y<span class="hl-op">:</span> <span class="hl-num">4.0</span> }
+  <span class="hl-kw">let</span> <span class="hl-kw">mut</span> count <span class="hl-op">=</span> <span class="hl-num">0x1F</span>
+  <span class="hl-kw">match</span> p<span class="hl-op">.</span><span class="hl-fn">norm</span>() { <span class="hl-num">5.0</span> <span class="hl-op">=&gt;</span> <span class="hl-builtin">println</span>(<span class="hl-str">"Hello, </span><span class="hl-esc">\{</span><span class="hl-str">p}!"</span>) ; _ <span class="hl-op">=&gt;</span> () }
+  count <span class="hl-op">+=</span> <span class="hl-num">1</span>
+}

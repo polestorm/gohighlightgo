@@ -1,0 +1,3 @@
+# Brainfuck: the original Brainfuck description (Urban Müller, 1993); requirements/languages/brainfuck.md
+name     brainfuck bf
+operators  +-<>[].,

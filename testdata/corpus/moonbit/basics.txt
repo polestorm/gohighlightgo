@@ -1,0 +1,12 @@
+// REQ: LANG-2541 LANG-2542 LANG-2543 LANG-2544
+// A point
+struct Point { x : Double; y : Double } derive(Show)
+fn Point::norm(self : Point) -> Double {
+  (self.x * self.x + self.y * self.y).sqrt()
+}
+fn main {
+  let p = { x: 3.0, y: 4.0 }
+  let mut count = 0x1F
+  match p.norm() { 5.0 => println("Hello, \{p}!") ; _ => () }
+  count += 1
+}

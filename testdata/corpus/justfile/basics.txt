@@ -1,0 +1,10 @@
+# REQ: LANG-2141 LANG-2142 LANG-2143 LANG-2144
+set shell := ["bash", "-cu"]
+version := "1.0"
+# Build the project
+build target="release":
+    go build -o bin/app ./cmd/app
+    echo "built {{target}} {{version}}"
+@test: build
+    go test ./...
+alias b := build

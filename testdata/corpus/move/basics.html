@@ -1,0 +1,13 @@
+<span class="hl-com">// REQ: LANG-2561 LANG-2562 LANG-2563 LANG-2564</span>
+<span class="hl-kw">module</span> <span class="hl-num">0x1</span><span class="hl-op">::</span>greeter {
+    <span class="hl-kw">use</span> std<span class="hl-op">::</span>string;
+    <span class="hl-com">/// A greeting</span>
+    <span class="hl-kw">struct</span> Greeting <span class="hl-kw">has</span> <span class="hl-kw">key</span>, <span class="hl-kw">store</span> { text<span class="hl-op">:</span> string<span class="hl-op">::</span>String, count<span class="hl-op">:</span> <span class="hl-type">u64</span> }
+    <span class="hl-kw">public</span> <span class="hl-kw">entry</span> <span class="hl-kw">fun</span> <span class="hl-fn">create</span>(account<span class="hl-op">:</span> <span class="hl-op">&amp;</span><span class="hl-type">signer</span>) {
+        <span class="hl-kw">let</span> g <span class="hl-op">=</span> Greeting { text<span class="hl-op">:</span> string<span class="hl-op">::</span><span class="hl-fn">utf8</span>(<span class="hl-str">b"Hello"</span>), count<span class="hl-op">:</span> <span class="hl-num">0x1F</span> };
+        <span class="hl-builtin">move_to</span>(account, g);
+    }
+    <span class="hl-kw">public</span> <span class="hl-kw">fun</span> <span class="hl-fn">count</span>(addr<span class="hl-op">:</span> <span class="hl-type">address</span>)<span class="hl-op">:</span> <span class="hl-type">u64</span> <span class="hl-kw">acquires</span> Greeting {
+        <span class="hl-builtin">borrow_global</span><span class="hl-op">&lt;</span>Greeting<span class="hl-op">&gt;</span>(addr)<span class="hl-op">.</span>count
+    }
+}

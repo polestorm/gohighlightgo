@@ -1,0 +1,11 @@
+<span class="hl-com">; REQ: LANG-2681 LANG-2682 LANG-2683 LANG-2684</span>
+<span class="hl-meta">.include</span> <span class="hl-str">"m328pdef.inc"</span>
+<span class="hl-meta">.org</span> <span class="hl-num">0x0000</span>
+        <span class="hl-kw">rjmp</span> main
+<span class="hl-fn">main</span>:   <span class="hl-kw">ldi</span> <span class="hl-builtin">r16</span><span class="hl-op">,</span> <span class="hl-num">0xFF</span>
+        <span class="hl-kw">out</span> <span class="hl-builtin">DDRB</span><span class="hl-op">,</span> <span class="hl-builtin">r16</span>
+<span class="hl-fn">loop</span>:   <span class="hl-kw">sbi</span> <span class="hl-builtin">PORTB</span><span class="hl-op">,</span> <span class="hl-num">5</span>
+        <span class="hl-kw">rcall</span> delay
+        <span class="hl-kw">cbi</span> <span class="hl-builtin">PORTB</span><span class="hl-op">,</span> <span class="hl-num">5</span>
+        <span class="hl-kw">rjmp</span> loop
+<span class="hl-fn">delay</span>:  <span class="hl-kw">ret</span>

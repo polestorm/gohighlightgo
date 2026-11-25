@@ -1,0 +1,23 @@
+# REQ: LANG-1741 LANG-1742 LANG-1743 LANG-1744
+Name:           hello
+Version:        1.0
+Release:        1%{?dist}
+Summary:        Says hello
+License:        Apache-2.0
+BuildRequires:  golang >= 1.22
+
+%description
+A small greeting program.
+
+%prep
+%autosetup
+
+%build
+go build -o hello ./cmd/hello
+
+%install
+install -D -m 0755 hello %{buildroot}%{_bindir}/hello
+
+%files
+%license LICENSE
+%{_bindir}/hello

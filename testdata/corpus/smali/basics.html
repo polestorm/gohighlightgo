@@ -1,0 +1,13 @@
+<span class="hl-com"># REQ: LANG-1811 LANG-1812 LANG-1813 LANG-1814</span>
+<span class="hl-meta">.class</span> <span class="hl-builtin">public</span> Lcom/example/Greeter;
+<span class="hl-meta">.super</span> Ljava/lang/Object;
+<span class="hl-meta">.method</span> <span class="hl-builtin">public</span> <span class="hl-builtin">static</span> greet<span class="hl-op">(</span>Ljava/lang/String;<span class="hl-op">)</span>V
+    <span class="hl-meta">.registers</span> <span class="hl-num">3</span>
+    <span class="hl-kw">const-string</span> v0<span class="hl-op">,</span> <span class="hl-str">"Hello, "</span>
+    <span class="hl-kw">new-instance</span> v1<span class="hl-op">,</span> Ljava/lang/StringBuilder;
+    <span class="hl-kw">invoke-direct</span> <span class="hl-op">{</span>v1<span class="hl-op">},</span> Ljava/lang/StringBuilder;<span class="hl-op">-&gt;</span>&lt;init<span class="hl-op">&gt;()</span>V
+    <span class="hl-kw">if-eqz</span> p0<span class="hl-op">,</span> <span class="hl-fn">:cond_0</span>
+    <span class="hl-kw">return-void</span>
+    <span class="hl-fn">:cond_0</span>
+    <span class="hl-kw">return-void</span>
+<span class="hl-meta">.end</span> method

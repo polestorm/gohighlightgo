@@ -1,0 +1,9 @@
+# ink: ink writing language documentation (inkle, WritingWithInk.md); requirements/languages/ink.md
+name     ink
+keyword  VAR CONST INCLUDE EXTERNAL LIST function return else not and or true false
+builtin  END DONE RANDOM CHOICE_COUNT TURNS_SINCE
+line-comment   //
+block-comment  /* */
+string   " "
+sigil    ~    : kw
+operators  ->=+*{}|-:<>

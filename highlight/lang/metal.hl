@@ -1,0 +1,6 @@
+# Metal Shading Language: Metal Shading Language Specification (Apple, 3.x); requirements/languages/metal.md
+extends  cpp
+name     metal msl
+keyword  kernel vertex fragment device threadgroup constant thread
+type     float2 float3 float4 float4x4 half4 uint2 texture2d sampler
+builtin  thread_position_in_grid position stage_in buffer

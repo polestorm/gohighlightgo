@@ -1,0 +1,14 @@
+# Boo: Boo language guide (boo-lang); requirements/languages/boo.md
+name     boo
+keyword  import namespace class interface struct enum def return if elif else unless for in while
+keyword  break continue try except ensure raise yield and or not is isa as of public private protected
+keyword  internal static override virtual abstract final callable event
+type     int long double string bool object void
+builtin  true false null print len range self
+line-comment   # //
+block-comment  /* */  : nested
+string   """ """  : multiline
+string   " "      : escapes interp=dollar
+string   ' '      : escapes
+operators  +-*/%&|^!<>=:?~.
+calls

@@ -1,0 +1,11 @@
+# Icon: The Icon Programming Language (Griswold & Griswold), 3rd edition; requirements/languages/icon.md
+name     icon icn unicon
+keyword  procedure end local static global record if then else while do until repeat every to by
+keyword  return fail suspend break next case of default not initial link invocable
+builtin  write writes read find upto many tab move map string integer
+line-comment   #
+string   " "  : escapes
+string   ' '  : escapes
+sigil    &    : builtin
+operators  +-*/%=<>|!:~\?@^.
+calls

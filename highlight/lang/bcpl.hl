@@ -1,0 +1,12 @@
+# BCPL: BCPL: the language and its compiler (Richards & Whitby-Strevens); requirements/languages/bcpl.md
+name     bcpl
+keyword  GET LET AND BE VALOF RESULTIS RETURN IF UNLESS THEN DO TEST ELSE FOR TO BY WHILE UNTIL REPEAT
+keyword  SWITCHON INTO CASE DEFAULT ENDCASE BREAK LOOP FINISH GLOBAL STATIC MANIFEST VEC
+builtin  TRUE FALSE writef writes newline
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+escape        : char=*
+string   ' '  : escapes
+operators  :=+-*/<>~&|!@(){}$
+calls

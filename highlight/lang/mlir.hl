@@ -1,0 +1,13 @@
+# MLIR: MLIR Language Reference (mlir.llvm.org/docs/LangRef); requirements/languages/mlir.md
+name     mlir
+keyword  func module return br cond_br constant addi muli cmpi call attributes loc
+type     i1 i8 i16 i32 i64 f16 f32 f64 index tensor memref vector none
+builtin  true false unit
+line-comment   //
+string   " "  : escapes
+sigil    %    : attr
+sigil    @    : fn
+sigil    ^    : meta
+sigil    #    : meta
+sigil    !    : type
+operators  =:->,<>x

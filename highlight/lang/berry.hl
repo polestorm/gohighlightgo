@@ -1,0 +1,11 @@
+# Berry: Berry language reference manual (berry-lang.github.io); requirements/languages/berry.md
+name     berry be
+keyword  if elif else while for def end class break continue return true false nil var static do import
+keyword  as try except raise
+builtin  print type classname size super self isinstance
+line-comment   #
+block-comment  #- -#
+string   " "  : escapes
+string   ' '  : escapes
+operators  +-*/%&|^!<>=:?~.
+calls

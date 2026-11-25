@@ -1,0 +1,19 @@
+# Apex: Apex Developer Guide (Salesforce): reserved keywords, data types, annotations; requirements/languages/apex.md
+name     apex cls-apex trigger
+
+keyword  abstract break catch class continue do else enum extends final finally for global if implements
+keyword  instanceof interface new override private protected public return static super switch on this
+keyword  throw trigger try virtual while with without sharing inherited insert update delete upsert merge
+keyword  undelete select from where order by limit and or not testmethod webservice transient
+type     Integer Long Double Decimal String Boolean Id Date Datetime Time Blob Object List Set Map sObject
+type     void
+builtin  true false null System Database Schema
+fold-case
+
+line-comment   //
+block-comment  /* */
+string   ' '  : escapes
+escape        : u4
+sigil    @    : meta
+operators  +-*/%&|^!<>=:?~
+calls

@@ -1,0 +1,12 @@
+// REQ: LANG-2231 LANG-2232 LANG-2233 LANG-2234
+/* outer /* nested */ comment */
+class Greeter {
+  construct new(name) { _name = name }
+  greet(times) {
+    for (i in 1..times) System.print("Hello, %(_name)!")
+    return _name.count
+  }
+  static create() { Greeter.new("wren") }
+}
+var g = Greeter.create()
+if (g.greet(2) > 0 && true) System.print(0x1F)

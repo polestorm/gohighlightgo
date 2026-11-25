@@ -1,0 +1,9 @@
+// REQ: LANG-2911 LANG-2912 LANG-2913 LANG-2914
+GET "libhdr"
+// Factorial
+LET fact(n) = n = 0 -> 1, n * fact(n - 1)
+LET start() = VALOF
+$(
+  FOR i = 1 TO 5 DO writef("fact(%n) = %n*n", i, fact(i))
+  RESULTIS 0
+$)

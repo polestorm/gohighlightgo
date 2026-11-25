@@ -1,0 +1,13 @@
+<span class="hl-com"># REQ: LANG-1841 LANG-1842 LANG-1843 LANG-1844</span>
+<span class="hl-kw">POST</span> <span class="hl-op">/</span>api<span class="hl-op">/</span>greet<span class="hl-op">?</span>lang<span class="hl-op">=</span>pl <span class="hl-kw">HTTP</span><span class="hl-op">/</span><span class="hl-num">1.1</span>
+<span class="hl-attr">Host</span><span class="hl-op">:</span> example.com
+<span class="hl-attr">Content-Type</span><span class="hl-op">:</span> application<span class="hl-op">/</span>json
+<span class="hl-attr">Authorization</span><span class="hl-op">:</span> Bearer token-123
+<span class="hl-attr">Content-Length</span><span class="hl-op">:</span> <span class="hl-num">42</span>
+
+{<span class="hl-str">"name"</span><span class="hl-op">:</span> <span class="hl-str">"world"</span>, <span class="hl-str">"times"</span><span class="hl-op">:</span> <span class="hl-num">2</span>, <span class="hl-str">"loud"</span><span class="hl-op">:</span> <span class="hl-builtin">true</span>}
+
+<span class="hl-kw">HTTP</span><span class="hl-op">/</span><span class="hl-num">1.1</span> <span class="hl-num">200</span> OK
+<span class="hl-attr">Content-Type</span><span class="hl-op">:</span> text<span class="hl-op">/</span>plain
+
+Hello, world!

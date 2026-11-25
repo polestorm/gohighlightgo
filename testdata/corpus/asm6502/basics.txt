@@ -1,0 +1,10 @@
+; REQ: LANG-2661 LANG-2662 LANG-2663 LANG-2664
+        .org $C000
+start:  ldx #$00
+loop:   lda message,x
+        beq done
+        sta $0400,x
+        inx
+        bne loop
+done:   rts
+message: .byte "HELLO", 0

@@ -1,0 +1,9 @@
+# Nickel: Nickel user manual (nickel-lang.org); requirements/languages/nickel.md
+name     nickel ncl
+keyword  let rec in fun if then else match forall import default force doc optional priority
+type     Number String Bool Array Dyn
+builtin  true false null std
+line-comment   #
+string   m%" "%  : multiline interp=braces
+string   " "     : escapes interp=braces
+operators  +-*/%&|!<>=:?.@

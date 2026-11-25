@@ -1,0 +1,13 @@
+<span class="hl-com">// REQ: LANG-2221 LANG-2222 LANG-2223 LANG-2224</span>
+<span class="hl-kw">module</span> demo
+<span class="hl-com">/* Effects */</span>
+<span class="hl-kw">effect</span> ask
+  <span class="hl-kw">ctl</span> <span class="hl-fn">ask</span>() <span class="hl-op">:</span> <span class="hl-type">int</span>
+<span class="hl-kw">fun</span> <span class="hl-fn">greet</span>(name <span class="hl-op">:</span> <span class="hl-type">string</span>, times <span class="hl-op">:</span> <span class="hl-type">int</span>) <span class="hl-op">:</span> <span class="hl-fn">console</span> ()
+  <span class="hl-fn">for</span>(<span class="hl-num">1</span>, times) <span class="hl-kw">fn</span>(i)
+    <span class="hl-builtin">println</span>(<span class="hl-str">"Hello, "</span> <span class="hl-op">++</span> name <span class="hl-op">++</span> <span class="hl-str">"!"</span>)
+<span class="hl-kw">fun</span> <span class="hl-fn">main</span>()
+  <span class="hl-kw">with</span> <span class="hl-kw">handler</span>
+    <span class="hl-kw">ctl</span> <span class="hl-fn">ask</span>() <span class="hl-fn">resume</span>(<span class="hl-num">21</span>)
+  <span class="hl-kw">val</span> x <span class="hl-op">=</span> <span class="hl-fn">ask</span>() <span class="hl-op">+</span> <span class="hl-fn">ask</span>()
+  <span class="hl-kw">if</span> x <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-builtin">True</span> <span class="hl-kw">then</span> <span class="hl-fn">greet</span>(<span class="hl-str">"koka"</span>, <span class="hl-num">2</span>)

@@ -1,0 +1,7 @@
+# Hack: Hack documentation (docs.hhvm.com/hack): built-in types, keywords; requirements/languages/hack.md
+extends  php
+name     hack hh
+
+keyword  async await newtype enum class shape type namespace use await concurrent inout readonly
+keyword  upcast where super
+type     vec dict keyset shape nonnull num arraykey dynamic noreturn nothing this

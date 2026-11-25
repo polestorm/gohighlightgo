@@ -1,0 +1,17 @@
+-- REQ: LANG-1561 LANG-1562 LANG-1563 LANG-1564
+(* Greets the user. *)
+property greeting : "Hello"
+on greet(theName, times)
+	set theText to greeting & ", " & theName & "!"
+	repeat with i from 1 to times
+		display dialog theText
+	end repeat
+	return length of theText
+end greet
+tell application "Finder"
+	activate
+	if (count of windows) > 0 and true then
+		set w to name of front window
+	end if
+end tell
+greet("world", 2)

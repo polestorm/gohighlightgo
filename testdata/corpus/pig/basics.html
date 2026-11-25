@@ -1,0 +1,8 @@
+<span class="hl-com">-- REQ: LANG-2011 LANG-2012 LANG-2013 LANG-2014</span>
+<span class="hl-com">/* Word count */</span>
+lines <span class="hl-op">=</span> <span class="hl-kw">LOAD</span> <span class="hl-str">'input.txt'</span> <span class="hl-kw">USING</span> <span class="hl-builtin">PigStorage</span>(<span class="hl-str">'</span><span class="hl-esc">\t</span><span class="hl-str">'</span>) <span class="hl-kw">AS</span> (line<span class="hl-op">:</span><span class="hl-type">chararray</span>);
+words <span class="hl-op">=</span> <span class="hl-kw">FOREACH</span> lines <span class="hl-kw">GENERATE</span> <span class="hl-builtin">FLATTEN</span>(<span class="hl-builtin">TOKENIZE</span>(line)) <span class="hl-kw">AS</span> word;
+grouped <span class="hl-op">=</span> <span class="hl-kw">GROUP</span> words <span class="hl-kw">BY</span> word;
+counts <span class="hl-op">=</span> <span class="hl-kw">FOREACH</span> grouped <span class="hl-kw">GENERATE</span> <span class="hl-kw">group</span>, <span class="hl-builtin">COUNT</span>(words) <span class="hl-kw">AS</span> n;
+big <span class="hl-op">=</span> <span class="hl-kw">FILTER</span> counts <span class="hl-kw">BY</span> n <span class="hl-op">&gt;</span> <span class="hl-num">10</span> <span class="hl-kw">AND</span> word <span class="hl-kw">IS</span> <span class="hl-kw">NOT</span> <span class="hl-kw">NULL</span>;
+<span class="hl-kw">STORE</span> big <span class="hl-kw">INTO</span> <span class="hl-str">'out'</span> <span class="hl-kw">USING</span> <span class="hl-builtin">PigStorage</span>(<span class="hl-str">','</span>);

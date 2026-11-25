@@ -1,0 +1,16 @@
+<span class="hl-com">// REQ: LANG-2601 LANG-2602 LANG-2603 LANG-2604</span>
+<span class="hl-com">(* Pump control *)</span>
+<span class="hl-kw">PROGRAM</span> Main
+<span class="hl-kw">VAR</span>
+    start <span class="hl-op">:</span> <span class="hl-type">BOOL</span> <span class="hl-op">:=</span> <span class="hl-builtin">FALSE</span><span class="hl-op">;</span>
+    level <span class="hl-op">:</span> <span class="hl-type">REAL</span> <span class="hl-op">:=</span> <span class="hl-num">0.0</span><span class="hl-op">;</span>
+    timer <span class="hl-op">:</span> <span class="hl-type">TON</span><span class="hl-op">;</span>
+    name <span class="hl-op">:</span> <span class="hl-type">STRING</span> <span class="hl-op">:=</span> <span class="hl-str">'pump</span><span class="hl-esc">''</span><span class="hl-str">s'</span><span class="hl-op">;</span>
+<span class="hl-kw">END_VAR</span>
+timer(IN <span class="hl-op">:=</span> start<span class="hl-op">,</span> PT <span class="hl-op">:=</span> T<span class="hl-op">#</span><span class="hl-num">5S</span>)<span class="hl-op">;</span>
+<span class="hl-kw">IF</span> level <span class="hl-op">&gt;</span> <span class="hl-num">80.5</span> <span class="hl-kw">AND</span> <span class="hl-kw">NOT</span> timer<span class="hl-op">.</span>Q <span class="hl-kw">THEN</span>
+    start <span class="hl-op">:=</span> <span class="hl-builtin">TRUE</span><span class="hl-op">;</span>
+<span class="hl-kw">ELSIF</span> level <span class="hl-op">&lt;</span> <span class="hl-num">10</span> <span class="hl-kw">THEN</span>
+    start <span class="hl-op">:=</span> <span class="hl-builtin">FALSE</span><span class="hl-op">;</span>
+<span class="hl-kw">END_IF</span><span class="hl-op">;</span>
+<span class="hl-kw">END_PROGRAM</span>

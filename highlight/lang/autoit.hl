@@ -1,0 +1,19 @@
+# AutoIt v3: AutoIt documentation, Language Reference (keywords, comments, variables, macros); requirements/languages/autoit.md
+name     autoit au3
+
+keyword  Func EndFunc If Then Else ElseIf EndIf For To Step Next In While WEnd Do Until Select Case
+keyword  EndSelect Switch EndSwitch Return Local Global Dim Const ReDim ExitLoop ContinueLoop Exit And Or
+keyword  Not With EndWith Static Volatile ContinueCase Enum
+builtin  True False Default Null MsgBox ConsoleWrite Run Sleep FileRead StringLen StringSplit UBound
+fold-case
+
+line-comment   ;
+block-comment  #cs #ce
+block-comment  #comments-start #comments-end
+string   " "  : doubled
+string   ' '  : doubled
+sigil    $    : attr
+sigil    @    : builtin
+sigil    #    : meta
+operators  +-*/&^<>=?:
+calls

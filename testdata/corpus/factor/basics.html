@@ -1,0 +1,15 @@
+<span class="hl-com">! REQ: LANG-1331 LANG-1332 LANG-1333</span>
+<span class="hl-kw">USING:</span> io kernel math sequences <span class="hl-op">;</span>
+<span class="hl-kw">IN:</span> greeter
+
+<span class="hl-kw">TUPLE:</span> point x y <span class="hl-op">;</span>
+
+<span class="hl-op">:</span> square <span class="hl-op">(</span> x -- y <span class="hl-op">)</span> <span class="hl-builtin">dup</span> * <span class="hl-op">;</span>
+
+<span class="hl-op">:</span> greet <span class="hl-op">(</span> name -- <span class="hl-op">)</span>
+    <span class="hl-str">"Hello, "</span> prepend <span class="hl-builtin">print</span> <span class="hl-op">;</span>
+
+<span class="hl-com">! Print squares of a sequence.</span>
+<span class="hl-op">{</span> <span class="hl-num">1</span> <span class="hl-num">2</span> <span class="hl-num">3</span> <span class="hl-op">}</span> <span class="hl-op">[</span> square . <span class="hl-op">]</span> <span class="hl-kw">each</span>
+<span class="hl-str">"world"</span> greet
+<span class="hl-builtin">t</span> <span class="hl-builtin">f</span> <span class="hl-op">[</span> <span class="hl-num">3.14</span> <span class="hl-op">]</span> <span class="hl-op">[</span> <span class="hl-num">0x1F</span> <span class="hl-op">]</span> <span class="hl-kw">if</span>

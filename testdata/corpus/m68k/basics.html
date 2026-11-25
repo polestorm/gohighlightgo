@@ -1,0 +1,9 @@
+<span class="hl-com">; REQ: LANG-2671 LANG-2672 LANG-2673 LANG-2674</span>
+<span class="hl-com">; Copy a string</span>
+<span class="hl-fn">start</span>:  <span class="hl-kw">lea</span>     message<span class="hl-op">(</span><span class="hl-builtin">pc</span><span class="hl-op">),</span><span class="hl-builtin">a0</span>
+        <span class="hl-kw">lea</span>     buffer<span class="hl-op">,</span><span class="hl-builtin">a1</span>
+        <span class="hl-kw">moveq</span>   <span class="hl-op">#</span><span class="hl-num">31</span><span class="hl-op">,</span><span class="hl-builtin">d0</span>
+<span class="hl-fn">copy</span>:   <span class="hl-kw">move</span><span class="hl-meta">.b</span>  <span class="hl-op">(</span><span class="hl-builtin">a0</span><span class="hl-op">)+,(</span><span class="hl-builtin">a1</span><span class="hl-op">)+</span>
+        <span class="hl-kw">dbra</span>    <span class="hl-builtin">d0</span><span class="hl-op">,</span>copy
+        <span class="hl-kw">rts</span>
+<span class="hl-fn">message</span>: dc<span class="hl-meta">.b</span>   <span class="hl-str">'Hello, 68k!'</span><span class="hl-op">,</span><span class="hl-num">0</span>

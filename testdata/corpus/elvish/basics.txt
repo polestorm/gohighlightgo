@@ -1,0 +1,8 @@
+# REQ: LANG-2511 LANG-2512 LANG-2513 LANG-2514
+# Greeting function
+fn greet {|name &times=1|
+  range $times | each {|i| echo "Hello, "$name"!" }
+}
+var people = [ann bob]
+for p $people { greet $p &times=2 }
+if (> (count $people) 0) { put 'it''s fine' }

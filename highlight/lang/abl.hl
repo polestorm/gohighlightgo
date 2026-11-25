@@ -1,0 +1,14 @@
+# OpenEdge ABL: Progress OpenEdge ABL Reference (12.x); requirements/languages/abl.md
+name     abl openedge progress
+keyword  DEFINE VARIABLE AS INITIAL NO-UNDO FOR EACH WHERE NO-LOCK EXCLUSIVE-LOCK FIND FIRST LAST IF THEN
+keyword  ELSE DO END REPEAT LEAVE NEXT RETURN PROCEDURE FUNCTION RETURNS RUN DISPLAY MESSAGE ASSIGN CREATE
+keyword  DELETE TRANSACTION CLASS METHOD PUBLIC PRIVATE INPUT OUTPUT PARAMETER AND OR NOT
+type     CHARACTER INTEGER DECIMAL LOGICAL DATE DATETIME INT64 HANDLE
+builtin  TRUE FALSE YES NO TODAY NOW
+fold-case
+ident-part     -
+block-comment  /* */  : nested
+string   " "  : escapes
+string   ' '  : escapes
+escape        : char=~
+operators  +-*/=<>:.

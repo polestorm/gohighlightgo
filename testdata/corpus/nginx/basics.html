@@ -1,0 +1,17 @@
+<span class="hl-com"># REQ: LANG-1701 LANG-1702 LANG-1703 LANG-1704</span>
+<span class="hl-kw">worker_processes</span> auto<span class="hl-op">;</span>
+<span class="hl-kw">events</span> <span class="hl-op">{</span> <span class="hl-kw">worker_connections</span> <span class="hl-num">1024</span><span class="hl-op">;</span> <span class="hl-op">}</span>
+<span class="hl-kw">http</span> <span class="hl-op">{</span>
+    <span class="hl-kw">include</span> mime.types<span class="hl-op">;</span>
+    <span class="hl-com"># Reverse proxy</span>
+    <span class="hl-kw">server</span> <span class="hl-op">{</span>
+        <span class="hl-kw">listen</span> <span class="hl-num">443</span> ssl<span class="hl-op">;</span>
+        <span class="hl-kw">server_name</span> example.com www.example.com<span class="hl-op">;</span>
+        <span class="hl-kw">location</span> / <span class="hl-op">{</span>
+            <span class="hl-kw">proxy_pass</span> <span class="hl-kw">http</span>://<span class="hl-num">127.0.0.1</span>:<span class="hl-num">8080</span><span class="hl-op">;</span>
+            <span class="hl-kw">proxy_set_header</span> Host <span class="hl-attr">$host</span><span class="hl-op">;</span>
+        <span class="hl-op">}</span>
+        <span class="hl-kw">location</span> <span class="hl-op">~*</span> \.(png|jpg)$ <span class="hl-op">{</span> <span class="hl-kw">expires</span> <span class="hl-num">30d</span><span class="hl-op">;</span> <span class="hl-kw">gzip</span> <span class="hl-builtin">off</span><span class="hl-op">;</span> <span class="hl-op">}</span>
+        <span class="hl-kw">error_page</span> <span class="hl-num">404</span> <span class="hl-str">"/404.html"</span><span class="hl-op">;</span>
+    <span class="hl-op">}</span>
+<span class="hl-op">}</span>

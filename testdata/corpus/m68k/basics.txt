@@ -1,0 +1,9 @@
+; REQ: LANG-2671 LANG-2672 LANG-2673 LANG-2674
+; Copy a string
+start:  lea     message(pc),a0
+        lea     buffer,a1
+        moveq   #31,d0
+copy:   move.b  (a0)+,(a1)+
+        dbra    d0,copy
+        rts
+message: dc.b   'Hello, 68k!',0

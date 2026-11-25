@@ -1,0 +1,10 @@
+// REQ: LANG-2121 LANG-2122 LANG-2123 LANG-2124
+// Failed requests per hour
+let threshold = 5;
+requests
+| where timestamp > ago(1d) and success == false
+| extend path = tostring(split(url, "?")[0])
+| summarize failures = count() by bin(timestamp, 1h), path
+| where failures > threshold
+| order by failures desc
+| render timechart

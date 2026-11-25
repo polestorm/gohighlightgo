@@ -1,0 +1,10 @@
+; REQ: LANG-2811 LANG-2812 LANG-2813 LANG-2814
+; Greeting rule
+(deftemplate person (slot name) (slot age (default 30)))
+(defrule greet
+   (person (name ?n) (age ?a&:(> ?a 18)))
+   =>
+   (printout t "Hello, " ?n "!" crlf))
+(deffacts people (person (name "Ann")))
+(reset)
+(run)

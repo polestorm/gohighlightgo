@@ -1,0 +1,10 @@
+<span class="hl-com">// REQ: LANG-2831 LANG-2832 LANG-2833 LANG-2834</span>
+<span class="hl-com">// A simple interface</span>
+<span class="hl-op">[</span><span class="hl-type">Exposed</span><span class="hl-op">=</span><span class="hl-type">Window</span><span class="hl-op">]</span>
+<span class="hl-kw">interface</span> <span class="hl-type">Greeter</span> <span class="hl-op">:</span> <span class="hl-type">EventTarget</span> <span class="hl-op">{</span>
+  <span class="hl-kw">constructor</span><span class="hl-op">(</span><span class="hl-kw">optional</span> <span class="hl-type">DOMString</span> name <span class="hl-op">=</span> <span class="hl-str">"world"</span><span class="hl-op">);</span>
+  <span class="hl-kw">readonly</span> <span class="hl-kw">attribute</span> <span class="hl-type">DOMString</span> name<span class="hl-op">;</span>
+  <span class="hl-com">/* Greets n times */</span>
+  <span class="hl-type">Promise</span><span class="hl-op">&lt;</span><span class="hl-type">undefined</span><span class="hl-op">&gt;</span> greet<span class="hl-op">(</span><span class="hl-type">unsigned</span> <span class="hl-type">long</span> times<span class="hl-op">);</span>
+<span class="hl-op">};</span>
+<span class="hl-kw">dictionary</span> <span class="hl-type">GreetOptions</span> <span class="hl-op">{</span> <span class="hl-type">boolean</span> loud <span class="hl-op">=</span> <span class="hl-builtin">false</span><span class="hl-op">;</span> <span class="hl-kw">required</span> <span class="hl-type">DOMString</span> lang<span class="hl-op">;</span> <span class="hl-op">};</span>

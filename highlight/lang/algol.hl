@@ -1,0 +1,9 @@
+# ALGOL 60/68: Revised Report on the Algorithmic Language ALGOL 60 and ALGOL 68 Revised Report; requirements/languages/algol.md
+name     algol algol60 algol68 a68
+keyword  begin end if then else elif fi for from to by while do od step until goto go comment procedure
+keyword  proc value own switch case in out esac mode op prio struct union heap loc
+type     integer real boolean string array int bool char
+builtin  true false print read
+line-comment   #
+string   " "  : doubled
+operators  +-*/:=<>^&|~(),;

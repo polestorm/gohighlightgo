@@ -1,0 +1,12 @@
+# TTCN-3: ETSI ES 201 873-1 (TTCN-3 Core Language); requirements/languages/ttcn3.md
+name     ttcn3 ttcn
+keyword  module import from all type record union set of enumerated component port message procedure
+keyword  testcase function altstep control var const template runs on system return if else for while
+keyword  do alt interleave repeat timer start stop send receive setverdict map connect execute
+type     integer float boolean charstring universal octetstring bitstring hexstring verdicttype
+builtin  true false pass fail inconc none error self mtc
+line-comment   //
+block-comment  /* */
+string   " "  : doubled
+operators  +-*/:=<>&!.?@
+calls

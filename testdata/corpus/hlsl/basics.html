@@ -1,0 +1,11 @@
+<span class="hl-com">// REQ: LANG-2331 LANG-2332 LANG-2333 LANG-2334</span>
+<span class="hl-meta">#include</span> <span class="hl-str">"common.hlsli"</span>
+<span class="hl-kw">cbuffer</span> Transform <span class="hl-op">:</span> <span class="hl-kw">register</span>(b0) { <span class="hl-type">float4x4</span> mvp; };
+<span class="hl-type">Texture2D</span> tex <span class="hl-op">:</span> <span class="hl-kw">register</span>(t0);
+<span class="hl-type">SamplerState</span> samp <span class="hl-op">:</span> <span class="hl-kw">register</span>(s0);
+<span class="hl-com">/* Vertex output */</span>
+<span class="hl-kw">struct</span> VSOut { <span class="hl-type">float4</span> pos <span class="hl-op">:</span> SV_Position; <span class="hl-type">float2</span> uv <span class="hl-op">:</span> TEXCOORD0; };
+<span class="hl-type">float4</span> <span class="hl-fn">PSMain</span>(VSOut input) <span class="hl-op">:</span> SV_Target {
+    <span class="hl-type">float4</span> color <span class="hl-op">=</span> tex<span class="hl-op">.</span><span class="hl-fn">Sample</span>(samp, input<span class="hl-op">.</span>uv);
+    <span class="hl-kw">return</span> <span class="hl-builtin">saturate</span>(color <span class="hl-op">*</span> <span class="hl-num">1.5f</span>) <span class="hl-op">+</span> <span class="hl-type">float4</span>(<span class="hl-num">0.0</span>, <span class="hl-num">0.0</span>, <span class="hl-num">0.0</span>, <span class="hl-num">1.0</span>);
+}

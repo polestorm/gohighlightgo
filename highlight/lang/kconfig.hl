@@ -1,0 +1,10 @@
+# Kconfig: Linux kernel Kconfig Language documentation; requirements/languages/kconfig.md
+name     kconfig
+keyword  config menuconfig choice endchoice menu endmenu if endif source comment mainmenu depends on
+keyword  select imply default help prompt range visible
+type     bool tristate string hex int
+builtin  y n m
+line-comment   #
+string   " "  : escapes
+string   ' '  : escapes
+operators  =!<>&|()

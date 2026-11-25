@@ -1,0 +1,13 @@
+<span class="hl-com">% REQ: LANG-1401 LANG-1402</span>
+<span class="hl-op">:-</span> <span class="hl-kw">module</span> hello<span class="hl-op">.</span>
+<span class="hl-op">:-</span> <span class="hl-kw">interface</span><span class="hl-op">.</span>
+<span class="hl-op">:-</span> <span class="hl-kw">import_module</span> <span class="hl-builtin">io</span><span class="hl-op">.</span>
+<span class="hl-op">:-</span> <span class="hl-kw">pred</span> <span class="hl-builtin">main</span>(<span class="hl-builtin">io</span><span class="hl-op">::</span>di, <span class="hl-builtin">io</span><span class="hl-op">::</span>uo) <span class="hl-kw">is</span> <span class="hl-kw">det</span><span class="hl-op">.</span>
+
+<span class="hl-op">:-</span> <span class="hl-kw">implementation</span><span class="hl-op">.</span>
+
+<span class="hl-com">/* Greets the world. */</span>
+<span class="hl-builtin">main</span>(<span class="hl-op">!</span><span class="hl-type">IO</span>) <span class="hl-op">:-</span>
+    <span class="hl-type">Name</span> <span class="hl-op">=</span> <span class="hl-str">"world"</span>,
+    <span class="hl-builtin">io</span><span class="hl-op">.</span><span class="hl-builtin">write_string</span>(<span class="hl-str">"Hello, "</span> <span class="hl-op">++</span> <span class="hl-type">Name</span> <span class="hl-op">++</span> <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>, <span class="hl-op">!</span><span class="hl-type">IO</span>),
+    ( <span class="hl-kw">if</span> <span class="hl-num">0x1F</span> <span class="hl-op">&gt;</span> <span class="hl-num">1</span> <span class="hl-kw">then</span> <span class="hl-builtin">io</span><span class="hl-op">.</span><span class="hl-builtin">nl</span>(<span class="hl-op">!</span><span class="hl-type">IO</span>) <span class="hl-kw">else</span> <span class="hl-builtin">true</span> )<span class="hl-op">.</span>

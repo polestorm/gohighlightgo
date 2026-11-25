@@ -1,0 +1,8 @@
+# Ninja: The Ninja build system manual: syntax reference; requirements/languages/ninja.md
+name     ninja
+keyword  rule build default pool include subninja
+builtin  command description depfile deps generator restat rspfile rspfile_content phony
+line-comment   #
+key-names  =
+operators  :|=
+hook     variables

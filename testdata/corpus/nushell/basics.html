@@ -1,0 +1,8 @@
+<span class="hl-com"># REQ: LANG-2501 LANG-2502 LANG-2503 LANG-2504</span>
+<span class="hl-com"># List large files</span>
+<span class="hl-kw">def</span> big<span class="hl-op">-</span>files [dir<span class="hl-op">:</span> string, <span class="hl-op">--</span>min<span class="hl-op">:</span> int <span class="hl-op">=</span> <span class="hl-num">1000</span>] {
+    <span class="hl-builtin">ls</span> <span class="hl-attr">$dir</span> <span class="hl-op">|</span> <span class="hl-kw">where</span> size <span class="hl-op">&gt;</span> <span class="hl-attr">$min</span> <span class="hl-op">|</span> sort<span class="hl-op">-</span>by size
+}
+<span class="hl-kw">let</span> name <span class="hl-op">=</span> <span class="hl-str">"world"</span>
+<span class="hl-builtin">print</span> <span class="hl-str">$"Hello, ($name)!"</span>
+<span class="hl-kw">for</span> f <span class="hl-kw">in</span> (big<span class="hl-op">-</span>files <span class="hl-op">.</span> <span class="hl-op">--</span>min <span class="hl-num">0x1F</span>) { <span class="hl-builtin">echo</span> <span class="hl-attr">$f</span><span class="hl-op">.</span>name }

@@ -1,0 +1,27 @@
+-- REQ: LANG-1611 LANG-1612 LANG-1613 LANG-1614
+note
+	description: "Greets people."
+class
+	GREETER
+create
+	make
+feature
+	make (a_name: STRING)
+		require
+			name_not_void: a_name /= Void
+		do
+			name := a_name
+		end
+	greet (times: INTEGER): STRING
+		local
+			i: INTEGER
+		do
+			from i := 1 until i > times loop
+				Result := "Hello, " + name + "!%N"
+				i := i + 1
+			end
+		ensure
+			result_exists: Result /= Void
+		end
+	name: STRING
+end

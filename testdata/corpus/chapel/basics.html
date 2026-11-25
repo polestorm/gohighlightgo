@@ -1,0 +1,12 @@
+<span class="hl-com">// REQ: LANG-1281 LANG-1282 LANG-1283</span>
+<span class="hl-com">/* outer /* nested */ still a comment */</span>
+<span class="hl-kw">config</span> <span class="hl-kw">const</span> n <span class="hl-op">=</span> <span class="hl-num">10</span>;
+<span class="hl-kw">record</span> Point { <span class="hl-kw">var</span> x, y<span class="hl-op">:</span> <span class="hl-type">real</span>; }
+
+<span class="hl-kw">proc</span> <span class="hl-fn">greet</span>(name<span class="hl-op">:</span> <span class="hl-type">string</span>, times<span class="hl-op">:</span> <span class="hl-type">int</span> <span class="hl-op">=</span> <span class="hl-num">1</span>)<span class="hl-op">:</span> <span class="hl-type">string</span> {
+  <span class="hl-kw">var</span> text <span class="hl-op">=</span> <span class="hl-str">"Hello, "</span> <span class="hl-op">+</span> name <span class="hl-op">+</span> <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>;
+  <span class="hl-kw">return</span> text <span class="hl-op">*</span> times;
+}
+
+<span class="hl-kw">forall</span> i <span class="hl-kw">in</span> <span class="hl-num">1</span><span class="hl-op">..</span>n <span class="hl-fn">with</span> (<span class="hl-op">+</span> reduce sum) <span class="hl-kw">do</span> sum <span class="hl-op">+=</span> i;
+<span class="hl-kw">coforall</span> loc <span class="hl-kw">in</span> Locales <span class="hl-kw">do</span> <span class="hl-kw">on</span> loc <span class="hl-kw">do</span> <span class="hl-builtin">writeln</span>(<span class="hl-str">"on "</span>, <span class="hl-builtin">here</span><span class="hl-op">.</span>id, <span class="hl-str">" "</span>, <span class="hl-num">0x1F</span>, <span class="hl-builtin">true</span>);

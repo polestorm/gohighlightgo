@@ -1,0 +1,15 @@
+' REQ: LANG-2791 LANG-2792 LANG-2793 LANG-2794
+' Bouncing ball
+Graphics 640, 480
+Type Ball
+  Field x#, y#, speed#
+End Type
+Local b.Ball = New Ball
+b\speed = 2.5
+While Not KeyHit(1)
+  Cls
+  b\x = b\x + b\speed
+  If b\x > 640 Then b\speed = -b\speed
+  Print "x = " + b\x
+  Flip
+Wend

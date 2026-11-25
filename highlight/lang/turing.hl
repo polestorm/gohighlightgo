@@ -1,0 +1,13 @@
+# Turing: Turing Reference Manual (Holt Software); requirements/languages/turing.md
+name     turing tu
+keyword  var const if then elsif else end for loop exit when put get procedure function proc fcn
+keyword  result return record type array of begin import export module class inherit and or not
+keyword  decreasing case label
+type     int real string boolean char nat
+builtin  true false length upper index
+line-comment   %
+block-comment  /* */
+string   " "  : escapes
+string   ' '  : escapes
+operators  +-*/=<>:.,()
+calls

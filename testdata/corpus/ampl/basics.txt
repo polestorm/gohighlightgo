@@ -1,0 +1,12 @@
+# REQ: LANG-2651 LANG-2652 LANG-2653 LANG-2654
+# Diet problem
+set FOOD;
+param cost {FOOD} > 0;
+param limit default 100;
+var Buy {j in FOOD} >= 0, <= limit;
+/* objective */
+minimize Total_Cost: sum {j in FOOD} cost[j] * Buy[j];
+subject to Budget: sum {j in FOOD} Buy[j] <= 31;
+option solver 'cplex';
+solve;
+display Buy;

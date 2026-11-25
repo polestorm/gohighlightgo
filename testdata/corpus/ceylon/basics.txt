@@ -1,0 +1,16 @@
+// REQ: LANG-1601 LANG-1602 LANG-1603 LANG-1604
+/* Block comment */
+shared class Greeter(shared String name = "world") {
+    shared String greet(Integer times = 1) {
+        variable value text = "Hello, ``name``!\n";
+        for (i in 1..times) { print(text); }
+        return text;
+    }
+}
+shared void run() {
+    value g = Greeter("ceylon");
+    Character c = 'x';
+    if (exists n = g.name, n.size > 0 && true) {
+        print(g.greet(#1F));
+    }
+}

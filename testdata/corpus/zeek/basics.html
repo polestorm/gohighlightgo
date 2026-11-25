@@ -1,0 +1,19 @@
+<span class="hl-com"># REQ: LANG-1531 LANG-1532 LANG-1533</span>
+<span class="hl-meta">@load</span> base<span class="hl-op">/</span>frameworks<span class="hl-op">/</span>notice
+
+<span class="hl-kw">module</span> Demo;
+
+<span class="hl-kw">export</span> {
+    <span class="hl-kw">type</span> Info<span class="hl-op">:</span> <span class="hl-kw">record</span> {
+        ts<span class="hl-op">:</span> <span class="hl-type">time</span> <span class="hl-op">&amp;</span>log;
+        host<span class="hl-op">:</span> <span class="hl-type">addr</span> <span class="hl-op">&amp;</span>log;
+        <span class="hl-type">count</span><span class="hl-op">:</span> <span class="hl-type">count</span> <span class="hl-op">&amp;</span><span class="hl-kw">default</span><span class="hl-op">=</span><span class="hl-num">0</span>;
+    };
+    <span class="hl-kw">global</span> greet<span class="hl-op">:</span> <span class="hl-kw">function</span>(name<span class="hl-op">:</span> <span class="hl-type">string</span>)<span class="hl-op">:</span> <span class="hl-type">string</span>;
+}
+
+<span class="hl-kw">event</span> <span class="hl-fn">connection_established</span>(c<span class="hl-op">:</span> connection) {
+    <span class="hl-kw">local</span> who <span class="hl-op">=</span> c<span class="hl-attr">$id$orig_h</span>;
+    <span class="hl-kw">if</span> (who <span class="hl-kw">in</span> <span class="hl-num">10.0.0.0</span><span class="hl-op">/</span><span class="hl-num">8</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-builtin">T</span>)
+        <span class="hl-kw">print</span> <span class="hl-fn">fmt</span>(<span class="hl-str">"Hello, %s! %d"</span>, who, <span class="hl-num">0x1F</span>);
+}

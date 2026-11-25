@@ -1,0 +1,9 @@
+# QML: Qt QML reference (Qt 6): QML syntax basics, property attributes, signals; requirements/languages/qml.md
+extends  javascript
+name     qml qbs
+
+keyword  property signal readonly alias required component pragma on
+type     int real double string bool color var list url date point rect size font
+builtin  parent qsTr Qt console
+key-names  :
+upper-type

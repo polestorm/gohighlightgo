@@ -1,0 +1,7 @@
+# Mercury: The Mercury Language Reference Manual (22.01), syntax and determinism; requirements/languages/mercury.md
+extends  prolog
+name     mercury
+
+keyword  module interface implementation import_module use_module pred func mode type inst is det
+keyword  semidet multi nondet failure erroneous cc_multi cc_nondet if then else not some all end_module
+builtin  io main write_string nl

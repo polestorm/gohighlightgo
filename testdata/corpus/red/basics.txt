@@ -1,0 +1,13 @@
+; REQ: LANG-1471 LANG-1472 LANG-1473
+Red [Title: "Greeter"]
+
+greet: func [name [string!] /times n [integer!]] [
+    text: rejoin ["Hello, " name "!^/"]
+    either times [loop n [print text]] [print text]
+]
+
+config: make object! [name: "world" count: 3]
+greet/times config/name config/count
+multi: {Multi-line
+string}
+print [true false none 3.14 #FF]

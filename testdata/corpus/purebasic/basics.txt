@@ -1,0 +1,15 @@
+; REQ: LANG-2631 LANG-2632 LANG-2633 LANG-2634
+; Greeter
+Structure Person
+  Name.s
+  Age.i
+EndStructure
+Procedure.s Greet(*p.Person, Times = 1)
+  Protected Text.s = ~"Hello, " + *p\Name + ~"!\n"
+  For i = 1 To Times
+    Debug Text
+  Next
+  ProcedureReturn Text
+EndProcedure
+Define ann.Person : ann\Name = "Ann"
+If Len(Greet(@ann, 2)) > 0 And #True : Debug $1F : EndIf

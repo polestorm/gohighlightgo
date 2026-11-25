@@ -1,0 +1,8 @@
+<span class="hl-com">// REQ: LANG-2031 LANG-2032 LANG-2033 LANG-2034</span>
+<span class="hl-kw">let</span>
+    <span class="hl-com">// Load and filter</span>
+    Source <span class="hl-op">=</span> <span class="hl-fn">Csv.Document</span>(<span class="hl-fn">File.Contents</span>(<span class="hl-str">"data.csv"</span>), [Delimiter <span class="hl-op">=</span> <span class="hl-str">","</span>]),
+    Filtered <span class="hl-op">=</span> <span class="hl-builtin">Table.SelectRows</span>(Source, <span class="hl-kw">each</span> [Age] <span class="hl-op">&gt;</span> <span class="hl-num">18</span> <span class="hl-kw">and</span> <span class="hl-builtin">true</span>),
+    Added <span class="hl-op">=</span> <span class="hl-builtin">Table.AddColumn</span>(Filtered, <span class="hl-str">"Greeting"</span>, <span class="hl-kw">each</span> <span class="hl-str">"Hello, "</span> <span class="hl-op">&amp;</span> [Name] <span class="hl-op">&amp;</span> <span class="hl-str">"!"</span>, <span class="hl-kw">type</span> <span class="hl-type">text</span>)
+<span class="hl-kw">in</span>
+    Added

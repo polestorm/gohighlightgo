@@ -1,0 +1,11 @@
+# REQ: LANG-2431 LANG-2432 LANG-2433 LANG-2434
+# Configuration with contracts
+let Port = std.contract.from_predicate (fun p => p > 0 && p < 65536) in
+let config | { port | Port, name | String } = {
+  port = 8080,
+  name = "server",
+} in
+{
+  greeting = "Hello, %{config.name}!",
+  enabled = true,
+}

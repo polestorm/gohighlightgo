@@ -1,0 +1,14 @@
+# CFML (CFScript): Adobe ColdFusion and Lucee documentation: CFScript; requirements/languages/cfml.md
+name     cfml cfscript cfc coldfusion
+keyword  component function property return if else for in while do switch case default break continue
+keyword  try catch finally throw var new import public private remote package required any
+type     string numeric boolean struct array query date void
+builtin  true false null writeOutput arrayLen structKeyExists len now dump
+fold-case
+line-comment   //
+block-comment  /* */
+string   " "  : doubled
+string   ' '  : doubled
+sigil    #    : attr
+operators  +-*/%&|!<>=:?.
+calls

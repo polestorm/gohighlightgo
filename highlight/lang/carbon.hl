@@ -1,0 +1,12 @@
+# Carbon: Carbon language design documents (carbon-lang); requirements/languages/carbon.md
+name     carbon
+keyword  package library import api fn var let class interface impl as return if else while for in
+keyword  break continue match case default returned base extend abstract virtual partial private
+keyword  protected self Self choice namespace where
+type     i8 i16 i32 i64 u8 u16 u32 u64 f32 f64 bool String auto
+builtin  true false Print
+line-comment   //
+string   ''' '''  : escapes multiline
+string   " "      : escapes
+operators  +-*/%&|^!<>=:?~.
+calls

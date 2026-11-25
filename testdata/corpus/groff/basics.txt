@@ -1,0 +1,10 @@
+.\" REQ: LANG-2491 LANG-2492 LANG-2493 LANG-2494
+.\" Manual page for demo
+.TH DEMO 1 "2026-11-25" "1.0" "User Commands"
+.SH NAME
+demo \- print a greeting
+.SH SYNOPSIS
+.B demo
+[\fB\-n\fR \fIcount\fR]
+.SH DESCRIPTION
+Prints \fBHello\fR to standard output.

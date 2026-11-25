@@ -1,0 +1,7 @@
+# Logtalk: Logtalk reference manual (3.x): directives, built-in predicates; requirements/languages/logtalk.md
+extends  prolog
+name     logtalk lgt
+
+keyword  object end_object protocol end_protocol category end_category public protected private uses
+keyword  implements imports extends instantiates specializes info mode dynamic discontiguous
+builtin  self this sender parameter

@@ -1,0 +1,14 @@
+<span class="hl-com">// REQ: LANG-2821 LANG-2822 LANG-2823 LANG-2824</span>
+<span class="hl-meta">#include</span> <span class="hl-str">"inkey.ch"</span>
+<span class="hl-com">/* Customer listing */</span>
+<span class="hl-kw">FUNCTION</span> <span class="hl-fn">Main</span>()
+   <span class="hl-kw">LOCAL</span> nCount <span class="hl-op">:=</span> <span class="hl-num">0</span>, cName <span class="hl-op">:=</span> <span class="hl-str">"world"</span>
+   <span class="hl-kw">USE</span> customer <span class="hl-kw">INDEX</span> custname
+   <span class="hl-kw">DO</span> <span class="hl-kw">WHILE</span> <span class="hl-builtin">.NOT.</span> <span class="hl-builtin">EOF</span>()
+      <span class="hl-kw">IF</span> customer<span class="hl-op">-&gt;</span>balance <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-builtin">.AND.</span> <span class="hl-builtin">.T.</span>
+         <span class="hl-builtin">QOut</span>(<span class="hl-str">"Hello, "</span> <span class="hl-op">+</span> <span class="hl-builtin">Trim</span>(customer<span class="hl-op">-&gt;</span>name) <span class="hl-op">+</span> <span class="hl-str">"!"</span>)
+         nCount<span class="hl-op">++</span>
+      <span class="hl-kw">ENDIF</span>
+      <span class="hl-kw">SKIP</span>
+   <span class="hl-kw">ENDDO</span>
+   <span class="hl-kw">RETURN</span> nCount

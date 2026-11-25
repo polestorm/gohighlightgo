@@ -1,0 +1,13 @@
+; REQ: LANG-1831 LANG-1832 LANG-1833 LANG-1834
+$ORIGIN example.com.
+$TTL 3600
+@   IN SOA ns1.example.com. admin.example.com. (
+        2026112501 ; serial
+        7200       ; refresh
+        3600 1209600 300 )
+    IN NS  ns1.example.com.
+    IN MX  10 mail.example.com.
+www IN A   192.0.2.10
+    IN AAAA 2001:db8::10
+_sip._tcp IN SRV 10 60 5060 sip.example.com.
+txt IN TXT "v=spf1 -all"

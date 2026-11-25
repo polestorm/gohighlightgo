@@ -1,0 +1,12 @@
+<span class="hl-com">// REQ: LANG-2051 LANG-2052 LANG-2053 LANG-2054</span>
+<span class="hl-com">// Greets and plots</span>
+<span class="hl-kw">function</span> y <span class="hl-op">=</span> <span class="hl-fn">square</span>(x)
+    y <span class="hl-op">=</span> x <span class="hl-op">.^</span> <span class="hl-num">2</span>;
+<span class="hl-kw">endfunction</span>
+<span class="hl-com">/* main */</span>
+x <span class="hl-op">=</span> <span class="hl-fn">linspace</span>(<span class="hl-num">0</span>, <span class="hl-builtin">%pi</span>, <span class="hl-num">10</span>);
+y <span class="hl-op">=</span> <span class="hl-fn">square</span>(x);
+<span class="hl-kw">if</span> <span class="hl-builtin">length</span>(y) <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-op">&amp;</span> <span class="hl-builtin">%t</span> <span class="hl-kw">then</span>
+    <span class="hl-builtin">mprintf</span>(<span class="hl-str">"Hello, %s! %d\n"</span>, <span class="hl-str">"scilab"</span>, <span class="hl-num">31</span>);
+<span class="hl-kw">end</span>
+<span class="hl-builtin">plot</span>(x, y);

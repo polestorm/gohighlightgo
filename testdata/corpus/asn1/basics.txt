@@ -1,0 +1,11 @@
+-- REQ: LANG-2401 LANG-2402 LANG-2403 LANG-2404
+Greeting DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+-- A person
+Person ::= SEQUENCE {
+    name   UTF8String (SIZE (1..64)),
+    age    INTEGER (0..150) OPTIONAL,
+    emails SEQUENCE OF IA5String,
+    active BOOLEAN DEFAULT TRUE
+}
+Color ::= ENUMERATED { red(0), green(1) }
+END

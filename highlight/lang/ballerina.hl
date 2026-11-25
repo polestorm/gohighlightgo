@@ -1,0 +1,18 @@
+# Ballerina: Ballerina Language Specification (2024R1), lexical structure and keywords; requirements/languages/ballerina.md
+name     ballerina bal
+
+keyword  import public private function returns return if else foreach in while break continue match
+keyword  check checkpanic panic trap type record object service resource remote isolated transactional
+keyword  final var error worker fork wait lock transaction retry from where select let order by join on
+keyword  equals limit is new client listener configurable enum const
+type     int float decimal string boolean byte json xml anydata any never map table stream future typedesc
+type     handle readonly
+builtin  true false null
+
+line-comment   //
+string   " "  : escapes
+string   ` `  : multiline interp=dollar-braces
+escape        : u-braces
+sigil    @    : meta
+operators  +-*/%&|^!<>=:?~.
+calls

@@ -1,0 +1,13 @@
+# REQ: LANG-2201 LANG-2202 LANG-2203 LANG-2204
+# Build file
+declare_args() {
+  enable_greeter = true
+}
+executable("demo") {
+  sources = [ "main.cc", "greeter.cc" ]
+  deps = [ "//base" ]
+  if (enable_greeter && is_linux) {
+    defines = [ "GREETER=1" ]
+  }
+  output_name = "demo_$target_cpu"
+}

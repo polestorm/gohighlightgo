@@ -1,0 +1,10 @@
+# Frink: Frink documentation (frinklang.org); requirements/languages/frink.md
+name     frink frk
+keyword  if then else while for to step do return class var new and or not println print input
+builtin  true false undef meter second kilogram mile hour
+line-comment   //
+block-comment  /* */
+string   """ """  : multiline
+string   " "      : escapes interp=dollar
+operators  +-*/^=<>:|!.->[]
+calls

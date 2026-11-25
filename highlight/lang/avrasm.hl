@@ -1,0 +1,12 @@
+# AVR assembly: AVR Instruction Set Manual (Microchip); requirements/languages/avrasm.md
+name     avrasm avr
+keyword  ldi ld st lds sts mov movw in out add adc sub subi sbc inc dec and andi or ori eor com neg lsl
+keyword  lsr rol ror cp cpi cpc brne breq brlo brsh rjmp rcall ret reti sei cli sbi cbi sbis sbic push
+keyword  pop nop sleep
+builtin  r0 r1 r16 r17 r18 r24 r25 X Y Z SREG PORTB DDRB PINB SPL SPH
+fold-case
+line-comment   ; //
+string   " "
+sigil    .    : meta
+operators  +-*/(),=<>
+hook     asm-label

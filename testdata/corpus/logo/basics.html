@@ -1,0 +1,13 @@
+ REQ: LANG<span class="hl-op">-</span><span class="hl-num">2301</span> LANG<span class="hl-op">-</span><span class="hl-num">2302</span> LANG<span class="hl-op">-</span><span class="hl-num">2303</span> LANG<span class="hl-op">-</span><span class="hl-num">2304</span>
+<span class="hl-com">; Draw a square</span>
+<span class="hl-kw">to</span> square <span class="hl-attr">:size</span>
+  <span class="hl-kw">repeat</span> <span class="hl-num">4</span> <span class="hl-op">[</span><span class="hl-builtin">forward</span> <span class="hl-attr">:size</span> <span class="hl-builtin">right</span> <span class="hl-num">90</span><span class="hl-op">]</span>
+<span class="hl-kw">end</span>
+<span class="hl-kw">to</span> spiral <span class="hl-attr">:n</span>
+  <span class="hl-kw">if</span> <span class="hl-attr">:n</span> <span class="hl-op">&gt;</span> <span class="hl-num">100</span> <span class="hl-op">[</span><span class="hl-kw">stop</span><span class="hl-op">]</span>
+  <span class="hl-builtin">forward</span> <span class="hl-attr">:n</span> <span class="hl-builtin">right</span> <span class="hl-num">91</span>
+  spiral <span class="hl-attr">:n</span> <span class="hl-op">+</span> <span class="hl-num">2</span>
+<span class="hl-kw">end</span>
+<span class="hl-kw">make</span> <span class="hl-str">"count</span> <span class="hl-num">31</span>
+<span class="hl-builtin">print</span> <span class="hl-builtin">sum</span> <span class="hl-attr">:count</span> <span class="hl-num">1</span>
+square <span class="hl-num">50</span>

@@ -1,0 +1,10 @@
+# Elvish: Elvish language reference (elv.sh/ref/language.html); requirements/languages/elvish.md
+name     elvish elv
+keyword  var set tmp del fn if elif else while for try catch finally use return break continue and or
+keyword  not
+builtin  echo put print each peach range count str re math put
+line-comment   #
+string   " "  : escapes
+string   ' '  : doubled
+sigil    $    : attr
+operators  |=<>!&{}[]()

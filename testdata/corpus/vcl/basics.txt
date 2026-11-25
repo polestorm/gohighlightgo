@@ -1,0 +1,11 @@
+# REQ: LANG-2471 LANG-2472 LANG-2473 LANG-2474
+vcl 4.1;
+import std;
+backend default { .host = "127.0.0.1"; .port = "8080"; }
+/* Request handling */
+sub vcl_recv {
+    if (req.url ~ "^/admin" && !client.ip ~ trusted) {
+        return (synth(403, "Forbidden"));
+    }
+    unset req.http.Cookie;
+}

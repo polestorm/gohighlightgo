@@ -1,0 +1,11 @@
+// REQ: LANG-1671 LANG-1672 LANG-1673 LANG-1674
+/* Greeter prototype */
+Greeter := Object clone
+Greeter name := "world"
+Greeter greet := method(times,
+    text := "Hello, " .. name .. "!\n"
+    for(i, 1, times, text println)
+    text
+)
+g := Greeter clone
+if(g name size > 0 and true, g greet(2), nil)

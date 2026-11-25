@@ -1,0 +1,14 @@
+# PostScript: PostScript Language Reference, third edition (Adobe), 3.2 Syntax; requirements/languages/postscript.md
+name     postscript ps eps
+
+keyword  def if ifelse for repeat loop exit forall begin end bind exec stop stopped
+builtin  dup exch pop copy roll index clear add sub mul div idiv mod neg abs moveto lineto rmoveto
+builtin  rlineto curveto closepath newpath stroke fill showpage gsave grestore translate rotate scale
+builtin  setrgbcolor setgray setlinewidth findfont scalefont setfont show true false null
+
+ident-part     -
+line-comment   %
+string   ( )  : escapes multiline
+string   <~ ~>  : multiline
+sigil    /    : attr
+operators  []{}<>

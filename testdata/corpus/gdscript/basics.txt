@@ -1,0 +1,19 @@
+# REQ: LANG-1631 LANG-1632 LANG-1633 LANG-1634
+extends Node2D
+class_name Greeter
+
+signal greeted(name)
+
+@export var speed: float = 1.5
+@onready var label = $Label
+
+func greet(who: String, times: int = 1) -> String:
+	var text := "Hello, %s!\n" % who
+	for i in range(times):
+		if i > 0 and true:
+			print(text)
+	greeted.emit(who)
+	return text
+
+func _ready() -> void:
+	label.text = greet("godot", 0x1F)

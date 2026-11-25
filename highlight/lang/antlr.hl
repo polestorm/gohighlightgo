@@ -1,0 +1,12 @@
+# ANTLR 4: ANTLR 4 documentation: grammar structure, lexer and parser rules; requirements/languages/antlr.md
+name     antlr antlr4 g4
+keyword  grammar lexer parser fragment import options tokens channels mode returns locals throws catch
+keyword  finally
+builtin  EOF skip more pushMode popMode channel type
+line-comment   //
+block-comment  /* */
+string   ' '  : escapes
+escape        : u4
+sigil    @    : meta
+operators  :;|*+?~=>()-.#
+upper-type

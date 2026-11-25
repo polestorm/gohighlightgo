@@ -1,0 +1,9 @@
+# Mermaid: Mermaid documentation (mermaid.js.org): diagram syntax; requirements/languages/mermaid.md
+name     mermaid mmd
+keyword  graph flowchart sequenceDiagram classDiagram stateDiagram stateDiagram-v2 erDiagram gantt pie
+keyword  journey gitGraph mindmap timeline participant actor loop alt else opt end note subgraph
+keyword  TD TB BT RL LR title section class style classDef click
+ident-part     -
+line-comment   %%
+string   " "
+operators  -->=.|:&

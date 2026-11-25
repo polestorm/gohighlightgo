@@ -1,0 +1,8 @@
+# REQ: LANG-2861 LANG-2862 LANG-2863 LANG-2864
+# Greet nearby players
+execute as @a[distance=..10] at @s run say Hello!
+scoreboard objectives add greeted dummy
+scoreboard players add @s greeted 1
+tellraw @a {"text":"Welcome","color":"gold","bold":true}
+summon minecraft:armor_stand ~ ~1 ~ {Invisible:1b}
+function demo:tick

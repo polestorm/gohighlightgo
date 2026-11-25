@@ -1,0 +1,15 @@
+# Raku: Raku documentation (docs.raku.org): syntax, operators, quoting constructs; requirements/languages/raku.md
+name     raku perl6 p6 rakumod
+
+keyword  my our has sub method submethod multi proto class role grammar token rule regex if elsif else
+keyword  unless for while until loop given when default return say print put use need module unit is
+keyword  does also gather take with without try CATCH die fail start react whenever supply
+builtin  True False Nil Any Mu self
+
+ident-part     -'
+line-comment   #
+string   " "  : escapes interp=dollar
+string   ' '  : escapes
+sigil    $@%& : attr
+operators  +-*/%=<>!~|^?:.
+calls

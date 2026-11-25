@@ -1,0 +1,8 @@
+<span class="hl-com">/ REQ: LANG-2271 LANG-2272 LANG-2273 LANG-2274</span>
+<span class="hl-com">/ trades table</span>
+t<span class="hl-op">:</span>([] sym<span class="hl-op">:</span><span class="hl-attr">`a`b`a`c</span>; price<span class="hl-op">:</span><span class="hl-num">10</span> <span class="hl-num">20</span> <span class="hl-num">15</span> <span class="hl-num">30f</span>; qty<span class="hl-op">:</span><span class="hl-num">100</span> <span class="hl-num">200</span> <span class="hl-num">150</span> <span class="hl-num">300</span>)
+<span class="hl-kw">select</span> vwap<span class="hl-op">:</span>qty wavg price <span class="hl-kw">by</span> sym <span class="hl-kw">from</span> t <span class="hl-kw">where</span> price <span class="hl-op">&gt;</span> <span class="hl-num">12</span>
+<span class="hl-builtin">avg</span> <span class="hl-kw">exec</span> price <span class="hl-kw">from</span> t
+f<span class="hl-op">:</span>{[x;y] x <span class="hl-op">+</span> y <span class="hl-op">*</span> <span class="hl-num">2</span>}
+f[<span class="hl-num">3</span>;<span class="hl-num">4</span>]
+<span class="hl-builtin">show</span> <span class="hl-str">"hello, q"</span>

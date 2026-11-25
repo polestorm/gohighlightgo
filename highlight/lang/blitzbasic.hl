@@ -1,0 +1,11 @@
+# BlitzBasic: Blitz3D/BlitzMax language reference; requirements/languages/blitzbasic.md
+name     blitzbasic blitzmax bb bmx
+keyword  Global Local Const Function EndFunction Type EndType Field If Then Else ElseIf EndIf For To
+keyword  Step Next Each While Wend Repeat Until Forever Select Case Default EndSelect Return New Delete
+keyword  And Or Not Mod Graphics Cls Flip End Strict Framework Import Method EndMethod Extends Self
+builtin  True False Null Print Input Len Str Rnd KeyHit WaitKey
+fold-case
+line-comment   '
+string   " "
+operators  +-*/^=<>:.%#$
+calls

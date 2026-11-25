@@ -1,0 +1,12 @@
+<span class="hl-com">// REQ: LANG-2411 LANG-2412 LANG-2413 LANG-2414</span>
+<span class="hl-kw">package</span> config
+<span class="hl-kw">import</span> <span class="hl-str">"strings"</span>
+<span class="hl-com">// Schema</span>
+#Person<span class="hl-op">:</span> {
+    name<span class="hl-op">:</span>  <span class="hl-type">string</span> <span class="hl-op">&amp;</span> strings<span class="hl-op">.</span><span class="hl-fn">MinRunes</span>(<span class="hl-num">1</span>)
+    age<span class="hl-op">:</span>   <span class="hl-type">int</span> <span class="hl-op">&amp;</span> <span class="hl-op">&gt;=</span><span class="hl-num">0</span> <span class="hl-op">&amp;</span> <span class="hl-op">&lt;=</span><span class="hl-num">150</span> <span class="hl-op">|</span> <span class="hl-op">*</span><span class="hl-num">30</span>
+    email<span class="hl-op">?:</span> <span class="hl-op">=</span>~<span class="hl-str">"^.+@.+$"</span>
+}
+ann<span class="hl-op">:</span> #Person <span class="hl-op">&amp;</span> {name<span class="hl-op">:</span> <span class="hl-str">"Ann"</span>, age<span class="hl-op">:</span> <span class="hl-num">30</span>}
+greeting<span class="hl-op">:</span> <span class="hl-str">"Hello, </span><span class="hl-esc">\(ann.name)</span><span class="hl-str">!"</span>
+<span class="hl-kw">for</span> k, v <span class="hl-kw">in</span> {a<span class="hl-op">:</span> <span class="hl-num">1</span>} { <span class="hl-str">"item_</span><span class="hl-esc">\(k)</span><span class="hl-str">"</span><span class="hl-op">:</span> v <span class="hl-op">+</span> <span class="hl-num">0x1F</span> }

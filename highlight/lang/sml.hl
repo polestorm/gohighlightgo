@@ -1,0 +1,13 @@
+# Standard ML: The Definition of Standard ML (Revised), chapter 2 Syntax of the Core; requirements/languages/sml.md
+name     sml standardml ml-sml
+keyword  abstype and andalso as case datatype do else end eqtype exception fn fun functor handle if in
+keyword  include infix infixr let local nonfix of op open orelse raise rec sharing sig signature struct
+keyword  structure then type val where while with withtype
+type     int real string char bool unit list option exn
+builtin  true false nil NONE SOME print
+ident-part     '
+block-comment  (* *)  : nested
+string   " "  : escapes
+operators  +-*/=<>:^@!~|
+upper-type
+hook     apostrophe

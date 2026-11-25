@@ -1,0 +1,6 @@
+# EBNF: ISO/IEC 14977:1996 (Extended BNF); requirements/languages/ebnf.md
+name     ebnf
+block-comment  (* *)
+string   " "
+string   ' '
+operators  =|,;[]{}()-*?

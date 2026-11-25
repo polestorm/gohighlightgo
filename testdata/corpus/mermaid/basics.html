@@ -1,0 +1,9 @@
+<span class="hl-com">%% REQ: LANG-2391 LANG-2392 LANG-2393 LANG-2394</span>
+<span class="hl-kw">flowchart</span> <span class="hl-kw">LR</span>
+    A[Start] <span class="hl-op">--&gt;</span> B{Is it?}
+    B <span class="hl-op">--&gt;|</span>Yes<span class="hl-op">|</span> C[<span class="hl-str">"Do it"</span>]
+    B <span class="hl-op">--</span> No <span class="hl-op">--&gt;</span> D((End))
+    <span class="hl-kw">subgraph</span> Group
+        C <span class="hl-op">--&gt;</span> D
+    <span class="hl-kw">end</span>
+    <span class="hl-kw">classDef</span> hot fill<span class="hl-op">:</span>#f96

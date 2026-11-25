@@ -1,0 +1,12 @@
+<span class="hl-com"># REQ: LANG-1861 LANG-1862 LANG-1863 LANG-1864</span>
+example.com <span class="hl-op">{</span>
+    <span class="hl-kw">root</span> <span class="hl-op">*</span> /var/www
+    <span class="hl-kw">encode</span> <span class="hl-builtin">gzip</span> <span class="hl-builtin">zstd</span>
+    <span class="hl-meta">@api</span> path /api/<span class="hl-op">*</span>
+    <span class="hl-kw">reverse_proxy</span> <span class="hl-meta">@api</span> localhost:<span class="hl-num">8080</span>
+    <span class="hl-kw">file_server</span>
+    <span class="hl-kw">header</span> Strict-Transport-Security <span class="hl-str">"max-age=31536000"</span>
+    <span class="hl-kw">log</span> <span class="hl-op">{</span>
+        output file /var/<span class="hl-kw">log</span>/caddy.<span class="hl-kw">log</span>
+    <span class="hl-op">}</span>
+<span class="hl-op">}</span>

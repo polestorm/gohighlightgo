@@ -1,0 +1,12 @@
+<span class="hl-com">// REQ: LANG-2751 LANG-2752 LANG-2753 LANG-2754</span>
+<span class="hl-kw">module</span> Demo {
+  <span class="hl-com">/* Types */</span>
+  <span class="hl-kw">type</span> <span class="hl-kw">record</span> Greeting { <span class="hl-type">charstring</span> text, <span class="hl-type">integer</span> count }
+  <span class="hl-kw">type</span> <span class="hl-kw">port</span> GreetPort <span class="hl-kw">message</span> { inout Greeting }
+  <span class="hl-kw">type</span> <span class="hl-kw">component</span> Tester { <span class="hl-kw">port</span> GreetPort p; <span class="hl-kw">timer</span> t <span class="hl-op">:=</span> <span class="hl-num">5.0</span> }
+  <span class="hl-kw">testcase</span> <span class="hl-fn">tc_greet</span>() <span class="hl-kw">runs</span> <span class="hl-kw">on</span> Tester {
+    p<span class="hl-op">.</span><span class="hl-kw">send</span>(Greeting<span class="hl-op">:</span> { text <span class="hl-op">:=</span> <span class="hl-str">"Hello"</span>, count <span class="hl-op">:=</span> <span class="hl-num">31</span> });
+    t<span class="hl-op">.</span><span class="hl-kw">start</span>;
+    <span class="hl-kw">alt</span> { [] p<span class="hl-op">.</span><span class="hl-kw">receive</span> { <span class="hl-kw">setverdict</span>(<span class="hl-builtin">pass</span>) } [] t<span class="hl-op">.</span>timeout { <span class="hl-kw">setverdict</span>(<span class="hl-builtin">fail</span>) } }
+  }
+}

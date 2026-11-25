@@ -1,0 +1,6 @@
+# BQN: BQN specification (mlochbaum.github.io/BQN/spec); requirements/languages/bqn.md
+name     bqn
+line-comment   #
+string   " "  : doubled
+string   ' '
+operators  +-<>=,.:;()[]{}_

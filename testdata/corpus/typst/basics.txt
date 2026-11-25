@@ -1,0 +1,9 @@
+// REQ: LANG-2451 LANG-2452 LANG-2453 LANG-2454
+#set page(paper: "a4")
+#let title = "Report"
+= Introduction
+This is *bold* and _emphasis_ text with a reference @intro.
+/* Block comment */
+#for i in range(3) [Item #i ]
+$ sum_(k=1)^n k = (n(n+1)) / 2 $
+#if title != none { text(red)[Draft] }

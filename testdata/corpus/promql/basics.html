@@ -1,0 +1,6 @@
+<span class="hl-com"># REQ: LANG-1731 LANG-1732 LANG-1733 LANG-1734</span>
+<span class="hl-com"># Request rate per job</span>
+<span class="hl-kw">sum</span> <span class="hl-kw">by</span> (job) (<span class="hl-builtin">rate</span>(http_requests_total<span class="hl-op">{</span><span class="hl-attr">status</span><span class="hl-op">=~</span><span class="hl-str">"5.."</span>, <span class="hl-attr">method</span><span class="hl-op">!=</span><span class="hl-str">"GET"</span><span class="hl-op">}[</span><span class="hl-num">5m</span><span class="hl-op">]</span>))
+  <span class="hl-op">/</span> <span class="hl-kw">ignoring</span>(status) <span class="hl-kw">group_left</span>
+<span class="hl-kw">sum</span> <span class="hl-kw">by</span> (job) (<span class="hl-builtin">rate</span>(http_requests_total<span class="hl-op">[</span><span class="hl-num">5m</span><span class="hl-op">]</span>)) <span class="hl-op">&gt;</span> <span class="hl-num">0.05</span>
+<span class="hl-builtin">histogram_quantile</span>(<span class="hl-num">0.99</span>, <span class="hl-kw">sum</span>(<span class="hl-builtin">rate</span>(request_duration_seconds_bucket<span class="hl-op">[</span><span class="hl-num">1h</span><span class="hl-op">]</span> <span class="hl-kw">offset</span> <span class="hl-num">1d</span>)) <span class="hl-kw">by</span> (le))

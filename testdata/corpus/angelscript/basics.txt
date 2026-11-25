@@ -1,0 +1,14 @@
+// REQ: LANG-2251 LANG-2252 LANG-2253 LANG-2254
+/* Greeter */
+class Greeter {
+  string name;
+  Greeter(const string &in n) { name = n; }
+  int greet(int times) {
+    for (int i = 0; i < times; i++) print("Hello, " + name + "!\n");
+    return name.length();
+  }
+}
+void main() {
+  Greeter@ g = Greeter("angel");
+  if (g.greet(2) > 0 && true) print("" + 0x1F);
+}

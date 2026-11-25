@@ -1,0 +1,8 @@
+// REQ: LANG-2031 LANG-2032 LANG-2033 LANG-2034
+let
+    // Load and filter
+    Source = Csv.Document(File.Contents("data.csv"), [Delimiter = ","]),
+    Filtered = Table.SelectRows(Source, each [Age] > 18 and true),
+    Added = Table.AddColumn(Filtered, "Greeting", each "Hello, " & [Name] & "!", type text)
+in
+    Added

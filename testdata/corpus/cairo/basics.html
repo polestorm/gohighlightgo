@@ -1,0 +1,13 @@
+<span class="hl-com">// REQ: LANG-2551 LANG-2552 LANG-2553 LANG-2554</span>
+<span class="hl-com">// Counter contract</span>
+<span class="hl-meta">#[starknet</span><span class="hl-op">::</span>contract]
+<span class="hl-kw">mod</span> Counter {
+    <span class="hl-meta">#[storage</span>]
+    <span class="hl-kw">struct</span> Storage { count<span class="hl-op">:</span> <span class="hl-type">u128</span> }
+    <span class="hl-meta">#[external</span>(v0)]
+    <span class="hl-kw">fn</span> <span class="hl-fn">increment</span>(<span class="hl-kw">ref</span> <span class="hl-kw">self</span><span class="hl-op">:</span> ContractState, by<span class="hl-op">:</span> <span class="hl-type">u128</span>) {
+        <span class="hl-kw">let</span> current <span class="hl-op">=</span> <span class="hl-kw">self</span><span class="hl-op">.</span>count<span class="hl-op">.</span><span class="hl-fn">read</span>();
+        <span class="hl-builtin">assert</span>(by <span class="hl-op">&gt;</span> <span class="hl-num">0</span>, <span class="hl-meta">'by</span> must be positive<span class="hl-str">');</span>
+        <span class="hl-kw">self</span><span class="hl-op">.</span>count<span class="hl-op">.</span><span class="hl-fn">write</span>(current <span class="hl-op">+</span> by <span class="hl-op">+</span> <span class="hl-num">0x1F</span>);
+    }
+}

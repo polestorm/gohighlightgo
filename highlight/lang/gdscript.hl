@@ -1,0 +1,17 @@
+# GDScript: Godot Engine documentation (4.x): GDScript reference; requirements/languages/gdscript.md
+name     gdscript gd
+keyword  if elif else for while match break continue pass return class class_name extends is in as self
+keyword  signal func static const enum var await yield preload assert breakpoint super and or not
+keyword  onready export tool
+type     int float bool String Vector2 Vector3 Array Dictionary Node Object void
+builtin  true false null PI TAU INF NAN print push_error len range
+line-comment   #
+string   """ """  : escapes multiline
+string   " "      : escapes
+string   ' '      : escapes
+prefix   & ^
+escape        : u4
+sigil    @    : meta
+sigil    $    : attr
+operators  +-*/%&|^!<>=:?~.
+calls

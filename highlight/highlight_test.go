@@ -421,6 +421,16 @@ var pathological = []struct {
 	{"markdown", "headings", func(n int) string { return strings.Repeat("# a\n", n/4) }},
 	{"markdown", "html lines", func(n int) string { return strings.Repeat("<div", n/4) }},
 	{"markdown", "reference definitions", func(n int) string { return strings.Repeat("[a]:\n", n/5) }},
+	{"apl", "comment glyphs", func(n int) string { return strings.Repeat("⍝'", n/4) }},
+	{"lilypond", "unclosed block comments", func(n int) string { return strings.Repeat("%{\\a ", n/5) }},
+	{"newlisp", "unclosed text blocks", func(n int) string { return strings.Repeat("[text]{", n/7) }},
+	{"nickel", "unclosed multiline strings", func(n int) string { return strings.Repeat("m%\"%{", n/5) }},
+	{"papyrus", "unclosed doc comments", func(n int) string { return strings.Repeat("{;{", n/3) }},
+	{"cassandra", "dollar strings", func(n int) string { return strings.Repeat("$$'", n/3) }},
+	{"tablegen", "code blocks", func(n int) string { return strings.Repeat("[{!", n/3) }},
+	{"vcl", "long strings", func(n int) string { return strings.Repeat("{\"#", n/3) }},
+	{"sed", "substitutions", func(n int) string { return strings.Repeat("s/a/", n/4) }},
+	{"gcode", "unclosed comments", func(n int) string { return strings.Repeat("(G1 ", n/4) }},
 }
 
 // REQ: DET-002

@@ -1,0 +1,12 @@
+# Roc: Roc language tutorial and reference (roc-lang.org); requirements/languages/roc.md
+name     roc
+
+keyword  app package platform import exposing if then else when is as expect dbg crash return module
+builtin  Ok Err Bool
+
+line-comment   #
+string   """ """  : escapes multiline interp=dollar
+string   " "      : escapes interp=dollar
+escape        : u-braces
+operators  +-*/%&|^!<>=:?~.\
+upper-type

@@ -1,0 +1,9 @@
+# TypoScript: TYPO3 TypoScript reference (13.x): syntax; requirements/languages/typoscript.md
+name     typoscript typo3
+keyword  page config lib plugin tt_content TEXT COA FLUIDTEMPLATE CONTENT IMAGE HMENU USER
+keyword  includeLibs includeCSS includeJS
+builtin  TSFE GP DB LLL
+ident-part     .-_
+line-comment   # //
+block-comment  /* */
+operators  =<>{}()[]:

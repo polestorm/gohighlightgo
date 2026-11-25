@@ -1,0 +1,10 @@
+<span class="hl-com">; REQ: LANG-1661 LANG-1662 LANG-1663 LANG-1664</span>
+(<span class="hl-kw">import</span> math)
+(<span class="hl-kw">defn</span> greet [name [times <span class="hl-num">1</span>]]
+  <span class="hl-str">"Greets name."</span>
+  (<span class="hl-kw">for</span> [i (<span class="hl-builtin">range</span> times)]
+    (<span class="hl-builtin">print</span> (<span class="hl-fn">+</span> <span class="hl-str">"Hello, "</span> name <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>))))
+(<span class="hl-kw">setv</span> config {<span class="hl-attr">:name</span> <span class="hl-str">"world"</span> <span class="hl-attr">:times</span> <span class="hl-num">2</span>})
+(<span class="hl-kw">when</span> (<span class="hl-kw">and</span> config <span class="hl-builtin">True</span>)
+  (<span class="hl-fn">greet</span> <span class="hl-str">"hy"</span> <span class="hl-num">2</span>))
+(<span class="hl-builtin">print</span> (<span class="hl-fn">math.sqrt</span> <span class="hl-num">16</span>) <span class="hl-builtin">None</span> <span class="hl-num">3.14</span>)

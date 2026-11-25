@@ -1,0 +1,17 @@
+# Pike: Pike reference manual (8.0), lexical structure and keywords; requirements/languages/pike.md
+name     pike pmod
+
+keyword  break case catch class constant continue default do else enum extern final for foreach gauge if
+keyword  import inherit inline lambda local nomask optional private protected public return sscanf
+keyword  static switch typedef typeof variant while
+type     array float function int mapping mixed multiset object program string void bool
+builtin  true false UNDEFINED write werror
+
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+string   ' '  : escapes
+escape        : x=2 octal=3 u4
+operators  +-*/%&|^!<>=:?~.
+calls
+hook     c-preprocessor

@@ -1,0 +1,6 @@
+-- REQ: LANG-2841 LANG-2842 LANG-2843 LANG-2844
+-- Keyspace and table
+CREATE KEYSPACE IF NOT EXISTS demo WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
+CREATE TABLE demo.users (id uuid PRIMARY KEY, name text, tags set<text>);
+INSERT INTO demo.users (id, name) VALUES (uuid(), 'It''s Ann') USING TTL 86400;
+SELECT name FROM demo.users WHERE id = ? LIMIT 31 ALLOW FILTERING;

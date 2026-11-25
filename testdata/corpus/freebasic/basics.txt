@@ -1,0 +1,14 @@
+' REQ: LANG-1931 LANG-1932 LANG-1933 LANG-1934
+/' Block comment '/
+Type Greeter
+    Name As String
+End Type
+Function Greet(ByVal g As Greeter, ByVal times As Integer) As String
+    Dim text As String = "Hello, " & g.Name & "! ""quoted"""
+    For i As Integer = 1 To times
+        Print text
+    Next
+    Return text
+End Function
+Dim g As Greeter : g.Name = "fb"
+If Len(Greet(g, 2)) > 0 And True Then Print &H1F

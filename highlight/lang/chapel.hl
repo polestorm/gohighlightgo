@@ -1,0 +1,17 @@
+# Chapel: Chapel Language Specification (2.x), Lexical Structure; requirements/languages/chapel.md
+name     chapel chpl
+
+keyword  proc iter var const param config type record class module use import if then else for forall
+keyword  coforall do while begin cobegin sync atomic on in out inout ref return yield select when
+keyword  otherwise where let new delete try throw throws catch extern export private public override
+keyword  operator owned shared borrowed unmanaged nothing serial local single
+type     int uint real imag complex bool string bytes domain range void
+builtin  true false nil writeln write here this super
+
+line-comment   //
+block-comment  /* */  : nested
+string   " "  : escapes
+string   ' '  : escapes
+escape        : x=2
+operators  +-*/%&|^!<>=:?~.#
+calls

@@ -1,0 +1,8 @@
+% REQ: LANG-2701 LANG-2702 LANG-2703 LANG-2704
+\version "2.24.0"
+\header { title = "Scale" composer = "Anon" }
+%{ Block comment %}
+\relative c' {
+  \clef treble \key g \major \time 4/4
+  g4 a b c | d2 e4( fis) | g1 \bar "|."
+}

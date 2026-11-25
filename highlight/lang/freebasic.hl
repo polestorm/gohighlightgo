@@ -1,0 +1,12 @@
+# FreeBASIC: FreeBASIC manual (keywords and language reference); requirements/languages/freebasic.md
+name     freebasic fb bas
+keyword  Dim As Integer Long Single Double String Boolean Function Sub End If Then Else ElseIf For To Step
+keyword  Next Do Loop While Until Wend Select Case Return Exit Type Declare Const Shared Print Input
+keyword  And Or Not Mod Namespace Using ByVal ByRef Static
+builtin  True False Len Mid Left Right Str Val Chr Asc Sleep
+fold-case
+line-comment   ' REM
+block-comment  /' '/
+string   " "  : doubled
+operators  +-*/\^=<>&
+calls

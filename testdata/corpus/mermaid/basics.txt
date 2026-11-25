@@ -1,0 +1,9 @@
+%% REQ: LANG-2391 LANG-2392 LANG-2393 LANG-2394
+flowchart LR
+    A[Start] --> B{Is it?}
+    B -->|Yes| C["Do it"]
+    B -- No --> D((End))
+    subgraph Group
+        C --> D
+    end
+    classDef hot fill:#f96

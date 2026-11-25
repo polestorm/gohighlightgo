@@ -1,0 +1,10 @@
+# AppleScript: AppleScript Language Guide (Apple), Lexical Conventions; requirements/languages/applescript.md
+name     applescript osascript
+keyword  tell end if then else repeat with from to by while until return on set to get copy of in the
+keyword  and or not is contains try error considering ignoring using script property global local my
+keyword  every whose where returning
+builtin  true false missing value me it display dialog activate quit log
+line-comment   -- #
+block-comment  (* *)  : nested
+string   " "  : escapes
+operators  &=<>+-*/^

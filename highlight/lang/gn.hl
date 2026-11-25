@@ -1,0 +1,9 @@
+# GN: GN reference (gn.googlesource.com): language and functions; requirements/languages/gn.md
+name     gn gni
+keyword  if else foreach import template declare_args
+builtin  true false executable static_library shared_library source_set group action config deps
+builtin  sources public_deps include_dirs defines cflags visibility assert print
+line-comment   #
+string   " "  : escapes interp=dollar
+operators  +-=<>!&|.
+calls

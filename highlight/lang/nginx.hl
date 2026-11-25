@@ -1,0 +1,12 @@
+# nginx: nginx documentation: configuration file structure and core directives; requirements/languages/nginx.md
+name     nginx nginxconf
+keyword  http server location upstream events stream map if include return rewrite set break
+keyword  listen server_name root index proxy_pass proxy_set_header try_files error_page access_log
+keyword  error_log worker_processes worker_connections ssl_certificate ssl_certificate_key add_header
+keyword  gzip client_max_body_size alias expires default_type
+builtin  on off
+line-comment   #
+string   " "  : escapes interp=dollar-braces
+string   ' '  : escapes
+sigil    $    : attr
+operators  =~^*;{}

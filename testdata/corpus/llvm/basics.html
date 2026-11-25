@@ -1,0 +1,19 @@
+<span class="hl-com">; REQ: LANG-1681 LANG-1682 LANG-1683 LANG-1684</span>
+<span class="hl-com">; ModuleID = 'demo.c'</span>
+<span class="hl-kw">source_filename</span> <span class="hl-op">=</span> <span class="hl-str">"demo.c"</span>
+@.str <span class="hl-op">=</span> <span class="hl-kw">private</span> <span class="hl-kw">unnamed_addr</span> <span class="hl-kw">constant</span> [<span class="hl-num">7</span> x <span class="hl-type">i8</span>] <span class="hl-str">c"Hello\0A\00"</span><span class="hl-op">,</span> <span class="hl-kw">align</span> <span class="hl-num">1</span>
+
+<span class="hl-kw">define</span> <span class="hl-kw">dso_local</span> <span class="hl-type">i32</span> <span class="hl-fn">@square</span>(<span class="hl-type">i32</span> noundef <span class="hl-attr">%x</span>) #<span class="hl-num">0</span> {
+entry:
+  <span class="hl-attr">%mul</span> <span class="hl-op">=</span> <span class="hl-kw">mul</span> nsw <span class="hl-type">i32</span> <span class="hl-attr">%x</span><span class="hl-op">,</span> <span class="hl-attr">%x</span>
+  <span class="hl-attr">%cmp</span> <span class="hl-op">=</span> <span class="hl-kw">icmp</span> <span class="hl-kw">sgt</span> <span class="hl-type">i32</span> <span class="hl-attr">%mul</span><span class="hl-op">,</span> <span class="hl-num">31</span>
+  <span class="hl-kw">br</span> <span class="hl-type">i1</span> <span class="hl-attr">%cmp</span><span class="hl-op">,</span> <span class="hl-type">label</span> <span class="hl-attr">%big</span><span class="hl-op">,</span> <span class="hl-type">label</span> <span class="hl-attr">%small</span>
+big:
+  <span class="hl-kw">ret</span> <span class="hl-type">i32</span> <span class="hl-attr">%mul</span>
+small:
+  <span class="hl-kw">ret</span> <span class="hl-type">i32</span> <span class="hl-num">0</span>
+}
+
+<span class="hl-kw">declare</span> <span class="hl-type">i32</span> <span class="hl-fn">@printf</span>(<span class="hl-type">ptr</span> noundef<span class="hl-op">,</span> ...) #<span class="hl-num">1</span>
+<span class="hl-kw">attributes</span> #<span class="hl-num">0</span> <span class="hl-op">=</span> { <span class="hl-kw">noinline</span> <span class="hl-kw">nounwind</span> }
+!<span class="hl-num">0</span> <span class="hl-op">=</span> !{<span class="hl-type">i32</span> <span class="hl-num">1</span><span class="hl-op">,</span> !<span class="hl-str">"wchar_size"</span><span class="hl-op">,</span> <span class="hl-type">i32</span> <span class="hl-num">4</span>}

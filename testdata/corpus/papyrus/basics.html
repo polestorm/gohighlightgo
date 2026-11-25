@@ -1,0 +1,10 @@
+<span class="hl-com">; REQ: LANG-2961 LANG-2962 LANG-2963 LANG-2964</span>
+<span class="hl-kw">Scriptname</span> GreeterScript <span class="hl-kw">extends</span> <span class="hl-type">ObjectReference</span>
+<span class="hl-com">{ Greets the player }</span>
+<span class="hl-type">Int</span> <span class="hl-kw">Property</span> Count <span class="hl-op">=</span> <span class="hl-num">0</span> <span class="hl-kw">Auto</span>
+<span class="hl-kw">Event</span> <span class="hl-fn">OnActivate</span>(<span class="hl-type">ObjectReference</span> akActionRef)
+    Count <span class="hl-op">+=</span> <span class="hl-num">1</span>
+    <span class="hl-kw">If</span> Count <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-builtin">True</span>
+        <span class="hl-builtin">Debug</span><span class="hl-op">.</span><span class="hl-fn">Notification</span>(<span class="hl-str">"Hello, traveller! "</span> <span class="hl-op">+</span> Count)
+    <span class="hl-kw">EndIf</span>
+<span class="hl-kw">EndEvent</span>

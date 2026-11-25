@@ -1,0 +1,10 @@
+/* REQ: LANG-2001 LANG-2002 LANG-2003 LANG-2004
+*/
+/* Greets customers */
+DEFINE VARIABLE cName AS CHARACTER NO-UNDO INITIAL "world".
+DEFINE VARIABLE iCount AS INTEGER NO-UNDO.
+FOR EACH Customer NO-LOCK WHERE Customer.Balance > 0:
+    iCount = iCount + 1.
+    DISPLAY Customer.Name "Hello, ~"quoted~"".
+END.
+IF iCount > 0 AND TRUE THEN MESSAGE "Done" iCount VIEW-AS ALERT-BOX.

@@ -1,0 +1,18 @@
+// REQ: LANG-1311 LANG-1312 LANG-1313
+use "collections"
+
+/* outer /* nested */ still a comment */
+actor Main
+  let _env: Env
+
+  new create(env: Env) =>
+    _env = env
+    let name: String = "world"
+    let c: U8 = 'x'
+    for i in Range(0, 3) do
+      if (i > 0) and true then
+        env.out.print("Hello, " + name + "!\n" + i.string())
+      end
+    end
+
+  be greet(times: U32 = 0x1F) => None

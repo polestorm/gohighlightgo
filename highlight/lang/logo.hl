@@ -1,0 +1,10 @@
+# Logo: UCBLogo (Berkeley Logo) user manual; requirements/languages/logo.md
+name     logo ucblogo
+keyword  to end repeat if ifelse make local output stop for while foreach
+builtin  forward fd back bk left lt right rt penup pu pendown pd print show sum product first butfirst
+builtin  random clearscreen cs home
+fold-case
+line-comment   ;
+sigil    :    : attr
+sigil    "    : str
+operators  +-*/=<>[]()

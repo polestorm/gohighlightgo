@@ -1,0 +1,14 @@
+// REQ: LANG-2821 LANG-2822 LANG-2823 LANG-2824
+#include "inkey.ch"
+/* Customer listing */
+FUNCTION Main()
+   LOCAL nCount := 0, cName := "world"
+   USE customer INDEX custname
+   DO WHILE .NOT. EOF()
+      IF customer->balance > 0 .AND. .T.
+         QOut("Hello, " + Trim(customer->name) + "!")
+         nCount++
+      ENDIF
+      SKIP
+   ENDDO
+   RETURN nCount

@@ -1,0 +1,16 @@
+# REQ: LANG-1301 LANG-1302 LANG-1303
+###
+Block comment
+###
+class Greeter extends Base
+  constructor: (@name = "world") ->
+    super()
+
+  greet: (times = 1) =>
+    text = "Hello, #{@name}! Count: #{times + 1}\n"
+    raw = 'single #{not}'
+    pattern = /\d+ "quoted"/i
+    (text for i in [1..times]).join('') unless no
+
+greeter = new Greeter 'coffee'
+console.log greeter.greet(2), 0x1F, null, undefined, yes

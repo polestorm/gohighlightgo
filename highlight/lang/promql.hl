@@ -1,0 +1,13 @@
+# PromQL: Prometheus documentation: Querying basics, operators and functions; requirements/languages/promql.md
+name     promql
+keyword  by without on ignoring group_left group_right offset bool and or unless sum avg min max count
+keyword  stddev stdvar topk bottomk quantile count_values
+builtin  rate irate increase delta deriv histogram_quantile abs ceil floor round sort time vector
+builtin  scalar label_replace absent clamp_min clamp_max avg_over_time sum_over_time
+line-comment   #
+string   " "  : escapes
+string   ' '  : escapes
+string   ` `
+key-names  =~!
+operators  +-*/%^=!<>~{}[]
+calls

@@ -1,0 +1,12 @@
+<span class="hl-com">// REQ: LANG-2231 LANG-2232 LANG-2233 LANG-2234</span>
+<span class="hl-com">/* outer /* nested */ comment */</span>
+<span class="hl-kw">class</span> Greeter {
+  <span class="hl-kw">construct</span> <span class="hl-fn">new</span>(name) { _name <span class="hl-op">=</span> name }
+  <span class="hl-fn">greet</span>(times) {
+    <span class="hl-kw">for</span> (i <span class="hl-kw">in</span> <span class="hl-num">1</span><span class="hl-op">..</span>times) <span class="hl-builtin">System</span><span class="hl-op">.</span><span class="hl-fn">print</span>(<span class="hl-str">"Hello, %(_name)!"</span>)
+    <span class="hl-kw">return</span> _name<span class="hl-op">.</span>count
+  }
+  <span class="hl-kw">static</span> <span class="hl-fn">create</span>() { Greeter<span class="hl-op">.</span><span class="hl-fn">new</span>(<span class="hl-str">"wren"</span>) }
+}
+<span class="hl-kw">var</span> g <span class="hl-op">=</span> Greeter<span class="hl-op">.</span><span class="hl-fn">create</span>()
+<span class="hl-kw">if</span> (g<span class="hl-op">.</span><span class="hl-fn">greet</span>(<span class="hl-num">2</span>) <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-kw">true</span>) <span class="hl-builtin">System</span><span class="hl-op">.</span><span class="hl-fn">print</span>(<span class="hl-num">0x1F</span>)

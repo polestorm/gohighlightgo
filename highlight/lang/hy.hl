@@ -1,0 +1,11 @@
+# Hy: Hy documentation (1.0): syntax and macros; requirements/languages/hy.md
+name     hy hylang
+keyword  defn defmacro defclass fn let setv if when unless do while for cond import require return
+keyword  try except finally raise with yield await quote quasiquote unquote and or not
+builtin  True False None print len range str int list dict
+ident-extra    !?*<>=/+-
+ident-part     !?*<>=/+-.
+line-comment   ;
+string   " "  : escapes multiline
+sigil    :    : attr
+call-after-paren

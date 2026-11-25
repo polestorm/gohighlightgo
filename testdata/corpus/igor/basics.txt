@@ -1,0 +1,12 @@
+// REQ: LANG-2941 LANG-2942 LANG-2943 LANG-2944
+#pragma rtGlobals=3
+// Create and plot a wave
+Function MakeSine(points)
+    Variable points
+    Make/O/N=(points) sineWave = sin(x / 10)
+    Variable i
+    for (i = 0; i < 3; i += 1)
+        Print "Hello, Igor!", i
+    endfor
+    Display sineWave
+End

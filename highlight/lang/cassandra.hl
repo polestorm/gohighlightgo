@@ -1,0 +1,16 @@
+# Cassandra CQL: Apache Cassandra documentation: The Cassandra Query Language (CQL 3); requirements/languages/cassandra.md
+name     cassandra cassandra-cql
+keyword  SELECT FROM WHERE AND INSERT INTO VALUES UPDATE SET DELETE CREATE DROP ALTER TABLE KEYSPACE
+keyword  INDEX TYPE PRIMARY KEY WITH IF NOT EXISTS USING TTL TIMESTAMP ORDER BY LIMIT ALLOW FILTERING
+keyword  BATCH BEGIN APPLY USE GRANT REVOKE CLUSTERING REPLICATION IN
+type     ascii bigint blob boolean counter date decimal double float inet int smallint text time
+type     timestamp timeuuid tinyint uuid varchar varint list set map frozen tuple
+builtin  true false null now uuid toTimestamp
+fold-case
+line-comment   -- //
+block-comment  /* */
+string   ' '  : doubled
+string   $$ $$  : multiline
+string   " "  : name
+operators  =<>+-*/;,.(){}[]?:
+calls

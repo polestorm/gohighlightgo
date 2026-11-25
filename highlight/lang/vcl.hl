@@ -1,0 +1,11 @@
+# Varnish VCL: Varnish Cache documentation: VCL syntax; requirements/languages/vcl.md
+name     vcl varnish
+keyword  vcl backend sub if else elsif elseif set unset return call synthetic import include acl new
+keyword  probe
+builtin  req resp bereq beresp obj client server std hash pass pipe lookup deliver fetch purge true false
+ident-part     .-
+line-comment   # //
+block-comment  /* */
+string   {" "}  : multiline
+string   " "
+operators  =~!&|<>+-*/{}();,

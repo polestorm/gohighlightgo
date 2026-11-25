@@ -1,0 +1,11 @@
+# AMPL: AMPL: A Modeling Language for Mathematical Programming (Fourer, Gay, Kernighan), appendix A; requirements/languages/ampl.md
+name     ampl
+keyword  set param var maximize minimize subject to s.t. let solve display option data model in within
+keyword  sum prod forall exists if then else union inter diff cross binary integer default
+builtin  card max min abs Infinity
+ident-part     .
+line-comment   #
+block-comment  /* */
+string   " "  : doubled
+string   ' '  : doubled
+operators  +-*/^=<>:;,{}[]().

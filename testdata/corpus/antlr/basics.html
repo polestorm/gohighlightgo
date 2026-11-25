@@ -1,0 +1,19 @@
+<span class="hl-com">// REQ: LANG-1551 LANG-1552 LANG-1553 LANG-1554</span>
+<span class="hl-kw">grammar</span> <span class="hl-type">Expr</span><span class="hl-op">;</span>
+
+<span class="hl-com">/* Parser rules */</span>
+prog <span class="hl-op">:</span> stat<span class="hl-op">+</span> <span class="hl-builtin">EOF</span> <span class="hl-op">;</span>
+stat <span class="hl-op">:</span> expr <span class="hl-type">NEWLINE</span>           <span class="hl-op">#</span> printExpr
+     <span class="hl-op">|</span> <span class="hl-type">ID</span> <span class="hl-str">'='</span> expr <span class="hl-type">NEWLINE</span>    <span class="hl-op">#</span> assign
+     <span class="hl-op">;</span>
+expr <span class="hl-op">:</span> expr <span class="hl-op">(</span><span class="hl-str">'*'</span><span class="hl-op">|</span><span class="hl-str">'/'</span><span class="hl-op">)</span> expr
+     <span class="hl-op">|</span> <span class="hl-type">INT</span>
+     <span class="hl-op">|</span> <span class="hl-str">'('</span> expr <span class="hl-str">')'</span>
+     <span class="hl-op">;</span>
+
+<span class="hl-meta">@members</span> { int count <span class="hl-op">=</span> <span class="hl-num">0</span><span class="hl-op">;</span> }
+
+<span class="hl-type">ID</span>      <span class="hl-op">:</span> [a<span class="hl-op">-</span>zA<span class="hl-op">-</span><span class="hl-type">Z</span>]<span class="hl-op">+</span> <span class="hl-op">;</span>
+<span class="hl-type">INT</span>     <span class="hl-op">:</span> [<span class="hl-num">0</span><span class="hl-op">-</span><span class="hl-num">9</span>]<span class="hl-op">+</span> <span class="hl-op">;</span>
+<span class="hl-type">NEWLINE</span> <span class="hl-op">:</span> <span class="hl-str">'</span><span class="hl-esc">\r</span><span class="hl-str">'</span><span class="hl-op">?</span> <span class="hl-str">'</span><span class="hl-esc">\n</span><span class="hl-str">'</span> <span class="hl-op">;</span>
+<span class="hl-type">WS</span>      <span class="hl-op">:</span> [ \t]<span class="hl-op">+</span> <span class="hl-op">-&gt;</span> <span class="hl-builtin">skip</span> <span class="hl-op">;</span>

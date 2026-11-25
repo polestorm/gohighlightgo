@@ -1,0 +1,13 @@
+ REQ: LANG-2301 LANG-2302 LANG-2303 LANG-2304
+; Draw a square
+to square :size
+  repeat 4 [forward :size right 90]
+end
+to spiral :n
+  if :n > 100 [stop]
+  forward :n right 91
+  spiral :n + 2
+end
+make "count 31
+print sum :count 1
+square 50

@@ -1,0 +1,13 @@
+<span class="hl-com">; REQ: LANG-1261 LANG-1262 LANG-1263</span>
+<span class="hl-meta">#include</span> <span class="hl-op">&lt;</span>MsgBoxConstants.au3<span class="hl-op">&gt;</span>
+<span class="hl-com">#cs</span>
+<span class="hl-com">Block comment</span>
+<span class="hl-com">#ce</span>
+<span class="hl-kw">Local</span> <span class="hl-attr">$sName</span> <span class="hl-op">=</span> <span class="hl-str">"world"</span>, <span class="hl-attr">$iCount</span> <span class="hl-op">=</span> <span class="hl-num">3</span>
+<span class="hl-kw">Func</span> <span class="hl-fn">Greet</span>(<span class="hl-attr">$sWho</span>, <span class="hl-attr">$iTimes</span> <span class="hl-op">=</span> <span class="hl-num">1</span>)
+    <span class="hl-kw">For</span> <span class="hl-attr">$i</span> <span class="hl-op">=</span> <span class="hl-num">1</span> <span class="hl-kw">To</span> <span class="hl-attr">$iTimes</span>
+        <span class="hl-builtin">ConsoleWrite</span>(<span class="hl-str">"Hello, "</span> <span class="hl-op">&amp;</span> <span class="hl-attr">$sWho</span> <span class="hl-op">&amp;</span> <span class="hl-str">"! </span><span class="hl-esc">""</span><span class="hl-str">quoted</span><span class="hl-esc">""</span><span class="hl-str">"</span> <span class="hl-op">&amp;</span> <span class="hl-builtin">@CRLF</span>)
+    <span class="hl-kw">Next</span>
+    <span class="hl-kw">Return</span> <span class="hl-builtin">StringLen</span>(<span class="hl-attr">$sWho</span>)
+<span class="hl-kw">EndFunc</span>
+<span class="hl-kw">If</span> <span class="hl-attr">$iCount</span> <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-kw">And</span> <span class="hl-kw">Not</span> <span class="hl-builtin">False</span> <span class="hl-kw">Then</span> <span class="hl-builtin">MsgBox</span>(<span class="hl-attr">$MB_OK</span>, <span class="hl-str">"Title"</span>, <span class="hl-fn">Greet</span>(<span class="hl-attr">$sName</span>, <span class="hl-num">2</span>))

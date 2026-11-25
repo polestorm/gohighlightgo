@@ -1,0 +1,15 @@
+<span class="hl-com"># REQ: LANG-1851 LANG-1852 LANG-1853 LANG-1854</span>
+<span class="hl-kw">LoadModule</span> rewrite_module modules<span class="hl-op">/</span>mod_rewrite.so
+<span class="hl-op">&lt;</span>VirtualHost *:<span class="hl-num">443</span><span class="hl-op">&gt;</span>
+    <span class="hl-kw">ServerName</span> example.com
+    <span class="hl-kw">DocumentRoot</span> <span class="hl-str">"/var/www/html"</span>
+    <span class="hl-kw">SSLEngine</span> <span class="hl-builtin">on</span>
+    <span class="hl-op">&lt;</span>Directory <span class="hl-str">"/var/www/html"</span><span class="hl-op">&gt;</span>
+        <span class="hl-kw">Options</span> -<span class="hl-builtin">Indexes</span> +<span class="hl-builtin">FollowSymLinks</span>
+        <span class="hl-kw">AllowOverride</span> <span class="hl-builtin">All</span>
+        <span class="hl-kw">Require</span> <span class="hl-builtin">all</span> <span class="hl-builtin">granted</span>
+    <span class="hl-op">&lt;/</span>Directory<span class="hl-op">&gt;</span>
+    <span class="hl-kw">RewriteEngine</span> <span class="hl-builtin">On</span>
+    <span class="hl-kw">RewriteRule</span> ^<span class="hl-op">/</span>old<span class="hl-op">/</span>(.*)$ <span class="hl-op">/</span>new<span class="hl-op">/</span>$<span class="hl-num">1</span> [R=<span class="hl-num">301</span>,L]
+    <span class="hl-kw">ErrorLog</span> <span class="hl-esc">${APACHE_LOG_DIR}</span><span class="hl-op">/</span>error.log
+<span class="hl-op">&lt;/</span>VirtualHost<span class="hl-op">&gt;</span>

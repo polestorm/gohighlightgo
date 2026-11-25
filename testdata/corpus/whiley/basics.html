@@ -1,0 +1,13 @@
+<span class="hl-com">// REQ: LANG-2101 LANG-2102 LANG-2103 LANG-2104</span>
+<span class="hl-com">/* Absolute value */</span>
+<span class="hl-kw">function</span> <span class="hl-fn">abs</span>(<span class="hl-type">int</span> x) <span class="hl-op">-&gt;</span> (<span class="hl-type">int</span> r)
+<span class="hl-kw">ensures</span> r <span class="hl-op">&gt;=</span> <span class="hl-num">0</span>
+<span class="hl-kw">ensures</span> r <span class="hl-op">==</span> x <span class="hl-op">||</span> r <span class="hl-op">==</span> <span class="hl-op">-</span>x<span class="hl-op">:</span>
+    <span class="hl-kw">if</span> x <span class="hl-op">&lt;</span> <span class="hl-num">0</span><span class="hl-op">:</span>
+        <span class="hl-kw">return</span> <span class="hl-op">-</span>x
+    <span class="hl-kw">else</span><span class="hl-op">:</span>
+        <span class="hl-kw">return</span> x
+<span class="hl-kw">type</span> nat <span class="hl-kw">is</span> (<span class="hl-type">int</span> x) <span class="hl-kw">where</span> x <span class="hl-op">&gt;=</span> <span class="hl-num">0</span>
+<span class="hl-kw">method</span> <span class="hl-fn">main</span>()<span class="hl-op">:</span>
+    nat n <span class="hl-op">=</span> <span class="hl-fn">abs</span>(<span class="hl-op">-</span><span class="hl-num">31</span>)
+    <span class="hl-kw">assert</span> n <span class="hl-op">==</span> <span class="hl-num">0x1F</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-builtin">true</span>

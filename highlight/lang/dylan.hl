@@ -1,0 +1,12 @@
+# Dylan: Dylan Reference Manual (opendylan.org); requirements/languages/dylan.md
+name     dylan
+keyword  define end method class function generic variable constant module library let if else elseif
+keyword  unless case select for from to by while until block exception cleanup begin local slot
+keyword  sealed open abstract concrete primary instance-variable keyword
+builtin  #t #f format-out print
+ident-extra    #*<>=!?
+ident-part     -!?*<>=/+
+line-comment   //
+block-comment  /* */  : nested
+string   " "  : escapes
+operators  +-*/:=<>~&|

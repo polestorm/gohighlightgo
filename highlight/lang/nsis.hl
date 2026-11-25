@@ -1,0 +1,16 @@
+# NSIS: NSIS Users Manual (3.x): script reference; requirements/languages/nsis.md
+name     nsis nsi nsh
+keyword  Name OutFile InstallDir Section SectionEnd Function FunctionEnd Page UninstPage SetOutPath File
+keyword  WriteRegStr DeleteRegKey CreateShortCut Delete RMDir MessageBox Goto Return Call StrCpy IntOp
+keyword  IfFileExists Exec ExecWait RequestExecutionLevel Var
+builtin  INSTDIR TEMP SMPROGRAMS PROGRAMFILES HKLM HKCU MB_OK MB_YESNO true false
+fold-case
+line-comment   ; #
+block-comment  /* */
+string   " "  : escapes interp=dollar-braces
+string   ' '
+string   ` `
+escape        : char=$
+sigil    $    : attr
+sigil    !    : meta
+operators  +-*/=<>|&

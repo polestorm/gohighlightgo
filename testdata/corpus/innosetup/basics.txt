@@ -1,0 +1,13 @@
+// REQ: LANG-2691 LANG-2692 LANG-2693 LANG-2694
+#define MyAppName "Demo"
+[Setup]
+AppName={#MyAppName}
+AppVersion=1.0
+DefaultDirName={autopf}\Demo
+[Files]
+Source: "demo.exe"; DestDir: "{app}"; Flags: ignoreversion
+[Code]
+function InitializeSetup(): Boolean;
+begin
+  Result := True;
+end;

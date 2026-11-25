@@ -1,0 +1,12 @@
+// REQ: LANG-2051 LANG-2052 LANG-2053 LANG-2054
+// Greets and plots
+function y = square(x)
+    y = x .^ 2;
+endfunction
+/* main */
+x = linspace(0, %pi, 10);
+y = square(x);
+if length(y) > 0 & %t then
+    mprintf("Hello, %s! %d\n", "scilab", 31);
+end
+plot(x, y);

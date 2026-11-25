@@ -1,0 +1,12 @@
+# Gambas: Gambas documentation: language reference; requirements/languages/gambas.md
+name     gambas
+keyword  Public Private Static Dim As New Function Sub Procedure Return End If Then Else For To Step Next
+keyword  Each In While Wend Do Loop Until Select Case Default Try Catch Finally Me Super Class Inherits
+keyword  And Or Not Mod Print
+type     Integer Long Float String Boolean Byte Short Date Variant Object
+builtin  True False Null Len Str Val Message
+fold-case
+line-comment   '
+string   " "  : escapes
+operators  +-*/\^=<>&.
+calls

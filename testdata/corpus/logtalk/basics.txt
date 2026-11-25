@@ -1,0 +1,15 @@
+% REQ: LANG-1391 LANG-1392
+:- object(greeter,
+    implements(greeting_protocol)).
+
+    :- public(greet/1).
+    :- info([version is 1:0:0, author is 'Jan']).
+
+    % Greets the name.
+    greet(Name) :-
+        format("Hello, ~w!~n", [Name]),
+        self(Self),
+        Count is 0x1F + 1,
+        Count > 0.
+
+:- end_object.

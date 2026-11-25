@@ -1,0 +1,14 @@
+# Modelica: Modelica Language Specification 3.6, chapter 2 Lexical Structure; requirements/languages/modelica.md
+name     modelica mo
+keyword  model class record block connector type package function operator end extends within import
+keyword  equation algorithm initial parameter constant input output flow stream discrete if then else
+keyword  elseif for loop in while when elsewhen der connect public protected partial final inner
+keyword  outer replaceable redeclare annotation each and or not
+type     Real Integer Boolean String
+builtin  true false time pi
+line-comment   //
+block-comment  /* */
+string   " "  : escapes multiline
+operators  +-*/^=<>:.
+calls
+upper-type

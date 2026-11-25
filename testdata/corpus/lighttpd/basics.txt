@@ -1,0 +1,9 @@
+# REQ: LANG-1971 LANG-1972 LANG-1973 LANG-1974
+server.modules = ( "mod_rewrite", "mod_alias" )
+server.document-root = "/var/www"
+server.port = 8080
+# Redirect old paths
+$HTTP["host"] == "example.com" {
+    url.rewrite-once = ( "^/old/(.*)" => "/new/$1" )
+}
+include "conf.d/*.conf"

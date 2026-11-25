@@ -1,0 +1,11 @@
+<span class="hl-com">; REQ: LANG-2591 LANG-2592 LANG-2593 LANG-2594</span>
+<span class="hl-com">; Square toolpath</span>
+<span class="hl-kw">G21</span> <span class="hl-com">(millimetres)</span>
+<span class="hl-kw">G90</span>
+<span class="hl-builtin">M3</span> S12000
+N10 <span class="hl-kw">G0</span> X0 Y0 Z5
+N20 <span class="hl-kw">G1</span> Z-<span class="hl-num">1</span> F300
+N30 <span class="hl-kw">G1</span> X20 Y0
+N40 <span class="hl-kw">G1</span> X20 Y20
+<span class="hl-builtin">M5</span>
+<span class="hl-builtin">M30</span>

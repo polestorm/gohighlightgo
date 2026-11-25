@@ -1,0 +1,9 @@
+// REQ: LANG-2771 LANG-2772 LANG-2773 LANG-2774
+// Units and conversion
+distance = 26.2 miles
+time = 3 hours + 30 minutes
+speed = distance / time
+println["Speed: " + (speed -> "km/hour")]
+/* loop */
+for i = 1 to 3
+   println["i = $i"]

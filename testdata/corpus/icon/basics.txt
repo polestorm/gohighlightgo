@@ -1,0 +1,9 @@
+# REQ: LANG-2731 LANG-2732 LANG-2733 LANG-2734
+# Word counter
+procedure main()
+   local count, line
+   count := 0
+   while line := read() do
+      every find("icon", line) do count +:= 1
+   write("Found ", count, " matches", &null)
+end

@@ -1,0 +1,8 @@
+# REQ: LANG-2501 LANG-2502 LANG-2503 LANG-2504
+# List large files
+def big-files [dir: string, --min: int = 1000] {
+    ls $dir | where size > $min | sort-by size
+}
+let name = "world"
+print $"Hello, ($name)!"
+for f in (big-files . --min 0x1F) { echo $f.name }

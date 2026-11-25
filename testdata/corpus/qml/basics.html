@@ -1,0 +1,19 @@
+<span class="hl-com">// REQ: LANG-1451 LANG-1452</span>
+<span class="hl-kw">import</span> <span class="hl-type">QtQuick</span> <span class="hl-num">2.15</span>
+<span class="hl-kw">import</span> <span class="hl-type">QtQuick</span>.<span class="hl-type">Controls</span> <span class="hl-num">2.15</span>
+
+<span class="hl-com">/* Main window */</span>
+<span class="hl-type">Rectangle</span> {
+    <span class="hl-attr">id</span><span class="hl-op">:</span> root
+    <span class="hl-attr">width</span><span class="hl-op">:</span> <span class="hl-num">640</span>; <span class="hl-attr">height</span><span class="hl-op">:</span> <span class="hl-num">480</span>
+    <span class="hl-type">color</span><span class="hl-op">:</span> <span class="hl-str">"lightblue"</span>
+    <span class="hl-kw">property</span> <span class="hl-type">int</span> <span class="hl-attr">count</span><span class="hl-op">:</span> <span class="hl-num">0x1F</span>
+    <span class="hl-kw">property</span> <span class="hl-type">string</span> <span class="hl-attr">name</span><span class="hl-op">:</span> <span class="hl-builtin">qsTr</span>(<span class="hl-str">"world"</span>)
+    <span class="hl-kw">signal</span> <span class="hl-fn">clicked</span>(<span class="hl-type">int</span> x)
+
+    <span class="hl-type">Text</span> {
+        anchors.<span class="hl-attr">centerIn</span><span class="hl-op">:</span> <span class="hl-builtin">parent</span>
+        <span class="hl-attr">text</span><span class="hl-op">:</span> <span class="hl-str">`Hello, </span><span class="hl-esc">${</span>root.name<span class="hl-esc">}</span><span class="hl-str">!`</span>
+    }
+    <span class="hl-type">MouseArea</span> { anchors.<span class="hl-attr">fill</span><span class="hl-op">:</span> <span class="hl-builtin">parent</span>; <span class="hl-attr">onClicked</span><span class="hl-op">:</span> root.count<span class="hl-op">++</span> }
+}

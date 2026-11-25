@@ -1,0 +1,10 @@
+; REQ: LANG-1661 LANG-1662 LANG-1663 LANG-1664
+(import math)
+(defn greet [name [times 1]]
+  "Greets name."
+  (for [i (range times)]
+    (print (+ "Hello, " name "!\n"))))
+(setv config {:name "world" :times 2})
+(when (and config True)
+  (greet "hy" 2))
+(print (math.sqrt 16) None 3.14)

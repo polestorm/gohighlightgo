@@ -1,0 +1,11 @@
+// REQ: LANG-1911 LANG-1912 LANG-1913 LANG-1914
+/* Block comment */
+class Greeter {
+  var name
+  def Greeter(n) { this.name = n }
+  def greet(times) {
+    for (var i = 0; i < times; ++i) { print("Hello, ${this.name}!") }
+  }
+}
+var g = Greeter("chai")
+if (g.name.size() > 0 && true) { g.greet(2) }

@@ -1,0 +1,15 @@
+# Clean: Clean 3.1 Language Report, chapter 1 Basic Semantics and the lexical structure appendix; requirements/languages/clean.md
+name     clean icl dcl
+
+keyword  module import from definition implementation system where let in case of if class instance
+keyword  derive with code infix infixl infixr generic special export
+type     Int Real Bool Char String File World
+builtin  True False
+
+ident-part     '
+line-comment   //
+block-comment  /* */  : nested
+string   " "  : escapes
+operators  +-*/%&|^!<>=:?~.\#@
+upper-type
+hook     apostrophe

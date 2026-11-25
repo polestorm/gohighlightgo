@@ -1,0 +1,6 @@
+# REQ: LANG-1731 LANG-1732 LANG-1733 LANG-1734
+# Request rate per job
+sum by (job) (rate(http_requests_total{status=~"5..", method!="GET"}[5m]))
+  / ignoring(status) group_left
+sum by (job) (rate(http_requests_total[5m])) > 0.05
+histogram_quantile(0.99, sum(rate(request_duration_seconds_bucket[1h] offset 1d)) by (le))

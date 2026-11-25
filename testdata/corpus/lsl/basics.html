@@ -1,0 +1,15 @@
+<span class="hl-com">// REQ: LANG-2971 LANG-2972 LANG-2973 LANG-2974</span>
+<span class="hl-com">// Greeter object</span>
+<span class="hl-type">integer</span> count <span class="hl-op">=</span> <span class="hl-num">0</span>;
+<span class="hl-kw">default</span>
+{
+    <span class="hl-builtin">state_entry</span>()
+    {
+        <span class="hl-builtin">llSetText</span>(<span class="hl-str">"Touch me"</span>, <span class="hl-op">&lt;</span><span class="hl-num">1.0</span>, <span class="hl-num">1.0</span>, <span class="hl-num">1.0</span><span class="hl-op">&gt;</span>, <span class="hl-num">1.0</span>);
+    }
+    <span class="hl-builtin">touch_start</span>(<span class="hl-type">integer</span> total)
+    {
+        count<span class="hl-op">++</span>;
+        <span class="hl-builtin">llSay</span>(<span class="hl-num">0</span>, <span class="hl-str">"Hello, "</span> <span class="hl-op">+</span> <span class="hl-builtin">llDetectedName</span>(<span class="hl-num">0</span>) <span class="hl-op">+</span> <span class="hl-str">"! "</span> <span class="hl-op">+</span> (<span class="hl-type">string</span>)count);
+    }
+}

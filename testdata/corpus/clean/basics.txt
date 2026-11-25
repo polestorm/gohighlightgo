@@ -1,0 +1,13 @@
+// REQ: LANG-1291 LANG-1292 LANG-1293
+module Greeter
+import StdEnv
+
+/* outer /* nested */ still a comment */
+:: Shape = Circle Real | Rect Real Real
+
+area :: Shape -> Real
+area (Circle r) = 3.14 * r * r
+area (Rect w h) = w * h
+
+Start :: String
+Start = "Hello, Clean! " +++ toString (area (Circle 1.5)) +++ toString 'x' +++ toString True

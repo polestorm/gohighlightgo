@@ -1,0 +1,8 @@
+; REQ: LANG-2531 LANG-2532 LANG-2533 LANG-2534
+; Greeting
+(define (greet name (times 1))
+  (dotimes (i times)
+    (println "Hello, " name "!\n")))
+(setq people '("ann" "bob"))
+(dolist (p people) (greet p 2))
+(println {raw "text"} (length people) true nil)

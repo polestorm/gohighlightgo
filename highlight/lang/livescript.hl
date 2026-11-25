@@ -1,0 +1,18 @@
+# LiveScript: LiveScript documentation (livescript.net); requirements/languages/livescript.md
+name     livescript ls
+
+keyword  if else unless then for in of til to by when while until loop switch case default try catch
+keyword  finally throw return break continue class extends super new delete typeof instanceof and or not
+keyword  is isnt do import export let const var function match otherwise
+builtin  true false null undefined yes no on off this void
+
+line-comment   #
+block-comment  /* */
+string   """ """  : escapes multiline interp=hash
+string   " "      : escapes interp=hash
+string   ' '      : escapes
+escape        : x=2 u4
+sigil    @    : attr
+operators  +-*/%&|^!<>=:?~.
+calls
+regex

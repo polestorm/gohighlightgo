@@ -1,0 +1,18 @@
+# AutoHotkey v2: AutoHotkey v2 documentation, Concepts and Conventions, Scripting Language; requirements/languages/autohotkey.md
+name     autohotkey ahk
+
+keyword  if else loop while for in break continue return global local static class extends try catch
+keyword  finally throw goto until switch case default and or not is
+builtin  MsgBox Send SendInput Run Sleep WinActivate WinWait WinClose InputBox FileRead FileAppend
+builtin  Hotkey SetTimer ExitApp Reload StrLen SubStr InStr RegExMatch Format true false
+fold-case
+
+line-comment   ;
+block-comment  /* */
+string   " "  : escapes
+string   ' '  : escapes
+escape        : char=`
+sigil    #    : meta
+sigil    %    : attr
+operators  +-*/&|^!<>=:?~.
+calls

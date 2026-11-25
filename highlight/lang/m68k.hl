@@ -1,0 +1,14 @@
+# Motorola 68000 assembly: M68000 Family Programmer's Reference Manual (Motorola); requirements/languages/m68k.md
+name     m68k asm68k
+keyword  move movea moveq movem lea pea add adda addi addq sub suba subi subq muls mulu divs divu and or
+keyword  eor not neg clr cmp cmpa cmpi tst bra bsr beq bne bgt blt bge ble jmp jsr rts dbra dbf swap
+keyword  ext lsl lsr asl asr rol ror trap link unlk
+builtin  d0 d1 d2 d3 d4 d5 d6 d7 a0 a1 a2 a3 a4 a5 a6 a7 sp pc sr ccr
+fold-case
+line-comment   ;
+string   " "
+string   ' '
+sigil    .    : meta
+sigil    $    : num
+operators  #()+-*/,
+hook     asm-label

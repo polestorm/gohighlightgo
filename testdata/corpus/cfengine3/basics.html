@@ -1,0 +1,14 @@
+<span class="hl-com"># REQ: LANG-2921 LANG-2922 LANG-2923 LANG-2924</span>
+<span class="hl-com"># Ensure a file exists</span>
+<span class="hl-kw">bundle</span> <span class="hl-kw">agent</span> demo
+<span class="hl-op">{</span>
+  <span class="hl-kw">vars</span><span class="hl-op">:</span>
+      <span class="hl-str">"greeting"</span> <span class="hl-builtin">string</span> <span class="hl-op">=&gt;</span> <span class="hl-str">"Hello"</span><span class="hl-op">;</span>
+  <span class="hl-kw">files</span><span class="hl-op">:</span>
+      <span class="hl-str">"/tmp/hello.txt"</span>
+        <span class="hl-builtin">create</span> <span class="hl-op">=&gt;</span> <span class="hl-str">"true"</span><span class="hl-op">,</span>
+        <span class="hl-kw">edit_line</span> <span class="hl-op">=&gt;</span> insert_lines<span class="hl-op">(</span><span class="hl-str">"$(greeting), world"</span><span class="hl-op">);</span>
+  <span class="hl-kw">reports</span><span class="hl-op">:</span>
+    linux<span class="hl-op">::</span>
+      <span class="hl-str">"Done: </span><span class="hl-esc">${greeting}</span><span class="hl-str">"</span><span class="hl-op">;</span>
+<span class="hl-op">}</span>

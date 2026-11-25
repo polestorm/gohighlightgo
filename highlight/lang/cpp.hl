@@ -1,5 +1,5 @@
 # C++: ISO/IEC 14882:2024 (C++23); requirements/languages/cpp.md
-name     cpp c++ cxx cc hpp
+name     cpp c++ cxx cc hpp arduino ino
 
 keyword  alignas alignof and and_eq asm auto bitand bitor break case catch class compl
 keyword  concept const consteval constexpr constinit const_cast continue co_await co_return co_yield

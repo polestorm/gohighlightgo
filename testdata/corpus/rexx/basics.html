@@ -1,0 +1,13 @@
+<span class="hl-com">/* REQ: LANG-1481 LANG-1482 LANG-1483 </span>
+<span class="hl-com">*/</span>
+<span class="hl-com">/* Greets the name. */</span>
+<span class="hl-kw">parse</span> <span class="hl-kw">arg</span> name times
+<span class="hl-kw">if</span> name <span class="hl-op">=</span> <span class="hl-str">''</span> <span class="hl-kw">then</span> name <span class="hl-op">=</span> <span class="hl-str">"world"</span>
+<span class="hl-kw">do</span> i <span class="hl-op">=</span> <span class="hl-num">1</span> <span class="hl-kw">to</span> <span class="hl-num">3</span>
+  <span class="hl-kw">say</span> <span class="hl-str">'Hello,'</span> name <span class="hl-op">||</span> <span class="hl-str">'!'</span> <span class="hl-str">'it</span><span class="hl-esc">''</span><span class="hl-str">s'</span> i
+<span class="hl-kw">end</span>
+<span class="hl-kw">select</span>
+  <span class="hl-kw">when</span> <span class="hl-builtin">length</span>(name) <span class="hl-op">&gt;</span> <span class="hl-num">3</span> <span class="hl-kw">then</span> <span class="hl-kw">say</span> <span class="hl-str">"long"</span>
+  <span class="hl-kw">otherwise</span> <span class="hl-kw">nop</span>
+<span class="hl-kw">end</span>
+<span class="hl-kw">exit</span> <span class="hl-num">0</span>

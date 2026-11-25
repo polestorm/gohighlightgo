@@ -1,0 +1,13 @@
+# ASN.1: ITU-T X.680 (Abstract Syntax Notation One), clause 12 lexical items; requirements/languages/asn1.md
+name     asn1 asn
+keyword  DEFINITIONS BEGIN END IMPORTS EXPORTS FROM SEQUENCE SET OF CHOICE OPTIONAL DEFAULT SIZE
+keyword  AUTOMATIC EXPLICIT IMPLICIT TAGS WITH COMPONENTS ENUMERATED
+type     INTEGER BOOLEAN NULL REAL BIT STRING OCTET UTF8String IA5String PrintableString UTCTime
+type     GeneralizedTime OBJECT IDENTIFIER
+builtin  TRUE FALSE MIN MAX
+ident-part     -
+line-comment   --
+block-comment  /* */
+string   " "  : doubled
+operators  ::=,{}()[]|.
+upper-type

@@ -1,0 +1,15 @@
+// REQ: LANG-1271 LANG-1272 LANG-1273
+import ballerina/io;
+
+type Person record {| string name; int age; |};
+
+@display {label: "Greeter"}
+public function main() returns error? {
+    Person p = {name: "Ann", age: 30};
+    string greeting = string `Hello, ${p.name}!`;
+    int[] numbers = [1, 2, 0x1F];
+    foreach int n in numbers {
+        if n > 1 && true { io:println(greeting, n, 3.14); }
+    }
+    check io:fileWriteString("out.txt", greeting);
+}

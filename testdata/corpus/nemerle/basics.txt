@@ -1,0 +1,20 @@
+// REQ: LANG-1411 LANG-1412
+using System;
+
+/* Block comment */
+variant Shape {
+  | Circle { r : double }
+  | Rect { w : double; h : double }
+}
+
+module Program {
+  Main() : void {
+    def name = "world";
+    mutable count = 0x1F;
+    match (Shape.Circle(1.5)) {
+      | Shape.Circle(r) => Console.WriteLine($"Hello, $name! $(r * r)")
+      | _ => ()
+    }
+    when (count > 0) count--;
+  }
+}

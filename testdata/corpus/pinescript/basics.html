@@ -1,0 +1,11 @@
+<span class="hl-com">// REQ: LANG-2261 LANG-2262 LANG-2263 LANG-2264</span>
+<span class="hl-com">//@version=5</span>
+<span class="hl-kw">indicator</span>(<span class="hl-str">"Demo"</span>, overlay <span class="hl-op">=</span> <span class="hl-kw">true</span>)
+length <span class="hl-op">=</span> <span class="hl-builtin">input</span><span class="hl-op">.</span><span class="hl-type">int</span>(<span class="hl-num">14</span>, <span class="hl-str">"Length"</span>)
+<span class="hl-com">// Moving averages</span>
+fast <span class="hl-op">=</span> <span class="hl-builtin">ta</span><span class="hl-op">.</span><span class="hl-fn">sma</span>(<span class="hl-builtin">close</span>, length)
+slow <span class="hl-op">=</span> <span class="hl-builtin">ta</span><span class="hl-op">.</span><span class="hl-fn">ema</span>(<span class="hl-builtin">close</span>, length <span class="hl-op">*</span> <span class="hl-num">2</span>)
+cross <span class="hl-op">=</span> <span class="hl-builtin">ta</span><span class="hl-op">.</span><span class="hl-fn">crossover</span>(fast, slow)
+<span class="hl-builtin">plot</span>(fast, <span class="hl-type">color</span> <span class="hl-op">=</span> <span class="hl-type">color</span><span class="hl-op">.</span>blue)
+<span class="hl-kw">if</span> cross <span class="hl-kw">and</span> <span class="hl-kw">not</span> <span class="hl-kw">na</span>(slow)
+    <span class="hl-type">label</span><span class="hl-op">.</span><span class="hl-fn">new</span>(bar_index, <span class="hl-builtin">high</span>, <span class="hl-str">"Buy"</span>, <span class="hl-type">color</span> <span class="hl-op">=</span> <span class="hl-type">color</span><span class="hl-op">.</span>green)

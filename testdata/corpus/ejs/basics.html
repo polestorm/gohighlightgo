@@ -1,0 +1,7 @@
+<span class="hl-com">&lt;%# REQ: LANG-2321 LANG-2322 LANG-2323 %&gt;</span>
+<span class="hl-tag">&lt;ul</span> <span class="hl-attr">class</span>=<span class="hl-str">"users"</span><span class="hl-tag">&gt;</span>
+<span class="hl-meta">&lt;%</span> users.<span class="hl-fn">forEach</span>(<span class="hl-kw">function</span> (user) { <span class="hl-meta">%&gt;</span>
+  <span class="hl-tag">&lt;li&gt;</span><span class="hl-meta">&lt;%=</span> user.name <span class="hl-meta">%&gt;</span> (<span class="hl-meta">&lt;%-</span> user.age <span class="hl-op">+</span> <span class="hl-num">1</span> <span class="hl-meta">%&gt;</span>)<span class="hl-tag">&lt;/li&gt;</span>
+<span class="hl-meta">&lt;%</span> }); <span class="hl-meta">%&gt;</span>
+<span class="hl-tag">&lt;/ul&gt;</span>
+<span class="hl-meta">&lt;%_</span> <span class="hl-kw">if</span> (title) { _<span class="hl-meta">%&gt;</span><span class="hl-tag">&lt;h1&gt;</span><span class="hl-meta">&lt;%=</span> title.<span class="hl-fn">toUpperCase</span>() <span class="hl-meta">%&gt;</span><span class="hl-tag">&lt;/h1&gt;</span><span class="hl-meta">&lt;%</span> } <span class="hl-meta">%&gt;</span>

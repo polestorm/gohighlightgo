@@ -1,0 +1,19 @@
+// REQ: LANG-1551 LANG-1552 LANG-1553 LANG-1554
+grammar Expr;
+
+/* Parser rules */
+prog : stat+ EOF ;
+stat : expr NEWLINE           # printExpr
+     | ID '=' expr NEWLINE    # assign
+     ;
+expr : expr ('*'|'/') expr
+     | INT
+     | '(' expr ')'
+     ;
+
+@members { int count = 0; }
+
+ID      : [a-zA-Z]+ ;
+INT     : [0-9]+ ;
+NEWLINE : '\r'? '\n' ;
+WS      : [ \t]+ -> skip ;

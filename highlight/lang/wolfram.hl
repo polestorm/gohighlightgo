@@ -1,0 +1,9 @@
+# Wolfram Language: Wolfram Language documentation (reference.wolfram.com): syntax and operators; requirements/languages/wolfram.md
+name     wolfram mathematica wl nb
+
+builtin  True False Null All None Automatic Infinity Pi E I
+
+block-comment  (* *)  : nested
+string   " "  : escapes multiline
+operators  +-*/^=<>!&|@#%~:;?.\_[]
+upper-type

@@ -1,0 +1,10 @@
+# Caddyfile: Caddy 2 documentation: The Caddyfile, directives; requirements/languages/caddyfile.md
+name     caddyfile caddy
+keyword  reverse_proxy file_server root encode header redir respond tls log route handle handle_path
+keyword  rewrite try_files basicauth import php_fastcgi uri templates
+builtin  gzip zstd on off
+line-comment   #
+string   " "  : escapes
+string   ` `
+sigil    @    : meta
+operators  {}*

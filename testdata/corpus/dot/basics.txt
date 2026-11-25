@@ -1,0 +1,10 @@
+// REQ: LANG-2371 LANG-2372 LANG-2373 LANG-2374
+digraph G {
+    rankdir = LR;
+    /* Nodes */
+    node [shape = box, style = filled, fillcolor = "lightblue"];
+    start [label = "Start"];
+    end [label = <<b>End</b>>];
+    start -> middle -> end [color = red];
+    subgraph cluster_0 { a -- b; }
+}

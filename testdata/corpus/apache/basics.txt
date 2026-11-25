@@ -1,0 +1,15 @@
+# REQ: LANG-1851 LANG-1852 LANG-1853 LANG-1854
+LoadModule rewrite_module modules/mod_rewrite.so
+<VirtualHost *:443>
+    ServerName example.com
+    DocumentRoot "/var/www/html"
+    SSLEngine on
+    <Directory "/var/www/html">
+        Options -Indexes +FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+    RewriteEngine On
+    RewriteRule ^/old/(.*)$ /new/$1 [R=301,L]
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+</VirtualHost>

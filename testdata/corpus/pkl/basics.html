@@ -1,0 +1,11 @@
+<span class="hl-com">// REQ: LANG-2421 LANG-2422 LANG-2423 LANG-2424</span>
+<span class="hl-kw">module</span> demo<span class="hl-op">.</span><span class="hl-type">Config</span>
+<span class="hl-com">/* Settings */</span>
+<span class="hl-kw">class</span> <span class="hl-type">Server</span> {
+    host<span class="hl-op">:</span> <span class="hl-type">String</span> <span class="hl-op">=</span> <span class="hl-str">"localhost"</span>
+    port<span class="hl-op">:</span> <span class="hl-type">Int</span>(<span class="hl-fn">isBetween</span>(<span class="hl-num">1</span>, <span class="hl-num">65535</span>)) <span class="hl-op">=</span> <span class="hl-num">8080</span>
+}
+<span class="hl-meta">@Deprecated</span>
+<span class="hl-kw">local</span> timeout <span class="hl-op">=</span> <span class="hl-num">30.s</span>
+servers<span class="hl-op">:</span> <span class="hl-type">Listing</span><span class="hl-op">&lt;</span><span class="hl-type">Server</span><span class="hl-op">&gt;</span> <span class="hl-op">=</span> <span class="hl-kw">new</span> { <span class="hl-kw">new</span> { port <span class="hl-op">=</span> <span class="hl-num">0x1F</span> } }
+greeting <span class="hl-op">=</span> <span class="hl-str">"Hello, </span><span class="hl-esc">\(servers[0].host)</span><span class="hl-str">!"</span>

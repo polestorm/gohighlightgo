@@ -1,0 +1,13 @@
+// REQ: LANG-2561 LANG-2562 LANG-2563 LANG-2564
+module 0x1::greeter {
+    use std::string;
+    /// A greeting
+    struct Greeting has key, store { text: string::String, count: u64 }
+    public entry fun create(account: &signer) {
+        let g = Greeting { text: string::utf8(b"Hello"), count: 0x1F };
+        move_to(account, g);
+    }
+    public fun count(addr: address): u64 acquires Greeting {
+        borrow_global<Greeting>(addr).count
+    }
+}

@@ -1,0 +1,20 @@
+* REQ: LANG-1541 LANG-1542 LANG-1543 LANG-1544
+REPORT z_greeter.
+" Inline comment
+DATA lv_name TYPE string VALUE 'world'.
+DATA lt_items TYPE STANDARD TABLE OF i WITH DEFAULT KEY.
+CLASS lcl_greeter DEFINITION.
+  PUBLIC SECTION.
+    METHODS greet IMPORTING iv_times TYPE i RETURNING VALUE(rv_text) TYPE string.
+ENDCLASS.
+CLASS lcl_greeter IMPLEMENTATION.
+  METHOD greet.
+    rv_text = |Hello, { lv_name }! { iv_times }|.
+  ENDMETHOD.
+ENDCLASS.
+START-OF-SELECTION.
+  LOOP AT lt_items INTO DATA(lv_item).
+    IF lv_item > 0 AND sy-subrc = 0.
+      WRITE: / 'It''s', lv_item.
+    ENDIF.
+  ENDLOOP.

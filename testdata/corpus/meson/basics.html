@@ -1,0 +1,10 @@
+<span class="hl-com"># REQ: LANG-2151 LANG-2152 LANG-2153 LANG-2154</span>
+<span class="hl-builtin">project</span>(<span class="hl-str">'demo'</span>, <span class="hl-str">'c'</span>, version <span class="hl-op">:</span> <span class="hl-str">'1.0'</span>, default_options <span class="hl-op">:</span> [<span class="hl-str">'warning_level=3'</span>])
+<span class="hl-com"># Dependencies</span>
+glib <span class="hl-op">=</span> <span class="hl-builtin">dependency</span>(<span class="hl-str">'glib-2.0'</span>, required <span class="hl-op">:</span> <span class="hl-builtin">true</span>)
+src <span class="hl-op">=</span> <span class="hl-builtin">files</span>(<span class="hl-str">'main.c'</span>, <span class="hl-str">'util.c'</span>)
+exe <span class="hl-op">=</span> <span class="hl-builtin">executable</span>(<span class="hl-str">'demo'</span>, src, dependencies <span class="hl-op">:</span> glib, install <span class="hl-op">:</span> <span class="hl-builtin">true</span>)
+<span class="hl-kw">if</span> <span class="hl-builtin">get_option</span>(<span class="hl-str">'tests'</span>)
+  <span class="hl-builtin">test</span>(<span class="hl-str">'basic'</span>, exe, args <span class="hl-op">:</span> [<span class="hl-str">'--count'</span>, <span class="hl-str">'31'</span>])
+<span class="hl-kw">endif</span>
+<span class="hl-builtin">message</span>(<span class="hl-str">f'Built @0@ for @1@'</span>)

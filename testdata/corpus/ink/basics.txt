@@ -1,0 +1,12 @@
+// REQ: LANG-2311 LANG-2312 LANG-2313 LANG-2314
+VAR gold = 31
+/* Start of the story */
+=== start ===
+Hello, traveller! You have {gold} gold.
+* [Buy a sword] -> shop
+* {gold > 10} [Rest at the inn]
+    ~ gold = gold - 10
+    You sleep well. -> END
+=== shop ===
+"A fine blade," says the smith.
+-> DONE

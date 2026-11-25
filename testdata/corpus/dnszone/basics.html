@@ -1,0 +1,13 @@
+<span class="hl-com">; REQ: LANG-1831 LANG-1832 LANG-1833 LANG-1834</span>
+<span class="hl-kw">$ORIGIN</span> example.com.
+<span class="hl-kw">$TTL</span> <span class="hl-num">3600</span>
+@   <span class="hl-builtin">IN</span> <span class="hl-builtin">SOA</span> ns1.example.com. admin.example.com. <span class="hl-op">(</span>
+        <span class="hl-num">2026112501</span> <span class="hl-com">; serial</span>
+        <span class="hl-num">7200</span>       <span class="hl-com">; refresh</span>
+        <span class="hl-num">3600</span> <span class="hl-num">1209600</span> <span class="hl-num">300</span> <span class="hl-op">)</span>
+    <span class="hl-builtin">IN</span> <span class="hl-builtin">NS</span>  ns1.example.com.
+    <span class="hl-builtin">IN</span> <span class="hl-builtin">MX</span>  <span class="hl-num">10</span> mail.example.com.
+www <span class="hl-builtin">IN</span> <span class="hl-builtin">A</span>   <span class="hl-num">192.0.2.10</span>
+    <span class="hl-builtin">IN</span> <span class="hl-builtin">AAAA</span> <span class="hl-num">2001</span>:db8::<span class="hl-num">10</span>
+_sip._tcp <span class="hl-builtin">IN</span> <span class="hl-builtin">SRV</span> <span class="hl-num">10</span> <span class="hl-num">60</span> <span class="hl-num">5060</span> sip.example.com.
+txt <span class="hl-builtin">IN</span> <span class="hl-builtin">TXT</span> <span class="hl-str">"v=spf1 -all"</span>

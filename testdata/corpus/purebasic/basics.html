@@ -1,0 +1,15 @@
+<span class="hl-com">; REQ: LANG-2631 LANG-2632 LANG-2633 LANG-2634</span>
+<span class="hl-com">; Greeter</span>
+<span class="hl-kw">Structure</span> Person
+  Name<span class="hl-op">.</span>s
+  Age<span class="hl-op">.</span>i
+<span class="hl-kw">EndStructure</span>
+<span class="hl-kw">Procedure</span><span class="hl-op">.</span>s <span class="hl-fn">Greet</span>(<span class="hl-op">*</span>p<span class="hl-op">.</span>Person, Times <span class="hl-op">=</span> <span class="hl-num">1</span>)
+  <span class="hl-kw">Protected</span> Text<span class="hl-op">.</span>s <span class="hl-op">=</span> <span class="hl-str">~"Hello, "</span> <span class="hl-op">+</span> <span class="hl-op">*</span>p<span class="hl-op">\</span>Name <span class="hl-op">+</span> <span class="hl-str">~"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>
+  <span class="hl-kw">For</span> i <span class="hl-op">=</span> <span class="hl-num">1</span> <span class="hl-kw">To</span> Times
+    <span class="hl-builtin">Debug</span> Text
+  <span class="hl-kw">Next</span>
+  <span class="hl-kw">ProcedureReturn</span> Text
+<span class="hl-kw">EndProcedure</span>
+<span class="hl-kw">Define</span> ann<span class="hl-op">.</span>Person : ann<span class="hl-op">\</span>Name <span class="hl-op">=</span> <span class="hl-str">"Ann"</span>
+<span class="hl-kw">If</span> <span class="hl-builtin">Len</span>(<span class="hl-fn">Greet</span>(@ann, <span class="hl-num">2</span>)) <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-kw">And</span> <span class="hl-builtin">#True</span> : <span class="hl-builtin">Debug</span> $<span class="hl-num">1F</span> : <span class="hl-kw">EndIf</span>

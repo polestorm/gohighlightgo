@@ -1,0 +1,18 @@
+<span class="hl-com">// REQ: LANG-1431 LANG-1432 LANG-1433</span>
+<span class="hl-meta">#include</span> <span class="hl-str">&lt;module.h&gt;</span>
+<span class="hl-com">/* Block comment */</span>
+<span class="hl-kw">class</span> Greeter {
+  <span class="hl-type">string</span> name <span class="hl-op">=</span> <span class="hl-str">"world"</span>;
+
+  <span class="hl-type">string</span> <span class="hl-fn">greet</span>(<span class="hl-type">int</span> times) {
+    <span class="hl-type">string</span> text <span class="hl-op">=</span> <span class="hl-str">"Hello, "</span> <span class="hl-op">+</span> name <span class="hl-op">+</span> <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>;
+    <span class="hl-kw">return</span> text <span class="hl-op">*</span> times;
+  }
+}
+
+<span class="hl-type">int</span> <span class="hl-fn">main</span>(<span class="hl-type">int</span> argc, <span class="hl-type">array</span>(<span class="hl-type">string</span>) argv) {
+  Greeter g <span class="hl-op">=</span> <span class="hl-fn">Greeter</span>();
+  <span class="hl-type">mapping</span>(<span class="hl-type">string</span><span class="hl-op">:</span><span class="hl-type">int</span>) ages <span class="hl-op">=</span> ([<span class="hl-str">"ann"</span><span class="hl-op">:</span> <span class="hl-num">30</span>]);
+  <span class="hl-kw">foreach</span> (<span class="hl-fn">indices</span>(ages), <span class="hl-type">string</span> who) <span class="hl-builtin">write</span>(g<span class="hl-op">-&gt;</span><span class="hl-fn">greet</span>(<span class="hl-num">2</span>) <span class="hl-op">+</span> who <span class="hl-op">+</span> <span class="hl-str">'x'</span>);
+  <span class="hl-kw">return</span> <span class="hl-num">0x1F</span> <span class="hl-op">&gt;</span> <span class="hl-num">0</span>;
+}

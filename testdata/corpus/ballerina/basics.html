@@ -1,0 +1,15 @@
+<span class="hl-com">// REQ: LANG-1271 LANG-1272 LANG-1273</span>
+<span class="hl-kw">import</span> ballerina<span class="hl-op">/</span>io;
+
+<span class="hl-kw">type</span> Person <span class="hl-kw">record</span> {<span class="hl-op">|</span> <span class="hl-type">string</span> name; <span class="hl-type">int</span> age; <span class="hl-op">|</span>};
+
+<span class="hl-meta">@display</span> {label<span class="hl-op">:</span> <span class="hl-str">"Greeter"</span>}
+<span class="hl-kw">public</span> <span class="hl-kw">function</span> <span class="hl-fn">main</span>() <span class="hl-kw">returns</span> <span class="hl-kw">error</span><span class="hl-op">?</span> {
+    Person p <span class="hl-op">=</span> {name<span class="hl-op">:</span> <span class="hl-str">"Ann"</span>, age<span class="hl-op">:</span> <span class="hl-num">30</span>};
+    <span class="hl-type">string</span> greeting <span class="hl-op">=</span> <span class="hl-type">string</span> <span class="hl-str">`Hello, </span><span class="hl-esc">${p.name}</span><span class="hl-str">!`</span>;
+    <span class="hl-type">int</span>[] numbers <span class="hl-op">=</span> [<span class="hl-num">1</span>, <span class="hl-num">2</span>, <span class="hl-num">0x1F</span>];
+    <span class="hl-kw">foreach</span> <span class="hl-type">int</span> n <span class="hl-kw">in</span> numbers {
+        <span class="hl-kw">if</span> n <span class="hl-op">&gt;</span> <span class="hl-num">1</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-builtin">true</span> { io<span class="hl-op">:</span><span class="hl-fn">println</span>(greeting, n, <span class="hl-num">3.14</span>); }
+    }
+    <span class="hl-kw">check</span> io<span class="hl-op">:</span><span class="hl-fn">fileWriteString</span>(<span class="hl-str">"out.txt"</span>, greeting);
+}

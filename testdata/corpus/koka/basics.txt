@@ -1,0 +1,13 @@
+// REQ: LANG-2221 LANG-2222 LANG-2223 LANG-2224
+module demo
+/* Effects */
+effect ask
+  ctl ask() : int
+fun greet(name : string, times : int) : console ()
+  for(1, times) fn(i)
+    println("Hello, " ++ name ++ "!")
+fun main()
+  with handler
+    ctl ask() resume(21)
+  val x = ask() + ask()
+  if x > 0 && True then greet("koka", 2)

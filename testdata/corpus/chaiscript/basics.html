@@ -1,0 +1,11 @@
+<span class="hl-com">// REQ: LANG-1911 LANG-1912 LANG-1913 LANG-1914</span>
+<span class="hl-com">/* Block comment */</span>
+<span class="hl-kw">class</span> Greeter {
+  <span class="hl-kw">var</span> name
+  <span class="hl-kw">def</span> <span class="hl-fn">Greeter</span>(n) { <span class="hl-kw">this</span><span class="hl-op">.</span>name <span class="hl-op">=</span> n }
+  <span class="hl-kw">def</span> <span class="hl-fn">greet</span>(times) {
+    <span class="hl-kw">for</span> (<span class="hl-kw">var</span> i <span class="hl-op">=</span> <span class="hl-num">0</span>; i <span class="hl-op">&lt;</span> times; <span class="hl-op">++</span>i) { <span class="hl-builtin">print</span>(<span class="hl-str">"Hello, </span><span class="hl-esc">${this.name}</span><span class="hl-str">!"</span>) }
+  }
+}
+<span class="hl-kw">var</span> g <span class="hl-op">=</span> <span class="hl-fn">Greeter</span>(<span class="hl-str">"chai"</span>)
+<span class="hl-kw">if</span> (g<span class="hl-op">.</span>name<span class="hl-op">.</span><span class="hl-builtin">size</span>() <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-builtin">true</span>) { g<span class="hl-op">.</span><span class="hl-fn">greet</span>(<span class="hl-num">2</span>) }

@@ -1,0 +1,10 @@
+; REQ: LANG-2961 LANG-2962 LANG-2963 LANG-2964
+Scriptname GreeterScript extends ObjectReference
+{ Greets the player }
+Int Property Count = 0 Auto
+Event OnActivate(ObjectReference akActionRef)
+    Count += 1
+    If Count > 0 && True
+        Debug.Notification("Hello, traveller! " + Count)
+    EndIf
+EndEvent

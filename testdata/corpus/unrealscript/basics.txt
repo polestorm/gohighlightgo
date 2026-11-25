@@ -1,0 +1,15 @@
+// REQ: LANG-2951 LANG-2952 LANG-2953 LANG-2954
+class Greeter extends Actor;
+var() string GreetName;
+/* Greets on spawn */
+simulated event PostBeginPlay()
+{
+    local int i;
+    Super.PostBeginPlay();
+    for (i = 0; i < 3; i++)
+        Log("Hello, " $ GreetName $ "!");
+}
+defaultproperties
+{
+    GreetName="world"
+}

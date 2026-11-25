@@ -1,0 +1,12 @@
+// REQ: LANG-2751 LANG-2752 LANG-2753 LANG-2754
+module Demo {
+  /* Types */
+  type record Greeting { charstring text, integer count }
+  type port GreetPort message { inout Greeting }
+  type component Tester { port GreetPort p; timer t := 5.0 }
+  testcase tc_greet() runs on Tester {
+    p.send(Greeting: { text := "Hello", count := 31 });
+    t.start;
+    alt { [] p.receive { setverdict(pass) } [] t.timeout { setverdict(fail) } }
+  }
+}

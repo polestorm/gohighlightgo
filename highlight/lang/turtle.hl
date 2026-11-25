@@ -1,0 +1,13 @@
+# Turtle: RDF 1.1 Turtle (W3C Recommendation 2014); requirements/languages/turtle.md
+name     turtle ttl n3 trig
+keyword  @prefix @base PREFIX BASE
+builtin  a true false
+ident-part     -:
+line-comment   #
+string   """ """  : escapes multiline
+string   ''' '''  : escapes multiline
+string   " "      : escapes
+string   ' '      : escapes
+sigil    @    : kw
+operators  ;,.^[]
+hook     iri

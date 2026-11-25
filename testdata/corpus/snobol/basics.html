@@ -1,0 +1,8 @@
+<span class="hl-op">*</span> REQ<span class="hl-op">:</span> LANG<span class="hl-op">-</span><span class="hl-num">2071</span> LANG<span class="hl-op">-</span><span class="hl-num">2072</span> LANG<span class="hl-op">-</span><span class="hl-num">2073</span> LANG<span class="hl-op">-</span><span class="hl-num">2074</span>
+        <span class="hl-builtin">OUTPUT</span> <span class="hl-op">=</span> <span class="hl-str">"Hello, world!"</span>
+        X <span class="hl-op">=</span> <span class="hl-str">'SNOBOL'</span> <span class="hl-str">' '</span> <span class="hl-str">"4"</span>
+        LINE <span class="hl-op">=</span> <span class="hl-builtin">INPUT</span>                        <span class="hl-op">:</span>F<span class="hl-op">(</span>DONE<span class="hl-op">)</span>
+        LINE <span class="hl-builtin">SPAN</span><span class="hl-op">(</span><span class="hl-str">'0123456789'</span><span class="hl-op">)</span> <span class="hl-op">.</span> N         <span class="hl-op">:</span>S<span class="hl-op">(</span>NUM<span class="hl-op">)</span>F<span class="hl-op">(</span>LOOP<span class="hl-op">)</span>
+NUM     <span class="hl-builtin">OUTPUT</span> <span class="hl-op">=</span> <span class="hl-str">"number "</span> N                <span class="hl-op">:(</span>LOOP<span class="hl-op">)</span>
+DONE    <span class="hl-builtin">OUTPUT</span> <span class="hl-op">=</span> <span class="hl-builtin">SIZE</span><span class="hl-op">(</span>X<span class="hl-op">)</span>
+<span class="hl-kw">END</span>

@@ -1,0 +1,16 @@
+<span class="hl-com">/* REQ: LANG-1491 LANG-1492 LANG-1493 </span>
+<span class="hl-com">*/</span>
+<span class="hl-meta">%let</span> year <span class="hl-op">=</span> <span class="hl-num">2024</span>;
+<span class="hl-kw">data</span> work.people;
+  <span class="hl-kw">set</span> raw.<span class="hl-fn">people</span>(<span class="hl-kw">keep</span><span class="hl-op">=</span>name age city);
+  <span class="hl-kw">where</span> age <span class="hl-op">&gt;</span> <span class="hl-num">18</span>;
+  <span class="hl-kw">length</span> greeting $ <span class="hl-num">40</span>;
+  greeting <span class="hl-op">=</span> <span class="hl-builtin">cats</span>(<span class="hl-str">'Hello, '</span>, name, <span class="hl-str">'!'</span>);
+  <span class="hl-kw">if</span> city <span class="hl-op">=</span> <span class="hl-str">"Kraków"</span> <span class="hl-kw">then</span> region <span class="hl-op">=</span> <span class="hl-str">'south'</span>;
+  <span class="hl-kw">else</span> region <span class="hl-op">=</span> <span class="hl-str">"other"</span>;
+<span class="hl-kw">run</span>;
+
+<span class="hl-kw">proc</span> means <span class="hl-kw">data</span><span class="hl-op">=</span>work.people <span class="hl-builtin">mean</span> <span class="hl-builtin">max</span>;
+  <span class="hl-kw">var</span> age;
+  <span class="hl-kw">title</span> <span class="hl-str">"People in &amp;year"</span>;
+<span class="hl-kw">run</span>;

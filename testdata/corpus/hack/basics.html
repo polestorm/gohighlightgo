@@ -1,0 +1,18 @@
+<span class="hl-com">// REQ: LANG-1351 LANG-1352</span>
+<span class="hl-meta">&lt;?</span>hh
+<span class="hl-com">// Hack sample</span>
+<span class="hl-kw">namespace</span> Demo;
+
+<span class="hl-kw">newtype</span> UserId <span class="hl-op">=</span> <span class="hl-type">int</span>;
+
+<span class="hl-kw">async</span> <span class="hl-kw">function</span> <span class="hl-fn">greet</span>(<span class="hl-type">string</span> <span class="hl-attr">$name</span>, <span class="hl-type">int</span> <span class="hl-attr">$times</span> <span class="hl-op">=</span> <span class="hl-num">1</span>)<span class="hl-op">:</span> Awaitable<span class="hl-op">&lt;</span><span class="hl-type">string</span><span class="hl-op">&gt;</span> {
+  <span class="hl-attr">$text</span> <span class="hl-op">=</span> <span class="hl-str">"Hello, </span><span class="hl-esc">$name</span><span class="hl-str">!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>;
+  <span class="hl-attr">$names</span> <span class="hl-op">=</span> <span class="hl-type">vec</span>[<span class="hl-str">'ann'</span>, <span class="hl-str">'bob'</span>];
+  <span class="hl-attr">$ages</span> <span class="hl-op">=</span> <span class="hl-type">dict</span>[<span class="hl-str">'ann'</span> <span class="hl-op">=&gt;</span> <span class="hl-num">30</span>];
+  <span class="hl-kw">await</span> \HH\Asio\<span class="hl-fn">usleep</span>(<span class="hl-num">10</span>);
+  <span class="hl-kw">return</span> \<span class="hl-fn">str_repeat</span>(<span class="hl-attr">$text</span>, <span class="hl-attr">$times</span>);
+}
+
+<span class="hl-kw">function</span> <span class="hl-fn">shape_of</span>()<span class="hl-op">:</span> <span class="hl-type">shape</span>(<span class="hl-str">'x'</span> <span class="hl-op">=&gt;</span> <span class="hl-type">int</span>, <span class="hl-str">'y'</span> <span class="hl-op">=&gt;</span> <span class="hl-type">float</span>) {
+  <span class="hl-kw">return</span> <span class="hl-type">shape</span>(<span class="hl-str">'x'</span> <span class="hl-op">=&gt;</span> <span class="hl-num">0x1F</span>, <span class="hl-str">'y'</span> <span class="hl-op">=&gt;</span> <span class="hl-num">1.5</span>);
+}

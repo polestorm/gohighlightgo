@@ -1,0 +1,11 @@
+# Fennel: Fennel reference (fennel-lang.org/reference); requirements/languages/fennel.md
+name     fennel fnl
+keyword  fn lambda λ let local var set global if when unless do while for each match case collect icollect
+keyword  accumulate macro macros import-macros require-macros include values pick-values
+builtin  true false nil print require tostring tonumber ipairs pairs table string math
+ident-extra    !?*<>=/+-
+ident-part     !?*<>=/+-.:
+line-comment   ;
+string   " "  : escapes multiline
+sigil    :    : attr
+call-after-paren

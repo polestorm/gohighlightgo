@@ -1,0 +1,14 @@
+# REQ: LANG-1871 LANG-1872 LANG-1873 LANG-1874
+#- Block comment -#
+class Greeter
+  var name
+  def init(name) self.name = name end
+  def greet(times)
+    for i: 1 .. times
+      print(f"Hello, {self.name}!")
+    end
+    return 0x1F
+  end
+end
+var g = Greeter("berry")
+if g != nil && true g.greet(2) end

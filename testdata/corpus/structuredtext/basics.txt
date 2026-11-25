@@ -1,0 +1,16 @@
+// REQ: LANG-2601 LANG-2602 LANG-2603 LANG-2604
+(* Pump control *)
+PROGRAM Main
+VAR
+    start : BOOL := FALSE;
+    level : REAL := 0.0;
+    timer : TON;
+    name : STRING := 'pump''s';
+END_VAR
+timer(IN := start, PT := T#5S);
+IF level > 80.5 AND NOT timer.Q THEN
+    start := TRUE;
+ELSIF level < 10 THEN
+    start := FALSE;
+END_IF;
+END_PROGRAM

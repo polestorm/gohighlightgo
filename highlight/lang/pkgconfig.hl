@@ -1,0 +1,8 @@
+# pkg-config files: pkg-config(1) manual, metadata file syntax; requirements/languages/pkgconfig.md
+name     pkgconfig pc
+keyword  Name Description Version URL Requires Requires.private Conflicts Libs Libs.private Cflags
+ident-part     .
+line-comment   #
+key-names  :=
+operators  =:<>
+hook     variables

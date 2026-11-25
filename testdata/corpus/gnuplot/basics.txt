@@ -1,0 +1,8 @@
+# REQ: LANG-1651 LANG-1652 LANG-1653 LANG-1654
+set terminal pngcairo size 800,600
+set output "plot.png"
+set title 'It''s a plot'
+set xrange [0:2*pi]
+f(x) = sin(x) * exp(-x/10.0)
+plot f(x) with lines title "damped", cos(x) with points notitle
+do for [i=1:3] { print sprintf("i = %d", i) }

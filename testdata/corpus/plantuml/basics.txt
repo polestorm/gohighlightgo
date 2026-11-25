@@ -1,0 +1,17 @@
+' REQ: LANG-2381 LANG-2382 LANG-2383 LANG-2384
+@startuml
+' Sequence diagram
+title Greeting
+actor User
+participant "Web App" as App
+database DB
+User -> App : open page
+activate App
+App -> DB : SELECT greeting
+DB --> App : "Hello"
+alt found
+  App -> User : show greeting
+else not found
+  App -> User : error
+end
+@enduml

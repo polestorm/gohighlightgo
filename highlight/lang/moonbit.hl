@@ -1,0 +1,13 @@
+# MoonBit: MoonBit language documentation (docs.moonbitlang.com); requirements/languages/moonbit.md
+name     moonbit mbt
+keyword  fn let mut if else match while for in loop break continue return struct enum trait impl type
+keyword  pub priv test guard try catch raise with as derive typealias
+type     Int Int64 UInt Double Float Bool String Char Unit Array Map Option Result Bytes
+builtin  true false None Some Ok Err println self
+line-comment   //
+string   " "  : escapes
+string   ' '  : escapes
+escape        : paren u-braces
+operators  +-*/%&|^!<>=:?~.
+upper-type
+calls

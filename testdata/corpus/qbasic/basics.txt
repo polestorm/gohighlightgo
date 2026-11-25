@@ -1,0 +1,13 @@
+' REQ: LANG-1941 LANG-1942 LANG-1943 LANG-1944
+CLS
+DECLARE FUNCTION Square! (x!)
+DIM name AS STRING
+name = "world"
+FOR i = 1 TO 3
+    PRINT "Hello, "; name; "!"; i
+NEXT i
+IF Square(2) > 3 AND 1 THEN GOSUB Done
+END
+Done:
+PRINT "done"
+RETURN

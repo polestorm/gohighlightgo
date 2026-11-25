@@ -1,0 +1,8 @@
+# REQ: LANG-2041 LANG-2042 LANG-2043 LANG-2044
+# Top customers
+from invoices
+filter invoice_date >= @2024-01-01
+derive {total = quantity * price, label = f"{customer}: {total}"}
+group customer_id (aggregate {sum_total = sum total, n = count this})
+sort {-sum_total}
+take 10

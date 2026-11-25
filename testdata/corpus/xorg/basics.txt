@@ -1,0 +1,11 @@
+# REQ: LANG-2881 LANG-2882 LANG-2883 LANG-2884
+# Keyboard layout
+Section "InputClass"
+    Identifier "keyboard"
+    MatchIsKeyboard "on"
+    Option "XkbLayout" "pl"
+EndSection
+Section "Device"
+    Identifier "Card0"
+    Driver "modesetting"
+EndSection

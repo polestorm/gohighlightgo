@@ -1,0 +1,16 @@
+# Zeek: Zeek scripting language reference (docs.zeek.org): keywords, types, directives; requirements/languages/zeek.md
+name     zeek bro
+
+keyword  event function hook type record table set vector of global local const redef export module if
+keyword  else for while in return break next print add delete when schedule switch case default
+keyword  fallthrough timeout
+type     bool count int double time interval string pattern addr port subnet any file enum opaque
+builtin  T F
+
+line-comment   #
+string   " "  : escapes
+escape        : x=2
+sigil    @    : meta
+sigil    $    : attr
+operators  +-*/%&|^!<>=:?~.
+calls

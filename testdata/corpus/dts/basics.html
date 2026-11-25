@@ -1,0 +1,16 @@
+<span class="hl-com">// REQ: LANG-2181 LANG-2182 LANG-2183 LANG-2184</span>
+/dts-v1/<span class="hl-op">;</span>
+<span class="hl-meta">#include</span> <span class="hl-str">&lt;dt-bindings/gpio/gpio.h&gt;</span>
+/ <span class="hl-op">{</span>
+	model <span class="hl-op">=</span> <span class="hl-str">"Demo board"</span><span class="hl-op">;</span>
+	<span class="hl-builtin">compatible</span> <span class="hl-op">=</span> <span class="hl-str">"acme,demo"</span><span class="hl-op">;</span>
+	<span class="hl-com">/* LEDs */</span>
+	leds <span class="hl-op">{</span>
+		<span class="hl-builtin">compatible</span> <span class="hl-op">=</span> <span class="hl-str">"gpio-leds"</span><span class="hl-op">;</span>
+		led0<span class="hl-op">:</span> led<span class="hl-op">@</span><span class="hl-num">0</span> <span class="hl-op">{</span>
+			gpios <span class="hl-op">=</span> <span class="hl-op">&lt;</span><span class="hl-attr">&amp;gpio1</span> <span class="hl-num">18</span> GPIO_ACTIVE_HIGH<span class="hl-op">&gt;;</span>
+			<span class="hl-builtin">status</span> <span class="hl-op">=</span> <span class="hl-str">"okay"</span><span class="hl-op">;</span>
+		<span class="hl-op">};</span>
+	<span class="hl-op">};</span>
+<span class="hl-op">};</span>
+<span class="hl-attr">&amp;uart0</span> <span class="hl-op">{</span> <span class="hl-builtin">status</span> <span class="hl-op">=</span> <span class="hl-str">"disabled"</span><span class="hl-op">;</span> <span class="hl-op">};</span>

@@ -1,0 +1,14 @@
+// REQ: LANG-1691 LANG-1692 LANG-1693 LANG-1694
+/* Bouncing ball */
+model BouncingBall "A simple model"
+  parameter Real e = 0.7 "coefficient of restitution";
+  parameter Real g = 9.81;
+  Real h(start = 1.0);
+  Real v;
+equation
+  der(h) = v;
+  der(v) = -g;
+  when h <= 0 and true then
+    reinit(v, -e * pre(v));
+  end when;
+end BouncingBall;

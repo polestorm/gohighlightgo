@@ -1,0 +1,13 @@
+// REQ: LANG-2241 LANG-2242 LANG-2243 LANG-2244
+/* Greeter class */
+class Greeter {
+  name = null
+  constructor(n) { name = n }
+  function greet(times) {
+    local text = "Hello, " + name + "!\n"
+    foreach (i, v in array(times)) print(text)
+    return text.len()
+  }
+}
+local g = Greeter("squirrel")
+if (g.greet(2) > 0 && true) print(@"raw \n text" + 0x1F)

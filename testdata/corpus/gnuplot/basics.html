@@ -1,0 +1,8 @@
+<span class="hl-com"># REQ: LANG-1651 LANG-1652 LANG-1653 LANG-1654</span>
+<span class="hl-kw">set</span> <span class="hl-builtin">terminal</span> pngcairo size <span class="hl-num">800</span>,<span class="hl-num">600</span>
+<span class="hl-kw">set</span> <span class="hl-builtin">output</span> <span class="hl-str">"plot.png"</span>
+<span class="hl-kw">set</span> <span class="hl-kw">title</span> <span class="hl-str">'It</span><span class="hl-esc">''</span><span class="hl-str">s a plot'</span>
+<span class="hl-kw">set</span> <span class="hl-builtin">xrange</span> [<span class="hl-num">0</span><span class="hl-op">:</span><span class="hl-num">2</span><span class="hl-op">*</span><span class="hl-builtin">pi</span>]
+<span class="hl-fn">f</span>(<span class="hl-builtin">x</span>) <span class="hl-op">=</span> <span class="hl-builtin">sin</span>(<span class="hl-builtin">x</span>) <span class="hl-op">*</span> <span class="hl-builtin">exp</span>(<span class="hl-op">-</span><span class="hl-builtin">x</span><span class="hl-op">/</span><span class="hl-num">10.0</span>)
+<span class="hl-kw">plot</span> <span class="hl-fn">f</span>(<span class="hl-builtin">x</span>) <span class="hl-kw">with</span> <span class="hl-kw">lines</span> <span class="hl-kw">title</span> <span class="hl-str">"damped"</span>, <span class="hl-builtin">cos</span>(<span class="hl-builtin">x</span>) <span class="hl-kw">with</span> <span class="hl-kw">points</span> <span class="hl-kw">notitle</span>
+<span class="hl-kw">do</span> <span class="hl-kw">for</span> [i<span class="hl-op">=</span><span class="hl-num">1</span><span class="hl-op">:</span><span class="hl-num">3</span>] { <span class="hl-kw">print</span> <span class="hl-fn">sprintf</span>(<span class="hl-str">"i = %d"</span>, i) }

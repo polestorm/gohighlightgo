@@ -1,0 +1,15 @@
+# REQ: LANG-1591 LANG-1592 LANG-1593 LANG-1594
+@0xdbb9ad1f14bf0b36;
+using Cxx = import "/capnp/c++.capnp";
+struct Person {
+  name @0 :Text;
+  age @1 :UInt16 = 30;
+  emails @2 :List(Text);
+  union {
+    phone @3 :Text;
+    none @4 :Void;
+  }
+}
+interface Greeter {
+  greet @0 (name :Text) -> (text :Text);
+}

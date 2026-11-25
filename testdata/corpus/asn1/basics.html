@@ -1,0 +1,11 @@
+<span class="hl-com">-- REQ: LANG-2401 LANG-2402 LANG-2403 LANG-2404</span>
+<span class="hl-type">Greeting</span> <span class="hl-kw">DEFINITIONS</span> <span class="hl-kw">AUTOMATIC</span> <span class="hl-kw">TAGS</span> <span class="hl-op">::=</span> <span class="hl-kw">BEGIN</span>
+<span class="hl-com">-- A person</span>
+<span class="hl-type">Person</span> <span class="hl-op">::=</span> <span class="hl-kw">SEQUENCE</span> <span class="hl-op">{</span>
+    name   <span class="hl-type">UTF8String</span> <span class="hl-op">(</span><span class="hl-kw">SIZE</span> <span class="hl-op">(</span><span class="hl-num">1</span><span class="hl-op">.</span><span class="hl-num">.64</span><span class="hl-op">)),</span>
+    age    <span class="hl-type">INTEGER</span> <span class="hl-op">(</span><span class="hl-num">0</span><span class="hl-op">.</span><span class="hl-num">.150</span><span class="hl-op">)</span> <span class="hl-kw">OPTIONAL</span><span class="hl-op">,</span>
+    emails <span class="hl-kw">SEQUENCE</span> <span class="hl-kw">OF</span> <span class="hl-type">IA5String</span><span class="hl-op">,</span>
+    active <span class="hl-type">BOOLEAN</span> <span class="hl-kw">DEFAULT</span> <span class="hl-builtin">TRUE</span>
+<span class="hl-op">}</span>
+<span class="hl-type">Color</span> <span class="hl-op">::=</span> <span class="hl-kw">ENUMERATED</span> <span class="hl-op">{</span> red<span class="hl-op">(</span><span class="hl-num">0</span><span class="hl-op">),</span> green<span class="hl-op">(</span><span class="hl-num">1</span><span class="hl-op">)</span> <span class="hl-op">}</span>
+<span class="hl-kw">END</span>

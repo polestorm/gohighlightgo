@@ -1,0 +1,7 @@
+<%# REQ: LANG-2321 LANG-2322 LANG-2323 %>
+<ul class="users">
+<% users.forEach(function (user) { %>
+  <li><%= user.name %> (<%- user.age + 1 %>)</li>
+<% }); %>
+</ul>
+<%_ if (title) { _%><h1><%= title.toUpperCase() %></h1><% } %>

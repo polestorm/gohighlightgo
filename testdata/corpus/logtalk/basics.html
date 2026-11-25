@@ -1,0 +1,15 @@
+<span class="hl-com">% REQ: LANG-1391 LANG-1392</span>
+<span class="hl-op">:-</span> <span class="hl-kw">object</span>(greeter,
+    <span class="hl-kw">implements</span>(greeting_protocol))<span class="hl-op">.</span>
+
+    <span class="hl-op">:-</span> <span class="hl-kw">public</span>(greet<span class="hl-op">/</span><span class="hl-num">1</span>)<span class="hl-op">.</span>
+    <span class="hl-op">:-</span> <span class="hl-kw">info</span>([version <span class="hl-kw">is</span> <span class="hl-num">1</span><span class="hl-op">:</span><span class="hl-num">0</span><span class="hl-op">:</span><span class="hl-num">0</span>, author <span class="hl-kw">is</span> 'Jan'])<span class="hl-op">.</span>
+
+    <span class="hl-com">% Greets the name.</span>
+    <span class="hl-fn">greet</span>(<span class="hl-type">Name</span>) <span class="hl-op">:-</span>
+        <span class="hl-builtin">format</span>(<span class="hl-str">"Hello, ~w!~n"</span>, [<span class="hl-type">Name</span>]),
+        <span class="hl-builtin">self</span>(<span class="hl-type">Self</span>),
+        <span class="hl-type">Count</span> <span class="hl-kw">is</span> <span class="hl-num">0x1F</span> <span class="hl-op">+</span> <span class="hl-num">1</span>,
+        <span class="hl-type">Count</span> <span class="hl-op">&gt;</span> <span class="hl-num">0.</span>
+
+<span class="hl-op">:-</span> <span class="hl-kw">end_object</span><span class="hl-op">.</span>

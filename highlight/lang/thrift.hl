@@ -1,0 +1,12 @@
+# Apache Thrift: Apache Thrift interface description language (thrift.apache.org/docs/idl); requirements/languages/thrift.md
+name     thrift
+keyword  namespace include struct union exception service enum typedef const required optional
+keyword  oneway throws extends
+type     bool byte i8 i16 i32 i64 double string binary list set map void uuid
+builtin  true false
+line-comment   // #
+block-comment  /* */
+string   " "  : escapes
+string   ' '  : escapes
+operators  =:;,<>
+upper-type

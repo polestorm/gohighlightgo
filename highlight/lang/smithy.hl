@@ -1,0 +1,13 @@
+# Smithy: Smithy 2.0 specification (smithy.io): IDL; requirements/languages/smithy.md
+name     smithy
+keyword  namespace use service resource operation structure union enum intEnum list map apply metadata
+keyword  input output errors version operations resources for with
+type     String Integer Long Boolean Timestamp Blob Document Float Double BigInteger BigDecimal
+builtin  true false null
+line-comment   //
+string   """ """  : escapes multiline
+string   " "      : escapes
+sigil    @    : meta
+sigil    $    : meta
+operators  :={}[](),.#
+upper-type

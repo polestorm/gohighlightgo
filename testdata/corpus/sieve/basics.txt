@@ -1,0 +1,11 @@
+# REQ: LANG-2061 LANG-2062 LANG-2063 LANG-2064
+require ["fileinto", "reject"];
+/* Sort mail */
+if header :contains "subject" "invoice" {
+    fileinto "Finance";
+} elsif anyof (size :over 1M, address :domain "from" "spam.example") {
+    discard;
+    stop;
+} else {
+    keep;
+}

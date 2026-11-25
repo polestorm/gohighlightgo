@@ -1,0 +1,11 @@
+# Igor Pro: Igor Pro manual: Programming (WaveMetrics); requirements/languages/igor.md
+name     igor igorpro ipf
+keyword  Function End Macro EndMacro Proc Variable String Wave NVAR SVAR WAVE If Else ElseIf EndIf For
+keyword  EndFor Do While Switch Case Default EndSwitch Return Break Continue Static ThreadSafe
+builtin  Print Make Display numpnts sin cos sqrt
+fold-case
+line-comment   //
+string   " "  : escapes
+sigil    #    : meta
+operators  +-*/^=<>!&|?:,()[]
+calls

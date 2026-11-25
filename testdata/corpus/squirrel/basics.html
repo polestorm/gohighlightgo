@@ -1,0 +1,13 @@
+<span class="hl-com">// REQ: LANG-2241 LANG-2242 LANG-2243 LANG-2244</span>
+<span class="hl-com">/* Greeter class */</span>
+<span class="hl-kw">class</span> Greeter {
+  name <span class="hl-op">=</span> <span class="hl-kw">null</span>
+  <span class="hl-kw">constructor</span>(n) { name <span class="hl-op">=</span> n }
+  <span class="hl-kw">function</span> <span class="hl-fn">greet</span>(times) {
+    <span class="hl-kw">local</span> text <span class="hl-op">=</span> <span class="hl-str">"Hello, "</span> <span class="hl-op">+</span> name <span class="hl-op">+</span> <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>
+    <span class="hl-kw">foreach</span> (i, v <span class="hl-kw">in</span> <span class="hl-builtin">array</span>(times)) <span class="hl-builtin">print</span>(text)
+    <span class="hl-kw">return</span> text<span class="hl-op">.</span><span class="hl-fn">len</span>()
+  }
+}
+<span class="hl-kw">local</span> g <span class="hl-op">=</span> <span class="hl-fn">Greeter</span>(<span class="hl-str">"squirrel"</span>)
+<span class="hl-kw">if</span> (g<span class="hl-op">.</span><span class="hl-fn">greet</span>(<span class="hl-num">2</span>) <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-builtin">true</span>) <span class="hl-builtin">print</span>(<span class="hl-str">@"raw \n text"</span> <span class="hl-op">+</span> <span class="hl-num">0x1F</span>)

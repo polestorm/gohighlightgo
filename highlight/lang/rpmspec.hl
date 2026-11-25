@@ -1,0 +1,10 @@
+# RPM spec: RPM Packaging Guide and rpm.org spec file documentation; requirements/languages/rpmspec.md
+name     rpmspec spec
+keyword  Name Version Release Summary License URL Source0 BuildArch BuildRequires Requires Provides
+keyword  Obsoletes Conflicts Group Patch0
+builtin  if else endif define global ifarch description prep build install check files changelog
+builtin  setup autosetup configure make_build make_install doc license dir config attr
+line-comment   #
+key-names  :
+sigil    %    : builtin
+operators  ={}()<>

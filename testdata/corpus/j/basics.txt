@@ -1,0 +1,13 @@
+NB. REQ: LANG-1361 LANG-1362 LANG-1363
+NB. Arithmetic and verbs
+square =: *:
+avg =: +/ % #
+avg 1 2 3 4
+greet =: 3 : 0
+  if. y > 0 do.
+    'Hello, ''world''!'
+  else.
+    'nothing'
+  end.
+)
+square i. 5

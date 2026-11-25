@@ -1,0 +1,8 @@
+# REQ: LANG-2461 LANG-2462 LANG-2463 LANG-2464
+# Active users with their age next year
+def next_age: .age + 1;
+.users[]
+| select(.active and .age > 18)
+| {name, next: next_age, label: "User \(.name)"}
+| reduce .tags[] as $t (0; . + 1)
+| @base64

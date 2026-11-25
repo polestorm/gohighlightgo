@@ -1,0 +1,14 @@
+<span class="hl-com"># REQ: LANG-1871 LANG-1872 LANG-1873 LANG-1874</span>
+<span class="hl-com">#- Block comment -#</span>
+<span class="hl-kw">class</span> Greeter
+  <span class="hl-kw">var</span> name
+  <span class="hl-kw">def</span> <span class="hl-fn">init</span>(name) <span class="hl-builtin">self</span><span class="hl-op">.</span>name <span class="hl-op">=</span> name <span class="hl-kw">end</span>
+  <span class="hl-kw">def</span> <span class="hl-fn">greet</span>(times)
+    <span class="hl-kw">for</span> i<span class="hl-op">:</span> <span class="hl-num">1</span> <span class="hl-op">..</span> times
+      <span class="hl-builtin">print</span>(f<span class="hl-str">"Hello, {self.name}!"</span>)
+    <span class="hl-kw">end</span>
+    <span class="hl-kw">return</span> <span class="hl-num">0x1F</span>
+  <span class="hl-kw">end</span>
+<span class="hl-kw">end</span>
+<span class="hl-kw">var</span> g <span class="hl-op">=</span> <span class="hl-fn">Greeter</span>(<span class="hl-str">"berry"</span>)
+<span class="hl-kw">if</span> g <span class="hl-op">!=</span> <span class="hl-kw">nil</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-kw">true</span> g<span class="hl-op">.</span><span class="hl-fn">greet</span>(<span class="hl-num">2</span>) <span class="hl-kw">end</span>

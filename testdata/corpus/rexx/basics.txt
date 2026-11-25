@@ -1,0 +1,13 @@
+/* REQ: LANG-1481 LANG-1482 LANG-1483 
+*/
+/* Greets the name. */
+parse arg name times
+if name = '' then name = "world"
+do i = 1 to 3
+  say 'Hello,' name || '!' 'it''s' i
+end
+select
+  when length(name) > 3 then say "long"
+  otherwise nop
+end
+exit 0

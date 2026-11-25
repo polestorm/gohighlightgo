@@ -1,0 +1,12 @@
+# Wren: Wren documentation (wren.io): syntax; requirements/languages/wren.md
+name     wren
+keyword  as break class construct continue else false for foreign if import in is null return static
+keyword  super this true var while
+builtin  System Fn Fiber List Map Num String
+line-comment   //
+block-comment  /* */  : nested
+string   """ """  : multiline
+string   " "      : escapes
+escape        : x=2 u4
+operators  +-*/%&|^!<>=:?~.
+calls

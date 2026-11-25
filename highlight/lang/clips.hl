@@ -1,0 +1,13 @@
+# CLIPS: CLIPS Reference Manual, Volume I: Basic Programming Guide (6.4); requirements/languages/clips.md
+name     clips clp
+keyword  defrule deftemplate deffacts deffunction defglobal defclass defmodule defmethod defgeneric
+keyword  assert retract modify printout bind if then else while loop-for-count test and or not exists
+keyword  forall reset run clear
+builtin  TRUE FALSE nil crlf t
+ident-extra    ?$*<>=/+-
+ident-part     ?$*<>=/+-
+line-comment   ;
+string   " "  : escapes
+sigil    ?    : attr
+operators  ()<=>&|~:
+call-after-paren

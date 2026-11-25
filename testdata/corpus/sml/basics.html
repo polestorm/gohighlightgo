@@ -1,0 +1,12 @@
+<span class="hl-com">(* REQ: LANG-1751 LANG-1752 LANG-1753 LANG-1754 *)</span>
+<span class="hl-com">(* outer (* nested *) still a comment *)</span>
+<span class="hl-kw">datatype</span> shape <span class="hl-op">=</span> <span class="hl-type">Circle</span> <span class="hl-kw">of</span> <span class="hl-type">real</span> <span class="hl-op">|</span> <span class="hl-type">Rect</span> <span class="hl-kw">of</span> <span class="hl-type">real</span> <span class="hl-op">*</span> <span class="hl-type">real</span>
+<span class="hl-kw">fun</span> area (<span class="hl-type">Circle</span> r) <span class="hl-op">=</span> <span class="hl-num">3.14</span> <span class="hl-op">*</span> r <span class="hl-op">*</span> r
+  <span class="hl-op">|</span> area (<span class="hl-type">Rect</span> (w, h)) <span class="hl-op">=</span> w <span class="hl-op">*</span> h
+<span class="hl-kw">fun</span> greet name times <span class="hl-op">=</span>
+  <span class="hl-kw">let</span> <span class="hl-kw">val</span> text <span class="hl-op">=</span> <span class="hl-str">"Hello, "</span> <span class="hl-op">^</span> name <span class="hl-op">^</span> <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>
+  <span class="hl-kw">in</span> <span class="hl-kw">if</span> times <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-kw">andalso</span> <span class="hl-builtin">true</span> <span class="hl-kw">then</span> <span class="hl-builtin">print</span> text <span class="hl-kw">else</span> ()
+  <span class="hl-kw">end</span>
+<span class="hl-kw">val</span> x' <span class="hl-op">=</span> <span class="hl-builtin">SOME</span> <span class="hl-num">42</span>
+<span class="hl-kw">val</span> c <span class="hl-op">=</span> #<span class="hl-str">"x"</span>
+<span class="hl-kw">structure</span> <span class="hl-type">S</span> <span class="hl-op">=</span> <span class="hl-kw">struct</span> <span class="hl-kw">val</span> n <span class="hl-op">=</span> <span class="hl-num">0x1F</span> <span class="hl-kw">end</span>

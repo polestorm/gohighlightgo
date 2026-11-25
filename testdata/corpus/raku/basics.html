@@ -1,0 +1,18 @@
+<span class="hl-com"># REQ: LANG-1461 LANG-1462 LANG-1463</span>
+<span class="hl-kw">use</span> v6;
+
+<span class="hl-kw">class</span> Greeter {
+    <span class="hl-kw">has</span> $<span class="hl-op">.</span>name <span class="hl-op">=</span> <span class="hl-str">'world'</span>;
+    <span class="hl-kw">has</span> @<span class="hl-op">.</span>history;
+
+    <span class="hl-kw">method</span> <span class="hl-fn">greet</span>(Int <span class="hl-attr">$times</span> <span class="hl-op">=</span> <span class="hl-num">1</span> <span class="hl-op">--&gt;</span> Str) {
+        <span class="hl-kw">my</span> <span class="hl-attr">$text</span> <span class="hl-op">=</span> <span class="hl-str">"Hello, $!name!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>;
+        @<span class="hl-op">!</span>history<span class="hl-op">.</span><span class="hl-fn">push</span>(<span class="hl-attr">$text</span>);
+        <span class="hl-kw">return</span> <span class="hl-attr">$text</span> x <span class="hl-attr">$times</span>;
+    }
+}
+
+<span class="hl-kw">my</span> <span class="hl-attr">%ages</span> <span class="hl-op">=</span> ann <span class="hl-op">=&gt;</span> <span class="hl-num">30</span>, bob <span class="hl-op">=&gt;</span> <span class="hl-num">25</span>;
+<span class="hl-kw">my</span> <span class="hl-attr">$g</span> <span class="hl-op">=</span> Greeter<span class="hl-op">.</span><span class="hl-fn">new</span>(name <span class="hl-op">=&gt;</span> <span class="hl-str">'Raku'</span>);
+<span class="hl-kw">say</span> <span class="hl-attr">$g</span><span class="hl-op">.</span><span class="hl-fn">greet</span>(<span class="hl-num">2</span>) <span class="hl-kw">if</span> <span class="hl-attr">%ages</span><span class="hl-op">&lt;</span>ann<span class="hl-op">&gt;</span> <span class="hl-op">&gt;</span> <span class="hl-num">0</span> and <span class="hl-builtin">True</span>;
+<span class="hl-kw">for</span> <span class="hl-num">1</span><span class="hl-op">.</span><span class="hl-num">.3</span> <span class="hl-op">-&gt;</span> <span class="hl-attr">$i</span> { <span class="hl-kw">put</span> <span class="hl-attr">$i</span> <span class="hl-op">*</span> <span class="hl-num">0x1F</span> }

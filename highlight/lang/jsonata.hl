@@ -1,0 +1,11 @@
+# JSONata: JSONata documentation (docs.jsonata.org); requirements/languages/jsonata.md
+name     jsonata
+keyword  function and or in
+builtin  true false null $sum $count $string $number $map $filter $reduce $keys $lookup $now
+ident-extra    $
+block-comment  /* */
+string   " "  : escapes
+string   ' '  : escapes
+sigil    $    : attr
+operators  +-*/%&|^!<>=:?~.@#
+calls

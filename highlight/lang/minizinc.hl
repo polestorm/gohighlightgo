@@ -1,0 +1,11 @@
+# MiniZinc: The MiniZinc Handbook (2.8): language reference; requirements/languages/minizinc.md
+name     minizinc mzn dzn
+keyword  var par int float bool set of array constraint solve satisfy minimize maximize output
+keyword  predicate function test include enum ann if then elseif else endif let in where forall
+keyword  exists sum product
+builtin  true false alldifferent show abs max min
+line-comment   %
+block-comment  /* */
+string   " "  : escapes
+operators  +-*/<>=!:\/.|
+calls

@@ -1,0 +1,17 @@
+// REQ: LANG-2211 LANG-2212 LANG-2213 LANG-2214
+package Demo api;
+import Core;
+// A greeter class
+class Greeter {
+  var name: String;
+  fn Greet[self: Self](times: i32) -> String {
+    for (i: i32 in Core.Range(times)) {
+      Print("Hello, {0}!", self.name);
+    }
+    return self.name;
+  }
+}
+fn Main() -> i32 {
+  var g: Greeter = {.name = "carbon"};
+  return if g.Greet(2) == "" and true then 0 else 0x1F;
+}

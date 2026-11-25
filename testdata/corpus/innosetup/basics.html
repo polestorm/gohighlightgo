@@ -1,0 +1,13 @@
+<span class="hl-com">// REQ: LANG-2691 LANG-2692 LANG-2693 LANG-2694</span>
+<span class="hl-meta">#define</span> MyAppName <span class="hl-str">"Demo"</span>
+<span class="hl-op">[</span><span class="hl-kw">Setup</span><span class="hl-op">]</span>
+<span class="hl-builtin">AppName</span><span class="hl-op">=</span><span class="hl-com">{#MyAppName}</span>
+<span class="hl-builtin">AppVersion</span><span class="hl-op">=</span><span class="hl-num">1.0</span>
+<span class="hl-builtin">DefaultDirName</span><span class="hl-op">=</span><span class="hl-com">{autopf}</span>\Demo
+<span class="hl-op">[</span><span class="hl-kw">Files</span><span class="hl-op">]</span>
+<span class="hl-builtin">Source</span><span class="hl-op">:</span> <span class="hl-str">"demo.exe"</span><span class="hl-com">; DestDir: "{app}"; Flags: ignoreversion</span>
+<span class="hl-op">[</span><span class="hl-kw">Code</span><span class="hl-op">]</span>
+<span class="hl-kw">function</span> InitializeSetup()<span class="hl-op">:</span> Boolean<span class="hl-com">;</span>
+<span class="hl-kw">begin</span>
+  <span class="hl-attr">Result</span> <span class="hl-op">:=</span> <span class="hl-builtin">True</span><span class="hl-com">;</span>
+<span class="hl-kw">end</span><span class="hl-com">;</span>

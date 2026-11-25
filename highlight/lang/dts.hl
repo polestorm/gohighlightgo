@@ -1,0 +1,11 @@
+# Devicetree source: Devicetree Specification (devicetree.org, v0.4); requirements/languages/dts.md
+name     dts dtsi devicetree
+keyword  /dts-v1/ /plugin/ /include/ /delete-node/ /delete-property/
+builtin  okay disabled compatible reg status interrupts
+ident-part     -,#
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+sigil    &    : attr
+operators  =<>;{}@:
+hook     c-preprocessor

@@ -1,0 +1,13 @@
+<span class="hl-com">(* REQ: LANG-1951 LANG-1952 LANG-1953 LANG-1954</span>
+<span class="hl-com">*)</span>
+<span class="hl-kw">theory</span> Demo
+  <span class="hl-kw">imports</span> Main
+<span class="hl-kw">begin</span>
+<span class="hl-com">(* outer (* nested *) still a comment *)</span>
+<span class="hl-kw">datatype</span> shape <span class="hl-op">=</span> Circle nat <span class="hl-op">|</span> Rect nat nat
+<span class="hl-kw">fun</span> area <span class="hl-op">::</span> <span class="hl-str">"shape ⇒ nat"</span> <span class="hl-kw">where</span>
+  <span class="hl-str">"area (Circle r) = 3 * r * r"</span>
+<span class="hl-op">|</span> <span class="hl-str">"area (Rect w h) = w * h"</span>
+<span class="hl-kw">lemma</span> area_pos<span class="hl-op">:</span> <span class="hl-str">"area s ≥ 0"</span>
+  <span class="hl-kw">by</span> (<span class="hl-builtin">cases</span> s) <span class="hl-builtin">auto</span>
+<span class="hl-kw">end</span>

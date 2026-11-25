@@ -1,0 +1,7 @@
+# REQ: LANG-2291 LANG-2292 LANG-2293
+# Average of a list
+Avg ← +´ ÷ ≠
+Avg 1‿2‿3‿4
+squares ← ×˜ ↕10
+Greet ← {"Hello, " ∾ 𝕩 ∾ "!"}
+Greet "world"

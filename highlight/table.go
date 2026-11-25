@@ -399,14 +399,16 @@ func (t *table) finish() {
 // comment zwraca koniec komentarza zaczynającego się w src[i] albo i, gdy go tam nie ma.
 func (t *table) comment(src []byte, i int) int {
 	rest := src[i:]
-	for _, p := range t.lineComments {
-		if hasPrefix(rest, p) {
-			return lineEnd(src, i)
-		}
-	}
+	// Najpierw blokowe: początek komentarza blokowego bywa dłuższą wersją wierszowego (#= w Julii, #[ w Nimie,
+	// ### w CoffeeScripcie), więc wierszowy nie może go przesłonić.
 	for _, c := range t.blockComments {
 		if hasPrefix(rest, c.open) {
 			return blockEnd(src, i+len(c.open), c.open, c.close, c.nested)
+		}
+	}
+	for _, p := range t.lineComments {
+		if hasPrefix(rest, p) {
+			return lineEnd(src, i)
 		}
 	}
 	return i

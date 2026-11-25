@@ -1,0 +1,13 @@
+# HLSL: Microsoft HLSL reference (Shader Model 6): keywords and data types; requirements/languages/hlsl.md
+name     hlsl fx
+keyword  if else for while do switch case default break continue return discard struct cbuffer tbuffer
+keyword  register packoffset static const uniform in out inout typedef namespace technique pass
+type     void bool int uint float double half min16float float2 float3 float4 float4x4 int2 int3 int4
+type     Texture2D SamplerState RWTexture2D StructuredBuffer
+builtin  true false mul dot cross normalize saturate lerp clamp max min abs sin cos tex2D
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+operators  +-*/%&|^!<>=:?~.
+calls
+hook     c-preprocessor

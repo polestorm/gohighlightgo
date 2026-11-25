@@ -1,0 +1,12 @@
+/* REQ: LANG-1961 LANG-1962 LANG-1963 LANG-1964
+*/
+/* Order totals */
+Account.Order.(
+  $total := $sum(Product.(Price * Quantity));
+  {
+    "order": OrderID,
+    "total": $total,
+    "big": $total > 100 and true,
+    "names": Product[Price > 30].'Product Name'
+  }
+)

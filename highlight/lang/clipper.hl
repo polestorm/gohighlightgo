@@ -1,0 +1,17 @@
+# Clipper / xBase: CA-Clipper 5.3 Reference Guide and Harbour documentation; requirements/languages/clipper.md
+name     clipper harbour xbase prg foxpro
+keyword  FUNCTION PROCEDURE RETURN LOCAL STATIC PRIVATE PUBLIC MEMVAR FIELD IF ELSE ELSEIF ENDIF DO
+keyword  WHILE ENDDO FOR TO STEP NEXT CASE OTHERWISE ENDCASE BEGIN SEQUENCE END USE INDEX ON SEEK SKIP
+keyword  REPLACE WITH APPEND BLANK CLASS METHOD DATA ENDCLASS
+builtin  .T. .F. .AND. .OR. .NOT. NIL QOut Len Str Val Upper Trim Date EOF
+fold-case
+ident-extra    .
+ident-part     .
+line-comment   // &&
+block-comment  /* */
+string   " "
+string   ' '
+string   [ ]
+operators  +-*/^%=<>:$!@
+calls
+hook     c-preprocessor

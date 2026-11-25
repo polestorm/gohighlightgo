@@ -1,0 +1,9 @@
+(* REQ: LANG-1521 LANG-1522 LANG-1523 
+*)
+(* outer (* nested *) still a comment *)
+square[x_] := x^2
+greet[name_String, times_Integer : 1] := StringRepeat["Hello, " <> name <> "!\n", times]
+data = Table[square[i], {i, 1, 10}];
+Plot[Sin[x] + Cos[2 x], {x, 0, 2 Pi}, PlotStyle -> Red]
+If[Length[data] > 0 && True, Print[greet["Wolfram", 2]], Null]
+Map[#^2 &, {1, 2, 3}] // Total

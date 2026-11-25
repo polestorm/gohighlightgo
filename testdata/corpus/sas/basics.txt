@@ -1,0 +1,16 @@
+/* REQ: LANG-1491 LANG-1492 LANG-1493 
+*/
+%let year = 2024;
+data work.people;
+  set raw.people(keep=name age city);
+  where age > 18;
+  length greeting $ 40;
+  greeting = cats('Hello, ', name, '!');
+  if city = "Kraków" then region = 'south';
+  else region = "other";
+run;
+
+proc means data=work.people mean max;
+  var age;
+  title "People in &year";
+run;

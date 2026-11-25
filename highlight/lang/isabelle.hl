@@ -1,0 +1,11 @@
+# Isabelle: The Isabelle/Isar Reference Manual (Isabelle2024); requirements/languages/isabelle.md
+name     isabelle thy
+keyword  theory imports begin end definition fun primrec function lemma theorem corollary proof qed
+keyword  by apply done using unfolding assume show have hence thus fix obtain where and datatype
+keyword  record locale context interpretation inductive abbreviation notation
+builtin  auto simp blast force induction cases rule arith fastforce metis True False
+block-comment  (* *)  : nested
+string   " "  : escapes
+string   ‹ ›
+string   ` `
+operators  +-*/=<>:|!&?.

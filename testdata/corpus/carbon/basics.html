@@ -1,0 +1,17 @@
+<span class="hl-com">// REQ: LANG-2211 LANG-2212 LANG-2213 LANG-2214</span>
+<span class="hl-kw">package</span> Demo <span class="hl-kw">api</span>;
+<span class="hl-kw">import</span> Core;
+<span class="hl-com">// A greeter class</span>
+<span class="hl-kw">class</span> Greeter {
+  <span class="hl-kw">var</span> name<span class="hl-op">:</span> <span class="hl-type">String</span>;
+  <span class="hl-kw">fn</span> Greet[<span class="hl-kw">self</span><span class="hl-op">:</span> <span class="hl-kw">Self</span>](times<span class="hl-op">:</span> <span class="hl-type">i32</span>) <span class="hl-op">-&gt;</span> <span class="hl-type">String</span> {
+    <span class="hl-kw">for</span> (i<span class="hl-op">:</span> <span class="hl-type">i32</span> <span class="hl-kw">in</span> Core<span class="hl-op">.</span><span class="hl-fn">Range</span>(times)) {
+      <span class="hl-builtin">Print</span>(<span class="hl-str">"Hello, {0}!"</span>, <span class="hl-kw">self</span><span class="hl-op">.</span>name);
+    }
+    <span class="hl-kw">return</span> <span class="hl-kw">self</span><span class="hl-op">.</span>name;
+  }
+}
+<span class="hl-kw">fn</span> <span class="hl-fn">Main</span>() <span class="hl-op">-&gt;</span> <span class="hl-type">i32</span> {
+  <span class="hl-kw">var</span> g<span class="hl-op">:</span> Greeter <span class="hl-op">=</span> {<span class="hl-op">.</span>name <span class="hl-op">=</span> <span class="hl-str">"carbon"</span>};
+  <span class="hl-kw">return</span> <span class="hl-kw">if</span> g<span class="hl-op">.</span><span class="hl-fn">Greet</span>(<span class="hl-num">2</span>) <span class="hl-op">==</span> <span class="hl-str">""</span> and <span class="hl-builtin">true</span> then <span class="hl-num">0</span> <span class="hl-kw">else</span> <span class="hl-num">0x1F</span>;
+}

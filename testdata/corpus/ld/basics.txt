@@ -1,0 +1,15 @@
+/* REQ: LANG-2191 LANG-2192 LANG-2193 LANG-2194
+*/
+/* Memory layout */
+ENTRY(_start)
+MEMORY
+{
+  FLASH (rx) : ORIGIN = 0x08000000, LENGTH = 512K
+  RAM (rwx)  : ORIGIN = 0x20000000, LENGTH = 128K
+}
+SECTIONS
+{
+  .text : { KEEP(*(.vectors)) *(.text*) } > FLASH
+  .data : { *(.data*) } > RAM AT > FLASH
+  _end = .;
+}

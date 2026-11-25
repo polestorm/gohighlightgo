@@ -1,0 +1,10 @@
+<span class="hl-com"># REQ: LANG-2161 LANG-2162 LANG-2163 LANG-2164</span>
+<span class="hl-attr">ninja_required_version</span> <span class="hl-op">=</span> <span class="hl-num">1.10</span>
+<span class="hl-attr">cflags</span> <span class="hl-op">=</span> -O2 -Wall
+<span class="hl-com"># Compile C files</span>
+<span class="hl-kw">rule</span> cc
+  <span class="hl-builtin">command</span> <span class="hl-op">=</span> gcc $cflags -c $in -o $out
+  <span class="hl-builtin">description</span> <span class="hl-op">=</span> CC $out
+<span class="hl-kw">build</span> main.o<span class="hl-op">:</span> cc main.c <span class="hl-op">|</span> config.h
+<span class="hl-kw">build</span> app<span class="hl-op">:</span> <span class="hl-builtin">phony</span> main.o
+<span class="hl-kw">default</span> app

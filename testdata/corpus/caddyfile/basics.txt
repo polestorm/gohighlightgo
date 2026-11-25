@@ -1,0 +1,12 @@
+# REQ: LANG-1861 LANG-1862 LANG-1863 LANG-1864
+example.com {
+    root * /var/www
+    encode gzip zstd
+    @api path /api/*
+    reverse_proxy @api localhost:8080
+    file_server
+    header Strict-Transport-Security "max-age=31536000"
+    log {
+        output file /var/log/caddy.log
+    }
+}

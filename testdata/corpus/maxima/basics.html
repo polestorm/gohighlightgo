@@ -1,0 +1,8 @@
+<span class="hl-com">/* REQ: LANG-2521 LANG-2522 LANG-2523 LANG-2524</span>
+<span class="hl-com">*/</span>
+<span class="hl-com">/* Calculus examples */</span>
+<span class="hl-fn">f</span>(x) <span class="hl-op">:=</span> x<span class="hl-op">^</span><span class="hl-num">2</span> <span class="hl-op">*</span> <span class="hl-fn">sin</span>(x)<span class="hl-op">$</span>
+df<span class="hl-op">:</span> <span class="hl-builtin">diff</span>(<span class="hl-fn">f</span>(x)<span class="hl-op">,</span> x)<span class="hl-op">;</span>
+<span class="hl-builtin">integrate</span>(<span class="hl-fn">f</span>(x)<span class="hl-op">,</span> x<span class="hl-op">,</span> <span class="hl-num">0</span><span class="hl-op">,</span> <span class="hl-builtin">%pi</span>)<span class="hl-op">;</span>
+<span class="hl-builtin">solve</span>(x<span class="hl-op">^</span><span class="hl-num">2</span> <span class="hl-op">-</span> <span class="hl-num">4</span> <span class="hl-op">=</span> <span class="hl-num">0</span><span class="hl-op">,</span> x)<span class="hl-op">;</span>
+<span class="hl-kw">for</span> i <span class="hl-kw">from</span> <span class="hl-num">1</span> <span class="hl-kw">thru</span> <span class="hl-num">3</span> <span class="hl-kw">do</span> <span class="hl-builtin">print</span>(<span class="hl-str">"i = "</span><span class="hl-op">,</span> i)<span class="hl-op">;</span>

@@ -1,0 +1,10 @@
+<span class="hl-com">// REQ: LANG-2641 LANG-2642 LANG-2643 LANG-2644</span>
+<span class="hl-com">// Greeter</span>
+<span class="hl-kw">Function</span> <span class="hl-fn">Greet</span>(name <span class="hl-kw">As</span> <span class="hl-type">String</span>, times <span class="hl-kw">As</span> <span class="hl-type">Integer</span> <span class="hl-op">=</span> <span class="hl-num">1</span>) <span class="hl-kw">As</span> <span class="hl-type">String</span>
+  <span class="hl-kw">Var</span> <span class="hl-type">text</span> <span class="hl-kw">As</span> <span class="hl-type">String</span> <span class="hl-op">=</span> <span class="hl-str">"Hello, "</span> <span class="hl-op">+</span> name <span class="hl-op">+</span> <span class="hl-str">"! </span><span class="hl-esc">""</span><span class="hl-str">hi</span><span class="hl-esc">""</span><span class="hl-str">"</span>
+  <span class="hl-kw">For</span> i <span class="hl-kw">As</span> <span class="hl-type">Integer</span> <span class="hl-op">=</span> <span class="hl-num">1</span> <span class="hl-kw">To</span> times
+    <span class="hl-builtin">System</span><span class="hl-op">.</span><span class="hl-fn">DebugLog</span>(<span class="hl-type">text</span>)
+  <span class="hl-kw">Next</span>
+  <span class="hl-kw">Return</span> <span class="hl-type">text</span>
+<span class="hl-kw">End</span> <span class="hl-kw">Function</span>
+<span class="hl-kw">If</span> <span class="hl-fn">Greet</span>(<span class="hl-str">"xojo"</span>, <span class="hl-num">2</span>)<span class="hl-op">.</span>Length <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-kw">And</span> <span class="hl-builtin">True</span> <span class="hl-kw">Then</span> <span class="hl-builtin">MessageBox</span>(<span class="hl-fn">Str</span>(<span class="hl-op">&amp;</span>h1F))

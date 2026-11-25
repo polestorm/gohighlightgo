@@ -1,0 +1,15 @@
+<span class="hl-com"># REQ: LANG-1591 LANG-1592 LANG-1593 LANG-1594</span>
+@<span class="hl-num">0xdbb9ad1f14bf0b36</span><span class="hl-op">;</span>
+<span class="hl-kw">using</span> Cxx <span class="hl-op">=</span> <span class="hl-kw">import</span> <span class="hl-str">"/capnp/c++.capnp"</span><span class="hl-op">;</span>
+<span class="hl-kw">struct</span> Person {
+  name @<span class="hl-num">0</span> <span class="hl-op">:</span><span class="hl-type">Text</span><span class="hl-op">;</span>
+  age @<span class="hl-num">1</span> <span class="hl-op">:</span><span class="hl-type">UInt16</span> <span class="hl-op">=</span> <span class="hl-num">30</span><span class="hl-op">;</span>
+  emails @<span class="hl-num">2</span> <span class="hl-op">:</span><span class="hl-type">List</span><span class="hl-op">(</span><span class="hl-type">Text</span><span class="hl-op">);</span>
+  <span class="hl-kw">union</span> {
+    phone @<span class="hl-num">3</span> <span class="hl-op">:</span><span class="hl-type">Text</span><span class="hl-op">;</span>
+    none @<span class="hl-num">4</span> <span class="hl-op">:</span><span class="hl-type">Void</span><span class="hl-op">;</span>
+  }
+}
+<span class="hl-kw">interface</span> Greeter {
+  greet @<span class="hl-num">0</span> <span class="hl-op">(</span>name <span class="hl-op">:</span><span class="hl-type">Text</span><span class="hl-op">)</span> <span class="hl-op">-</span>&gt; <span class="hl-op">(</span>text <span class="hl-op">:</span><span class="hl-type">Text</span><span class="hl-op">);</span>
+}

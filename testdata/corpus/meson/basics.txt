@@ -1,0 +1,10 @@
+# REQ: LANG-2151 LANG-2152 LANG-2153 LANG-2154
+project('demo', 'c', version : '1.0', default_options : ['warning_level=3'])
+# Dependencies
+glib = dependency('glib-2.0', required : true)
+src = files('main.c', 'util.c')
+exe = executable('demo', src, dependencies : glib, install : true)
+if get_option('tests')
+  test('basic', exe, args : ['--count', '31'])
+endif
+message(f'Built @0@ for @1@')

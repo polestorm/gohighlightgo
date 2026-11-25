@@ -1,5 +1,5 @@
 # GLSL: The OpenGL Shading Language 4.60 specification, 3 Basics, 4 Variables and Types, 8 Built-in Functions; requirements/languages/glsl.md
-name     glsl vert frag hlsl
+name     glsl vert frag
 
 keyword  attribute const uniform varying buffer shared layout centroid flat smooth noperspective patch
 keyword  sample break continue do for while switch case default if else in out inout return discard

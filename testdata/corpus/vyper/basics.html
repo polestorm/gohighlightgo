@@ -1,0 +1,14 @@
+<span class="hl-com"># REQ: LANG-2571 LANG-2572</span>
+<span class="hl-com"># @version ^0.4.0</span>
+<span class="hl-kw">event</span> Greeted<span class="hl-op">:</span>
+    who<span class="hl-op">:</span> <span class="hl-kw">indexed</span>(<span class="hl-type">address</span>)
+owner<span class="hl-op">:</span> <span class="hl-kw">public</span>(<span class="hl-type">address</span>)
+count<span class="hl-op">:</span> <span class="hl-kw">public</span>(<span class="hl-type">uint256</span>)
+<span class="hl-meta">@deploy</span>
+<span class="hl-kw">def</span> <span class="hl-fn">__init__</span>()<span class="hl-op">:</span>
+    <span class="hl-builtin">self</span>.owner <span class="hl-op">=</span> <span class="hl-builtin">msg</span>.sender
+<span class="hl-meta">@external</span>
+<span class="hl-kw">def</span> <span class="hl-fn">greet</span>(times<span class="hl-op">:</span> <span class="hl-type">uint256</span>) <span class="hl-op">-&gt;</span> <span class="hl-type">String</span>[<span class="hl-num">32</span>]<span class="hl-op">:</span>
+    <span class="hl-builtin">self</span>.count <span class="hl-op">+=</span> times
+    <span class="hl-kw">log</span> <span class="hl-fn">Greeted</span>(<span class="hl-builtin">msg</span>.sender)
+    <span class="hl-kw">return</span> <span class="hl-str">"Hello"</span>

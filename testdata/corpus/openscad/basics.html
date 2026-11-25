@@ -1,0 +1,17 @@
+<span class="hl-com">// REQ: LANG-1421 LANG-1422 LANG-1423</span>
+<span class="hl-com">/* A simple part */</span>
+<span class="hl-meta">$fn</span> <span class="hl-op">=</span> <span class="hl-num">64</span>;
+size <span class="hl-op">=</span> [<span class="hl-num">20</span>, <span class="hl-num">10</span>, <span class="hl-num">5</span>];
+
+<span class="hl-kw">module</span> <span class="hl-fn">rounded_box</span>(dims, r <span class="hl-op">=</span> <span class="hl-num">2</span>) {
+  <span class="hl-builtin">hull</span>() {
+    <span class="hl-kw">for</span> (x <span class="hl-op">=</span> [r, dims[<span class="hl-num">0</span>] <span class="hl-op">-</span> r], y <span class="hl-op">=</span> [r, dims[<span class="hl-num">1</span>] <span class="hl-op">-</span> r])
+      <span class="hl-builtin">translate</span>([x, y, <span class="hl-num">0</span>]) <span class="hl-builtin">cylinder</span>(h <span class="hl-op">=</span> dims[<span class="hl-num">2</span>], r <span class="hl-op">=</span> r);
+  }
+}
+
+<span class="hl-builtin">difference</span>() {
+  <span class="hl-fn">rounded_box</span>(size);
+  <span class="hl-builtin">translate</span>([<span class="hl-num">10</span>, <span class="hl-num">5</span>, <span class="hl-op">-</span><span class="hl-num">1</span>]) <span class="hl-builtin">cylinder</span>(h <span class="hl-op">=</span> <span class="hl-num">10</span>, d <span class="hl-op">=</span> <span class="hl-num">3.5</span>);
+}
+<span class="hl-kw">echo</span>(<span class="hl-builtin">str</span>(<span class="hl-str">"Volume: "</span>, size[<span class="hl-num">0</span>] <span class="hl-op">*</span> size[<span class="hl-num">1</span>] <span class="hl-op">*</span> size[<span class="hl-num">2</span>]), <span class="hl-builtin">PI</span>, <span class="hl-builtin">true</span>, <span class="hl-builtin">undef</span>);

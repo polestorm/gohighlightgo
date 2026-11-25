@@ -1,0 +1,7 @@
+# OpenCL C: The OpenCL C Specification (3.0); requirements/languages/opencl.md
+extends  c
+name     opencl ocl
+keyword  __kernel kernel __global global __local local __constant constant __private private
+keyword  read_only write_only read_write
+type     half float2 float4 int2 int4 uchar uint ulong image2d_t sampler_t size_t
+builtin  get_global_id get_local_id get_group_id get_global_size barrier CLK_LOCAL_MEM_FENCE

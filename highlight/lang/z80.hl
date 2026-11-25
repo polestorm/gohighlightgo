@@ -1,0 +1,13 @@
+# Z80 assembly: Zilog Z80 CPU User Manual (UM0080) instruction set; requirements/languages/z80.md
+name     z80 z80asm
+keyword  ld ldi ldir push pop ex exx add adc sub sbc and or xor cp inc dec daa cpl neg rla rra rlca rrca
+keyword  jp jr djnz call ret reti retn rst nop halt di ei im in out org equ db dw ds defb defw defs
+builtin  a b c d e h l af bc de hl ix iy sp i r nz z nc pe po p m
+fold-case
+line-comment   ;
+string   " "  : escapes
+string   ' '
+sigil    .    : meta
+sigil    $    : num
+operators  +-*/(),#
+hook     asm-label

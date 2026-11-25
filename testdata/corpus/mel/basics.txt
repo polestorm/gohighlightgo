@@ -1,0 +1,10 @@
+// REQ: LANG-2721 LANG-2722 LANG-2723 LANG-2724
+// Create spheres
+global proc makeSpheres(int $count) {
+    for ($i = 0; $i < $count; $i++) {
+        string $name[] = `polySphere -r 1.5`;
+        move -r ($i * 3) 0 0 $name[0];
+        print ("Created " + $name[0] + "\n");
+    }
+}
+makeSpheres(3);

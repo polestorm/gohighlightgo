@@ -1,0 +1,10 @@
+# Graphviz DOT: The DOT Language (graphviz.org/doc/info/lang.html); requirements/languages/dot.md
+name     dot graphviz gv
+keyword  graph digraph subgraph node edge strict
+builtin  label shape color style fillcolor rankdir fontname box ellipse filled dashed
+fold-case
+line-comment   // #
+block-comment  /* */
+string   " "  : escapes
+string   < >  : multiline
+operators  ->=;,[]{}

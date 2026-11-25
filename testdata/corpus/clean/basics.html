@@ -1,0 +1,13 @@
+<span class="hl-com">// REQ: LANG-1291 LANG-1292 LANG-1293</span>
+<span class="hl-kw">module</span> <span class="hl-type">Greeter</span>
+<span class="hl-kw">import</span> <span class="hl-type">StdEnv</span>
+
+<span class="hl-com">/* outer /* nested */ still a comment */</span>
+<span class="hl-op">::</span> <span class="hl-type">Shape</span> <span class="hl-op">=</span> <span class="hl-type">Circle</span> <span class="hl-type">Real</span> <span class="hl-op">|</span> <span class="hl-type">Rect</span> <span class="hl-type">Real</span> <span class="hl-type">Real</span>
+
+area <span class="hl-op">::</span> <span class="hl-type">Shape</span> <span class="hl-op">-&gt;</span> <span class="hl-type">Real</span>
+area (<span class="hl-type">Circle</span> r) <span class="hl-op">=</span> <span class="hl-num">3.14</span> <span class="hl-op">*</span> r <span class="hl-op">*</span> r
+area (<span class="hl-type">Rect</span> w h) <span class="hl-op">=</span> w <span class="hl-op">*</span> h
+
+<span class="hl-type">Start</span> <span class="hl-op">::</span> <span class="hl-type">String</span>
+<span class="hl-type">Start</span> <span class="hl-op">=</span> <span class="hl-str">"Hello, Clean! "</span> <span class="hl-op">+++</span> toString (area (<span class="hl-type">Circle</span> <span class="hl-num">1.5</span>)) <span class="hl-op">+++</span> toString <span class="hl-str">'x'</span> <span class="hl-op">+++</span> toString <span class="hl-builtin">True</span>

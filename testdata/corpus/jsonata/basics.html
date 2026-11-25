@@ -1,0 +1,12 @@
+<span class="hl-com">/* REQ: LANG-1961 LANG-1962 LANG-1963 LANG-1964</span>
+<span class="hl-com">*/</span>
+<span class="hl-com">/* Order totals */</span>
+Account<span class="hl-op">.</span>Order<span class="hl-op">.</span>(
+  <span class="hl-attr">$total</span> <span class="hl-op">:=</span> <span class="hl-attr">$sum</span>(Product<span class="hl-op">.</span>(Price <span class="hl-op">*</span> Quantity));
+  {
+    <span class="hl-str">"order"</span><span class="hl-op">:</span> OrderID,
+    <span class="hl-str">"total"</span><span class="hl-op">:</span> <span class="hl-attr">$total</span>,
+    <span class="hl-str">"big"</span><span class="hl-op">:</span> <span class="hl-attr">$total</span> <span class="hl-op">&gt;</span> <span class="hl-num">100</span> <span class="hl-kw">and</span> <span class="hl-builtin">true</span>,
+    <span class="hl-str">"names"</span><span class="hl-op">:</span> Product[Price <span class="hl-op">&gt;</span> <span class="hl-num">30</span>]<span class="hl-op">.</span><span class="hl-str">'Product Name'</span>
+  }
+)

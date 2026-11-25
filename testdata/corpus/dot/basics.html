@@ -1,0 +1,10 @@
+<span class="hl-com">// REQ: LANG-2371 LANG-2372 LANG-2373 LANG-2374</span>
+<span class="hl-kw">digraph</span> G <span class="hl-op">{</span>
+    <span class="hl-builtin">rankdir</span> <span class="hl-op">=</span> LR<span class="hl-op">;</span>
+    <span class="hl-com">/* Nodes */</span>
+    <span class="hl-kw">node</span> <span class="hl-op">[</span><span class="hl-builtin">shape</span> <span class="hl-op">=</span> <span class="hl-builtin">box</span><span class="hl-op">,</span> <span class="hl-builtin">style</span> <span class="hl-op">=</span> <span class="hl-builtin">filled</span><span class="hl-op">,</span> <span class="hl-builtin">fillcolor</span> <span class="hl-op">=</span> <span class="hl-str">"lightblue"</span><span class="hl-op">];</span>
+    start <span class="hl-op">[</span><span class="hl-builtin">label</span> <span class="hl-op">=</span> <span class="hl-str">"Start"</span><span class="hl-op">];</span>
+    end <span class="hl-op">[</span><span class="hl-builtin">label</span> <span class="hl-op">=</span> <span class="hl-str">&lt;&lt;b&gt;</span>End<span class="hl-str">&lt;/b&gt;</span><span class="hl-op">&gt;];</span>
+    start <span class="hl-op">-&gt;</span> middle <span class="hl-op">-&gt;</span> end <span class="hl-op">[</span><span class="hl-builtin">color</span> <span class="hl-op">=</span> red<span class="hl-op">];</span>
+    <span class="hl-kw">subgraph</span> cluster_0 <span class="hl-op">{</span> a <span class="hl-op">--</span> b<span class="hl-op">;</span> <span class="hl-op">}</span>
+<span class="hl-op">}</span>

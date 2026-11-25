@@ -1,0 +1,19 @@
+// REQ: LANG-1801 LANG-1802 LANG-1803 LANG-1804
+#include <sourcemod>
+#pragma semicolon 1
+
+/* Plugin info */
+public Plugin myinfo = { name = "Greeter", author = "Jan", version = "1.0" };
+
+public void OnPluginStart()
+{
+    RegConsoleCmd("sm_hello", Command_Hello);
+}
+
+public Action Command_Hello(int client, int args)
+{
+    char name[32];
+    GetClientName(client, name, sizeof(name));
+    PrintToChat(client, "Hello, %s! %d\n", name, 0x1F);
+    return Plugin_Handled;
+}

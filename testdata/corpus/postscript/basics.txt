@@ -1,0 +1,13 @@
+% REQ: LANG-1441 LANG-1442 LANG-1443
+%!PS-Adobe-3.0
+/Helvetica findfont 12 scalefont setfont
+/square { dup mul } def
+/greet {
+  72 720 moveto
+  (Hello, \(PostScript\) world!) show
+} def
+newpath 100 100 moveto 200 200 lineto closepath stroke
+greet
+3 square 0.5 setgray
+<~87cURD]i,"Ebo80~>
+showpage

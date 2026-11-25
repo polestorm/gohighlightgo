@@ -1,0 +1,14 @@
+<span class="hl-com">' REQ: LANG-1931 LANG-1932 LANG-1933 LANG-1934</span>
+<span class="hl-com">/' Block comment '/</span>
+<span class="hl-kw">Type</span> Greeter
+    Name <span class="hl-kw">As</span> <span class="hl-kw">String</span>
+<span class="hl-kw">End</span> <span class="hl-kw">Type</span>
+<span class="hl-kw">Function</span> <span class="hl-fn">Greet</span>(<span class="hl-kw">ByVal</span> g <span class="hl-kw">As</span> Greeter, <span class="hl-kw">ByVal</span> times <span class="hl-kw">As</span> <span class="hl-kw">Integer</span>) <span class="hl-kw">As</span> <span class="hl-kw">String</span>
+    <span class="hl-kw">Dim</span> text <span class="hl-kw">As</span> <span class="hl-kw">String</span> <span class="hl-op">=</span> <span class="hl-str">"Hello, "</span> <span class="hl-op">&amp;</span> g.Name <span class="hl-op">&amp;</span> <span class="hl-str">"! </span><span class="hl-esc">""</span><span class="hl-str">quoted</span><span class="hl-esc">""</span><span class="hl-str">"</span>
+    <span class="hl-kw">For</span> i <span class="hl-kw">As</span> <span class="hl-kw">Integer</span> <span class="hl-op">=</span> <span class="hl-num">1</span> <span class="hl-kw">To</span> times
+        <span class="hl-kw">Print</span> text
+    <span class="hl-kw">Next</span>
+    <span class="hl-kw">Return</span> text
+<span class="hl-kw">End</span> <span class="hl-kw">Function</span>
+<span class="hl-kw">Dim</span> g <span class="hl-kw">As</span> Greeter : g.Name <span class="hl-op">=</span> <span class="hl-str">"fb"</span>
+<span class="hl-kw">If</span> <span class="hl-builtin">Len</span>(<span class="hl-fn">Greet</span>(g, <span class="hl-num">2</span>)) <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-kw">And</span> <span class="hl-builtin">True</span> <span class="hl-kw">Then</span> <span class="hl-kw">Print</span> <span class="hl-op">&amp;</span>H1F

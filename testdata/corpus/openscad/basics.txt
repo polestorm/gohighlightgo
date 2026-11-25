@@ -1,0 +1,17 @@
+// REQ: LANG-1421 LANG-1422 LANG-1423
+/* A simple part */
+$fn = 64;
+size = [20, 10, 5];
+
+module rounded_box(dims, r = 2) {
+  hull() {
+    for (x = [r, dims[0] - r], y = [r, dims[1] - r])
+      translate([x, y, 0]) cylinder(h = dims[2], r = r);
+  }
+}
+
+difference() {
+  rounded_box(size);
+  translate([10, 5, -1]) cylinder(h = 10, d = 3.5);
+}
+echo(str("Volume: ", size[0] * size[1] * size[2]), PI, true, undef);

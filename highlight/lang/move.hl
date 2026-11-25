@@ -1,0 +1,13 @@
+# Move: The Move Book (Sui and Aptos dialects): language reference; requirements/languages/move.md
+name     move
+keyword  module script fun public entry native struct has copy drop store key use friend acquires
+keyword  move copy let mut if else while loop break continue return abort const spec as Self
+type     u8 u16 u32 u64 u128 u256 bool address signer vector
+builtin  true false borrow_global borrow_global_mut exists move_to move_from assert
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+prefix   b x
+sigil    @    : num
+operators  +-*/%&|^!<>=:?~.
+calls

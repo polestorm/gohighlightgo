@@ -1,0 +1,10 @@
+<span class="hl-com">// REQ: LANG-2721 LANG-2722 LANG-2723 LANG-2724</span>
+<span class="hl-com">// Create spheres</span>
+<span class="hl-kw">global</span> <span class="hl-kw">proc</span> <span class="hl-fn">makeSpheres</span>(<span class="hl-type">int</span> <span class="hl-attr">$count</span>) {
+    <span class="hl-kw">for</span> (<span class="hl-attr">$i</span> <span class="hl-op">=</span> <span class="hl-num">0</span>; <span class="hl-attr">$i</span> <span class="hl-op">&lt;</span> <span class="hl-attr">$count</span>; <span class="hl-attr">$i</span><span class="hl-op">++</span>) {
+        <span class="hl-type">string</span> <span class="hl-attr">$name</span>[] <span class="hl-op">=</span> <span class="hl-op">`</span><span class="hl-builtin">polySphere</span> <span class="hl-op">-</span>r <span class="hl-num">1.5</span><span class="hl-op">`</span>;
+        <span class="hl-builtin">move</span> <span class="hl-op">-</span><span class="hl-fn">r</span> (<span class="hl-attr">$i</span> <span class="hl-op">*</span> <span class="hl-num">3</span>) <span class="hl-num">0</span> <span class="hl-num">0</span> <span class="hl-attr">$name</span>[<span class="hl-num">0</span>];
+        <span class="hl-builtin">print</span> (<span class="hl-str">"Created "</span> <span class="hl-op">+</span> <span class="hl-attr">$name</span>[<span class="hl-num">0</span>] <span class="hl-op">+</span> <span class="hl-str">"</span><span class="hl-esc">\n</span><span class="hl-str">"</span>);
+    }
+}
+<span class="hl-fn">makeSpheres</span>(<span class="hl-num">3</span>);

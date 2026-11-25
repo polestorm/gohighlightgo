@@ -1,0 +1,15 @@
+# YANG: RFC 7950 (The YANG 1.1 Data Modeling Language), 6 Lexical Tokenization; requirements/languages/yang.md
+name     yang
+keyword  module submodule namespace prefix import include revision organization contact description
+keyword  container list leaf leaf-list key type typedef grouping uses choice case augment rpc input
+keyword  output notification config mandatory default units must when if-feature feature reference
+keyword  enum range length pattern presence status yang-version identity base deviation
+type     string boolean int8 int16 int32 int64 uint8 uint16 uint32 uint64 decimal64 enumeration
+type     binary bits empty identityref leafref union instance-identifier
+builtin  true false
+ident-part     -.
+line-comment   //
+block-comment  /* */
+string   " "  : escapes multiline
+string   ' '  : multiline
+operators  ;{}+

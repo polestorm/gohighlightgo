@@ -1,0 +1,8 @@
+<span class="hl-com"># REQ: LANG-2861 LANG-2862 LANG-2863 LANG-2864</span>
+<span class="hl-com"># Greet nearby players</span>
+<span class="hl-kw">execute</span> <span class="hl-kw">as</span> <span class="hl-attr">@a</span><span class="hl-op">[</span>distance<span class="hl-op">=.</span><span class="hl-num">.10</span><span class="hl-op">]</span> <span class="hl-kw">at</span> <span class="hl-attr">@s</span> <span class="hl-kw">run</span> <span class="hl-kw">say</span> Hello!
+<span class="hl-kw">scoreboard</span> <span class="hl-kw">objectives</span> <span class="hl-kw">add</span> greeted dummy
+<span class="hl-kw">scoreboard</span> <span class="hl-kw">players</span> <span class="hl-kw">add</span> <span class="hl-attr">@s</span> greeted <span class="hl-num">1</span>
+<span class="hl-kw">tellraw</span> <span class="hl-attr">@a</span> <span class="hl-op">{</span><span class="hl-str">"text"</span><span class="hl-op">:</span><span class="hl-str">"Welcome"</span><span class="hl-op">,</span><span class="hl-str">"color"</span><span class="hl-op">:</span><span class="hl-str">"gold"</span><span class="hl-op">,</span><span class="hl-str">"bold"</span><span class="hl-op">:</span><span class="hl-builtin">true</span><span class="hl-op">}</span>
+<span class="hl-kw">summon</span> minecraft:armor_stand <span class="hl-op">~</span> <span class="hl-op">~</span><span class="hl-num">1</span> <span class="hl-op">~</span> <span class="hl-op">{</span>Invisible:1b<span class="hl-op">}</span>
+<span class="hl-kw">function</span> demo:tick

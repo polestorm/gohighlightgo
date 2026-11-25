@@ -1,0 +1,13 @@
+# REQ: LANG-1371 LANG-1372 LANG-1373
+(defn greet
+  "Greets name times times."
+  [name &opt times]
+  (default times 1)
+  (string/repeat (string "Hello, " name "!\n") times))
+
+(def config {:name "world" :times 2})
+(each n [1 2 3]
+  (when (> n 1)
+    (print (greet (config :name) n))))
+(def raw ``long "string"``)
+(pp [true false nil 0x1F 3.14])

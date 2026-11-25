@@ -1,0 +1,15 @@
+<span class="hl-com">// REQ: LANG-2951 LANG-2952 LANG-2953 LANG-2954</span>
+<span class="hl-kw">class</span> Greeter <span class="hl-kw">extends</span> <span class="hl-type">Actor</span>;
+<span class="hl-kw">var</span>() <span class="hl-type">string</span> GreetName;
+<span class="hl-com">/* Greets on spawn */</span>
+<span class="hl-kw">simulated</span> <span class="hl-kw">event</span> <span class="hl-fn">PostBeginPlay</span>()
+{
+    <span class="hl-kw">local</span> <span class="hl-type">int</span> i;
+    <span class="hl-kw">Super</span><span class="hl-op">.</span><span class="hl-fn">PostBeginPlay</span>();
+    <span class="hl-kw">for</span> (i <span class="hl-op">=</span> <span class="hl-num">0</span>; i <span class="hl-op">&lt;</span> <span class="hl-num">3</span>; i<span class="hl-op">++</span>)
+        <span class="hl-builtin">Log</span>(<span class="hl-str">"Hello, "</span> <span class="hl-op">$</span> GreetName <span class="hl-op">$</span> <span class="hl-str">"!"</span>);
+}
+<span class="hl-kw">defaultproperties</span>
+{
+    GreetName<span class="hl-op">=</span><span class="hl-str">"world"</span>
+}

@@ -55,7 +55,7 @@ var (
 func init() {
 	languages = append(loadBuiltins(), &langXML, &langHTML, &langCSS, &langYAML, &langTOML, &langShell,
 		&langDiff, &langMarkdown, &langINI, &langProperties, &langAsciiDoc, &langJinja, &langHandlebars, &langLiquid, &langERB, &langGoTemplate,
-		&langCSV, &langTSV, &langOrg, &langRST, &langTextile)
+		&langCSV, &langTSV, &langOrg, &langRST, &langTextile, &langEJS)
 	reg, err := newRegistry(languages)
 	if err != nil {
 		panic(err)

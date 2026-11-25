@@ -1,0 +1,6 @@
+# roff (man pages): groff(7) and man(7) manual pages; requirements/languages/groff.md
+name     groff roff troff man nroff
+line-comment   .\" \"
+sigil    .    : kw
+operators  \
+string   " "

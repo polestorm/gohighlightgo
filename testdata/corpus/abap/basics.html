@@ -1,0 +1,20 @@
+<span class="hl-op">*</span> REQ<span class="hl-op">:</span> LANG<span class="hl-op">-</span><span class="hl-num">1541</span> LANG<span class="hl-op">-</span><span class="hl-num">1542</span> LANG<span class="hl-op">-</span><span class="hl-num">1543</span> LANG<span class="hl-op">-</span><span class="hl-num">1544</span>
+<span class="hl-kw">REPORT</span> z_greeter<span class="hl-op">.</span>
+<span class="hl-com">" Inline comment</span>
+<span class="hl-kw">DATA</span> lv_name <span class="hl-kw">TYPE</span> <span class="hl-type">string</span> <span class="hl-kw">VALUE</span> <span class="hl-str">'world'</span><span class="hl-op">.</span>
+<span class="hl-kw">DATA</span> lt_items <span class="hl-kw">TYPE</span> <span class="hl-kw">STANDARD</span> <span class="hl-kw">TABLE</span> <span class="hl-kw">OF</span> <span class="hl-type">i</span> <span class="hl-kw">WITH</span> DEFAULT <span class="hl-kw">KEY</span><span class="hl-op">.</span>
+<span class="hl-kw">CLASS</span> lcl_greeter <span class="hl-kw">DEFINITION</span><span class="hl-op">.</span>
+  <span class="hl-kw">PUBLIC</span> <span class="hl-kw">SECTION</span><span class="hl-op">.</span>
+    <span class="hl-kw">METHODS</span> greet <span class="hl-kw">IMPORTING</span> iv_times <span class="hl-kw">TYPE</span> <span class="hl-type">i</span> <span class="hl-kw">RETURNING</span> <span class="hl-kw">VALUE</span>(rv_text) <span class="hl-kw">TYPE</span> <span class="hl-type">string</span><span class="hl-op">.</span>
+<span class="hl-kw">ENDCLASS</span><span class="hl-op">.</span>
+<span class="hl-kw">CLASS</span> lcl_greeter <span class="hl-kw">IMPLEMENTATION</span><span class="hl-op">.</span>
+  <span class="hl-kw">METHOD</span> greet<span class="hl-op">.</span>
+    rv_text <span class="hl-op">=</span> <span class="hl-str">|Hello, </span><span class="hl-esc">{ lv_name }</span><span class="hl-str">! </span><span class="hl-esc">{ iv_times }</span><span class="hl-str">|</span><span class="hl-op">.</span>
+  <span class="hl-kw">ENDMETHOD</span><span class="hl-op">.</span>
+<span class="hl-kw">ENDCLASS</span><span class="hl-op">.</span>
+START<span class="hl-op">-</span><span class="hl-kw">OF</span><span class="hl-op">-</span>SELECTION<span class="hl-op">.</span>
+  <span class="hl-kw">LOOP</span> <span class="hl-kw">AT</span> lt_items <span class="hl-kw">INTO</span> <span class="hl-kw">DATA</span>(lv_item)<span class="hl-op">.</span>
+    <span class="hl-kw">IF</span> lv_item <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-kw">AND</span> <span class="hl-builtin">sy</span><span class="hl-op">-</span>subrc <span class="hl-op">=</span> <span class="hl-num">0.</span>
+      <span class="hl-kw">WRITE</span><span class="hl-op">:</span> <span class="hl-op">/</span> <span class="hl-str">'It</span><span class="hl-esc">''</span><span class="hl-str">s'</span>, lv_item<span class="hl-op">.</span>
+    <span class="hl-kw">ENDIF</span><span class="hl-op">.</span>
+  <span class="hl-kw">ENDLOOP</span><span class="hl-op">.</span>

@@ -1,0 +1,16 @@
+<span class="hl-com">// REQ: LANG-1601 LANG-1602 LANG-1603 LANG-1604</span>
+<span class="hl-com">/* Block comment */</span>
+<span class="hl-kw">shared</span> <span class="hl-kw">class</span> <span class="hl-type">Greeter</span>(<span class="hl-kw">shared</span> <span class="hl-type">String</span> name <span class="hl-op">=</span> <span class="hl-str">"world"</span>) {
+    <span class="hl-kw">shared</span> <span class="hl-type">String</span> <span class="hl-fn">greet</span>(<span class="hl-type">Integer</span> times <span class="hl-op">=</span> <span class="hl-num">1</span>) {
+        <span class="hl-kw">variable</span> <span class="hl-kw">value</span> text <span class="hl-op">=</span> <span class="hl-str">"Hello, ``name``!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>;
+        <span class="hl-kw">for</span> (i <span class="hl-kw">in</span> <span class="hl-num">1</span><span class="hl-op">..</span>times) { <span class="hl-builtin">print</span>(text); }
+        <span class="hl-kw">return</span> text;
+    }
+}
+<span class="hl-kw">shared</span> <span class="hl-kw">void</span> <span class="hl-fn">run</span>() {
+    <span class="hl-kw">value</span> g <span class="hl-op">=</span> <span class="hl-type">Greeter</span>(<span class="hl-str">"ceylon"</span>);
+    <span class="hl-type">Character</span> c <span class="hl-op">=</span> <span class="hl-str">'x'</span>;
+    <span class="hl-kw">if</span> (<span class="hl-kw">exists</span> n <span class="hl-op">=</span> g<span class="hl-op">.</span>name, n<span class="hl-op">.</span>size <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-builtin">true</span>) {
+        <span class="hl-builtin">print</span>(g<span class="hl-op">.</span><span class="hl-fn">greet</span>(#<span class="hl-num">1F</span>));
+    }
+}

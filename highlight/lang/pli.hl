@@ -1,0 +1,11 @@
+# PL/I: IBM Enterprise PL/I for z/OS Language Reference; requirements/languages/pli.md
+name     pli pl1
+keyword  PROCEDURE PROC END DECLARE DCL IF THEN ELSE DO WHILE UNTIL TO BY SELECT WHEN OTHERWISE CALL
+keyword  RETURN RETURNS GO GOTO PUT GET SKIP LIST EDIT DATA BEGIN ON OPTIONS MAIN INIT STOP
+type     FIXED FLOAT BINARY DECIMAL CHARACTER CHAR BIT VARYING POINTER
+builtin  SUBSTR LENGTH INDEX TRIM MOD ABS SYSPRINT
+fold-case
+block-comment  /* */
+string   ' '  : doubled
+string   " "  : doubled
+operators  +-*/=<>|&^;:(),.

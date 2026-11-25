@@ -1,0 +1,15 @@
+-- REQ: LANG-1721 LANG-1722
+CREATE OR REPLACE FUNCTION greet(p_name TEXT, p_times INT DEFAULT 1)
+RETURNS TEXT AS $$
+DECLARE
+  v_text TEXT := 'Hello, ' || p_name || '!';
+  i INT;
+BEGIN
+  FOR i IN 1..p_times LOOP
+    RAISE NOTICE '% (%)', v_text, i;
+  END LOOP;
+  RETURN v_text;
+EXCEPTION
+  WHEN others THEN RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;

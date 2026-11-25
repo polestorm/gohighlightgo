@@ -1,0 +1,19 @@
+# CoffeeScript: CoffeeScript 2 documentation (coffeescript.org): language reference; requirements/languages/coffeescript.md
+name     coffeescript coffee cson
+
+keyword  if else unless then for in of by when while until loop switch case default try catch finally
+keyword  throw return break continue class extends super new delete typeof instanceof and or not is isnt
+keyword  do import export from await yield
+builtin  true false null undefined yes no on off this
+
+line-comment   #
+block-comment  ### ###
+string   """ """  : escapes multiline interp=hash
+string   ''' '''  : escapes multiline
+string   " "      : escapes interp=hash
+string   ' '      : escapes
+escape        : x=2 u4
+sigil    @    : attr
+operators  +-*/%&|^!<>=:?~
+calls
+regex

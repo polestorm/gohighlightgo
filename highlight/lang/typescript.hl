@@ -1,6 +1,6 @@
 # TypeScript: TypeScript Handbook (version 5); requirements/languages/typescript.md
 extends  javascript
-name     typescript ts mts cts
+name     typescript ts mts cts tsx
 
 keyword  abstract as asserts declare infer is keyof module namespace override readonly
 keyword  satisfies type unique

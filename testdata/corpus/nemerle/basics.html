@@ -1,0 +1,20 @@
+<span class="hl-com">// REQ: LANG-1411 LANG-1412</span>
+<span class="hl-kw">using</span> System;
+
+<span class="hl-com">/* Block comment */</span>
+<span class="hl-kw">variant</span> Shape {
+  <span class="hl-op">|</span> Circle { r <span class="hl-op">:</span> <span class="hl-type">double</span> }
+  <span class="hl-op">|</span> Rect { w <span class="hl-op">:</span> <span class="hl-type">double</span>; h <span class="hl-op">:</span> <span class="hl-type">double</span> }
+}
+
+<span class="hl-kw">module</span> Program {
+  <span class="hl-fn">Main</span>() <span class="hl-op">:</span> <span class="hl-type">void</span> {
+    <span class="hl-kw">def</span> name <span class="hl-op">=</span> <span class="hl-str">"world"</span>;
+    <span class="hl-kw">mutable</span> count <span class="hl-op">=</span> <span class="hl-num">0x1F</span>;
+    <span class="hl-kw">match</span> (Shape.<span class="hl-fn">Circle</span>(<span class="hl-num">1.5</span>)) {
+      <span class="hl-op">|</span> Shape.<span class="hl-fn">Circle</span>(r) <span class="hl-op">=&gt;</span> Console.<span class="hl-fn">WriteLine</span>(<span class="hl-str">$"Hello, $name! $(r * r)"</span>)
+      <span class="hl-op">|</span> _ <span class="hl-op">=&gt;</span> ()
+    }
+    <span class="hl-kw">when</span> (count <span class="hl-op">&gt;</span> <span class="hl-num">0</span>) count<span class="hl-op">--</span>;
+  }
+}

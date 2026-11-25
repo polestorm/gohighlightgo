@@ -1,0 +1,12 @@
+<span class="hl-com"># REQ: LANG-1901 LANG-1902 LANG-1903 LANG-1904</span>
+<span class="hl-kw">namespace</span> Demo
+<span class="hl-com">/* Block comment */</span>
+<span class="hl-kw">class</span> Greeter<span class="hl-op">:</span>
+    <span class="hl-kw">public</span> Name <span class="hl-kw">as</span> <span class="hl-type">string</span> <span class="hl-op">=</span> <span class="hl-str">"world"</span>
+    <span class="hl-kw">def</span> <span class="hl-fn">Greet</span>(times <span class="hl-kw">as</span> <span class="hl-type">int</span>) <span class="hl-kw">as</span> <span class="hl-type">string</span><span class="hl-op">:</span>
+        text <span class="hl-op">=</span> <span class="hl-str">"Hello, </span><span class="hl-esc">${Name}</span><span class="hl-str">!"</span>
+        <span class="hl-kw">for</span> i <span class="hl-kw">in</span> <span class="hl-builtin">range</span>(times)<span class="hl-op">:</span>
+            <span class="hl-builtin">print</span> text
+        <span class="hl-kw">return</span> text
+g <span class="hl-op">=</span> <span class="hl-fn">Greeter</span>()
+<span class="hl-builtin">print</span> g<span class="hl-op">.</span><span class="hl-fn">Greet</span>(<span class="hl-num">2</span>) <span class="hl-kw">if</span> g<span class="hl-op">.</span>Name <span class="hl-op">!=</span> <span class="hl-builtin">null</span> <span class="hl-kw">and</span> <span class="hl-builtin">true</span>

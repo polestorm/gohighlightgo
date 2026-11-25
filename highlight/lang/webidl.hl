@@ -1,0 +1,13 @@
+# Web IDL: Web IDL Standard (WHATWG); requirements/languages/webidl.md
+name     webidl idl
+keyword  interface partial dictionary enum typedef callback namespace mixin includes attribute readonly
+keyword  static getter setter deleter stringifier inherit optional required const maplike setlike
+keyword  iterable async constructor
+type     any boolean byte octet short long unsigned float double bigint DOMString ByteString USVString
+type     object undefined sequence record Promise FrozenArray
+builtin  true false null Infinity NaN
+line-comment   //
+block-comment  /* */
+string   " "
+operators  =:;,?<>()[]{}.
+upper-type

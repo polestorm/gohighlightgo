@@ -1,0 +1,14 @@
+# ArangoDB AQL: ArangoDB documentation: AQL fundamentals; requirements/languages/aql.md
+name     aql arangodb
+keyword  FOR IN RETURN FILTER SORT LIMIT LET COLLECT INTO INSERT UPDATE REPLACE REMOVE UPSERT WITH
+keyword  OUTBOUND INBOUND ANY GRAPH SHORTEST_PATH DISTINCT AGGREGATE AND OR NOT LIKE ASC DESC OPTIONS
+builtin  true false null LENGTH COUNT SUM AVG CONCAT UPPER DATE_NOW DOCUMENT
+fold-case
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+string   ' '  : escapes
+string   ` `  : name
+sigil    @    : attr
+operators  =<>!+-*/%.,:?()[]{}
+calls

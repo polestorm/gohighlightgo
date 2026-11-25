@@ -1,0 +1,10 @@
+# lighttpd configuration: lighttpd documentation: Configuration file syntax; requirements/languages/lighttpd.md
+name     lighttpd
+keyword  server.modules server.document-root server.port server.username server.errorlog
+keyword  index-file.names mimetype.assign url.rewrite-once url.redirect alias.url include
+builtin  enable disable
+ident-part     .-
+line-comment   #
+string   " "  : escapes
+sigil    $    : attr
+operators  =+(),>

@@ -1,0 +1,11 @@
+# ChaiScript: ChaiScript language reference (chaiscript.com); requirements/languages/chaiscript.md
+name     chaiscript chai
+keyword  def var auto class attr if else while for break continue return try catch finally global
+keyword  fun this
+builtin  true false print puts size
+line-comment   //
+block-comment  /* */
+string   " "  : escapes interp=dollar
+string   ' '  : escapes
+operators  +-*/%&|^!<>=:?~.
+calls

@@ -1,0 +1,12 @@
+# mcfunction: Minecraft Java Edition command syntax (Minecraft Wiki: Commands); requirements/languages/mcfunction.md
+name     mcfunction mcf
+keyword  execute as at if unless run positioned in store result score say tell tellraw give tp teleport
+keyword  summon kill effect scoreboard objectives players add set remove function data merge modify
+keyword  gamemode time weather setblock fill
+builtin  true false survival creative
+ident-part     :_./
+line-comment   #
+string   " "  : escapes
+string   ' '  : escapes
+sigil    @    : attr
+operators  ~^=[]{},:.

@@ -1,0 +1,11 @@
+# Whiley: Whiley Language Specification (whiley.org); requirements/languages/whiley.md
+name     whiley
+keyword  function method type import public private requires ensures where if else while for in return
+keyword  switch case default break continue skip assert assume debug do is new old all some no
+type     int bool byte void null
+builtin  true false
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+operators  +-*/%&|^!<>=:?~.
+calls

@@ -1,0 +1,8 @@
+# REQ: LANG-2901 LANG-2902 LANG-2903 LANG-2904
+# Factorial in ALGOL 68 #
+PROC fact = (INT n) INT: IF n = 0 THEN 1 ELSE n * fact(n - 1) FI;
+begin
+  integer i;
+  for i := 1 step 1 until 5 do
+    print(("Hello, ""ALGOL""", i))
+end

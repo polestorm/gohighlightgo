@@ -1,0 +1,13 @@
+<span class="hl-com">' REQ: LANG-1941 LANG-1942 LANG-1943 LANG-1944</span>
+<span class="hl-kw">CLS</span>
+<span class="hl-kw">DECLARE</span> <span class="hl-kw">FUNCTION</span> Square! (x!)
+<span class="hl-kw">DIM</span> name <span class="hl-kw">AS</span> <span class="hl-kw">STRING</span>
+name <span class="hl-op">=</span> <span class="hl-str">"world"</span>
+<span class="hl-kw">FOR</span> i <span class="hl-op">=</span> <span class="hl-num">1</span> <span class="hl-kw">TO</span> <span class="hl-num">3</span>
+    <span class="hl-kw">PRINT</span> <span class="hl-str">"Hello, "</span>; name; <span class="hl-str">"!"</span>; i
+<span class="hl-kw">NEXT</span> i
+<span class="hl-kw">IF</span> Square(<span class="hl-num">2</span>) <span class="hl-op">&gt;</span> <span class="hl-num">3</span> <span class="hl-kw">AND</span> <span class="hl-num">1</span> <span class="hl-kw">THEN</span> <span class="hl-kw">GOSUB</span> Done
+<span class="hl-kw">END</span>
+Done:
+<span class="hl-kw">PRINT</span> <span class="hl-str">"done"</span>
+<span class="hl-kw">RETURN</span>

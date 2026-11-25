@@ -1,0 +1,18 @@
+// REQ: LANG-1431 LANG-1432 LANG-1433
+#include <module.h>
+/* Block comment */
+class Greeter {
+  string name = "world";
+
+  string greet(int times) {
+    string text = "Hello, " + name + "!\n";
+    return text * times;
+  }
+}
+
+int main(int argc, array(string) argv) {
+  Greeter g = Greeter();
+  mapping(string:int) ages = (["ann": 30]);
+  foreach (indices(ages), string who) write(g->greet(2) + who + 'x');
+  return 0x1F > 0;
+}

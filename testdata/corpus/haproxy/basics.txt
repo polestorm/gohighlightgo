@@ -1,0 +1,16 @@
+# REQ: LANG-2481 LANG-2482 LANG-2483 LANG-2484
+global
+    maxconn 4096
+    daemon
+defaults
+    mode http
+    timeout connect 5s
+# Public entry point
+frontend web
+    bind *:443 ssl crt /etc/ssl/site.pem
+    acl is_api path_beg /api
+    use_backend api if is_api
+    default_backend app
+backend api
+    balance roundrobin
+    server api1 10.0.0.1:8080 check

@@ -1,0 +1,10 @@
+# Maxima: Maxima Manual (5.47): language reference; requirements/languages/maxima.md
+name     maxima mac
+keyword  if then else elseif for from thru step while unless do block return and or not lambda
+builtin  true false pi %pi %e %i inf diff integrate solve expand factor simplify limit sum print
+builtin  plot2d ratsimp
+ident-extra    %
+block-comment  /* */
+string   " "  : escapes
+operators  +-*/^=<>:!'.$;,
+calls

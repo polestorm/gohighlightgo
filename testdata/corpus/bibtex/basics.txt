@@ -1,0 +1,11 @@
+% REQ: LANG-1571 LANG-1572 LANG-1573 LANG-1574
+@article{knuth1984,
+  author  = {Donald E. Knuth},
+  title   = "Literate Programming",
+  journal = {The Computer Journal},
+  year    = 1984,
+  volume  = 27,
+  pages   = {97--111}
+}
+@string{acm = "ACM Press"}
+@book{tex, title = {The {\TeX}book}, publisher = acm # " (reprint)"}

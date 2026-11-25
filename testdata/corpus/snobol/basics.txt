@@ -1,0 +1,8 @@
+* REQ: LANG-2071 LANG-2072 LANG-2073 LANG-2074
+        OUTPUT = "Hello, world!"
+        X = 'SNOBOL' ' ' "4"
+        LINE = INPUT                        :F(DONE)
+        LINE SPAN('0123456789') . N         :S(NUM)F(LOOP)
+NUM     OUTPUT = "number " N                :(LOOP)
+DONE    OUTPUT = SIZE(X)
+END

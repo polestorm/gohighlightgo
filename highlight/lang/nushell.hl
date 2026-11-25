@@ -1,0 +1,12 @@
+# Nushell: The Nushell book and command reference (nushell.sh); requirements/languages/nushell.md
+name     nushell nu
+keyword  def let mut const if else for in while loop break continue return match module use export
+keyword  extern alias try catch where
+builtin  true false null echo print ls open save get select sort-by each filter length str into
+line-comment   #
+string   " "  : escapes
+string   ' '
+string   ` `
+prefix   $    : interp=braces
+sigil    $    : attr
+operators  |=<>!+-*/.:

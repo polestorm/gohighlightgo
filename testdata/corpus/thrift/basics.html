@@ -1,0 +1,13 @@
+<span class="hl-com">// REQ: LANG-1761 LANG-1762 LANG-1763 LANG-1764</span>
+<span class="hl-kw">namespace</span> go demo
+<span class="hl-com">/* A person. */</span>
+<span class="hl-kw">struct</span> <span class="hl-type">Person</span> {
+  <span class="hl-num">1</span><span class="hl-op">:</span> <span class="hl-kw">required</span> <span class="hl-type">string</span> name<span class="hl-op">,</span>
+  <span class="hl-num">2</span><span class="hl-op">:</span> <span class="hl-kw">optional</span> <span class="hl-type">i32</span> age <span class="hl-op">=</span> <span class="hl-num">30</span><span class="hl-op">,</span>
+  <span class="hl-num">3</span><span class="hl-op">:</span> <span class="hl-type">list</span><span class="hl-op">&lt;</span><span class="hl-type">string</span><span class="hl-op">&gt;</span> emails<span class="hl-op">,</span>
+}
+<span class="hl-kw">exception</span> <span class="hl-type">NotFound</span> { <span class="hl-num">1</span><span class="hl-op">:</span> <span class="hl-type">string</span> message }
+<span class="hl-kw">service</span> <span class="hl-type">Greeter</span> <span class="hl-kw">extends</span> <span class="hl-type">Base</span> {
+  <span class="hl-type">string</span> greet(<span class="hl-num">1</span><span class="hl-op">:</span> <span class="hl-type">Person</span> who) <span class="hl-kw">throws</span> (<span class="hl-num">1</span><span class="hl-op">:</span> <span class="hl-type">NotFound</span> err)<span class="hl-op">,</span>
+  <span class="hl-kw">oneway</span> <span class="hl-type">void</span> ping()
+}

@@ -1,0 +1,12 @@
+# Q#: Q# language reference (Microsoft Quantum); requirements/languages/qsharp.md
+name     qsharp qs
+keyword  namespace open operation function let mutable set use borrow if elif else for in while repeat
+keyword  until fixup return within apply is Adj Ctl body adjoint controlled newtype import
+type     Qubit Result Int Double Bool String Unit BigInt Range Pauli
+builtin  true false Zero One PauliX PauliZ H X CNOT M Reset Message
+line-comment   //
+string   " "  : escapes
+prefix   $    : interp=braces
+sigil    @    : meta
+operators  +-*/%&|^!<>=:?~.
+calls

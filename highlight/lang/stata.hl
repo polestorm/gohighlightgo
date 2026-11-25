@@ -1,0 +1,14 @@
+# Stata: Stata 18 manuals: [P] programming, [U] language syntax; requirements/languages/stata.md
+name     stata do ado
+
+keyword  foreach forvalues while if else program define end local global capture quietly noisily by
+keyword  bysort in using of varlist numlist
+builtin  display generate gen replace summarize sum regress reg tabulate tab use save describe list
+builtin  drop keep merge append sort egen label
+
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+sigil    $    : attr
+operators  +-*/^&|!<>=~:
+calls

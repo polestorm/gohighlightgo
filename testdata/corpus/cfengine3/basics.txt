@@ -1,0 +1,14 @@
+# REQ: LANG-2921 LANG-2922 LANG-2923 LANG-2924
+# Ensure a file exists
+bundle agent demo
+{
+  vars:
+      "greeting" string => "Hello";
+  files:
+      "/tmp/hello.txt"
+        create => "true",
+        edit_line => insert_lines("$(greeting), world");
+  reports:
+    linux::
+      "Done: ${greeting}";
+}

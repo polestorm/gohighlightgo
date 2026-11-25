@@ -1,0 +1,10 @@
+# gnuplot: gnuplot 5.4 documentation: commands and expressions; requirements/languages/gnuplot.md
+name     gnuplot gp gnu
+keyword  plot splot replot set unset show reset print load call if else do for while fit using with
+keyword  title notitle lines points linespoints boxes errorbars axes every index smooth
+builtin  sin cos tan exp log sqrt abs pi x y terminal output xlabel ylabel xrange yrange grid key
+line-comment   #
+string   " "  : escapes
+string   ' '  : doubled
+operators  +-*/%&|^!<>=:?~
+calls

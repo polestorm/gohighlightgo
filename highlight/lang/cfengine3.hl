@@ -1,0 +1,12 @@
+# CFEngine 3: CFEngine 3 Reference: language concepts; requirements/languages/cfengine3.md
+name     cfengine3 cf3 cfengine
+keyword  bundle body agent common edit_line files commands processes packages methods reports vars
+keyword  classes meta usebundle promise
+builtin  string slist int real data ifvarclass if create perms handle comment any true false
+line-comment   #
+string   " "  : escapes interp=dollar-braces
+string   ' '  : escapes
+string   ` `
+sigil    @    : attr
+operators  =>:;,(){}.!&|
+hook     variables

@@ -1,0 +1,18 @@
+# Pony: Pony tutorial and language reference (keywords, literals); requirements/languages/pony.md
+name     pony
+
+keyword  actor class primitive struct trait interface type use fun be new var let embed if then else
+keyword  elseif end while for in do repeat until match try with recover consume return break continue
+keyword  error iso trn ref val box tag object where as is isnt not and or xor
+type     U8 U16 U32 U64 U128 I8 I16 I32 I64 I128 F32 F64 Bool String Array None
+builtin  true false this
+
+line-comment   //
+block-comment  /* */  : nested
+string   """ """  : multiline
+string   " "      : escapes
+escape        : x=2 u4
+operators  +-*/%&|^!<>=:?~.
+upper-type
+calls
+hook     apostrophe

@@ -1,0 +1,13 @@
+// REQ: LANG-1761 LANG-1762 LANG-1763 LANG-1764
+namespace go demo
+/* A person. */
+struct Person {
+  1: required string name,
+  2: optional i32 age = 30,
+  3: list<string> emails,
+}
+exception NotFound { 1: string message }
+service Greeter extends Base {
+  string greet(1: Person who) throws (1: NotFound err),
+  oneway void ping()
+}

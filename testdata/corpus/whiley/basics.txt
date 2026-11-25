@@ -1,0 +1,13 @@
+// REQ: LANG-2101 LANG-2102 LANG-2103 LANG-2104
+/* Absolute value */
+function abs(int x) -> (int r)
+ensures r >= 0
+ensures r == x || r == -x:
+    if x < 0:
+        return -x
+    else:
+        return x
+type nat is (int x) where x >= 0
+method main():
+    nat n = abs(-31)
+    assert n == 0x1F && true

@@ -1,0 +1,9 @@
+<span class="hl-com"># REQ: LANG-2731 LANG-2732 LANG-2733 LANG-2734</span>
+<span class="hl-com"># Word counter</span>
+<span class="hl-kw">procedure</span> <span class="hl-fn">main</span>()
+   <span class="hl-kw">local</span> count, line
+   count <span class="hl-op">:=</span> <span class="hl-num">0</span>
+   <span class="hl-kw">while</span> line <span class="hl-op">:=</span> <span class="hl-builtin">read</span>() <span class="hl-kw">do</span>
+      <span class="hl-kw">every</span> <span class="hl-builtin">find</span>(<span class="hl-str">"icon"</span>, line) <span class="hl-kw">do</span> count <span class="hl-op">+:=</span> <span class="hl-num">1</span>
+   <span class="hl-builtin">write</span>(<span class="hl-str">"Found "</span>, count, <span class="hl-str">" matches"</span>, <span class="hl-builtin">&amp;null</span>)
+<span class="hl-kw">end</span>

@@ -1,0 +1,11 @@
+# Typst: Typst reference (typst.app/docs/reference): syntax; requirements/languages/typst.md
+name     typst typ
+keyword  let set show if else for in while break continue return import include context as none auto
+builtin  true false
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+sigil    #    : kw
+sigil    @    : attr
+operators  =*_$<>:+-/
+calls

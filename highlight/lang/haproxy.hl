@@ -1,0 +1,9 @@
+# HAProxy configuration: HAProxy Configuration Manual (2.8); requirements/languages/haproxy.md
+name     haproxy haproxycfg
+keyword  global defaults frontend backend listen bind mode server balance option timeout acl use_backend
+keyword  default_backend http-request http-response log maxconn stats daemon user group
+builtin  http tcp roundrobin leastconn check ssl if unless deny allow
+ident-part     -.
+line-comment   #
+string   " "  : escapes
+operators  {}!

@@ -1,0 +1,19 @@
+; REQ: LANG-1681 LANG-1682 LANG-1683 LANG-1684
+; ModuleID = 'demo.c'
+source_filename = "demo.c"
+@.str = private unnamed_addr constant [7 x i8] c"Hello\0A\00", align 1
+
+define dso_local i32 @square(i32 noundef %x) #0 {
+entry:
+  %mul = mul nsw i32 %x, %x
+  %cmp = icmp sgt i32 %mul, 31
+  br i1 %cmp, label %big, label %small
+big:
+  ret i32 %mul
+small:
+  ret i32 0
+}
+
+declare i32 @printf(ptr noundef, ...) #1
+attributes #0 = { noinline nounwind }
+!0 = !{i32 1, !"wchar_size", i32 4}

@@ -1,0 +1,11 @@
+<span class="hl-com"># REQ: LANG-2471 LANG-2472 LANG-2473 LANG-2474</span>
+<span class="hl-kw">vcl</span> <span class="hl-num">4.1</span><span class="hl-op">;</span>
+<span class="hl-kw">import</span> <span class="hl-builtin">std</span><span class="hl-op">;</span>
+<span class="hl-kw">backend</span> default <span class="hl-op">{</span> .host <span class="hl-op">=</span> <span class="hl-str">"127.0.0.1"</span><span class="hl-op">;</span> .port <span class="hl-op">=</span> <span class="hl-str">"8080"</span><span class="hl-op">;</span> <span class="hl-op">}</span>
+<span class="hl-com">/* Request handling */</span>
+<span class="hl-kw">sub</span> vcl_recv <span class="hl-op">{</span>
+    <span class="hl-kw">if</span> <span class="hl-op">(</span>req.url <span class="hl-op">~</span> <span class="hl-str">"^/admin"</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-op">!</span>client.ip <span class="hl-op">~</span> trusted<span class="hl-op">)</span> <span class="hl-op">{</span>
+        <span class="hl-kw">return</span> <span class="hl-op">(</span>synth<span class="hl-op">(</span><span class="hl-num">403</span><span class="hl-op">,</span> <span class="hl-str">"Forbidden"</span><span class="hl-op">));</span>
+    <span class="hl-op">}</span>
+    <span class="hl-kw">unset</span> req.http.Cookie<span class="hl-op">;</span>
+<span class="hl-op">}</span>

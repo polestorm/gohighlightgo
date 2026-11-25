@@ -1,0 +1,13 @@
+# Pig Latin: Apache Pig 0.17 documentation: Pig Latin Basics; requirements/languages/pig.md
+name     pig piglatin
+keyword  LOAD STORE DUMP FILTER BY FOREACH GENERATE GROUP JOIN ORDER LIMIT DISTINCT UNION SPLIT INTO AS
+keyword  USING PARALLEL DESCRIBE EXPLAIN REGISTER DEFINE IF AND OR NOT IS NULL ASC DESC
+type     int long float double chararray bytearray boolean tuple bag map
+builtin  COUNT SUM AVG MIN MAX CONCAT SIZE TOKENIZE FLATTEN PigStorage
+fold-case
+line-comment   --
+block-comment  /* */
+string   ' '  : escapes
+sigil    $    : attr
+operators  =<>!+-*/%:.#
+calls

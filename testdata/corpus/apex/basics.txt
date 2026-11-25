@@ -1,0 +1,13 @@
+// REQ: LANG-1241 LANG-1242 LANG-1243
+/* Trigger handler */
+public with sharing class AccountService {
+    @AuraEnabled
+    public static List<Account> findByName(String name) {
+        Integer count = 0;
+        List<Account> accounts = [SELECT Id, Name FROM Account WHERE Name = :name LIMIT 10];
+        for (Account a : accounts) { count++; }
+        System.debug('Found ' + count + ' accounts\n');
+        if (accounts.isEmpty() && true) insert new Account(Name = name);
+        return accounts;
+    }
+}

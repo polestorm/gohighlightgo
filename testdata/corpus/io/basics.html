@@ -1,0 +1,11 @@
+<span class="hl-com">// REQ: LANG-1671 LANG-1672 LANG-1673 LANG-1674</span>
+<span class="hl-com">/* Greeter prototype */</span>
+<span class="hl-type">Greeter</span> <span class="hl-op">:=</span> <span class="hl-builtin">Object</span> <span class="hl-kw">clone</span>
+<span class="hl-type">Greeter</span> name <span class="hl-op">:=</span> <span class="hl-str">"world"</span>
+<span class="hl-type">Greeter</span> greet <span class="hl-op">:=</span> <span class="hl-kw">method</span>(times,
+    text <span class="hl-op">:=</span> <span class="hl-str">"Hello, "</span> <span class="hl-op">..</span> name <span class="hl-op">..</span> <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>
+    <span class="hl-kw">for</span>(i, <span class="hl-num">1</span>, times, text <span class="hl-builtin">println</span>)
+    text
+)
+g <span class="hl-op">:=</span> <span class="hl-type">Greeter</span> <span class="hl-kw">clone</span>
+<span class="hl-kw">if</span>(g name size <span class="hl-op">&gt;</span> <span class="hl-num">0</span> and <span class="hl-builtin">true</span>, g greet(<span class="hl-num">2</span>), <span class="hl-builtin">nil</span>)

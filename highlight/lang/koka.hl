@@ -1,0 +1,13 @@
+# Koka: The Koka Programming Language (koka-lang.github.io); requirements/languages/koka.md
+name     koka kk
+keyword  fun fn val var if then else elif match return with handler effect ctl final raw import module
+keyword  pub type struct alias rec open extend con interface instance inline noinline
+type     int string bool char double list maybe either
+builtin  True False Nothing Just println show
+line-comment   //
+block-comment  /* */  : nested
+string   " "  : escapes
+prefix   r
+operators  +-*/%&|^!<>=:?~.
+upper-type
+calls

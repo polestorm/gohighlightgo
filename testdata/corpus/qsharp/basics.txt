@@ -1,0 +1,15 @@
+// REQ: LANG-2621 LANG-2622 LANG-2623 LANG-2624
+namespace Demo {
+    open Microsoft.Quantum.Intrinsic;
+    // Bell state
+    @EntryPoint()
+    operation Bell() : Result[] {
+        use (a, b) = (Qubit(), Qubit());
+        H(a);
+        CNOT(a, b);
+        let results = [M(a), M(b)];
+        Message($"Results: {results}");
+        ResetAll([a, b]);
+        return results;
+    }
+}

@@ -1,0 +1,8 @@
+<span class="hl-com"># REQ: LANG-2901 LANG-2902 LANG-2903 LANG-2904</span>
+<span class="hl-com"># Factorial in ALGOL 68 #</span>
+PROC fact <span class="hl-op">=</span> <span class="hl-op">(</span>INT n<span class="hl-op">)</span> INT<span class="hl-op">:</span> IF n <span class="hl-op">=</span> <span class="hl-num">0</span> THEN <span class="hl-num">1</span> ELSE n <span class="hl-op">*</span> fact<span class="hl-op">(</span>n <span class="hl-op">-</span> <span class="hl-num">1</span><span class="hl-op">)</span> FI<span class="hl-op">;</span>
+<span class="hl-kw">begin</span>
+  <span class="hl-type">integer</span> i<span class="hl-op">;</span>
+  <span class="hl-kw">for</span> i <span class="hl-op">:=</span> <span class="hl-num">1</span> <span class="hl-kw">step</span> <span class="hl-num">1</span> <span class="hl-kw">until</span> <span class="hl-num">5</span> <span class="hl-kw">do</span>
+    <span class="hl-builtin">print</span><span class="hl-op">((</span><span class="hl-str">"Hello, </span><span class="hl-esc">""</span><span class="hl-str">ALGOL</span><span class="hl-esc">""</span><span class="hl-str">"</span><span class="hl-op">,</span> i<span class="hl-op">))</span>
+<span class="hl-kw">end</span>

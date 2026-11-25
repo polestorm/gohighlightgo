@@ -1,0 +1,12 @@
+# Smali: smali/baksmali documentation (Dalvik bytecode assembler syntax); requirements/languages/smali.md
+name     smali
+keyword  invoke-virtual invoke-direct invoke-static invoke-super invoke-interface const const-string
+keyword  move move-result move-result-object return return-void return-object new-instance iget iput
+keyword  sget sput if-eq if-ne if-eqz if-nez goto add-int mul-int check-cast throw
+builtin  public private protected static final abstract constructor synthetic
+ident-part     -/
+line-comment   #
+string   " "  : escapes
+sigil    .    : meta
+sigil    :    : fn
+operators  ->,{}()

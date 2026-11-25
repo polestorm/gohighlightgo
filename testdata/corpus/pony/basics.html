@@ -1,0 +1,18 @@
+<span class="hl-com">// REQ: LANG-1311 LANG-1312 LANG-1313</span>
+<span class="hl-kw">use</span> <span class="hl-str">"collections"</span>
+
+<span class="hl-com">/* outer /* nested */ still a comment */</span>
+<span class="hl-kw">actor</span> <span class="hl-type">Main</span>
+  <span class="hl-kw">let</span> _env<span class="hl-op">:</span> <span class="hl-type">Env</span>
+
+  <span class="hl-kw">new</span> <span class="hl-fn">create</span>(env<span class="hl-op">:</span> <span class="hl-type">Env</span>) <span class="hl-op">=&gt;</span>
+    _env <span class="hl-op">=</span> env
+    <span class="hl-kw">let</span> name<span class="hl-op">:</span> <span class="hl-type">String</span> <span class="hl-op">=</span> <span class="hl-str">"world"</span>
+    <span class="hl-kw">let</span> c<span class="hl-op">:</span> <span class="hl-type">U8</span> <span class="hl-op">=</span> <span class="hl-str">'x'</span>
+    <span class="hl-kw">for</span> i <span class="hl-kw">in</span> <span class="hl-type">Range</span>(<span class="hl-num">0</span>, <span class="hl-num">3</span>) <span class="hl-kw">do</span>
+      <span class="hl-kw">if</span> (i <span class="hl-op">&gt;</span> <span class="hl-num">0</span>) <span class="hl-kw">and</span> <span class="hl-builtin">true</span> <span class="hl-kw">then</span>
+        env<span class="hl-op">.</span>out<span class="hl-op">.</span><span class="hl-fn">print</span>(<span class="hl-str">"Hello, "</span> <span class="hl-op">+</span> name <span class="hl-op">+</span> <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span> <span class="hl-op">+</span> i<span class="hl-op">.</span><span class="hl-fn">string</span>())
+      <span class="hl-kw">end</span>
+    <span class="hl-kw">end</span>
+
+  <span class="hl-kw">be</span> <span class="hl-fn">greet</span>(times<span class="hl-op">:</span> <span class="hl-type">U32</span> <span class="hl-op">=</span> <span class="hl-num">0x1F</span>) <span class="hl-op">=&gt;</span> <span class="hl-type">None</span>

@@ -1,0 +1,15 @@
+# Pkl: Pkl Language Reference (pkl-lang.org); requirements/languages/pkl.md
+name     pkl
+keyword  module amends extends import class typealias function local hidden fixed const abstract open
+keyword  new let if else when is as for in out import* outer this super throw trace read
+type     String Int Float Boolean Duration DataSize List Map Set Listing Mapping Dynamic Any
+builtin  true false null
+line-comment   //
+block-comment  /* */
+string   """ """  : escapes multiline
+string   " "      : escapes
+escape        : paren
+sigil    @    : meta
+operators  +-*/%&|!<>=:?.
+upper-type
+calls

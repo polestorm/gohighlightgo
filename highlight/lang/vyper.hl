@@ -1,0 +1,7 @@
+# Vyper: Vyper documentation (0.4): language reference; requirements/languages/vyper.md
+extends  python
+name     vyper vy
+keyword  event struct interface implements log indexed public view pure payable nonpayable external
+keyword  internal deploy immutable constant
+type     uint256 int128 address bool bytes32 String Bytes DynArray HashMap decimal
+builtin  msg self block empty convert send raw_call

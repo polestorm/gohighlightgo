@@ -1,0 +1,15 @@
+# 6502 assembly: MOS 6502 programming manual (MCS6500 Microcomputer Family Programming Manual); requirements/languages/asm6502.md
+name     asm6502 6502 ca65
+keyword  lda ldx ldy sta stx sty tax tay txa tya tsx txs pha pla php plp adc sbc and ora eor cmp cpx cpy
+keyword  inc inx iny dec dex dey asl lsr rol ror bit jmp jsr rts rti bcc bcs beq bne bmi bpl bvc bvs
+keyword  clc sec cli sei cld sed clv brk nop
+builtin  a x y
+fold-case
+line-comment   ;
+string   " "
+string   ' '
+sigil    .    : meta
+sigil    $    : num
+sigil    %    : num
+operators  #<>+-*/(),=
+hook     asm-label

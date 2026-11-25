@@ -1,0 +1,11 @@
+# Factor: Factor documentation, Syntax (parsing words, comments, literals); requirements/languages/factor.md
+name     factor
+
+keyword  USING: USE: IN: TUPLE: SYMBOL: SYMBOLS: CONSTANT: M: GENERIC: GENERIC# MACRO: MEMO:
+keyword  PRIVATE> <PRIVATE QUALIFIED: FROM: if when unless cond case each map reduce times
+builtin  t f dup drop swap over rot nip pick keep bi tri call curry print
+
+ident-part     -:?!<>*/=+#
+line-comment   !
+string   " "  : escapes
+operators  [](){}:;

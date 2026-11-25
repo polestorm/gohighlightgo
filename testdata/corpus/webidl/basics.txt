@@ -1,0 +1,10 @@
+// REQ: LANG-2831 LANG-2832 LANG-2833 LANG-2834
+// A simple interface
+[Exposed=Window]
+interface Greeter : EventTarget {
+  constructor(optional DOMString name = "world");
+  readonly attribute DOMString name;
+  /* Greets n times */
+  Promise<undefined> greet(unsigned long times);
+};
+dictionary GreetOptions { boolean loud = false; required DOMString lang; };

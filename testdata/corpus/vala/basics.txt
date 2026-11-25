@@ -1,0 +1,19 @@
+// REQ: LANG-1511 LANG-1512 LANG-1513
+using GLib;
+
+/* Block comment */
+public class Greeter : Object {
+    public string name { get; set; default = "world"; }
+
+    public string greet (int times = 1) {
+        var text = @"Hello, $name! Count: $(times + 1)\n";
+        string raw = """raw "text" \n stays""";
+        return string.joinv ("", { text, raw });
+    }
+}
+
+int main (string[] args) {
+    var g = new Greeter ();
+    print (g.greet (2) + "%c %d\n", 'x', 0x1F);
+    return 0;
+}

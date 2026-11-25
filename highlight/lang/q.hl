@@ -1,0 +1,10 @@
+# q (kdb+): Q for Mortals and the kdb+ reference (code.kx.com); requirements/languages/q.md
+name     q kdb
+keyword  select exec update delete from where by if do while
+builtin  count sum avg min max first last til each over scan til show string type enlist distinct
+builtin  asc desc xasc xdesc lj ij aj cols meta
+line-comment   /
+string   " "  : escapes
+sigil    `    : attr
+sigil    .    : meta
+operators  +-*%&|^!<>=:#$@,_~?'

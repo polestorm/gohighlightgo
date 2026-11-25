@@ -1,0 +1,17 @@
+# ABAP: ABAP Keyword Documentation (SAP, 7.5x); requirements/languages/abap.md
+name     abap
+keyword  REPORT DATA TYPES TYPE LIKE BEGIN OF END METHOD ENDMETHOD CLASS ENDCLASS DEFINITION IMPLEMENTATION
+keyword  PUBLIC PRIVATE PROTECTED SECTION METHODS IMPORTING EXPORTING RETURNING VALUE IF ELSE ELSEIF ENDIF
+keyword  LOOP AT INTO ENDLOOP DO ENDDO WHILE ENDWHILE CASE WHEN ENDCASE SELECT FROM WHERE ENDSELECT
+keyword  WRITE MOVE TO APPEND CLEAR CALL FUNCTION FORM ENDFORM PERFORM TRY CATCH ENDTRY RAISE AND OR NOT
+keyword  NEW TABLE STANDARD SORTED HASHED WITH KEY
+type     i f p c n d t string xstring abap_bool
+builtin  abap_true abap_false sy me space
+fold-case
+line-comment   "
+string   ' '  : doubled
+string   ` `  : doubled
+string   | |  : interp=braces
+operators  +-*/=<>:.
+calls
+hook     cobol

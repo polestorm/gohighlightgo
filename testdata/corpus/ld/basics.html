@@ -1,0 +1,15 @@
+<span class="hl-com">/* REQ: LANG-2191 LANG-2192 LANG-2193 LANG-2194</span>
+<span class="hl-com">*/</span>
+<span class="hl-com">/* Memory layout */</span>
+<span class="hl-kw">ENTRY</span><span class="hl-op">(</span>_start<span class="hl-op">)</span>
+<span class="hl-kw">MEMORY</span>
+<span class="hl-op">{</span>
+  FLASH <span class="hl-op">(</span>rx<span class="hl-op">)</span> <span class="hl-op">:</span> <span class="hl-kw">ORIGIN</span> <span class="hl-op">=</span> <span class="hl-num">0x08000000</span>, <span class="hl-kw">LENGTH</span> <span class="hl-op">=</span> <span class="hl-num">512K</span>
+  RAM <span class="hl-op">(</span>rwx<span class="hl-op">)</span>  <span class="hl-op">:</span> <span class="hl-kw">ORIGIN</span> <span class="hl-op">=</span> <span class="hl-num">0x20000000</span>, <span class="hl-kw">LENGTH</span> <span class="hl-op">=</span> <span class="hl-num">128K</span>
+<span class="hl-op">}</span>
+<span class="hl-kw">SECTIONS</span>
+<span class="hl-op">{</span>
+  .text <span class="hl-op">:</span> <span class="hl-op">{</span> <span class="hl-kw">KEEP</span><span class="hl-op">(*(</span>.vectors<span class="hl-op">))</span> <span class="hl-op">*(</span>.text<span class="hl-op">*)</span> <span class="hl-op">}</span> <span class="hl-op">&gt;</span> FLASH
+  .data <span class="hl-op">:</span> <span class="hl-op">{</span> <span class="hl-op">*(</span>.data<span class="hl-op">*)</span> <span class="hl-op">}</span> <span class="hl-op">&gt;</span> RAM <span class="hl-kw">AT</span> <span class="hl-op">&gt;</span> FLASH
+  _end <span class="hl-op">=</span> .<span class="hl-op">;</span>
+<span class="hl-op">}</span>

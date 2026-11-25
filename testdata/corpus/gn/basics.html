@@ -1,0 +1,13 @@
+<span class="hl-com"># REQ: LANG-2201 LANG-2202 LANG-2203 LANG-2204</span>
+<span class="hl-com"># Build file</span>
+<span class="hl-kw">declare_args</span>() {
+  enable_greeter <span class="hl-op">=</span> <span class="hl-builtin">true</span>
+}
+<span class="hl-builtin">executable</span>(<span class="hl-str">"demo"</span>) {
+  <span class="hl-builtin">sources</span> <span class="hl-op">=</span> [ <span class="hl-str">"main.cc"</span>, <span class="hl-str">"greeter.cc"</span> ]
+  <span class="hl-builtin">deps</span> <span class="hl-op">=</span> [ <span class="hl-str">"//base"</span> ]
+  <span class="hl-kw">if</span> (enable_greeter <span class="hl-op">&amp;&amp;</span> is_linux) {
+    <span class="hl-builtin">defines</span> <span class="hl-op">=</span> [ <span class="hl-str">"GREETER=1"</span> ]
+  }
+  output_name <span class="hl-op">=</span> <span class="hl-str">"demo_</span><span class="hl-esc">$target_cpu</span><span class="hl-str">"</span>
+}

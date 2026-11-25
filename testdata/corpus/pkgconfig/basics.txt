@@ -1,0 +1,11 @@
+# REQ: LANG-2021 LANG-2022 LANG-2023 LANG-2024
+prefix=/usr/local
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: demo
+Description: A demo library
+Version: 1.0.0
+Requires: glib-2.0 >= 2.50
+Libs: -L${libdir} -ldemo
+Cflags: -I${includedir}/demo

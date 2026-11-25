@@ -1,0 +1,18 @@
+<span class="hl-com">// REQ: LANG-1791 LANG-1792 LANG-1793 LANG-1794</span>
+<span class="hl-kw">module</span> demo <span class="hl-op">{</span>
+  <span class="hl-kw">yang-version</span> <span class="hl-num">1.1</span><span class="hl-op">;</span>
+  <span class="hl-kw">namespace</span> <span class="hl-str">"urn:example:demo"</span><span class="hl-op">;</span>
+  <span class="hl-kw">prefix</span> d<span class="hl-op">;</span>
+  <span class="hl-com">/* A container */</span>
+  <span class="hl-kw">container</span> system <span class="hl-op">{</span>
+    <span class="hl-kw">leaf</span> hostname <span class="hl-op">{</span>
+      <span class="hl-kw">type</span> <span class="hl-type">string</span> <span class="hl-op">{</span> <span class="hl-kw">length</span> <span class="hl-str">"1..253"</span><span class="hl-op">;</span> <span class="hl-op">}</span>
+      <span class="hl-kw">mandatory</span> <span class="hl-builtin">true</span><span class="hl-op">;</span>
+    <span class="hl-op">}</span>
+    <span class="hl-kw">list</span> user <span class="hl-op">{</span>
+      <span class="hl-kw">key</span> <span class="hl-str">"name"</span><span class="hl-op">;</span>
+      <span class="hl-kw">leaf</span> name <span class="hl-op">{</span> <span class="hl-kw">type</span> <span class="hl-type">string</span><span class="hl-op">;</span> <span class="hl-op">}</span>
+      <span class="hl-kw">leaf</span> uid <span class="hl-op">{</span> <span class="hl-kw">type</span> <span class="hl-type">uint32</span> <span class="hl-op">{</span> <span class="hl-kw">range</span> <span class="hl-str">"1000..65535"</span><span class="hl-op">;</span> <span class="hl-op">}</span> <span class="hl-op">}</span>
+    <span class="hl-op">}</span>
+  <span class="hl-op">}</span>
+<span class="hl-op">}</span>

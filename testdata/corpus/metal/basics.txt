@@ -1,0 +1,9 @@
+// REQ: LANG-2361 LANG-2362
+#include <metal_stdlib>
+using namespace metal;
+// Compute kernel
+kernel void add(device const float* a [[buffer(0)]],
+                device float* out [[buffer(1)]],
+                uint id [[thread_position_in_grid]]) {
+    out[id] = a[id] * 2.0f;
+}

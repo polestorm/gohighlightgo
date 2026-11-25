@@ -1,0 +1,11 @@
+// REQ: LANG-2261 LANG-2262 LANG-2263 LANG-2264
+//@version=5
+indicator("Demo", overlay = true)
+length = input.int(14, "Length")
+// Moving averages
+fast = ta.sma(close, length)
+slow = ta.ema(close, length * 2)
+cross = ta.crossover(fast, slow)
+plot(fast, color = color.blue)
+if cross and not na(slow)
+    label.new(bar_index, high, "Buy", color = color.green)

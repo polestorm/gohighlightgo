@@ -1,0 +1,10 @@
+// REQ: LANG-2641 LANG-2642 LANG-2643 LANG-2644
+// Greeter
+Function Greet(name As String, times As Integer = 1) As String
+  Var text As String = "Hello, " + name + "! ""hi"""
+  For i As Integer = 1 To times
+    System.DebugLog(text)
+  Next
+  Return text
+End Function
+If Greet("xojo", 2).Length > 0 And True Then MessageBox(Str(&h1F))

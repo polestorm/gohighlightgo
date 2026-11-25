@@ -1,0 +1,12 @@
+% REQ: LANG-2761 LANG-2762 LANG-2763 LANG-2764
+declare
+% Factorial
+fun {Fact N}
+   if N == 0 then 1 else N * {Fact N - 1} end
+end
+/* block comment */
+local X Y in
+   X = {Fact 5}
+   Y = "Hello, Oz!"
+   {Browse X#Y}
+end

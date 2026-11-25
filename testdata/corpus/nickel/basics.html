@@ -1,0 +1,11 @@
+<span class="hl-com"># REQ: LANG-2431 LANG-2432 LANG-2433 LANG-2434</span>
+<span class="hl-com"># Configuration with contracts</span>
+<span class="hl-kw">let</span> Port <span class="hl-op">=</span> <span class="hl-builtin">std</span><span class="hl-op">.</span>contract<span class="hl-op">.</span>from_predicate (<span class="hl-kw">fun</span> p <span class="hl-op">=&gt;</span> p <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-op">&amp;&amp;</span> p <span class="hl-op">&lt;</span> <span class="hl-num">65536</span>) <span class="hl-kw">in</span>
+<span class="hl-kw">let</span> config <span class="hl-op">|</span> { port <span class="hl-op">|</span> Port, name <span class="hl-op">|</span> <span class="hl-type">String</span> } <span class="hl-op">=</span> {
+  port <span class="hl-op">=</span> <span class="hl-num">8080</span>,
+  name <span class="hl-op">=</span> <span class="hl-str">"server"</span>,
+} <span class="hl-kw">in</span>
+{
+  greeting <span class="hl-op">=</span> <span class="hl-str">"Hello, %</span><span class="hl-esc">{config.name}</span><span class="hl-str">!"</span>,
+  enabled <span class="hl-op">=</span> <span class="hl-builtin">true</span>,
+}

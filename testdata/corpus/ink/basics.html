@@ -1,0 +1,12 @@
+<span class="hl-com">// REQ: LANG-2311 LANG-2312 LANG-2313 LANG-2314</span>
+<span class="hl-kw">VAR</span> gold <span class="hl-op">=</span> <span class="hl-num">31</span>
+<span class="hl-com">/* Start of the story */</span>
+<span class="hl-op">===</span> start <span class="hl-op">===</span>
+Hello, traveller! You have <span class="hl-op">{</span>gold<span class="hl-op">}</span> gold.
+<span class="hl-op">*</span> [Buy a sword] <span class="hl-op">-&gt;</span> shop
+<span class="hl-op">*</span> <span class="hl-op">{</span>gold <span class="hl-op">&gt;</span> <span class="hl-num">10</span><span class="hl-op">}</span> [Rest at the inn]
+    ~ gold <span class="hl-op">=</span> gold <span class="hl-op">-</span> <span class="hl-num">10</span>
+    You sleep well. <span class="hl-op">-&gt;</span> <span class="hl-builtin">END</span>
+<span class="hl-op">===</span> shop <span class="hl-op">===</span>
+<span class="hl-str">"A fine blade,"</span> says the smith.
+<span class="hl-op">-&gt;</span> <span class="hl-builtin">DONE</span>

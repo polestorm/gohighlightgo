@@ -1,0 +1,7 @@
+# PL/pgSQL: PostgreSQL 16 documentation, chapter 43 PL/pgSQL; requirements/languages/plpgsql.md
+extends  sql
+name     plpgsql pgsql postgresql postgres psql
+keyword  DECLARE BEGIN EXCEPTION LOOP EXIT RAISE NOTICE PERFORM RETURNS LANGUAGE ELSIF FOUND QUERY
+keyword  FOREACH ARRAY RECORD STRICT CONTINUE
+type     SERIAL BIGSERIAL JSONB JSON UUID BYTEA TIMESTAMPTZ INET
+builtin  NOW COALESCE ARRAY_AGG STRING_AGG

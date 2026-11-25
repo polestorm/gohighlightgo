@@ -1,0 +1,15 @@
+<span class="hl-com">' REQ: LANG-2791 LANG-2792 LANG-2793 LANG-2794</span>
+<span class="hl-com">' Bouncing ball</span>
+<span class="hl-kw">Graphics</span> <span class="hl-num">640</span>, <span class="hl-num">480</span>
+<span class="hl-kw">Type</span> Ball
+  <span class="hl-kw">Field</span> x<span class="hl-op">#</span>, y<span class="hl-op">#</span>, speed<span class="hl-op">#</span>
+<span class="hl-kw">End</span> <span class="hl-kw">Type</span>
+<span class="hl-kw">Local</span> b<span class="hl-op">.</span>Ball <span class="hl-op">=</span> <span class="hl-kw">New</span> Ball
+b\speed <span class="hl-op">=</span> <span class="hl-num">2.5</span>
+<span class="hl-kw">While</span> <span class="hl-kw">Not</span> <span class="hl-builtin">KeyHit</span>(<span class="hl-num">1</span>)
+  <span class="hl-kw">Cls</span>
+  b\x <span class="hl-op">=</span> b\x <span class="hl-op">+</span> b\speed
+  <span class="hl-kw">If</span> b\x <span class="hl-op">&gt;</span> <span class="hl-num">640</span> <span class="hl-kw">Then</span> b\speed <span class="hl-op">=</span> <span class="hl-op">-</span>b\speed
+  <span class="hl-builtin">Print</span> <span class="hl-str">"x = "</span> <span class="hl-op">+</span> b\x
+  <span class="hl-kw">Flip</span>
+<span class="hl-kw">Wend</span>

@@ -1,0 +1,16 @@
+// REQ: LANG-1781 LANG-1782 LANG-1783 LANG-1784
+struct VertexOut {
+    @builtin(position) pos: vec4f,
+    @location(0) color: vec3f,
+};
+
+@group(0) @binding(0) var<uniform> mvp: mat4x4f;
+
+/* Vertex shader */
+@vertex
+fn vs_main(@location(0) p: vec3f) -> VertexOut {
+    var out: VertexOut;
+    out.pos = mvp * vec4f(p, 1.0);
+    out.color = clamp(p * 0.5 + 0.5, vec3f(0.0), vec3f(1.0));
+    return out;
+}

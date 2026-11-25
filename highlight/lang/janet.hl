@@ -1,0 +1,15 @@
+# Janet: Janet language documentation (janet-lang.org/docs): syntax and special forms; requirements/languages/janet.md
+name     janet
+
+keyword  def defn defn- defmacro var fn let if do while loop each for cond case match when unless break
+keyword  set quote quasiquote unquote splice upscope import use try
+builtin  true false nil print printf pp map filter reduce length string table array struct
+
+ident-extra    !?*<>=/+-
+ident-part     !?*<>=/+-.
+line-comment   #
+string   " "  : escapes
+string   `` ``  : multiline
+string   ` `  : multiline
+sigil    :    : attr
+call-after-paren

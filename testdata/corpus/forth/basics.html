@@ -1,0 +1,13 @@
+<span class="hl-com">\ REQ: LANG-1341 LANG-1342 LANG-1343</span>
+<span class="hl-com">( Square a number. )</span>
+<span class="hl-op">:</span> square <span class="hl-com">( n -- n*n )</span> <span class="hl-builtin">dup</span> <span class="hl-op">*</span> <span class="hl-op">;</span>
+
+<span class="hl-op">:</span> greet <span class="hl-com">( -- )</span>
+  <span class="hl-str">." Hello, world!"</span> <span class="hl-builtin">cr</span> <span class="hl-op">;</span>
+
+<span class="hl-kw">variable</span> counter
+<span class="hl-num">10</span> counter !
+<span class="hl-op">:</span> count-down <span class="hl-com">( -- )</span>
+  <span class="hl-kw">begin</span> counter @ <span class="hl-builtin">dup</span> . <span class="hl-num">1</span><span class="hl-op">-</span> <span class="hl-builtin">dup</span> counter ! <span class="hl-num">0</span><span class="hl-op">=</span> <span class="hl-kw">until</span> <span class="hl-op">;</span>
+
+greet <span class="hl-num">5</span> square . count-down

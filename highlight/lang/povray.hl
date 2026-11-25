@@ -1,0 +1,12 @@
+# POV-Ray: POV-Ray 3.7 documentation: Scene Description Language reference; requirements/languages/povray.md
+name     povray pov inc-pov
+keyword  camera light_source sphere box cylinder cone plane torus union difference intersection merge
+keyword  object texture pigment finish normal color rgb rgbf location look_at angle translate rotate
+keyword  scale declare local include if else end while for macro
+builtin  x y z true false on off pi clock
+line-comment   //
+block-comment  /* */  : nested
+string   " "  : escapes
+sigil    #    : meta
+operators  +-*/=<>!&|?:<>.
+calls

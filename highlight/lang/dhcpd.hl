@@ -1,0 +1,9 @@
+# ISC dhcpd configuration: dhcpd.conf(5) manual page (ISC DHCP); requirements/languages/dhcpd.md
+name     dhcpd dhcpdconf
+keyword  subnet netmask range host option hardware ethernet fixed-address default-lease-time
+keyword  max-lease-time authoritative shared-network group pool class allow deny include
+builtin  routers domain-name domain-name-servers broadcast-address true false on off
+ident-part     -
+line-comment   #
+string   " "  : escapes
+operators  ;{},:

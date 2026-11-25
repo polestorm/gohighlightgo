@@ -1,0 +1,14 @@
+# TableGen: LLVM TableGen Programmer's Reference; requirements/languages/tablegen.md
+name     tablegen td
+keyword  class def defm defset defvar multiclass let in foreach if then else include field assert
+keyword  dump
+type     bit bits int string list code dag
+builtin  true false
+line-comment   //
+block-comment  /* */  : nested
+string   " "  : escapes
+string   [{ }]  : multiline
+sigil    !    : builtin
+sigil    $    : attr
+operators  =:<>,;#.?
+upper-type

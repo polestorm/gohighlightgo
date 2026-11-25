@@ -1,0 +1,9 @@
+# PRQL: PRQL language book (prql-lang.org); requirements/languages/prql.md
+name     prql
+keyword  from select filter derive group aggregate sort take join window let func into case
+builtin  true false null sum count average min max this that
+line-comment   #
+string   " "  : escapes interp=braces
+string   ' '  : escapes
+prefix   f s r
+operators  +-*/%=<>!&|~.:

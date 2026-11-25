@@ -1,0 +1,14 @@
+<span class="hl-com">; REQ: LANG-1711 LANG-1712 LANG-1713 LANG-1714</span>
+<span class="hl-meta">!include</span> <span class="hl-str">"MUI2.nsh"</span>
+<span class="hl-kw">Name</span> <span class="hl-str">"Demo"</span>
+<span class="hl-kw">OutFile</span> <span class="hl-str">"demo-setup.exe"</span>
+<span class="hl-kw">InstallDir</span> <span class="hl-str">"</span><span class="hl-esc">$P</span><span class="hl-str">ROGRAMFILES\Demo"</span>
+<span class="hl-kw">RequestExecutionLevel</span> admin
+<span class="hl-com">/* Main section */</span>
+<span class="hl-kw">Section</span> <span class="hl-str">"Install"</span>
+  <span class="hl-kw">SetOutPath</span> <span class="hl-attr">$INSTDIR</span>
+  <span class="hl-kw">File</span> <span class="hl-str">"demo.exe"</span>
+  <span class="hl-kw">WriteRegStr</span> <span class="hl-builtin">HKLM</span> <span class="hl-str">"Software\Demo"</span> <span class="hl-str">"Path"</span> <span class="hl-str">"</span><span class="hl-esc">$I</span><span class="hl-str">NSTDIR"</span>
+  <span class="hl-kw">StrCpy</span> $<span class="hl-num">0</span> <span class="hl-str">"</span><span class="hl-esc">${NSIS_VERSION}</span><span class="hl-str">"</span>
+  <span class="hl-kw">MessageBox</span> <span class="hl-builtin">MB_OK</span> <span class="hl-str">"Installed </span><span class="hl-esc">$\</span><span class="hl-str">r</span><span class="hl-esc">$\</span><span class="hl-str">n version </span><span class="hl-esc">$0</span><span class="hl-str">"</span>
+<span class="hl-kw">SectionEnd</span>

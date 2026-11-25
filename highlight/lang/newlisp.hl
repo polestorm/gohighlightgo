@@ -1,0 +1,12 @@
+# newLISP: newLISP Users Manual and Reference (10.7); requirements/languages/newlisp.md
+name     newlisp nl
+keyword  define fn lambda let letn local if cond when unless while dotimes dolist for case begin
+keyword  setq set catch throw context
+builtin  true nil println print append list first rest length map apply string format
+ident-extra    !?*<>=/+-
+ident-part     !?*<>=/+-.
+line-comment   ; #
+string   " "  : escapes
+string   { }  : multiline
+string   [text] [/text]  : multiline
+call-after-paren

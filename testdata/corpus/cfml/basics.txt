@@ -1,0 +1,10 @@
+// REQ: LANG-2801 LANG-2802 LANG-2803 LANG-2804
+/* Greeter component */
+component accessors="true" {
+    property name="name" type="string" default="world";
+    public string function greet(numeric times = 1) {
+        var text = "Hello, #name#! ""hi""";
+        for (var i = 1; i <= times; i++) { writeOutput(text); }
+        return text;
+    }
+}

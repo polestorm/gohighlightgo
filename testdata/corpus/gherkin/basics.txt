@@ -1,0 +1,22 @@
+# REQ: LANG-1641 LANG-1642 LANG-1643 LANG-1644
+@smoke
+Feature: Greeting
+  Background:
+    Given a greeter named "world"
+
+  Scenario Outline: Greet several times
+    When I greet <times> times
+    Then I see "Hello, world!"
+    And the log has <times> lines
+
+    Examples:
+      | times |
+      | 1     |
+      | 3     |
+
+  Scenario: Multi-line text
+    Given the text
+      """
+      Hello,
+      world
+      """

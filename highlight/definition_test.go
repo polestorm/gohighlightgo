@@ -17,6 +17,8 @@ func TestDefinitionErrors(t *testing.T) {
 		{"name x\nbogus 1", "line 2: unknown directive"},
 		{"name x\nstring \"", "line 2: string needs"},
 		{"name x\nstring \" \" : sometimes", "unknown option"},
+		{"name x\noperators ←→", "not printable ASCII"},
+		{"name x\nline-comment \xef", "not valid UTF-8"},
 		{"name x\nblock-comment /*", "line 2: block-comment needs"},
 		{"name x\nescape : x=9", "x must be"},
 		{"name x\nescape x=2", "only options"},

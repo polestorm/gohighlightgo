@@ -1,0 +1,16 @@
+# SAS: SAS 9.4 Programming Documentation: DATA step, PROC statements, macro language; requirements/languages/sas.md
+name     sas
+
+keyword  data set run proc quit if then else do end by where keep drop rename length format informat
+keyword  input output retain merge array libname filename options title footnote label class var model
+keyword  tables output to until while
+builtin  sum mean min max put substr scan upcase lowcase trim strip cats catx intck intnx today mdy
+fold-case
+
+block-comment  /* */
+string   " "  : doubled
+string   ' '  : doubled
+sigil    %    : meta
+sigil    &    : attr
+operators  +-*/<>=|^~
+calls

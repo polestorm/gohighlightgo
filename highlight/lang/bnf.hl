@@ -1,0 +1,5 @@
+# BNF: the Backus–Naur form as used in RFC 5234 (ABNF) and the ALGOL 60 report; requirements/languages/bnf.md
+name     bnf abnf
+string   " "
+string   < >
+operators  ::=|/*()[]

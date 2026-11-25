@@ -1,0 +1,10 @@
+<span class="hl-com">% REQ: LANG-1981 LANG-1982 LANG-1983 LANG-1984</span>
+<span class="hl-com">% N-queens</span>
+<span class="hl-kw">include</span> <span class="hl-str">"alldifferent.mzn"</span>;
+<span class="hl-kw">int</span><span class="hl-op">:</span> n <span class="hl-op">=</span> <span class="hl-num">8</span>;
+<span class="hl-kw">array</span>[<span class="hl-num">1</span><span class="hl-op">..</span>n] <span class="hl-kw">of</span> <span class="hl-kw">var</span> <span class="hl-num">1</span><span class="hl-op">..</span>n<span class="hl-op">:</span> q;
+<span class="hl-com">/* constraints */</span>
+<span class="hl-kw">constraint</span> <span class="hl-builtin">alldifferent</span>(q);
+<span class="hl-kw">constraint</span> <span class="hl-kw">forall</span>(i, j <span class="hl-kw">in</span> <span class="hl-num">1</span><span class="hl-op">..</span>n <span class="hl-kw">where</span> i <span class="hl-op">&lt;</span> j)(q[i] <span class="hl-op">+</span> i <span class="hl-op">!=</span> q[j] <span class="hl-op">+</span> j);
+<span class="hl-kw">solve</span> <span class="hl-kw">satisfy</span>;
+<span class="hl-kw">output</span> [<span class="hl-str">"q = </span><span class="hl-esc">\(</span><span class="hl-str">q)</span><span class="hl-esc">\n</span><span class="hl-str">"</span>];

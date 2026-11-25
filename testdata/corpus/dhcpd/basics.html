@@ -1,0 +1,10 @@
+<span class="hl-com"># REQ: LANG-2931 LANG-2932 LANG-2933 LANG-2934</span>
+<span class="hl-com"># Office network</span>
+<span class="hl-kw">default-lease-time</span> <span class="hl-num">600</span><span class="hl-op">;</span>
+<span class="hl-kw">authoritative</span><span class="hl-op">;</span>
+<span class="hl-kw">subnet</span> <span class="hl-num">192.168.1.0</span> <span class="hl-kw">netmask</span> <span class="hl-num">255.255.255.0</span> <span class="hl-op">{</span>
+    <span class="hl-kw">range</span> <span class="hl-num">192.168.1.100</span> <span class="hl-num">192.168.1.200</span><span class="hl-op">;</span>
+    <span class="hl-kw">option</span> <span class="hl-builtin">routers</span> <span class="hl-num">192.168.1.1</span><span class="hl-op">;</span>
+    <span class="hl-kw">option</span> <span class="hl-builtin">domain-name</span> <span class="hl-str">"example.org"</span><span class="hl-op">;</span>
+<span class="hl-op">}</span>
+<span class="hl-kw">host</span> printer <span class="hl-op">{</span> <span class="hl-kw">hardware</span> <span class="hl-kw">ethernet</span> <span class="hl-num">00</span><span class="hl-op">:</span><span class="hl-num">11</span><span class="hl-op">:</span><span class="hl-num">22</span><span class="hl-op">:</span><span class="hl-num">33</span><span class="hl-op">:</span><span class="hl-num">44</span><span class="hl-op">:</span><span class="hl-num">55</span><span class="hl-op">;</span> <span class="hl-kw">fixed-address</span> <span class="hl-num">192.168.1.31</span><span class="hl-op">;</span> <span class="hl-op">}</span>

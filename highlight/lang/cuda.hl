@@ -1,0 +1,8 @@
+# CUDA C++: CUDA C++ Programming Guide (NVIDIA, 12.x): language extensions; requirements/languages/cuda.md
+extends  cpp
+name     cuda cu cuh
+keyword  __global__ __device__ __host__ __shared__ __constant__ __managed__ __restrict__ __syncthreads
+type     dim3 cudaError_t cudaStream_t float2 float3 float4 int2 int3 int4
+builtin  threadIdx blockIdx blockDim gridDim warpSize cudaMalloc cudaMemcpy cudaFree
+builtin  cudaMemcpyHostToDevice cudaMemcpyDeviceToHost cudaDeviceSynchronize
+operators  <>

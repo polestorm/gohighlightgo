@@ -1,0 +1,10 @@
+<span class="hl-com">; REQ: LANG-2661 LANG-2662 LANG-2663 LANG-2664</span>
+        <span class="hl-meta">.org</span> <span class="hl-num">$C000</span>
+<span class="hl-fn">start</span>:  <span class="hl-kw">ldx</span> <span class="hl-op">#</span>$<span class="hl-num">00</span>
+<span class="hl-fn">loop</span>:   <span class="hl-kw">lda</span> message<span class="hl-op">,</span><span class="hl-builtin">x</span>
+        <span class="hl-kw">beq</span> done
+        <span class="hl-kw">sta</span> $<span class="hl-num">0400</span><span class="hl-op">,</span><span class="hl-builtin">x</span>
+        <span class="hl-kw">inx</span>
+        <span class="hl-kw">bne</span> loop
+<span class="hl-fn">done</span>:   <span class="hl-kw">rts</span>
+<span class="hl-fn">message</span>: <span class="hl-meta">.byte</span> <span class="hl-str">"HELLO"</span><span class="hl-op">,</span> <span class="hl-num">0</span>

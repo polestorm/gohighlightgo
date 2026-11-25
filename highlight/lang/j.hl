@@ -1,0 +1,11 @@
+# J: J Dictionary and the J NuVoc reference (jsoftware.com), control words and comments; requirements/languages/j.md
+name     j ijs
+
+keyword  if. do. else. elseif. end. while. whilst. for. select. case. fcase. try. catch. catchd. catcht.
+keyword  return. break. continue. throw. assert. goto_ label_
+builtin  NB.
+
+ident-part     .:_
+line-comment   NB.
+string   ' '  : doubled
+operators  =<>_+*-%^$~|.:,;#!/\[]{}"`@&?

@@ -1,0 +1,8 @@
+<span class="hl-com"># REQ: LANG-2511 LANG-2512 LANG-2513 LANG-2514</span>
+<span class="hl-com"># Greeting function</span>
+<span class="hl-kw">fn</span> greet <span class="hl-op">{|</span>name <span class="hl-op">&amp;</span>times<span class="hl-op">=</span><span class="hl-num">1</span><span class="hl-op">|</span>
+  <span class="hl-builtin">range</span> <span class="hl-attr">$times</span> <span class="hl-op">|</span> <span class="hl-builtin">each</span> <span class="hl-op">{|</span>i<span class="hl-op">|</span> <span class="hl-builtin">echo</span> <span class="hl-str">"Hello, "</span><span class="hl-attr">$name</span><span class="hl-str">"!"</span> <span class="hl-op">}</span>
+<span class="hl-op">}</span>
+<span class="hl-kw">var</span> people <span class="hl-op">=</span> <span class="hl-op">[</span>ann bob<span class="hl-op">]</span>
+<span class="hl-kw">for</span> p <span class="hl-attr">$people</span> <span class="hl-op">{</span> greet <span class="hl-attr">$p</span> <span class="hl-op">&amp;</span>times<span class="hl-op">=</span><span class="hl-num">2</span> <span class="hl-op">}</span>
+<span class="hl-kw">if</span> <span class="hl-op">(&gt;</span> <span class="hl-op">(</span><span class="hl-builtin">count</span> <span class="hl-attr">$people</span><span class="hl-op">)</span> <span class="hl-num">0</span><span class="hl-op">)</span> <span class="hl-op">{</span> <span class="hl-builtin">put</span> <span class="hl-str">'it</span><span class="hl-esc">''</span><span class="hl-str">s fine'</span> <span class="hl-op">}</span>

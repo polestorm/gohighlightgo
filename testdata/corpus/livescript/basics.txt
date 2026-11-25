@@ -1,0 +1,13 @@
+# REQ: LANG-1381 LANG-1382 LANG-1383
+/* Block comment */
+class Greeter
+  (@name = 'world') ->
+
+  greet: (times = 1) ->
+    text = "Hello, #{@name}! Count: #{times}\n"
+    [text for i from 1 to times].join ''
+
+greeter = new Greeter 'live'
+console.log greeter.greet 2
+squares = [1 to 5] |> map (^ 2)
+if squares.length > 0 and yes then void else null

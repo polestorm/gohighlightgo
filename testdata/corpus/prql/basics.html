@@ -1,0 +1,8 @@
+<span class="hl-com"># REQ: LANG-2041 LANG-2042 LANG-2043 LANG-2044</span>
+<span class="hl-com"># Top customers</span>
+<span class="hl-kw">from</span> invoices
+<span class="hl-kw">filter</span> invoice_date <span class="hl-op">&gt;=</span> @<span class="hl-num">2024</span><span class="hl-op">-</span><span class="hl-num">01</span><span class="hl-op">-</span><span class="hl-num">01</span>
+<span class="hl-kw">derive</span> {total <span class="hl-op">=</span> quantity <span class="hl-op">*</span> price, label <span class="hl-op">=</span> <span class="hl-str">f"</span><span class="hl-esc">{customer}</span><span class="hl-str">: </span><span class="hl-esc">{total}</span><span class="hl-str">"</span>}
+<span class="hl-kw">group</span> customer_id (<span class="hl-kw">aggregate</span> {sum_total <span class="hl-op">=</span> <span class="hl-builtin">sum</span> total, n <span class="hl-op">=</span> <span class="hl-builtin">count</span> <span class="hl-builtin">this</span>})
+<span class="hl-kw">sort</span> {<span class="hl-op">-</span>sum_total}
+<span class="hl-kw">take</span> <span class="hl-num">10</span>

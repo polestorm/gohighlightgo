@@ -1,0 +1,10 @@
+; REQ: LANG-1621 LANG-1622 LANG-1623 LANG-1624
+(local greeting "Hello")
+(fn greet [name times]
+  "Greets name times times."
+  (for [i 1 (or times 1)]
+    (print (.. greeting ", " name "!\n"))))
+(let [config {:name "world" :times 2}]
+  (when (and config true)
+    (greet config.name config.times)))
+(each [k v (pairs {:a 1 :b 2.5})] (print k v))

@@ -1,0 +1,14 @@
+# SourcePawn: SourcePawn language reference (AlliedModders wiki); requirements/languages/sourcepawn.md
+name     sourcepawn sp pawn
+keyword  public stock static const native forward new decl enum struct methodmap property if else for
+keyword  while do switch case default return break continue sizeof view_as function typedef typeset
+keyword  this null delete
+type     int float bool char void any Handle
+builtin  true false INVALID_HANDLE PrintToServer PrintToChat
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+string   ' '  : escapes
+operators  +-*/%&|^!<>=:?~.
+calls
+hook     c-preprocessor

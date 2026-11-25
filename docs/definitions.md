@@ -35,8 +35,9 @@ calls
 One directive per line: a name, values separated by spaces, and optionally options after a lone `:` (the last
 one on the line, so `:` can also be a value: `sigil : : attr`; a `:` that ends the line is a value:
 `key-names :`). Lines that
-start with `#` and empty lines are ignored. Values are printable ASCII without spaces, except words, which may
-contain any letters.
+start with `#` and empty lines are ignored. Values contain no spaces. Values of `operators`, `ident-extra`, `ident-part`,
+`sigil`, `key-names`, `prefix` and `escape` are printable ASCII, because they work on single bytes. Other values
+(words, comment and string delimiters) may be any valid UTF-8 text without control characters, such as `⍝` in APL.
 
 | Directive | Values | Options | Meaning |
 |---|---|---|---|

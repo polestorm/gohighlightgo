@@ -1,0 +1,12 @@
+# DAX: DAX function reference and DAX syntax (Microsoft); requirements/languages/dax.md
+name     dax
+keyword  VAR RETURN EVALUATE DEFINE MEASURE ORDER BY ASC DESC TRUE FALSE IN NOT AND OR
+builtin  CALCULATE SUM SUMX FILTER ALL ALLEXCEPT DIVIDE IF SWITCH COUNTROWS DISTINCTCOUNT RELATED
+builtin  AVERAGE MAX MIN BLANK DATEADD SAMEPERIODLASTYEAR VALUES SELECTEDVALUE
+fold-case
+line-comment   // --
+block-comment  /* */
+string   " "  : doubled
+string   ' '  : name
+operators  +-*/^&=<>|,()[]
+calls

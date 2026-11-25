@@ -8,7 +8,7 @@ import (
 // CSS według CSS Syntax Module Level 3 i CSS Selectors Level 4; słowa wartości z CSS Values and Units Level 4
 // i CSS Cascading Level 4; wymagania: requirements/languages/css.md.
 var langCSS = language{
-	names: []string{"css"},
+	names: []string{"css", "scss", "less"},
 	scan:  scanCSS,
 }
 

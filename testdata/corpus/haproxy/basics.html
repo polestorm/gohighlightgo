@@ -1,0 +1,16 @@
+<span class="hl-com"># REQ: LANG-2481 LANG-2482 LANG-2483 LANG-2484</span>
+<span class="hl-kw">global</span>
+    <span class="hl-kw">maxconn</span> <span class="hl-num">4096</span>
+    <span class="hl-kw">daemon</span>
+<span class="hl-kw">defaults</span>
+    <span class="hl-kw">mode</span> <span class="hl-builtin">http</span>
+    <span class="hl-kw">timeout</span> connect <span class="hl-num">5s</span>
+<span class="hl-com"># Public entry point</span>
+<span class="hl-kw">frontend</span> web
+    <span class="hl-kw">bind</span> *:<span class="hl-num">443</span> <span class="hl-builtin">ssl</span> crt /etc/<span class="hl-builtin">ssl</span>/site.pem
+    <span class="hl-kw">acl</span> is_api path_beg /api
+    <span class="hl-kw">use_backend</span> api <span class="hl-builtin">if</span> is_api
+    <span class="hl-kw">default_backend</span> app
+<span class="hl-kw">backend</span> api
+    <span class="hl-kw">balance</span> <span class="hl-builtin">roundrobin</span>
+    <span class="hl-kw">server</span> api1 <span class="hl-num">10.0.0.1</span>:<span class="hl-num">8080</span> <span class="hl-builtin">check</span>

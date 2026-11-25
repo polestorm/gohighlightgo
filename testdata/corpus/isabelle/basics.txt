@@ -1,0 +1,13 @@
+(* REQ: LANG-1951 LANG-1952 LANG-1953 LANG-1954
+*)
+theory Demo
+  imports Main
+begin
+(* outer (* nested *) still a comment *)
+datatype shape = Circle nat | Rect nat nat
+fun area :: "shape ⇒ nat" where
+  "area (Circle r) = 3 * r * r"
+| "area (Rect w h) = w * h"
+lemma area_pos: "area s ≥ 0"
+  by (cases s) auto
+end

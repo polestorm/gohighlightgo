@@ -1,0 +1,11 @@
+# MEL: Autodesk Maya MEL command reference; requirements/languages/mel.md
+name     mel
+keyword  global proc if else for in while do switch case default break continue return
+type     int float string vector matrix
+builtin  true false print polySphere move rotate select ls size
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+sigil    $    : attr
+operators  +-*/%&|!<>=:?.`
+calls

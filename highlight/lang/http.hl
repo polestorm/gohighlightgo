@@ -1,0 +1,9 @@
+# HTTP: RFC 9110 (HTTP Semantics) and RFC 9112 (HTTP/1.1): message syntax; requirements/languages/http.md
+name     http https
+keyword  GET POST PUT PATCH DELETE HEAD OPTIONS CONNECT TRACE HTTP
+builtin  true false null
+ident-part     -
+line-comment   #
+string   " "  : escapes
+key-names  :
+operators  /:=&?

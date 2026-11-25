@@ -126,6 +126,19 @@ sigil    .    : attr
 operators  |=:-
 `)
 
+// ejsInner: wnętrze <% … %> w EJS to JavaScript.
+func ejsInner() func(*writer, []byte) {
+	return func(w *writer, src []byte) { lookup("javascript").scan(w, src) }
+}
+
+var langEJS = language{
+	names: []string{"ejs"},
+	scan: templateScanner{tags: []tagPair{
+		{open: "<%#", close: "%>", comment: true}, {open: "<%=", close: "%>"}, {open: "<%-", close: "%>"},
+		{open: "<%_", close: "%>"}, {open: "<%", close: "%>"},
+	}, inner: ejsInner}.scan,
+}
+
 // erbInner: wnętrze <% … %> w ERB to Ruby.
 func erbInner() func(*writer, []byte) {
 	return func(w *writer, src []byte) { lookup("ruby").scan(w, src) }

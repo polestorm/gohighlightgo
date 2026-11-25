@@ -1,0 +1,9 @@
+# LilyPond: LilyPond Notation Reference (2.24); requirements/languages/lilypond.md
+name     lilypond ly
+builtin  major minor
+line-comment   %
+block-comment  %{ %}
+string   " "  : escapes
+sigil    \    : kw
+sigil    #    : meta
+operators  {}<>~|'.,=()[]-_^

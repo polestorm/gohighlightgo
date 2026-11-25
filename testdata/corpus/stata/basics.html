@@ -1,0 +1,13 @@
+<span class="hl-com">// REQ: LANG-1501 LANG-1502 LANG-1503</span>
+<span class="hl-com">/* Load and summarize */</span>
+<span class="hl-builtin">use</span> <span class="hl-str">"auto.dta"</span>, clear
+<span class="hl-kw">local</span> vars price mpg weight
+<span class="hl-kw">foreach</span> v <span class="hl-kw">of</span> <span class="hl-kw">local</span> vars {
+    <span class="hl-builtin">summarize</span> `v', detail
+}
+<span class="hl-builtin">generate</span> ratio <span class="hl-op">=</span> price <span class="hl-op">/</span> weight
+<span class="hl-builtin">replace</span> ratio <span class="hl-op">=</span> <span class="hl-num">0</span> <span class="hl-kw">if</span> <span class="hl-fn">missing</span>(ratio)
+<span class="hl-builtin">regress</span> price mpg weight
+<span class="hl-builtin">display</span> <span class="hl-str">"Mean ratio: "</span> %<span class="hl-num">9.2f</span> <span class="hl-fn">r</span>(mean)
+<span class="hl-kw">global</span> outdir <span class="hl-str">"results"</span>
+<span class="hl-builtin">save</span> <span class="hl-str">"$outdir/auto_clean.dta"</span>, <span class="hl-builtin">replace</span>

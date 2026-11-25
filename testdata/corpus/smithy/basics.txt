@@ -1,0 +1,11 @@
+// REQ: LANG-2441 LANG-2442 LANG-2443 LANG-2444
+$version: "2"
+namespace example.greeter
+/// Greeter service
+service Greeter { version: "2024-01-01", operations: [Greet] }
+@readonly
+@http(method: "GET", uri: "/greet/{name}")
+operation Greet {
+    input := { @required @httpLabel name: String }
+    output := { message: String }
+}

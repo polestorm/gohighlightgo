@@ -1,0 +1,15 @@
+# OpenSCAD: OpenSCAD User Manual, The OpenSCAD Language (2021.01); requirements/languages/openscad.md
+name     openscad scad
+
+keyword  module function include use if else for let each intersection_for assert echo
+builtin  cube sphere cylinder polyhedron square circle polygon text translate rotate scale mirror
+builtin  multmatrix color offset hull minkowski union difference intersection linear_extrude
+builtin  rotate_extrude import surface projection render children true false undef PI len concat
+builtin  lookup str sin cos tan abs sqrt pow min max floor ceil round
+
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+sigil    $    : meta
+operators  +-*/%&|^!<>=:?~#
+calls

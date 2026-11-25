@@ -1,0 +1,14 @@
+<span class="hl-com"># REQ: LANG-2171 LANG-2172 LANG-2173 LANG-2174</span>
+<span class="hl-kw">mainmenu</span> <span class="hl-str">"Demo configuration"</span>
+<span class="hl-kw">menu</span> <span class="hl-str">"Features"</span>
+<span class="hl-kw">config</span> DEMO_GREETER
+	<span class="hl-type">bool</span> <span class="hl-str">"Enable the greeter"</span>
+	<span class="hl-kw">default</span> <span class="hl-builtin">y</span>
+	<span class="hl-kw">depends</span> <span class="hl-kw">on</span> NET <span class="hl-op">&amp;&amp;</span> <span class="hl-op">!</span>EMBEDDED
+	<span class="hl-kw">help</span>
+	  Prints a greeting.
+<span class="hl-kw">config</span> DEMO_TIMES
+	<span class="hl-type">int</span> <span class="hl-str">"Greeting count"</span>
+	<span class="hl-kw">range</span> <span class="hl-num">1</span> <span class="hl-num">31</span>
+	<span class="hl-kw">default</span> <span class="hl-num">2</span>
+<span class="hl-kw">endmenu</span>

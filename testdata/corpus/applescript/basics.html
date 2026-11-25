@@ -1,0 +1,17 @@
+<span class="hl-com">-- REQ: LANG-1561 LANG-1562 LANG-1563 LANG-1564</span>
+<span class="hl-com">(* Greets the user. *)</span>
+<span class="hl-kw">property</span> greeting : <span class="hl-str">"Hello"</span>
+<span class="hl-kw">on</span> greet(theName, times)
+	<span class="hl-kw">set</span> theText <span class="hl-kw">to</span> greeting <span class="hl-op">&amp;</span> <span class="hl-str">", "</span> <span class="hl-op">&amp;</span> theName <span class="hl-op">&amp;</span> <span class="hl-str">"!"</span>
+	<span class="hl-kw">repeat</span> <span class="hl-kw">with</span> i <span class="hl-kw">from</span> <span class="hl-num">1</span> <span class="hl-kw">to</span> times
+		<span class="hl-builtin">display</span> <span class="hl-builtin">dialog</span> theText
+	<span class="hl-kw">end</span> <span class="hl-kw">repeat</span>
+	<span class="hl-kw">return</span> length <span class="hl-kw">of</span> theText
+<span class="hl-kw">end</span> greet
+<span class="hl-kw">tell</span> application <span class="hl-str">"Finder"</span>
+	<span class="hl-builtin">activate</span>
+	<span class="hl-kw">if</span> (count <span class="hl-kw">of</span> windows) <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-kw">and</span> <span class="hl-builtin">true</span> <span class="hl-kw">then</span>
+		<span class="hl-kw">set</span> w <span class="hl-kw">to</span> name <span class="hl-kw">of</span> front window
+	<span class="hl-kw">end</span> <span class="hl-kw">if</span>
+<span class="hl-kw">end</span> <span class="hl-kw">tell</span>
+greet(<span class="hl-str">"world"</span>, <span class="hl-num">2</span>)

@@ -1,0 +1,11 @@
+# Maple: Maple Programming Guide (Maplesoft); requirements/languages/maple.md
+name     maple mpl
+keyword  proc end if then elif else fi for from to by while do od local global return in and or not
+keyword  module export option use try catch finally break next
+builtin  true false FAIL Pi I infinity diff int simplify solve expand evalf plot seq sum print
+line-comment   #
+block-comment  (* *)
+string   " "  : escapes
+string   ` `
+operators  +-*/^=<>:;$@!.,|
+calls

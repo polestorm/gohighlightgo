@@ -1,0 +1,10 @@
+% REQ: LANG-1981 LANG-1982 LANG-1983 LANG-1984
+% N-queens
+include "alldifferent.mzn";
+int: n = 8;
+array[1..n] of var 1..n: q;
+/* constraints */
+constraint alldifferent(q);
+constraint forall(i, j in 1..n where i < j)(q[i] + i != q[j] + j);
+solve satisfy;
+output ["q = \(q)\n"];

@@ -1,0 +1,13 @@
+<span class="hl-com"># REQ: LANG-1381 LANG-1382 LANG-1383</span>
+<span class="hl-com">/* Block comment */</span>
+<span class="hl-kw">class</span> Greeter
+  (<span class="hl-attr">@name</span> <span class="hl-op">=</span> <span class="hl-str">'world'</span>) <span class="hl-op">-&gt;</span>
+
+  greet<span class="hl-op">:</span> (times <span class="hl-op">=</span> <span class="hl-num">1</span>) <span class="hl-op">-&gt;</span>
+    text <span class="hl-op">=</span> <span class="hl-str">"Hello, </span><span class="hl-esc">#{@name}</span><span class="hl-str">! Count: </span><span class="hl-esc">#{times}\n</span><span class="hl-str">"</span>
+    [text <span class="hl-kw">for</span> i from <span class="hl-num">1</span> <span class="hl-kw">to</span> times]<span class="hl-op">.</span>join <span class="hl-str">''</span>
+
+greeter <span class="hl-op">=</span> <span class="hl-kw">new</span> Greeter <span class="hl-str">'live'</span>
+console<span class="hl-op">.</span>log greeter<span class="hl-op">.</span>greet <span class="hl-num">2</span>
+squares <span class="hl-op">=</span> [<span class="hl-num">1</span> <span class="hl-kw">to</span> <span class="hl-num">5</span>] <span class="hl-op">|&gt;</span> <span class="hl-fn">map</span> (<span class="hl-op">^</span> <span class="hl-num">2</span>)
+<span class="hl-kw">if</span> squares<span class="hl-op">.</span>length <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-kw">and</span> <span class="hl-builtin">yes</span> <span class="hl-kw">then</span> <span class="hl-builtin">void</span> <span class="hl-kw">else</span> <span class="hl-builtin">null</span>

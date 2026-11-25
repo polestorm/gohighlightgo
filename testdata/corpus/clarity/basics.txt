@@ -1,0 +1,8 @@
+;; REQ: LANG-2581 LANG-2582 LANG-2583 LANG-2584
+(define-data-var counter uint u0)
+(define-public (increment (by uint))
+  (begin
+    (asserts! (> by u0) (err u1))
+    (var-set counter (+ (var-get counter) by))
+    (ok (var-get counter))))
+(define-read-only (greet) (ok "Hello, Clarity!"))

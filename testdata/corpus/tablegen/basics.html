@@ -1,0 +1,11 @@
+<span class="hl-com">// REQ: LANG-2081 LANG-2082 LANG-2083 LANG-2084</span>
+<span class="hl-com">// Instruction definitions</span>
+<span class="hl-kw">class</span> <span class="hl-type">Inst</span><span class="hl-op">&lt;</span><span class="hl-type">string</span> asm<span class="hl-op">,</span> <span class="hl-type">list</span><span class="hl-op">&lt;</span><span class="hl-type">dag</span><span class="hl-op">&gt;</span> pattern<span class="hl-op">&gt;</span> {
+  <span class="hl-type">string</span> <span class="hl-type">AsmString</span> <span class="hl-op">=</span> asm<span class="hl-op">;</span>
+  <span class="hl-type">list</span><span class="hl-op">&lt;</span><span class="hl-type">dag</span><span class="hl-op">&gt;</span> <span class="hl-type">Pattern</span> <span class="hl-op">=</span> pattern<span class="hl-op">;</span>
+  <span class="hl-type">bits</span><span class="hl-op">&lt;</span><span class="hl-num">8</span><span class="hl-op">&gt;</span> <span class="hl-type">Opcode</span> <span class="hl-op">=</span> <span class="hl-num">0x1F</span><span class="hl-op">;</span>
+}
+<span class="hl-kw">let</span> isBranch <span class="hl-op">=</span> <span class="hl-num">1</span> <span class="hl-kw">in</span>
+<span class="hl-kw">def</span> <span class="hl-type">JMP</span> <span class="hl-op">:</span> <span class="hl-type">Inst</span><span class="hl-op">&lt;</span><span class="hl-str">"jmp $dst"</span><span class="hl-op">,</span> []<span class="hl-op">&gt;;</span>
+<span class="hl-kw">defvar</span> count <span class="hl-op">=</span> <span class="hl-builtin">!add</span>(<span class="hl-num">1</span><span class="hl-op">,</span> <span class="hl-num">2</span>)<span class="hl-op">;</span>
+<span class="hl-kw">def</span> <span class="hl-type">ADD</span> <span class="hl-op">:</span> <span class="hl-type">Inst</span><span class="hl-op">&lt;</span><span class="hl-str">"add $a, $b"</span><span class="hl-op">,</span> [(set <span class="hl-type">GPR</span><span class="hl-op">:</span><span class="hl-attr">$a</span><span class="hl-op">,</span> (add <span class="hl-type">GPR</span><span class="hl-op">:</span><span class="hl-attr">$a</span><span class="hl-op">,</span> <span class="hl-type">GPR</span><span class="hl-op">:</span><span class="hl-attr">$b</span>))]<span class="hl-op">&gt;;</span>

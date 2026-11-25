@@ -1,0 +1,15 @@
+<span class="hl-com">// REQ: LANG-2621 LANG-2622 LANG-2623 LANG-2624</span>
+<span class="hl-kw">namespace</span> Demo {
+    <span class="hl-kw">open</span> Microsoft<span class="hl-op">.</span>Quantum<span class="hl-op">.</span>Intrinsic;
+    <span class="hl-com">// Bell state</span>
+    <span class="hl-meta">@EntryPoint</span>()
+    <span class="hl-kw">operation</span> <span class="hl-fn">Bell</span>() <span class="hl-op">:</span> <span class="hl-type">Result</span>[] {
+        <span class="hl-kw">use</span> (a, b) <span class="hl-op">=</span> (<span class="hl-type">Qubit</span>(), <span class="hl-type">Qubit</span>());
+        <span class="hl-builtin">H</span>(a);
+        <span class="hl-builtin">CNOT</span>(a, b);
+        <span class="hl-kw">let</span> results <span class="hl-op">=</span> [<span class="hl-builtin">M</span>(a), <span class="hl-builtin">M</span>(b)];
+        <span class="hl-builtin">Message</span>(<span class="hl-str">$"Results: </span><span class="hl-esc">{results}</span><span class="hl-str">"</span>);
+        <span class="hl-fn">ResetAll</span>([a, b]);
+        <span class="hl-kw">return</span> results;
+    }
+}

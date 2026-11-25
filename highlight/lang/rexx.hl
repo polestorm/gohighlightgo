@@ -1,0 +1,14 @@
+# REXX: ANSI X3.274-1996 (REXX) and the ooRexx reference: keyword instructions, built-in functions; requirements/languages/rexx.md
+name     rexx rex
+
+keyword  address arg call do drop else end exit if interpret iterate leave nop numeric options otherwise
+keyword  parse procedure pull push queue return say select signal then to trace upper when while until
+keyword  forever by for with value var source version expose
+builtin  length substr pos word words left right strip translate reverse abs max min date time
+fold-case
+
+block-comment  /* */  : nested
+string   " "  : doubled
+string   ' '  : doubled
+operators  +-*/%&|\<>=
+calls

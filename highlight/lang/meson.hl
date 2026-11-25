@@ -1,0 +1,12 @@
+# Meson: Meson build system reference manual: syntax and functions; requirements/languages/meson.md
+name     meson
+keyword  if elif else endif foreach endforeach break continue and or not in
+builtin  true false project executable library shared_library static_library dependency subdir
+builtin  files include_directories configure_file install_headers test declare_dependency message
+builtin  get_option find_program run_command meson
+line-comment   #
+string   ''' '''  : escapes multiline
+string   ' '      : escapes
+prefix   f        : interp=braces
+operators  +-*/%=<>!:?.
+calls

@@ -1,0 +1,13 @@
+; REQ: LANG-1251 LANG-1252 LANG-1253
+#Requires AutoHotkey v2.0
+/* Block comment */
+greet(name, times := 1) {
+    text := "Hello, " name "!`n"
+    loop times {
+        MsgBox(text)
+    }
+    return StrLen(text)
+}
+^!g::greet("world", 2)  ; Ctrl+Alt+G
+if (A_Index > 0 and true)
+    Send("{Enter}")

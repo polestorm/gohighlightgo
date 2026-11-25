@@ -1,0 +1,11 @@
+<span class="hl-com"># REQ: LANG-2061 LANG-2062 LANG-2063 LANG-2064</span>
+<span class="hl-kw">require</span> <span class="hl-op">[</span><span class="hl-str">"fileinto"</span><span class="hl-op">,</span> <span class="hl-str">"reject"</span><span class="hl-op">];</span>
+<span class="hl-com">/* Sort mail */</span>
+<span class="hl-kw">if</span> <span class="hl-kw">header</span> <span class="hl-attr">:contains</span> <span class="hl-str">"subject"</span> <span class="hl-str">"invoice"</span> <span class="hl-op">{</span>
+    <span class="hl-kw">fileinto</span> <span class="hl-str">"Finance"</span><span class="hl-op">;</span>
+<span class="hl-op">}</span> <span class="hl-kw">elsif</span> <span class="hl-kw">anyof</span> (<span class="hl-kw">size</span> <span class="hl-attr">:over</span> <span class="hl-num">1M</span><span class="hl-op">,</span> <span class="hl-kw">address</span> <span class="hl-attr">:domain</span> <span class="hl-str">"from"</span> <span class="hl-str">"spam.example"</span>) <span class="hl-op">{</span>
+    <span class="hl-kw">discard</span><span class="hl-op">;</span>
+    <span class="hl-kw">stop</span><span class="hl-op">;</span>
+<span class="hl-op">}</span> <span class="hl-kw">else</span> <span class="hl-op">{</span>
+    <span class="hl-kw">keep</span><span class="hl-op">;</span>
+<span class="hl-op">}</span>

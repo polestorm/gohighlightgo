@@ -1,0 +1,12 @@
+// REQ: LANG-1921 LANG-1922 LANG-1923 LANG-1924
+Module: greeter
+/* Block comment */
+define class <greeter> (<object>)
+  slot name :: <string> = "world", init-keyword: name:;
+end class;
+define method greet (g :: <greeter>, times :: <integer>) => ()
+  for (i from 1 to times)
+    format-out("Hello, %s!\n", g.name);
+  end for;
+end method;
+greet(make(<greeter>, name: "dylan"), 2);

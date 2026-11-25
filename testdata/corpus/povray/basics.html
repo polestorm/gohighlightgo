@@ -1,0 +1,13 @@
+<span class="hl-com">// REQ: LANG-1821 LANG-1822 LANG-1823 LANG-1824</span>
+<span class="hl-meta">#include</span> <span class="hl-str">"colors.inc"</span>
+<span class="hl-com">/* Scene */</span>
+<span class="hl-meta">#declare</span> Radius <span class="hl-op">=</span> <span class="hl-num">1.5</span>;
+<span class="hl-kw">camera</span> { <span class="hl-kw">location</span> <span class="hl-op">&lt;</span><span class="hl-num">0</span>, <span class="hl-num">2</span>, <span class="hl-op">-</span><span class="hl-num">5</span><span class="hl-op">&gt;</span> <span class="hl-kw">look_at</span> <span class="hl-op">&lt;</span><span class="hl-num">0</span>, <span class="hl-num">1</span>, <span class="hl-num">0</span><span class="hl-op">&gt;</span> <span class="hl-kw">angle</span> <span class="hl-num">45</span> }
+<span class="hl-kw">light_source</span> { <span class="hl-op">&lt;</span><span class="hl-num">2</span>, <span class="hl-num">4</span>, <span class="hl-op">-</span><span class="hl-num">3</span><span class="hl-op">&gt;</span> <span class="hl-kw">color</span> <span class="hl-kw">rgb</span> <span class="hl-op">&lt;</span><span class="hl-num">1</span>, <span class="hl-num">1</span>, <span class="hl-num">1</span><span class="hl-op">&gt;</span> }
+<span class="hl-kw">sphere</span> {
+  <span class="hl-op">&lt;</span><span class="hl-num">0</span>, <span class="hl-num">1</span>, <span class="hl-num">0</span><span class="hl-op">&gt;</span>, Radius
+  <span class="hl-kw">texture</span> { <span class="hl-kw">pigment</span> { <span class="hl-kw">color</span> Red } <span class="hl-kw">finish</span> { phong <span class="hl-num">0.8</span> } }
+}
+<span class="hl-meta">#for</span> (I, <span class="hl-num">0</span>, <span class="hl-num">3</span>)
+  <span class="hl-kw">box</span> { <span class="hl-op">&lt;</span>I, <span class="hl-num">0</span>, <span class="hl-num">0</span><span class="hl-op">&gt;</span>, <span class="hl-op">&lt;</span>I <span class="hl-op">+</span> <span class="hl-num">0.5</span>, <span class="hl-num">0.5</span>, <span class="hl-num">0.5</span><span class="hl-op">&gt;</span> <span class="hl-kw">pigment</span> { <span class="hl-kw">rgb</span> <span class="hl-op">&lt;</span><span class="hl-num">0.2</span>, <span class="hl-num">0.4</span>, <span class="hl-num">1</span><span class="hl-op">&gt;</span> } }
+<span class="hl-meta">#end</span>

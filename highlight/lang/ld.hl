@@ -1,0 +1,8 @@
+# GNU linker script: GNU ld manual, 3 Linker Scripts; requirements/languages/ld.md
+name     ld linkerscript lds
+keyword  ENTRY SECTIONS MEMORY OUTPUT_FORMAT OUTPUT_ARCH INPUT GROUP SEARCH_DIR PROVIDE KEEP ALIGN
+keyword  ORIGIN LENGTH AT ASSERT DISCARD
+builtin  ADDR SIZEOF LOADADDR
+block-comment  /* */
+string   " "
+operators  =+-*/>:;{}()

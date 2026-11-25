@@ -1,0 +1,8 @@
+# Xorg configuration: xorg.conf(5) manual page; requirements/languages/xorg.md
+name     xorg xorgconf
+keyword  Section EndSection SubSection EndSubSection Identifier Driver Option Device Screen Monitor
+keyword  InputDevice InputClass ServerLayout Modes DefaultDepth MatchIsKeyboard MatchIsPointer
+builtin  true false on off
+fold-case
+line-comment   #
+string   " "  : escapes

@@ -1,0 +1,10 @@
+<span class="hl-com">; REQ: LANG-2811 LANG-2812 LANG-2813 LANG-2814</span>
+<span class="hl-com">; Greeting rule</span>
+<span class="hl-op">(</span><span class="hl-kw">deftemplate</span> person <span class="hl-op">(</span><span class="hl-fn">slot</span> name<span class="hl-op">)</span> <span class="hl-op">(</span><span class="hl-fn">slot</span> age <span class="hl-op">(</span><span class="hl-fn">default</span> <span class="hl-num">30</span><span class="hl-op">)))</span>
+<span class="hl-op">(</span><span class="hl-kw">defrule</span> greet
+   <span class="hl-op">(</span><span class="hl-fn">person</span> <span class="hl-op">(</span><span class="hl-fn">name</span> <span class="hl-attr">?n</span><span class="hl-op">)</span> <span class="hl-op">(</span><span class="hl-fn">age</span> <span class="hl-attr">?a</span><span class="hl-op">&amp;:(</span><span class="hl-fn">&gt;</span> <span class="hl-attr">?a</span> <span class="hl-num">18</span><span class="hl-op">)))</span>
+   =&gt;
+   <span class="hl-op">(</span><span class="hl-kw">printout</span> <span class="hl-builtin">t</span> <span class="hl-str">"Hello, "</span> <span class="hl-attr">?n</span> <span class="hl-str">"!"</span> <span class="hl-builtin">crlf</span><span class="hl-op">))</span>
+<span class="hl-op">(</span><span class="hl-kw">deffacts</span> people <span class="hl-op">(</span><span class="hl-fn">person</span> <span class="hl-op">(</span><span class="hl-fn">name</span> <span class="hl-str">"Ann"</span><span class="hl-op">)))</span>
+<span class="hl-op">(</span><span class="hl-kw">reset</span><span class="hl-op">)</span>
+<span class="hl-op">(</span><span class="hl-kw">run</span><span class="hl-op">)</span>

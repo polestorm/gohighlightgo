@@ -1,0 +1,14 @@
+<span class="hl-com">// REQ: LANG-2341 LANG-2342</span>
+<span class="hl-meta">#include</span> <span class="hl-str">&lt;cuda_runtime.h&gt;</span>
+<span class="hl-com">// Element-wise add</span>
+<span class="hl-kw">__global__</span> <span class="hl-type">void</span> <span class="hl-fn">add</span>(<span class="hl-kw">const</span> <span class="hl-type">float</span>* a, <span class="hl-kw">const</span> <span class="hl-type">float</span>* b, <span class="hl-type">float</span>* c, <span class="hl-type">int</span> n) {
+    <span class="hl-type">int</span> i = <span class="hl-builtin">blockIdx</span>.x * <span class="hl-builtin">blockDim</span>.x + <span class="hl-builtin">threadIdx</span>.x;
+    <span class="hl-kw">if</span> (i <span class="hl-op">&lt;</span> n) c[i] = a[i] + b[i];
+}
+<span class="hl-type">int</span> <span class="hl-fn">main</span>() {
+    <span class="hl-type">float</span> *d_a;
+    <span class="hl-builtin">cudaMalloc</span>(&amp;d_a, <span class="hl-num">1024</span> * <span class="hl-kw">sizeof</span>(<span class="hl-type">float</span>));
+    add<span class="hl-op">&lt;&lt;&lt;</span><span class="hl-num">4</span>, <span class="hl-num">256</span><span class="hl-op">&gt;&gt;&gt;</span>(d_a, d_a, d_a, <span class="hl-num">1024</span>);
+    <span class="hl-builtin">cudaDeviceSynchronize</span>();
+    <span class="hl-kw">return</span> <span class="hl-num">0</span>;
+}

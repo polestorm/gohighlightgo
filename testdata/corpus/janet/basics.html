@@ -1,0 +1,13 @@
+<span class="hl-com"># REQ: LANG-1371 LANG-1372 LANG-1373</span>
+(<span class="hl-kw">defn</span> greet
+  <span class="hl-str">"Greets name times times."</span>
+  [name &amp;opt times]
+  (<span class="hl-fn">default</span> times <span class="hl-num">1</span>)
+  (<span class="hl-fn">string/repeat</span> (<span class="hl-builtin">string</span> <span class="hl-str">"Hello, "</span> name <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>) times))
+
+(<span class="hl-kw">def</span> config {<span class="hl-attr">:name</span> <span class="hl-str">"world"</span> <span class="hl-attr">:times</span> <span class="hl-num">2</span>})
+(<span class="hl-kw">each</span> n [<span class="hl-num">1</span> <span class="hl-num">2</span> <span class="hl-num">3</span>]
+  (<span class="hl-kw">when</span> (<span class="hl-fn">&gt;</span> n <span class="hl-num">1</span>)
+    (<span class="hl-builtin">print</span> (<span class="hl-fn">greet</span> (<span class="hl-fn">config</span> <span class="hl-attr">:name</span>) n))))
+(<span class="hl-kw">def</span> raw <span class="hl-str">``long "string"``</span>)
+(<span class="hl-builtin">pp</span> [<span class="hl-builtin">true</span> <span class="hl-builtin">false</span> <span class="hl-builtin">nil</span> <span class="hl-num">0x1F</span> <span class="hl-num">3.14</span>])

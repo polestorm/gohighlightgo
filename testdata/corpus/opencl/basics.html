@@ -1,0 +1,7 @@
+<span class="hl-com">// REQ: LANG-2351 LANG-2352</span>
+<span class="hl-com">/* Vector add */</span>
+<span class="hl-kw">__kernel</span> <span class="hl-type">void</span> <span class="hl-fn">add</span>(<span class="hl-kw">__global</span> <span class="hl-kw">const</span> <span class="hl-type">float</span> <span class="hl-op">*</span>a, <span class="hl-kw">__global</span> <span class="hl-kw">const</span> <span class="hl-type">float</span> <span class="hl-op">*</span>b, <span class="hl-kw">__global</span> <span class="hl-type">float</span> <span class="hl-op">*</span>c) {
+    <span class="hl-type">size_t</span> i <span class="hl-op">=</span> <span class="hl-builtin">get_global_id</span>(<span class="hl-num">0</span>);
+    c[i] <span class="hl-op">=</span> a[i] <span class="hl-op">+</span> b[i] <span class="hl-op">*</span> <span class="hl-num">2.0f</span>;
+    <span class="hl-builtin">barrier</span>(<span class="hl-builtin">CLK_LOCAL_MEM_FENCE</span>);
+}

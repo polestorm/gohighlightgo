@@ -1,0 +1,12 @@
+// REQ: LANG-2111 LANG-2112 LANG-2113 LANG-2114
+; Print a message
+        org $8000
+start:  ld hl, message
+loop:   ld a, (hl)
+        cp 0
+        jr z, done
+        call $0010
+        inc hl
+        djnz loop
+done:   ret
+message: db "Hello, Z80!", 13, 0

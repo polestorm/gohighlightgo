@@ -1,0 +1,15 @@
+// REQ: LANG-2971 LANG-2972 LANG-2973 LANG-2974
+// Greeter object
+integer count = 0;
+default
+{
+    state_entry()
+    {
+        llSetText("Touch me", <1.0, 1.0, 1.0>, 1.0);
+    }
+    touch_start(integer total)
+    {
+        count++;
+        llSay(0, "Hello, " + llDetectedName(0) + "! " + (string)count);
+    }
+}

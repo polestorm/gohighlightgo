@@ -1,0 +1,11 @@
+# just: just programmer's manual (just.systems/man); requirements/languages/justfile.md
+name     justfile just
+keyword  set export alias import mod if else
+builtin  true false os arch env_var justfile_directory invocation_directory
+line-comment   #
+string   """ """  : escapes multiline
+string   " "      : escapes
+string   ' '
+sigil    @    : meta
+operators  :=+/&|!
+hook     variables

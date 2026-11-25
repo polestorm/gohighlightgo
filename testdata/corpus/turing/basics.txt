@@ -1,0 +1,10 @@
+% REQ: LANG-2891 LANG-2892 LANG-2893 LANG-2894
+% Greeting loop
+var name : string := "world"
+for i : 1 .. 3
+    put "Hello, ", name, "! ", i
+end for
+function square (x : int) : int
+    result x * x
+end square
+if square (5) > 20 and true then put "big" end if

@@ -1,0 +1,18 @@
+# REQ: LANG-1461 LANG-1462 LANG-1463
+use v6;
+
+class Greeter {
+    has $.name = 'world';
+    has @.history;
+
+    method greet(Int $times = 1 --> Str) {
+        my $text = "Hello, $!name!\n";
+        @!history.push($text);
+        return $text x $times;
+    }
+}
+
+my %ages = ann => 30, bob => 25;
+my $g = Greeter.new(name => 'Raku');
+say $g.greet(2) if %ages<ann> > 0 and True;
+for 1..3 -> $i { put $i * 0x1F }

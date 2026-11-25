@@ -1,0 +1,10 @@
+# REQ: LANG-2161 LANG-2162 LANG-2163 LANG-2164
+ninja_required_version = 1.10
+cflags = -O2 -Wall
+# Compile C files
+rule cc
+  command = gcc $cflags -c $in -o $out
+  description = CC $out
+build main.o: cc main.c | config.h
+build app: phony main.o
+default app

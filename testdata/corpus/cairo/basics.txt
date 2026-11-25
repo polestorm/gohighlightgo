@@ -1,0 +1,13 @@
+// REQ: LANG-2551 LANG-2552 LANG-2553 LANG-2554
+// Counter contract
+#[starknet::contract]
+mod Counter {
+    #[storage]
+    struct Storage { count: u128 }
+    #[external(v0)]
+    fn increment(ref self: ContractState, by: u128) {
+        let current = self.count.read();
+        assert(by > 0, 'by must be positive');
+        self.count.write(current + by + 0x1F);
+    }
+}

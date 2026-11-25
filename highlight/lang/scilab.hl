@@ -1,0 +1,12 @@
+# Scilab: Scilab 2024 help: language syntax; requirements/languages/scilab.md
+name     scilab sce sci
+keyword  function endfunction if then else elseif end for while do select case break continue return
+keyword  try catch global
+builtin  disp printf mprintf zeros ones size length plot %pi %e %t %f %T %F
+ident-extra    %
+line-comment   //
+block-comment  /* */
+string   " "  : doubled
+string   ' '  : doubled
+operators  +-*/^\=<>~&|:.'
+calls

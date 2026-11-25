@@ -1,0 +1,19 @@
+<span class="hl-com">// REQ: LANG-1801 LANG-1802 LANG-1803 LANG-1804</span>
+<span class="hl-meta">#include</span> <span class="hl-str">&lt;sourcemod&gt;</span>
+<span class="hl-meta">#pragma</span> semicolon <span class="hl-num">1</span>
+
+<span class="hl-com">/* Plugin info */</span>
+<span class="hl-kw">public</span> Plugin myinfo <span class="hl-op">=</span> { name <span class="hl-op">=</span> <span class="hl-str">"Greeter"</span>, author <span class="hl-op">=</span> <span class="hl-str">"Jan"</span>, version <span class="hl-op">=</span> <span class="hl-str">"1.0"</span> };
+
+<span class="hl-kw">public</span> <span class="hl-type">void</span> <span class="hl-fn">OnPluginStart</span>()
+{
+    <span class="hl-fn">RegConsoleCmd</span>(<span class="hl-str">"sm_hello"</span>, Command_Hello);
+}
+
+<span class="hl-kw">public</span> Action <span class="hl-fn">Command_Hello</span>(<span class="hl-type">int</span> client, <span class="hl-type">int</span> args)
+{
+    <span class="hl-type">char</span> name[<span class="hl-num">32</span>];
+    <span class="hl-fn">GetClientName</span>(client, name, <span class="hl-kw">sizeof</span>(name));
+    <span class="hl-builtin">PrintToChat</span>(client, <span class="hl-str">"Hello, %s! %d</span><span class="hl-esc">\n</span><span class="hl-str">"</span>, name, <span class="hl-num">0x1F</span>);
+    <span class="hl-kw">return</span> Plugin_Handled;
+}

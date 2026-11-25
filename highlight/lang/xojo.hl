@@ -1,0 +1,12 @@
+# Xojo: Xojo documentation: language reference; requirements/languages/xojo.md
+name     xojo realbasic
+keyword  Dim Var As New If Then Else ElseIf End For Each To Step Next While Wend Do Loop Until Select
+keyword  Case Sub Function Return Class Module Interface Public Private Protected Shared Static Const
+keyword  Try Catch Finally Raise And Or Not Mod Self Super Me Nil Inherits Implements
+type     Integer Double Boolean String Text Variant Color Date
+builtin  True False System MessageBox
+fold-case
+line-comment   // '
+string   " "  : doubled
+operators  +-*/\^=<>&.
+calls

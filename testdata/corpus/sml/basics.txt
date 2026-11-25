@@ -1,0 +1,12 @@
+(* REQ: LANG-1751 LANG-1752 LANG-1753 LANG-1754 *)
+(* outer (* nested *) still a comment *)
+datatype shape = Circle of real | Rect of real * real
+fun area (Circle r) = 3.14 * r * r
+  | area (Rect (w, h)) = w * h
+fun greet name times =
+  let val text = "Hello, " ^ name ^ "!\n"
+  in if times > 0 andalso true then print text else ()
+  end
+val x' = SOME 42
+val c = #"x"
+structure S = struct val n = 0x1F end

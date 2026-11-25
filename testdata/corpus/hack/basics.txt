@@ -1,0 +1,18 @@
+// REQ: LANG-1351 LANG-1352
+<?hh
+// Hack sample
+namespace Demo;
+
+newtype UserId = int;
+
+async function greet(string $name, int $times = 1): Awaitable<string> {
+  $text = "Hello, $name!\n";
+  $names = vec['ann', 'bob'];
+  $ages = dict['ann' => 30];
+  await \HH\Asio\usleep(10);
+  return \str_repeat($text, $times);
+}
+
+function shape_of(): shape('x' => int, 'y' => float) {
+  return shape('x' => 0x1F, 'y' => 1.5);
+}

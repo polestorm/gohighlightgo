@@ -9,7 +9,7 @@ import (
 // requirements/languages/ini.md, properties.md, asciidoc.md.
 
 var langINI = language{
-	names: []string{"ini", "cfg", "conf", "desktop", "gitconfig", "editorconfig"},
+	names: []string{"ini", "cfg", "conf", "desktop", "gitconfig", "editorconfig", "systemd", "service", "reg"},
 	scan:  configScanner{}.scan,
 }
 

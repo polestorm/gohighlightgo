@@ -1,0 +1,27 @@
+<span class="hl-com">-- REQ: LANG-1611 LANG-1612 LANG-1613 LANG-1614</span>
+<span class="hl-kw">note</span>
+	description<span class="hl-op">:</span> <span class="hl-str">"Greets people."</span>
+<span class="hl-kw">class</span>
+	<span class="hl-type">GREETER</span>
+<span class="hl-kw">create</span>
+	make
+<span class="hl-kw">feature</span>
+	make (a_name<span class="hl-op">:</span> <span class="hl-type">STRING</span>)
+		<span class="hl-kw">require</span>
+			name_not_void<span class="hl-op">:</span> a_name <span class="hl-op">/=</span> <span class="hl-builtin">Void</span>
+		<span class="hl-kw">do</span>
+			name <span class="hl-op">:=</span> a_name
+		<span class="hl-kw">end</span>
+	greet (times<span class="hl-op">:</span> <span class="hl-type">INTEGER</span>)<span class="hl-op">:</span> <span class="hl-type">STRING</span>
+		<span class="hl-kw">local</span>
+			i<span class="hl-op">:</span> <span class="hl-type">INTEGER</span>
+		<span class="hl-kw">do</span>
+			<span class="hl-kw">from</span> i <span class="hl-op">:=</span> <span class="hl-num">1</span> <span class="hl-kw">until</span> i <span class="hl-op">&gt;</span> times <span class="hl-kw">loop</span>
+				<span class="hl-kw">Result</span> <span class="hl-op">:=</span> <span class="hl-str">"Hello, "</span> <span class="hl-op">+</span> name <span class="hl-op">+</span> <span class="hl-str">"!</span><span class="hl-esc">%N</span><span class="hl-str">"</span>
+				i <span class="hl-op">:=</span> i <span class="hl-op">+</span> <span class="hl-num">1</span>
+			<span class="hl-kw">end</span>
+		<span class="hl-kw">ensure</span>
+			result_exists<span class="hl-op">:</span> <span class="hl-kw">Result</span> <span class="hl-op">/=</span> <span class="hl-builtin">Void</span>
+		<span class="hl-kw">end</span>
+	name<span class="hl-op">:</span> <span class="hl-type">STRING</span>
+<span class="hl-kw">end</span>

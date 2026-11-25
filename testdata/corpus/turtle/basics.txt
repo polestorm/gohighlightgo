@@ -1,0 +1,8 @@
+# REQ: LANG-1771 LANG-1772 LANG-1773 LANG-1774
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.com/ann> a foaf:Person ;
+    foaf:name "Ann"@en ;
+    foaf:age "30"^^xsd:integer ;
+    foaf:knows [ foaf:name 'Bob' ] , <http://example.com/cid> .

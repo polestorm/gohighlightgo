@@ -1,0 +1,9 @@
+# Gherkin: Cucumber documentation: Gherkin reference; requirements/languages/gherkin.md
+name     gherkin cucumber feature
+keyword  Feature Background Scenario Outline Examples Rule Given When Then And But Example
+keyword  Funkcja Scenariusz Zakładając Mając Jeżeli Wtedy Oraz Ale
+line-comment   #
+string   """ """  : multiline
+string   " "
+sigil    @    : meta
+operators  |:*

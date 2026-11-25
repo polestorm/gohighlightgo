@@ -1,0 +1,12 @@
+// REQ: LANG-2411 LANG-2412 LANG-2413 LANG-2414
+package config
+import "strings"
+// Schema
+#Person: {
+    name:  string & strings.MinRunes(1)
+    age:   int & >=0 & <=150 | *30
+    email?: =~"^.+@.+$"
+}
+ann: #Person & {name: "Ann", age: 30}
+greeting: "Hello, \(ann.name)!"
+for k, v in {a: 1} { "item_\(k)": v + 0x1F }

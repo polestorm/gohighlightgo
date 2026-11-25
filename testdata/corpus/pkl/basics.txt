@@ -1,0 +1,11 @@
+// REQ: LANG-2421 LANG-2422 LANG-2423 LANG-2424
+module demo.Config
+/* Settings */
+class Server {
+    host: String = "localhost"
+    port: Int(isBetween(1, 65535)) = 8080
+}
+@Deprecated
+local timeout = 30.s
+servers: Listing<Server> = new { new { port = 0x1F } }
+greeting = "Hello, \(servers[0].host)!"

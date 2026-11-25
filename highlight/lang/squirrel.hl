@@ -1,0 +1,13 @@
+# Squirrel: Squirrel 3.2 Reference Manual: The language; requirements/languages/squirrel.md
+name     squirrel nut
+keyword  base break case catch class clone continue const default delete else enum extends for foreach
+keyword  function if in local null resume return switch this throw try typeof while yield constructor
+keyword  instanceof static
+builtin  true false print array
+line-comment   // #
+block-comment  /* */
+string   " "  : escapes
+string   ' '  : escapes
+prefix   @    : verbatim
+operators  +-*/%&|^!<>=:?~.
+calls

@@ -1,0 +1,9 @@
+// REQ: LANG-2131 LANG-2132 LANG-2133 LANG-2134
+-- Sales measures
+Total Sales = SUM ( Sales[Amount] )
+Sales LY =
+VAR ly = CALCULATE ( [Total Sales], SAMEPERIODLASTYEAR ( 'Date'[Date] ) )
+RETURN
+    IF ( ISBLANK ( ly ), 0, DIVIDE ( [Total Sales] - ly, ly ) )
+/* Top products */
+EVALUATE TOPN ( 10, FILTER ( ALL ( Product ), [Total Sales] > 1000 && TRUE ), [Total Sales], DESC )

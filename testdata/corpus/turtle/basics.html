@@ -1,0 +1,8 @@
+<span class="hl-com"># REQ: LANG-1771 LANG-1772 LANG-1773 LANG-1774</span>
+<span class="hl-kw">@prefix</span> foaf: <span class="hl-str">&lt;http://xmlns.com/foaf/0.1/&gt;</span> <span class="hl-op">.</span>
+<span class="hl-kw">@prefix</span> xsd: <span class="hl-str">&lt;http://www.w3.org/2001/XMLSchema#&gt;</span> <span class="hl-op">.</span>
+
+<span class="hl-str">&lt;http://example.com/ann&gt;</span> <span class="hl-builtin">a</span> foaf:Person <span class="hl-op">;</span>
+    foaf:name <span class="hl-str">"Ann"</span><span class="hl-kw">@en</span> <span class="hl-op">;</span>
+    foaf:age <span class="hl-str">"30"</span><span class="hl-op">^^</span>xsd:integer <span class="hl-op">;</span>
+    foaf:knows <span class="hl-op">[</span> foaf:name <span class="hl-str">'Bob'</span> <span class="hl-op">]</span> <span class="hl-op">,</span> <span class="hl-str">&lt;http://example.com/cid&gt;</span> <span class="hl-op">.</span>

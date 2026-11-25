@@ -1,0 +1,8 @@
+// REQ: LANG-2851 LANG-2852 LANG-2853 LANG-2854
+// Active users by city
+FOR u IN users
+  FILTER u.active == true AND u.age > @minAge
+  COLLECT city = u.city WITH COUNT INTO n
+  SORT n DESC
+  LIMIT 31
+  RETURN { city, n, label: CONCAT("City: ", city) }

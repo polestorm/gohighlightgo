@@ -1,0 +1,14 @@
+// REQ: LANG-2341 LANG-2342
+#include <cuda_runtime.h>
+// Element-wise add
+__global__ void add(const float* a, const float* b, float* c, int n) {
+    int i = blockIdx.x * blockDim.x + threadIdx.x;
+    if (i < n) c[i] = a[i] + b[i];
+}
+int main() {
+    float *d_a;
+    cudaMalloc(&d_a, 1024 * sizeof(float));
+    add<<<4, 256>>>(d_a, d_a, d_a, 1024);
+    cudaDeviceSynchronize();
+    return 0;
+}

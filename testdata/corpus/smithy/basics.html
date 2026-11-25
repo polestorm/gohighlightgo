@@ -1,0 +1,11 @@
+<span class="hl-com">// REQ: LANG-2441 LANG-2442 LANG-2443 LANG-2444</span>
+<span class="hl-meta">$version</span><span class="hl-op">:</span> <span class="hl-str">"2"</span>
+<span class="hl-kw">namespace</span> example<span class="hl-op">.</span>greeter
+<span class="hl-com">/// Greeter service</span>
+<span class="hl-kw">service</span> <span class="hl-type">Greeter</span> <span class="hl-op">{</span> <span class="hl-kw">version</span><span class="hl-op">:</span> <span class="hl-str">"2024-01-01"</span><span class="hl-op">,</span> <span class="hl-kw">operations</span><span class="hl-op">:</span> <span class="hl-op">[</span><span class="hl-type">Greet</span><span class="hl-op">]</span> <span class="hl-op">}</span>
+<span class="hl-meta">@readonly</span>
+<span class="hl-meta">@http</span><span class="hl-op">(</span>method<span class="hl-op">:</span> <span class="hl-str">"GET"</span><span class="hl-op">,</span> uri<span class="hl-op">:</span> <span class="hl-str">"/greet/{name}"</span><span class="hl-op">)</span>
+<span class="hl-kw">operation</span> <span class="hl-type">Greet</span> <span class="hl-op">{</span>
+    <span class="hl-kw">input</span> <span class="hl-op">:=</span> <span class="hl-op">{</span> <span class="hl-meta">@required</span> <span class="hl-meta">@httpLabel</span> name<span class="hl-op">:</span> <span class="hl-type">String</span> <span class="hl-op">}</span>
+    <span class="hl-kw">output</span> <span class="hl-op">:=</span> <span class="hl-op">{</span> message<span class="hl-op">:</span> <span class="hl-type">String</span> <span class="hl-op">}</span>
+<span class="hl-op">}</span>

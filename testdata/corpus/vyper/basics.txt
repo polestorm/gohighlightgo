@@ -1,0 +1,14 @@
+# REQ: LANG-2571 LANG-2572
+# @version ^0.4.0
+event Greeted:
+    who: indexed(address)
+owner: public(address)
+count: public(uint256)
+@deploy
+def __init__():
+    self.owner = msg.sender
+@external
+def greet(times: uint256) -> String[32]:
+    self.count += times
+    log Greeted(msg.sender)
+    return "Hello"

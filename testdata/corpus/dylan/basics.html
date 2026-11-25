@@ -1,0 +1,12 @@
+<span class="hl-com">// REQ: LANG-1921 LANG-1922 LANG-1923 LANG-1924</span>
+Module<span class="hl-op">:</span> greeter
+<span class="hl-com">/* Block comment */</span>
+<span class="hl-kw">define</span> <span class="hl-kw">class</span> &lt;greeter&gt; (&lt;object&gt;)
+  <span class="hl-kw">slot</span> name <span class="hl-op">::</span> &lt;string&gt; = <span class="hl-str">"world"</span>, init-keyword<span class="hl-op">:</span> name<span class="hl-op">:</span>;
+<span class="hl-kw">end</span> <span class="hl-kw">class</span>;
+<span class="hl-kw">define</span> <span class="hl-kw">method</span> greet (g <span class="hl-op">::</span> &lt;greeter&gt;, times <span class="hl-op">::</span> &lt;integer&gt;) =&gt; ()
+  <span class="hl-kw">for</span> (i <span class="hl-kw">from</span> <span class="hl-num">1</span> <span class="hl-kw">to</span> times)
+    <span class="hl-builtin">format-out</span>(<span class="hl-str">"Hello, %s!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>, g.name);
+  <span class="hl-kw">end</span> <span class="hl-kw">for</span>;
+<span class="hl-kw">end</span> <span class="hl-kw">method</span>;
+greet(make(&lt;greeter&gt;, name<span class="hl-op">:</span> <span class="hl-str">"dylan"</span>), <span class="hl-num">2</span>);

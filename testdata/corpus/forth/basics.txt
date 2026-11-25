@@ -1,0 +1,13 @@
+\ REQ: LANG-1341 LANG-1342 LANG-1343
+( Square a number. )
+: square ( n -- n*n ) dup * ;
+
+: greet ( -- )
+  ." Hello, world!" cr ;
+
+variable counter
+10 counter !
+: count-down ( -- )
+  begin counter @ dup . 1- dup counter ! 0= until ;
+
+greet 5 square . count-down

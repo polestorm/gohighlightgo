@@ -1,0 +1,5 @@
+# sed: POSIX sed (IEEE Std 1003.1-2024) and the GNU sed manual; requirements/languages/sed.md
+name     sed
+line-comment   #
+operators  /\;{}!,$&
+hook     perl

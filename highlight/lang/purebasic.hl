@@ -1,0 +1,13 @@
+# PureBasic: PureBasic reference manual (6.x); requirements/languages/purebasic.md
+name     purebasic pb pbi
+keyword  If ElseIf Else EndIf For To Step Next ForEach While Wend Repeat Until Select Case Default
+keyword  EndSelect Procedure ProcedureReturn EndProcedure Define Global Protected Shared Static
+keyword  Structure EndStructure NewList NewMap Dim And Or Not XIncludeFile IncludeFile Declare Break
+builtin  #True #False #Null Debug OpenWindow MessageRequester Len Str Val
+fold-case
+ident-extra    #
+line-comment   ;
+string   " "
+string   ~" "  : escapes
+operators  +-*/=<>&|!.\
+calls

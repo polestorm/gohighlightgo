@@ -1,0 +1,8 @@
+<span class="hl-com">; REQ: LANG-2531 LANG-2532 LANG-2533 LANG-2534</span>
+<span class="hl-com">; Greeting</span>
+(<span class="hl-kw">define</span> (<span class="hl-fn">greet</span> name (<span class="hl-fn">times</span> <span class="hl-num">1</span>))
+  (<span class="hl-kw">dotimes</span> (<span class="hl-fn">i</span> times)
+    (<span class="hl-builtin">println</span> <span class="hl-str">"Hello, "</span> name <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>)))
+(<span class="hl-kw">setq</span> people '(<span class="hl-str">"ann"</span> <span class="hl-str">"bob"</span>))
+(<span class="hl-kw">dolist</span> (<span class="hl-fn">p</span> people) (<span class="hl-fn">greet</span> p <span class="hl-num">2</span>))
+(<span class="hl-builtin">println</span> <span class="hl-str">{raw "text"}</span> (<span class="hl-builtin">length</span> people) <span class="hl-builtin">true</span> <span class="hl-builtin">nil</span>)

@@ -1,0 +1,14 @@
+# Eiffel: ECMA-367 (Eiffel: Analysis, Design and Programming Language), 8.32 lexical components; requirements/languages/eiffel.md
+name     eiffel e
+keyword  across agent alias all and as assign attribute check class convert create Current debug deferred
+keyword  do else elseif end ensure expanded export external feature from frozen if implies inherit
+keyword  inspect invariant like local loop not note obsolete old once only or Precursor redefine rename
+keyword  require rescue Result retry select separate then undefine until variant when xor
+type     INTEGER REAL DOUBLE BOOLEAN CHARACTER STRING ANY NONE ARRAY LIST
+builtin  True False Void print io
+fold-case
+line-comment   --
+string   " "  : escapes
+escape        : char=%
+operators  +-*/=<>:.~
+upper-type

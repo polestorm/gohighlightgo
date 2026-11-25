@@ -1,0 +1,13 @@
+// REQ: LANG-1501 LANG-1502 LANG-1503
+/* Load and summarize */
+use "auto.dta", clear
+local vars price mpg weight
+foreach v of local vars {
+    summarize `v', detail
+}
+generate ratio = price / weight
+replace ratio = 0 if missing(ratio)
+regress price mpg weight
+display "Mean ratio: " %9.2f r(mean)
+global outdir "results"
+save "$outdir/auto_clean.dta", replace

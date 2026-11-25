@@ -15,7 +15,7 @@ var langXML = language{
 }
 
 var langHTML = language{
-	names: []string{"html", "htm", "xhtml"},
+	names: []string{"html", "htm", "xhtml", "vue", "svelte"},
 	scan:  markup{html: true}.scan,
 }
 

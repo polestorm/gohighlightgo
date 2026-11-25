@@ -1,0 +1,17 @@
+# Red: Red language documentation (red-lang.org), datatypes and syntax; also Rebol; requirements/languages/red.md
+name     red reds rebol r3
+
+keyword  func function does has if either unless while until loop repeat foreach forall switch case
+keyword  return break continue context make object Red Rebol
+builtin  true false none print probe append insert remove first last length? copy form mold reduce
+builtin  compose
+
+ident-part     -?!*~
+line-comment   ;
+string   " "  : escapes
+string   { }  : multiline
+escape        : char=^
+sigil    /    : meta
+sigil    #    : meta
+key-names  :
+operators  +-*/=<>

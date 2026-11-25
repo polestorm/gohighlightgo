@@ -1,0 +1,9 @@
+<span class="hl-com">// REQ: LANG-2361 LANG-2362</span>
+<span class="hl-meta">#include</span> <span class="hl-str">&lt;metal_stdlib&gt;</span>
+<span class="hl-kw">using</span> <span class="hl-kw">namespace</span> metal;
+<span class="hl-com">// Compute kernel</span>
+<span class="hl-kw">kernel</span> <span class="hl-type">void</span> <span class="hl-fn">add</span>(<span class="hl-kw">device</span> <span class="hl-kw">const</span> <span class="hl-type">float</span><span class="hl-op">*</span> a [[<span class="hl-builtin">buffer</span>(<span class="hl-num">0</span>)]],
+                <span class="hl-kw">device</span> <span class="hl-type">float</span><span class="hl-op">*</span> out [[<span class="hl-builtin">buffer</span>(<span class="hl-num">1</span>)]],
+                uint id [[<span class="hl-builtin">thread_position_in_grid</span>]]) {
+    out[id] <span class="hl-op">=</span> a[id] <span class="hl-op">*</span> <span class="hl-num">2.0f</span>;
+}

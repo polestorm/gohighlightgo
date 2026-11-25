@@ -1,0 +1,9 @@
+<span class="hl-com"># REQ: LANG-1971 LANG-1972 LANG-1973 LANG-1974</span>
+<span class="hl-kw">server.modules</span> <span class="hl-op">=</span> <span class="hl-op">(</span> <span class="hl-str">"mod_rewrite"</span><span class="hl-op">,</span> <span class="hl-str">"mod_alias"</span> <span class="hl-op">)</span>
+<span class="hl-kw">server.document-root</span> <span class="hl-op">=</span> <span class="hl-str">"/var/www"</span>
+<span class="hl-kw">server.port</span> <span class="hl-op">=</span> <span class="hl-num">8080</span>
+<span class="hl-com"># Redirect old paths</span>
+<span class="hl-attr">$HTTP</span>[<span class="hl-str">"host"</span>] <span class="hl-op">==</span> <span class="hl-str">"example.com"</span> {
+    <span class="hl-kw">url.rewrite-once</span> <span class="hl-op">=</span> <span class="hl-op">(</span> <span class="hl-str">"^/old/(.*)"</span> <span class="hl-op">=&gt;</span> <span class="hl-str">"/new/$1"</span> <span class="hl-op">)</span>
+}
+<span class="hl-kw">include</span> <span class="hl-str">"conf.d/*.conf"</span>

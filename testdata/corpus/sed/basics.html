@@ -1,0 +1,10 @@
+<span class="hl-com"># REQ: LANG-2871 LANG-2872 LANG-2873</span>
+<span class="hl-com"># Trim and replace</span>
+<span class="hl-str">s/^[ \t]*//</span>
+<span class="hl-str">s/foo/bar/g</span>
+<span class="hl-op">/</span>^<span class="hl-com">#/d</span>
+<span class="hl-num">1</span><span class="hl-op">,</span><span class="hl-num">10</span><span class="hl-op">{</span>
+  <span class="hl-str">y/abc/ABC/</span>
+<span class="hl-op">}</span>
+<span class="hl-op">$</span>a<span class="hl-op">\</span>
+end of file

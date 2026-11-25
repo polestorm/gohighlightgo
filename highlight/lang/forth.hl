@@ -1,0 +1,14 @@
+# Forth: ANS Forth / Forth 2012 Standard, Core word set; requirements/languages/forth.md
+name     forth fth 4th
+
+keyword  if else then do loop +loop begin until while repeat again case of endof endcase exit recurse
+keyword  variable constant value create does> allot cells cell+ immediate postpone literal to defer is
+builtin  dup drop swap over rot nip tuck pick roll emit cr type key accept . .s ! @ c! c@ +! here
+fold-case
+
+ident-part     -+>@!.?
+line-comment   \
+block-comment  ( )
+string   " "
+prefix   . s c
+operators  :;+-*/<>=

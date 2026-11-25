@@ -1,0 +1,15 @@
+<span class="hl-com"># REQ: LANG-2091 LANG-2092 LANG-2093 LANG-2094</span>
+<span class="hl-com"># Page setup</span>
+<span class="hl-kw">page</span> <span class="hl-op">=</span> PAGE
+<span class="hl-kw">page</span> <span class="hl-op">{</span>
+  typeNum <span class="hl-op">=</span> <span class="hl-num">0</span>
+  <span class="hl-num">10</span> <span class="hl-op">=</span> <span class="hl-kw">FLUIDTEMPLATE</span>
+  <span class="hl-num">10.file</span> <span class="hl-op">=</span> EXT<span class="hl-op">:</span>site/Resources/Private/Templates/Default.html
+  includeCSS.main <span class="hl-op">=</span> EXT<span class="hl-op">:</span>site/Resources/Public/Css/main.css
+<span class="hl-op">}</span>
+<span class="hl-com">/* Footer text */</span>
+lib.footer <span class="hl-op">=</span> <span class="hl-kw">TEXT</span>
+lib.footer.value <span class="hl-op">=</span> Hello, world!
+<span class="hl-op">[</span><span class="hl-kw">page</span><span class="hl-op">[</span>"uid"<span class="hl-op">]</span> <span class="hl-op">==</span> <span class="hl-num">1</span><span class="hl-op">]</span>
+  page.10.variables.home <span class="hl-op">=</span> <span class="hl-kw">TEXT</span>
+<span class="hl-op">[</span>END<span class="hl-op">]</span>

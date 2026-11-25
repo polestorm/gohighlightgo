@@ -1,0 +1,19 @@
+// REQ: LANG-1451 LANG-1452
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+
+/* Main window */
+Rectangle {
+    id: root
+    width: 640; height: 480
+    color: "lightblue"
+    property int count: 0x1F
+    property string name: qsTr("world")
+    signal clicked(int x)
+
+    Text {
+        anchors.centerIn: parent
+        text: `Hello, ${root.name}!`
+    }
+    MouseArea { anchors.fill: parent; onClicked: root.count++ }
+}

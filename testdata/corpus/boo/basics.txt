@@ -1,0 +1,12 @@
+# REQ: LANG-1901 LANG-1902 LANG-1903 LANG-1904
+namespace Demo
+/* Block comment */
+class Greeter:
+    public Name as string = "world"
+    def Greet(times as int) as string:
+        text = "Hello, ${Name}!"
+        for i in range(times):
+            print text
+        return text
+g = Greeter()
+print g.Greet(2) if g.Name != null and true

@@ -1,0 +1,11 @@
+# Linden Scripting Language: Second Life wiki: LSL Portal; requirements/languages/lsl.md
+name     lsl
+keyword  default state if else for while do jump return event
+type     integer float string key vector rotation list
+builtin  TRUE FALSE NULL_KEY ZERO_VECTOR PI llSay llOwnerSay llSetText llGetOwner llListen llDetectedName
+builtin  state_entry touch_start listen timer
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+operators  +-*/%&|^!<>=~<>@
+calls

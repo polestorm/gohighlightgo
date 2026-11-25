@@ -1,0 +1,10 @@
+# REQ: LANG-2871 LANG-2872 LANG-2873
+# Trim and replace
+s/^[ \t]*//
+s/foo/bar/g
+/^#/d
+1,10{
+  y/abc/ABC/
+}
+$a\
+end of file

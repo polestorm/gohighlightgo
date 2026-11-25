@@ -1,0 +1,12 @@
+<span class="hl-com">// REQ: LANG-1991 LANG-1992 LANG-1993 LANG-1994</span>
+<span class="hl-com">// A small function</span>
+<span class="hl-kw">func</span>.<span class="hl-kw">func</span> <span class="hl-fn">@square</span>(<span class="hl-attr">%x</span><span class="hl-op">:</span> <span class="hl-type">i32</span>) <span class="hl-op">-&gt;</span> <span class="hl-type">i32</span> {
+  %<span class="hl-num">0</span> <span class="hl-op">=</span> arith.<span class="hl-kw">muli</span> <span class="hl-attr">%x</span><span class="hl-op">,</span> <span class="hl-attr">%x</span> <span class="hl-op">:</span> <span class="hl-type">i32</span>
+  <span class="hl-attr">%c</span> <span class="hl-op">=</span> arith.<span class="hl-kw">constant</span> <span class="hl-num">31</span> <span class="hl-op">:</span> <span class="hl-type">i32</span>
+  <span class="hl-attr">%cmp</span> <span class="hl-op">=</span> arith.<span class="hl-kw">cmpi</span> sgt<span class="hl-op">,</span> %<span class="hl-num">0</span><span class="hl-op">,</span> <span class="hl-attr">%c</span> <span class="hl-op">:</span> <span class="hl-type">i32</span>
+  cf.<span class="hl-kw">cond_br</span> <span class="hl-attr">%cmp</span><span class="hl-op">,</span> <span class="hl-meta">^big</span><span class="hl-op">,</span> <span class="hl-meta">^small</span>
+<span class="hl-meta">^big</span><span class="hl-op">:</span>
+  <span class="hl-kw">return</span> %<span class="hl-num">0</span> <span class="hl-op">:</span> <span class="hl-type">i32</span>
+<span class="hl-meta">^small</span><span class="hl-op">:</span>
+  <span class="hl-kw">return</span> <span class="hl-attr">%c</span> <span class="hl-op">:</span> <span class="hl-type">i32</span>
+}

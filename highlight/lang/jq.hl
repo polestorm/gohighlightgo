@@ -1,0 +1,11 @@
+# jq: jq manual (jqlang.github.io/jq/manual); requirements/languages/jq.md
+name     jq
+keyword  def if then elif else end as reduce foreach try catch label import include and or not
+builtin  true false null length keys map select empty error add range tostring tonumber type
+builtin  has in sort_by group_by unique min max to_entries from_entries with_entries test
+line-comment   #
+string   " "  : escapes
+escape        : paren
+sigil    $    : attr
+sigil    @    : builtin
+operators  |.,[]{}:=+-*/%<>!?

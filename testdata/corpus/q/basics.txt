@@ -1,0 +1,8 @@
+/ REQ: LANG-2271 LANG-2272 LANG-2273 LANG-2274
+/ trades table
+t:([] sym:`a`b`a`c; price:10 20 15 30f; qty:100 200 150 300)
+select vwap:qty wavg price by sym from t where price > 12
+avg exec price from t
+f:{[x;y] x + y * 2}
+f[3;4]
+show "hello, q"

@@ -1,0 +1,10 @@
+<span class="hl-com"># REQ: LANG-2141 LANG-2142 LANG-2143 LANG-2144</span>
+<span class="hl-kw">set</span> shell <span class="hl-op">:=</span> [<span class="hl-str">"bash"</span>, <span class="hl-str">"-cu"</span>]
+version <span class="hl-op">:=</span> <span class="hl-str">"1.0"</span>
+<span class="hl-com"># Build the project</span>
+build target<span class="hl-op">=</span><span class="hl-str">"release"</span><span class="hl-op">:</span>
+    go build -o bin<span class="hl-op">/</span>app .<span class="hl-op">/</span>cmd<span class="hl-op">/</span>app
+    echo <span class="hl-str">"built {{target}} {{version}}"</span>
+<span class="hl-meta">@test</span><span class="hl-op">:</span> build
+    go test .<span class="hl-op">/</span>...
+<span class="hl-kw">alias</span> b <span class="hl-op">:=</span> build

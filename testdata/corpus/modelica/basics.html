@@ -1,0 +1,14 @@
+<span class="hl-com">// REQ: LANG-1691 LANG-1692 LANG-1693 LANG-1694</span>
+<span class="hl-com">/* Bouncing ball */</span>
+<span class="hl-kw">model</span> <span class="hl-type">BouncingBall</span> <span class="hl-str">"A simple model"</span>
+  <span class="hl-kw">parameter</span> <span class="hl-type">Real</span> e <span class="hl-op">=</span> <span class="hl-num">0.7</span> <span class="hl-str">"coefficient of restitution"</span>;
+  <span class="hl-kw">parameter</span> <span class="hl-type">Real</span> g <span class="hl-op">=</span> <span class="hl-num">9.81</span>;
+  <span class="hl-type">Real</span> <span class="hl-fn">h</span>(start <span class="hl-op">=</span> <span class="hl-num">1.0</span>);
+  <span class="hl-type">Real</span> v;
+<span class="hl-kw">equation</span>
+  <span class="hl-kw">der</span>(h) <span class="hl-op">=</span> v;
+  <span class="hl-kw">der</span>(v) <span class="hl-op">=</span> <span class="hl-op">-</span>g;
+  <span class="hl-kw">when</span> h <span class="hl-op">&lt;=</span> <span class="hl-num">0</span> <span class="hl-kw">and</span> <span class="hl-builtin">true</span> <span class="hl-kw">then</span>
+    <span class="hl-fn">reinit</span>(v, <span class="hl-op">-</span>e <span class="hl-op">*</span> <span class="hl-fn">pre</span>(v));
+  <span class="hl-kw">end</span> <span class="hl-kw">when</span>;
+<span class="hl-kw">end</span> <span class="hl-type">BouncingBall</span>;

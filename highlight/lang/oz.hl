@@ -1,0 +1,10 @@
+# Oz: The Mozart Programming System documentation: The Oz Base Environment; requirements/languages/oz.md
+name     oz mozart
+keyword  local in end proc fun if then else elseif case of declare thread lock try catch finally raise
+keyword  class meth attr feat from functor import export define for do andthen orelse
+builtin  true false unit nil Browse Show
+line-comment   %
+block-comment  /* */
+string   " "  : escapes
+operators  +-*/=<>:|#!.~@$
+upper-type

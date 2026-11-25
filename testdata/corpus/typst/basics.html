@@ -1,0 +1,9 @@
+<span class="hl-com">// REQ: LANG-2451 LANG-2452 LANG-2453 LANG-2454</span>
+<span class="hl-kw">#set</span> <span class="hl-fn">page</span>(paper<span class="hl-op">:</span> <span class="hl-str">"a4"</span>)
+<span class="hl-kw">#let</span> title <span class="hl-op">=</span> <span class="hl-str">"Report"</span>
+<span class="hl-op">=</span> Introduction
+This is <span class="hl-op">*</span>bold<span class="hl-op">*</span> and _emphasis_ text with a reference <span class="hl-attr">@intro</span>.
+<span class="hl-com">/* Block comment */</span>
+<span class="hl-kw">#for</span> i <span class="hl-kw">in</span> <span class="hl-fn">range</span>(<span class="hl-num">3</span>) [Item <span class="hl-kw">#i</span> ]
+<span class="hl-op">$</span> <span class="hl-fn">sum_</span>(k<span class="hl-op">=</span><span class="hl-num">1</span>)^n k <span class="hl-op">=</span> (<span class="hl-fn">n</span>(n<span class="hl-op">+</span><span class="hl-num">1</span>)) <span class="hl-op">/</span> <span class="hl-num">2</span> <span class="hl-op">$</span>
+<span class="hl-kw">#if</span> title !<span class="hl-op">=</span> <span class="hl-kw">none</span> { <span class="hl-fn">text</span>(red)[Draft] }

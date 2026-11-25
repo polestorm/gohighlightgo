@@ -1,0 +1,11 @@
+# OpenQASM: OpenQASM 3.0 Live Specification (openqasm.com); requirements/languages/openqasm.md
+name     openqasm qasm
+keyword  OPENQASM include qubit bit qreg creg gate measure reset barrier if else for while in def return
+keyword  input output const let ctrl inv pow box delay
+type     int uint float angle bool complex duration stretch
+builtin  h x y z cx cz rx ry rz s t u pi true false
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+operators  +-*/%&|^!<>=:?~.@[]->
+calls

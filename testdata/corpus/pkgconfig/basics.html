@@ -1,0 +1,11 @@
+<span class="hl-com"># REQ: LANG-2021 LANG-2022 LANG-2023 LANG-2024</span>
+<span class="hl-attr">prefix</span><span class="hl-op">=</span>/usr/local
+<span class="hl-attr">libdir</span><span class="hl-op">=</span><span class="hl-esc">${prefix}</span>/lib
+<span class="hl-attr">includedir</span><span class="hl-op">=</span><span class="hl-esc">${prefix}</span>/include
+
+<span class="hl-fn">Name</span><span class="hl-op">:</span> demo
+<span class="hl-fn">Description</span><span class="hl-op">:</span> A demo library
+<span class="hl-fn">Version</span><span class="hl-op">:</span> <span class="hl-num">1.0.0</span>
+<span class="hl-fn">Requires</span><span class="hl-op">:</span> glib-<span class="hl-num">2.0</span> <span class="hl-op">&gt;=</span> <span class="hl-num">2.50</span>
+<span class="hl-fn">Libs</span><span class="hl-op">:</span> -L<span class="hl-esc">${libdir}</span> -ldemo
+<span class="hl-fn">Cflags</span><span class="hl-op">:</span> -I<span class="hl-esc">${includedir}</span>/demo

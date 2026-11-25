@@ -1,0 +1,13 @@
+# REQ: LANG-1811 LANG-1812 LANG-1813 LANG-1814
+.class public Lcom/example/Greeter;
+.super Ljava/lang/Object;
+.method public static greet(Ljava/lang/String;)V
+    .registers 3
+    const-string v0, "Hello, "
+    new-instance v1, Ljava/lang/StringBuilder;
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+    if-eqz p0, :cond_0
+    return-void
+    :cond_0
+    return-void
+.end method

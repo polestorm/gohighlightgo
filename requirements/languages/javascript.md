@@ -4,7 +4,7 @@
 
 | Id | Wymaganie |
 |---|---|
-| LANG-041 | Nazwy języka: `javascript`, `js`, `mjs`, `cjs`. |
+| LANG-041 | Nazwy języka: `javascript`, `js`, `mjs`, `cjs`, `jsx` (znaczniki JSX bez osobnego koloru). |
 | LANG-042 | Słowa zastrzeżone, słowa zastrzeżone w trybie ścisłym i `async`, `await`, `let`, `static`, `yield` dostają `hl-kw` (12.7.2); `true false null undefined NaN Infinity` dostają `hl-builtin`. Identyfikator może zawierać `$` (12.7). |
 | LANG-043 | Komentarze `//` i `/* … */` dostają `hl-com` (12.4). |
 | LANG-044 | Napisy w cudzysłowach i apostrofach dostają `hl-str`; sekwencje ucieczki (`\` z jednym znakiem, `\x` z dwiema cyframi, `\u` z czterema, `\u{…}`) dostają `hl-esc`; `\` przed końcem wiersza przedłuża napis (12.9.4). |

@@ -1,0 +1,14 @@
+# AngelScript: AngelScript manual: Script language reference; requirements/languages/angelscript.md
+name     angelscript as
+keyword  and abstract auto break case cast class const continue default do else enum explicit external
+keyword  final for from funcdef function get if import in inout interface mixin namespace not null or
+keyword  out override private property protected return set shared super switch this typedef while xor
+type     void bool int int8 int16 int32 int64 uint uint8 float double string array dictionary
+builtin  true false print
+line-comment   //
+block-comment  /* */
+string   """ """  : multiline
+string   " "      : escapes
+string   ' '      : escapes
+operators  +-*/%&|^!<>=:?~.@
+calls
