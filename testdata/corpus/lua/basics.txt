@@ -1,0 +1,31 @@
+-- REQ: LANG-221 LANG-222 LANG-223 LANG-224 LANG-225
+--[[ Block comment
+over lines ]]
+--[==[ level two ]] still comment ]==]
+local M = {}
+
+local function greet(name)
+  local text = "Hello, " .. name .. "!\n\x41\u{1F600}"
+  local single = 'it\'s'
+  local long = [[
+raw "text" \n stays
+]]
+  local level = [==[ contains ]] and ]=] ]==]
+  return text, single, long, level
+end
+
+function M.sum(t)
+  local total = 0
+  for i, v in ipairs(t) do
+    if v ~= nil and type(v) == "number" then
+      total = total + v * 2 ^ 1 // 1 % 7
+    elseif not v then
+      goto continue
+    end
+    ::continue::
+  end
+  return total, 0x1p4, 3.14, 1e10, #t
+end
+
+print(greet("world"), M.sum({1, 2, nil}), string.format("%d", 42), math.pi, true, false)
+return M

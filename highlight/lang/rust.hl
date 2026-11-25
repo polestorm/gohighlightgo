@@ -1,0 +1,21 @@
+# Rust: The Rust Reference (2021 edition) and the standard prelude; requirements/languages/rust.md
+name     rust rs
+
+keyword  as async await break const continue crate dyn else enum extern fn for if impl
+keyword  in let loop match mod move mut pub ref return self Self static struct super trait type
+keyword  unsafe use where while union macro_rules abstract become box do final macro override priv
+keyword  try typeof unsized virtual yield
+type     bool char str i8 i16 i32 i64 i128 isize u8 u16 u32 u64 u128 usize f32 f64
+type     String Vec Option Result Box
+builtin  true false Some None Ok Err
+
+line-comment   //
+block-comment  /* */  : nested
+string   " "  : escapes multiline
+prefix   b c
+escape        : continuation x=2 u-braces
+number        : no-leading-dot dot-ident
+operators  +-*/%&|^!<>=:?~@
+calls
+macros
+hook     rust

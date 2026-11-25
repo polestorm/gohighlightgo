@@ -1,0 +1,11 @@
+# JSON: RFC 8259; comments are tolerated (JSONC); requirements/languages/json.md
+name     json jsonc
+
+builtin  true false null
+
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+escape        : u4
+keys
+hook     json-minus

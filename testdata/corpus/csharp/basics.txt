@@ -1,0 +1,34 @@
+// REQ: LANG-191 LANG-192 LANG-193 LANG-194 LANG-195
+#region Setup
+#nullable enable
+using System;
+using System.Collections.Generic;
+
+namespace Demo;
+
+/* Block comment */
+public sealed record Point(int X, int Y);
+
+public static class Program
+{
+    private const decimal Price = 19.99m;
+
+    public static async Task<int> Main(string[] args)
+    {
+        var name = args.Length > 0 ? args[0] : null;
+        string path = @"C:\temp\""quoted"" file.txt";
+        string greeting = $"Hello, {name ?? "world"}! {{braces}} {Price:C}";
+        string both = $@"Dir: {path}\sub";
+        string raw = """
+            Raw "text" \n stays
+            """;
+        char c = '\'', tab = '\t', hex = '\x41', uni = '\u00e9';
+        long big = 1_000_000L + 0xFFu + 0b1010;
+        double d = 1.5e-3d + .5f;
+        bool ok = true && !false;
+        await Task.Delay(10);
+        Console.WriteLine(greeting + both + raw + c + tab + hex + uni + big + d + ok);
+        return ok ? 0 : 1;
+    }
+}
+#endregion

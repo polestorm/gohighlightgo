@@ -5,37 +5,19 @@ import (
 	"unicode/utf8"
 )
 
-// Rust według The Rust Reference (wydanie 2021) i dokumentacji preludium biblioteki standardowej;
-// wymagania: requirements/languages/rust.md.
-var langRust = language{
-	names: []string{"rust", "rs"},
-	scan: (&table{
-		words: words(
-			wordGroup{keyword, `as async await break const continue crate dyn else enum extern fn for if impl
-				in let loop match mod move mut pub ref return self Self static struct super trait type
-				unsafe use where while union macro_rules abstract become box do final macro override priv
-				try typeof unsized virtual yield`},
-			wordGroup{typeName, `bool char str i8 i16 i32 i64 i128 isize u8 u16 u32 u64 u128 usize f32 f64
-				String Vec Option Result Box`},
-			wordGroup{builtin, `true false Some None Ok Err`},
-		),
-		lineComments:  []string{"//"},
-		blockComments: []blockComment{{open: "/*", close: "*/", nested: true}},
-		quotes:        []quote{{open: `"`, close: `"`, escapes: true, multiline: true}},
-		prefixes:      []prefix{{text: "b"}, {text: "c"}},
-		escape:        rustEscape,
-		numbers:       numberRule{noLeadingDot: true, dotIdent: true},
-		operators:     "+-*/%&|^!<>=:?~@",
-		calls:         true,
-		macros:        true,
-		special:       rustSpecial,
-	}).scan,
-}
+// Haki dla Rusta (definicja w lang/rust.hl; wymagania: requirements/languages/rust.md) i hak apostrophe.
 
-var (
-	rustEscape    = escapeRule{continuation: true, hexX: 2, uBraces: true}.length
-	rustCharQuote = quote{open: "'", close: "'", escapes: true}
-)
+// rustCharQuote: literał znakowy z sekwencjami ucieczki według tabeli języka.
+var rustCharQuote = quote{open: "'", close: "'", escapes: true}
+
+// apostropheSpecial: apostrof jako literał znakowy 'a' albo nazwa 'nazwa (hl-meta), jak w Ruście, bez reszty
+// haka rust; dla języków z symbolami i etykietami ('sym w Scali).
+func apostropheSpecial(t *table, w *writer, src []byte, i int) int {
+	if src[i] != '\'' {
+		return i
+	}
+	return rustChar(t, w, src, i, i)
+}
 
 // rustSpecial: atrybuty #[…] i #![…] (znacznik i nazwa dostają hl-meta), literały znakowe 'a' i b'a',
 // czasy życia i etykiety 'a (hl-meta) oraz napisy surowe r"…", r#"…"#, br…, cr… z dowolną liczbą #.

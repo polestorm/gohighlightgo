@@ -1,0 +1,19 @@
+<span class="hl-com"># REQ: LANG-251 LANG-252 LANG-253 LANG-254 LANG-255</span>
+<span class="hl-builtin">library</span>(stats)
+
+greet <span class="hl-op">&lt;-</span> <span class="hl-kw">function</span>(name <span class="hl-op">=</span> <span class="hl-str">"world"</span>) {
+  text <span class="hl-op">&lt;-</span> <span class="hl-builtin">paste0</span>(<span class="hl-str">"Hello, "</span>, name, <span class="hl-str">"!</span><span class="hl-esc">\n\x41\101\u00e9\u{1F600}</span><span class="hl-str">"</span>)
+  single <span class="hl-op">&lt;-</span> <span class="hl-str">'it</span><span class="hl-esc">\'</span><span class="hl-str">s'</span>
+  <span class="hl-builtin">invisible</span>(text)
+}
+
+df <span class="hl-op">&lt;-</span> <span class="hl-fn">data.frame</span>(x <span class="hl-op">=</span> <span class="hl-builtin">c</span>(<span class="hl-num">1L</span>, <span class="hl-num">2L</span>, <span class="hl-num">3L</span>), y <span class="hl-op">=</span> <span class="hl-builtin">c</span>(<span class="hl-num">1.5</span>, <span class="hl-num">2e3</span>, <span class="hl-num">0x1F</span>))
+`odd name` <span class="hl-op">&lt;-</span> <span class="hl-num">3i</span>
+result <span class="hl-op">&lt;-</span> <span class="hl-kw">if</span> (<span class="hl-fn">is.na</span>(df<span class="hl-op">$</span>x[<span class="hl-num">1</span>]) <span class="hl-op">||</span> <span class="hl-fn">nrow</span>(df) <span class="hl-op">==</span> <span class="hl-num">0</span>) <span class="hl-builtin">NA</span> <span class="hl-kw">else</span> <span class="hl-builtin">sum</span>(df<span class="hl-op">$</span>y) <span class="hl-op">%/%</span> <span class="hl-num">2</span>
+<span class="hl-kw">for</span> (i <span class="hl-kw">in</span> <span class="hl-fn">seq_len</span>(<span class="hl-num">3</span>)) {
+  <span class="hl-kw">if</span> (i <span class="hl-op">%</span><span class="hl-kw">in</span><span class="hl-op">%</span> <span class="hl-builtin">c</span>(<span class="hl-num">2</span>, <span class="hl-num">3</span>)) <span class="hl-kw">next</span>
+  <span class="hl-kw">repeat</span> { <span class="hl-kw">break</span> }
+}
+<span class="hl-builtin">print</span>(<span class="hl-fn">greet</span>())
+<span class="hl-builtin">cat</span>(<span class="hl-builtin">TRUE</span>, <span class="hl-builtin">FALSE</span>, <span class="hl-builtin">NULL</span>, <span class="hl-builtin">Inf</span>, <span class="hl-builtin">NaN</span>, <span class="hl-builtin">NA_integer_</span>, T, sep <span class="hl-op">=</span> <span class="hl-str">"</span><span class="hl-esc">\t</span><span class="hl-str">"</span>)
+obj<span class="hl-op">@</span>slot <span class="hl-op">-&gt;</span> value

@@ -1,0 +1,23 @@
+# Dart: Dart Programming Language Specification (Dart 3) and the language tour; requirements/languages/dart.md
+name     dart
+
+keyword  abstract as assert async await base break case catch class const continue covariant default
+keyword  deferred do else enum export extends extension external factory final finally for hide if
+keyword  implements import in interface is late library mixin new on operator part required rethrow
+keyword  return sealed show static super switch sync this throw try typedef var when while with yield
+type     int double num String bool List Map Set Iterable Future Stream dynamic void Object Never Null
+type     Function Record
+builtin  true false null print
+
+ident-extra    $
+line-comment   //
+block-comment  /* */  : nested
+string   ''' '''  : escapes multiline interp=dollar
+string   """ """  : escapes multiline interp=dollar
+string   ' '      : escapes interp=dollar
+string   " "      : escapes interp=dollar
+prefix   r        : literal
+escape        : x=2 u4 u-braces
+operators  +-*/%&|^!<>=:?~
+calls
+decorators

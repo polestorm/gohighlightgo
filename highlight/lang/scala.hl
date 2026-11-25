@@ -1,0 +1,21 @@
+# Scala: Scala 3 Language Reference and Scala Language Specification (lexical syntax); requirements/languages/scala.md
+name     scala sc
+
+keyword  abstract case catch class def do else enum export extends final finally for given if implicit
+keyword  import lazy match new object override package private protected return sealed then throw trait
+keyword  try type val var while with yield using extension inline opaque transparent derives this super
+type     Int Long Short Byte Double Float Boolean Char String Unit Any AnyRef AnyVal Nothing Null Option
+type     List Seq Map Set
+builtin  true false null None Some println print
+
+line-comment   //
+block-comment  /* */  : nested
+string   """ """  : multiline
+string   " "      : escapes
+prefix   s f      : interp=dollar
+prefix   raw      : literal interp=dollar
+escape        : u4
+operators  +-*/%&|^!<>=:?~#
+calls
+decorators
+hook     apostrophe

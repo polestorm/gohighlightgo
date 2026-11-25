@@ -1,0 +1,16 @@
+# R: R Language Definition (R 4.x), 10.3 Tokens; requirements/languages/r.md
+name     r
+
+keyword  if else repeat while function for in next break
+builtin  TRUE FALSE NULL Inf NaN NA NA_integer_ NA_real_ NA_character_ NA_complex_
+builtin  c library require print cat paste paste0 length sum mean list vector matrix return invisible
+builtin  stop warning
+
+ident-extra    .
+line-comment   #
+string   " "  : escapes
+string   ' '  : escapes
+string   ` `  : name
+escape        : x=2 octal=3 u4 U8 u-braces
+operators  +-*/^%&|!<>=:~$@
+calls

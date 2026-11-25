@@ -1,0 +1,19 @@
+# REQ: LANG-251 LANG-252 LANG-253 LANG-254 LANG-255
+library(stats)
+
+greet <- function(name = "world") {
+  text <- paste0("Hello, ", name, "!\n\x41\101\u00e9\u{1F600}")
+  single <- 'it\'s'
+  invisible(text)
+}
+
+df <- data.frame(x = c(1L, 2L, 3L), y = c(1.5, 2e3, 0x1F))
+`odd name` <- 3i
+result <- if (is.na(df$x[1]) || nrow(df) == 0) NA else sum(df$y) %/% 2
+for (i in seq_len(3)) {
+  if (i %in% c(2, 3)) next
+  repeat { break }
+}
+print(greet())
+cat(TRUE, FALSE, NULL, Inf, NaN, NA_integer_, T, sep = "\t")
+obj@slot -> value

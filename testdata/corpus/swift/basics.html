@@ -1,0 +1,30 @@
+<span class="hl-com">// REQ: LANG-211 LANG-212 LANG-213 LANG-214 LANG-215</span>
+<span class="hl-kw">import</span> Foundation
+
+<span class="hl-com">/* outer /* nested */ still a comment */</span>
+<span class="hl-meta">@MainActor</span>
+<span class="hl-kw">struct</span> Point<span class="hl-op">:</span> Equatable {
+    <span class="hl-kw">var</span> x<span class="hl-op">:</span> <span class="hl-type">Int</span>
+    <span class="hl-kw">let</span> y<span class="hl-op">:</span> <span class="hl-type">Double</span> <span class="hl-op">=</span> <span class="hl-num">1.5e3</span>
+}
+
+<span class="hl-meta">#if</span> DEBUG
+<span class="hl-kw">let</span> mode <span class="hl-op">=</span> <span class="hl-str">"debug"</span>
+<span class="hl-meta">#endif</span>
+
+<span class="hl-kw">func</span> <span class="hl-fn">greet</span>(_ name<span class="hl-op">:</span> <span class="hl-type">String</span><span class="hl-op">?</span>) <span class="hl-kw">async</span> <span class="hl-kw">throws</span> <span class="hl-op">-&gt;</span> <span class="hl-type">String</span> {
+    <span class="hl-kw">guard</span> <span class="hl-kw">let</span> name <span class="hl-kw">else</span> { <span class="hl-kw">return</span> <span class="hl-str">"nobody"</span> }
+    <span class="hl-kw">let</span> count <span class="hl-op">=</span> <span class="hl-num">0xFF</span> <span class="hl-op">+</span> <span class="hl-num">0o17</span> <span class="hl-op">+</span> <span class="hl-num">0b1010</span> <span class="hl-op">+</span> <span class="hl-num">1_000</span>
+    <span class="hl-kw">let</span> text <span class="hl-op">=</span> <span class="hl-str">"Hello, </span><span class="hl-esc">\(name)</span><span class="hl-str">! Count: </span><span class="hl-esc">\(count + 1)\n\u{1F600}</span><span class="hl-str">"</span>
+    <span class="hl-kw">let</span> raw <span class="hl-op">=</span> <span class="hl-str">#"Raw "quoted" \n \#(name) stays"#</span>
+    <span class="hl-kw">let</span> multi <span class="hl-op">=</span> <span class="hl-str">"""</span>
+<span class="hl-str">        Multi-line </span><span class="hl-esc">\(name)</span>
+<span class="hl-str">        """</span>
+    <span class="hl-kw">let</span> numbers <span class="hl-op">=</span> [<span class="hl-num">1</span>, <span class="hl-num">2</span>, <span class="hl-num">3</span>].map { $0 <span class="hl-op">*</span> <span class="hl-num">2</span> }
+    <span class="hl-kw">if</span> <span class="hl-meta">#available</span>(macOS <span class="hl-num">13</span>, <span class="hl-op">*</span>) {
+        <span class="hl-builtin">print</span>(text, raw, multi, numbers)
+    }
+    <span class="hl-kw">return</span> text
+}
+
+<span class="hl-kw">let</span> ok<span class="hl-op">:</span> <span class="hl-type">Bool</span> <span class="hl-op">=</span> <span class="hl-builtin">true</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-op">!</span><span class="hl-builtin">false</span> <span class="hl-op">||</span> <span class="hl-builtin">nil</span> <span class="hl-op">==</span> <span class="hl-builtin">nil</span>

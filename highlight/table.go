@@ -15,7 +15,8 @@ type table struct {
 	lineComments  []string         // przedrostki komentarzy do końca wiersza
 	blockComments []blockComment
 	quotes        []quote
-	prefixes      []prefix                    // przedrostki doklejone do napisu: u8"…", r"…", b'…'
+	prefixes      []prefix                    // przedrostki doklejone do napisu: u8"…", r"…", @"…"
+	prefixFirst   [256]bool                   // pierwsze bajty przedrostków, dla szybkiego odrzucenia
 	escape        func(src []byte, i int) int // długość sekwencji ucieczki od src[i] == '\\'; co najmniej 1
 	numbers       numberRule
 	operators     string // znaki, które dostają hl-op
@@ -43,12 +44,24 @@ type quote struct {
 	doubled     bool // podwojony ogranicznik zamykający to znak ucieczki ('' w SQL i Pascalu)
 	multiline   bool // napis może przejść przez koniec wiersza
 	ident       bool // to nazwa w cudzysłowie, nie napis: bez klasy ("kolumna" w SQL)
+	interp      byte // wstawki w napisie: '$' dla $nazwa i ${…}, '{' dla {…} (C#), 0 bez wstawek
 }
 
-// prefix to przedrostek napisu; raw wyłącza sekwencje ucieczki (\ chroni tylko następny znak, jak w Pythonie).
+// prefixMode mówi, jak przedrostek zmienia napis.
+type prefixMode uint8
+
+const (
+	prefixPlain    prefixMode = iota // napis bez zmian (u8"…", b"…")
+	prefixRaw                        // bez sekwencji ucieczki; \ chroni następny znak (r"…" w Pythonie)
+	prefixLiteral                    // bez sekwencji ucieczki; \ to zwykły znak (r'…' w Dart)
+	prefixVerbatim                   // jak literal, podwojony ogranicznik to ucieczka, może mieć wiele wierszy (@"…" w C#)
+)
+
+// prefix to przedrostek doklejony do napisu.
 type prefix struct {
-	text string
-	raw  bool
+	text   string
+	mode   prefixMode
+	interp byte // wstawki w napisie z tym przedrostkiem (jak quote.interp); 0: jak w napisie
 }
 
 // numberRule opisuje różnice w zapisie liczb między językami.
@@ -151,6 +164,12 @@ func (t *table) scan(w *writer, src []byte) {
 			regexFailed = lineEnd(src, i)
 		}
 		regexOK = false // każda gałąź poniżej, która nie ustawia regexOK, zapisuje wartość
+		if len(t.prefixes) > 0 && t.prefixFirst[b] {
+			if j := t.prefixedQuote(w, src, i); j > i {
+				i = j
+				continue
+			}
+		}
 		if q := t.quoteAt(src, i); q != nil {
 			c := str
 			if t.keys && colonAfter(src, t.scanQuote(nil, src, i, i, q, false, str)) {
@@ -173,14 +192,6 @@ func (t *table) scan(w *writer, src []byte) {
 			}
 		}
 		if j := t.identEnd(src, i); j > i {
-			if len(t.prefixes) > 0 {
-				if q := t.quoteAt(src, j); q != nil {
-					if p := t.prefixOf(src[i:j]); p != nil {
-						i = t.scanQuote(w, src, i, j, q, p.raw, str)
-						continue
-					}
-				}
-			}
 			c := t.wordClass(src[i:j])
 			if c == none && t.calls && parenAfter(src, j) {
 				c = call
@@ -280,13 +291,46 @@ func (t *table) wordClass(word []byte) class {
 	return t.words[string(buf[:len(word)])]
 }
 
-func (t *table) prefixOf(word []byte) *prefix {
+// prefixedQuote zapisuje napis z przedrostkiem od src[i], jeśli tam jest, i zwraca jego koniec; inaczej i.
+// Wybiera najdłuższy pasujący przedrostek, po którym stoi ogranicznik napisu.
+func (t *table) prefixedQuote(w *writer, src []byte, i int) int {
+	var best *prefix
+	var q *quote
 	for k := range t.prefixes {
-		if string(word) == t.prefixes[k].text {
-			return &t.prefixes[k]
+		p := &t.prefixes[k]
+		if (best == nil || len(p.text) > len(best.text)) && hasPrefix(src[i:], p.text) {
+			if qq := t.quoteAt(src, i+len(p.text)); qq != nil {
+				best, q = p, qq
+			}
 		}
 	}
-	return nil
+	if best == nil {
+		return i
+	}
+	m := *q
+	raw := false
+	switch best.mode {
+	case prefixRaw:
+		raw = true
+	case prefixLiteral:
+		m.escapes = false
+	case prefixVerbatim:
+		m.escapes, m.doubled, m.multiline = false, true, true
+	}
+	if best.mode != prefixPlain {
+		m.interp = 0 // napis surowy nie ma wstawek, chyba że przedrostek podaje je sam (raw"…$x" w Scali)
+	}
+	if best.interp != 0 {
+		m.interp = best.interp
+	}
+	return t.scanQuoteRaw(w, src, i, i+len(best.text), &m, raw, str)
+}
+
+// finish uzupełnia pola pochodne tabeli po jej zbudowaniu.
+func (t *table) finish() {
+	for _, p := range t.prefixes {
+		t.prefixFirst[p.text[0]] = true
+	}
 }
 
 // comment zwraca koniec komentarza zaczynającego się w src[i] albo i, gdy go tam nie ma.
@@ -352,6 +396,11 @@ func (t *table) quoteAt(src []byte, i int) *quote {
 // jego koniec. Niezamknięty napis jednowierszowy kończy się przed \n, wielowierszowy na końcu danych.
 // Przy w == nil tylko mierzy. Nazwa w cudzysłowie (quote.ident) zostaje bez klasy.
 func (t *table) scanQuote(w *writer, src []byte, start, i int, q *quote, raw bool, c class) int {
+	return t.scanQuoteRaw(w, src, start, i, q, raw, c)
+}
+
+// scanQuoteRaw to scanQuote; raw: \ chroni następny bajt, ale nie jest sekwencją ucieczki.
+func (t *table) scanQuoteRaw(w *writer, src []byte, start, i int, q *quote, raw bool, c class) int {
 	if q.ident {
 		c = none
 	}
@@ -373,6 +422,22 @@ func (t *table) scanQuote(w *writer, src []byte, start, i int, q *quote, raw boo
 			j += len(q.close)
 			emit(c, src[start:j])
 			return j
+		}
+		if q.interp == '{' && src[j] == '}' && j+1 < len(src) && src[j+1] == '}' {
+			emit(c, src[start:j])
+			emit(escape, src[j:j+2]) // }} w napisie z wstawkami {…} to znak }
+			j += 2
+			start = j
+			continue
+		}
+		if q.interp != 0 && src[j] == q.interp {
+			if n := interpLen(src, j, q.interp); n > 0 {
+				emit(c, src[start:j])
+				emit(escape, src[j:j+n])
+				j += n
+				start = j
+				continue
+			}
 		}
 		switch src[j] {
 		case '\n':
@@ -401,6 +466,48 @@ func (t *table) scanQuote(w *writer, src []byte, start, i int, q *quote, raw boo
 	}
 	emit(c, src[start:j])
 	return j
+}
+
+// interpLen zwraca długość wstawki od src[j] albo 0. Dla '$': $nazwa albo ${…}; dla '{': {…}, a {{ to dwa
+// znaki ucieczki. Wnętrze sięga do nawiasu zamykającego (z zagnieżdżeniem) w tym samym wierszu, najwyżej 256
+// bajtów, więc koszt każdej próby jest ograniczony.
+func interpLen(src []byte, j int, kind byte) int {
+	if j+1 >= len(src) {
+		return 0
+	}
+	next := src[j+1]
+	switch {
+	case kind == '{' && next == '{':
+		return 2
+	case kind == '$' && next == '{':
+		return bracketLen(src, j, '{', '}', j+1)
+	case kind == '{':
+		return bracketLen(src, j, '{', '}', j)
+	case kind == '$' && (next == '_' || next|0x20 >= 'a' && next|0x20 <= 'z'):
+		k := j + 2
+		for k < len(src) && (src[k] == '_' || isDigit(src[k]) || src[k]|0x20 >= 'a' && src[k]|0x20 <= 'z') {
+			k++
+		}
+		return k - j
+	}
+	return 0
+}
+
+// bracketLen zwraca długość od src[from] do nawiasu close, który zamyka open w src[k] (z zagnieżdżeniem), w tym
+// samym wierszu i najwyżej 256 bajtów dalej; bez zamknięcia 0.
+func bracketLen(src []byte, from int, open, close byte, k int) int {
+	depth := 0
+	for j := k; j < len(src) && j < k+256 && src[j] != '\n'; j++ {
+		switch src[j] {
+		case open:
+			depth++
+		case close:
+			if depth--; depth == 0 {
+				return j + 1 - from
+			}
+		}
+	}
+	return 0
 }
 
 // scanTemplate zapisuje szablon JS od src[start] (od ` albo od miejsca za } zamykającym wyrażenie), z treścią

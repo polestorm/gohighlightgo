@@ -1,0 +1,15 @@
+# Lua: Lua 5.4 Reference Manual, 3.1 Lexical Conventions and 6 Standard Libraries; requirements/languages/lua.md
+name     lua
+
+keyword  and break do else elseif end for function goto if in local not or repeat return then until while
+builtin  true false nil assert collectgarbage dofile error getmetatable ipairs load loadfile next pairs
+builtin  pcall print rawequal rawget rawlen rawset require select setmetatable tonumber tostring type
+builtin  xpcall string table math io os coroutine utf8 debug package
+
+line-comment   --
+string   " "  : escapes
+string   ' '  : escapes
+escape        : continuation x=2 u-braces
+operators  +-*/%^#&~|<>=:
+calls
+hook     lua

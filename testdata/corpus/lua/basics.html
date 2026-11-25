@@ -1,0 +1,31 @@
+<span class="hl-com">-- REQ: LANG-221 LANG-222 LANG-223 LANG-224 LANG-225</span>
+<span class="hl-com">--[[ Block comment</span>
+<span class="hl-com">over lines ]]</span>
+<span class="hl-com">--[==[ level two ]] still comment ]==]</span>
+<span class="hl-kw">local</span> M <span class="hl-op">=</span> {}
+
+<span class="hl-kw">local</span> <span class="hl-kw">function</span> <span class="hl-fn">greet</span>(name)
+  <span class="hl-kw">local</span> text <span class="hl-op">=</span> <span class="hl-str">"Hello, "</span> .. name .. <span class="hl-str">"!</span><span class="hl-esc">\n\x41\u{1F600}</span><span class="hl-str">"</span>
+  <span class="hl-kw">local</span> single <span class="hl-op">=</span> <span class="hl-str">'it</span><span class="hl-esc">\'</span><span class="hl-str">s'</span>
+  <span class="hl-kw">local</span> long <span class="hl-op">=</span> <span class="hl-str">[[</span>
+<span class="hl-str">raw "text" \n stays</span>
+<span class="hl-str">]]</span>
+  <span class="hl-kw">local</span> level <span class="hl-op">=</span> <span class="hl-str">[==[ contains ]] and ]=] ]==]</span>
+  <span class="hl-kw">return</span> text, single, long, level
+<span class="hl-kw">end</span>
+
+<span class="hl-kw">function</span> M.<span class="hl-fn">sum</span>(t)
+  <span class="hl-kw">local</span> total <span class="hl-op">=</span> <span class="hl-num">0</span>
+  <span class="hl-kw">for</span> i, v <span class="hl-kw">in</span> <span class="hl-builtin">ipairs</span>(t) <span class="hl-kw">do</span>
+    <span class="hl-kw">if</span> v <span class="hl-op">~=</span> <span class="hl-builtin">nil</span> <span class="hl-kw">and</span> <span class="hl-builtin">type</span>(v) <span class="hl-op">==</span> <span class="hl-str">"number"</span> <span class="hl-kw">then</span>
+      total <span class="hl-op">=</span> total <span class="hl-op">+</span> v <span class="hl-op">*</span> <span class="hl-num">2</span> <span class="hl-op">^</span> <span class="hl-num">1</span> <span class="hl-op">//</span> <span class="hl-num">1</span> <span class="hl-op">%</span> <span class="hl-num">7</span>
+    <span class="hl-kw">elseif</span> <span class="hl-kw">not</span> v <span class="hl-kw">then</span>
+      <span class="hl-kw">goto</span> continue
+    <span class="hl-kw">end</span>
+    <span class="hl-op">::</span>continue<span class="hl-op">::</span>
+  <span class="hl-kw">end</span>
+  <span class="hl-kw">return</span> total, <span class="hl-num">0x1p4</span>, <span class="hl-num">3.14</span>, <span class="hl-num">1e10</span>, <span class="hl-op">#</span>t
+<span class="hl-kw">end</span>
+
+<span class="hl-builtin">print</span>(<span class="hl-fn">greet</span>(<span class="hl-str">"world"</span>), M.<span class="hl-fn">sum</span>({<span class="hl-num">1</span>, <span class="hl-num">2</span>, <span class="hl-builtin">nil</span>}), <span class="hl-builtin">string</span>.<span class="hl-fn">format</span>(<span class="hl-str">"%d"</span>, <span class="hl-num">42</span>), <span class="hl-builtin">math</span>.pi, <span class="hl-builtin">true</span>, <span class="hl-builtin">false</span>)
+<span class="hl-kw">return</span> M

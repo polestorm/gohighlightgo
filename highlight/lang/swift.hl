@@ -1,0 +1,24 @@
+# Swift: The Swift Programming Language (Swift 5.9), Lexical Structure; requirements/languages/swift.md
+name     swift
+
+keyword  associatedtype class deinit enum extension fileprivate func import init inout internal let open
+keyword  operator private precedencegroup protocol public rethrows static struct subscript typealias var
+keyword  break case catch continue default defer do else fallthrough for guard if in repeat return throw
+keyword  switch where while as is try throws await async some any Self self super actor nonisolated
+keyword  isolated mutating nonmutating override final lazy weak unowned required convenience dynamic
+keyword  optional indirect willSet didSet
+type     Int Int8 Int16 Int32 Int64 UInt UInt8 UInt16 UInt32 UInt64 Float Double Bool String Character
+type     Array Dictionary Set Optional Void Any AnyObject Never
+builtin  true false nil print debugPrint fatalError precondition assert min max abs zip stride
+
+ident-extra    $
+line-comment   //
+block-comment  /* */  : nested
+string   """ """  : escapes multiline
+string   " "      : escapes
+escape        : u-braces paren
+number        : no-leading-dot
+operators  +-*/%&|^!<>=:?~
+calls
+decorators
+hook     swift

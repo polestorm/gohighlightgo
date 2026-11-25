@@ -1,0 +1,30 @@
+// REQ: LANG-231 LANG-232 LANG-233 LANG-234 LANG-235
+package demo
+
+/* outer /* nested */ still a comment */
+@main def hello(args: String*): Unit =
+  val name: Option[String] = args.headOption
+  val count = 0xFF + 1_000L
+  val pi = 3.14d
+  val text = s"Hello, ${name.getOrElse("world")}! Count: $count\n"
+  val formatted = f"$pi%.2f"
+  val raw = raw"C:\temp\$count"
+  val multi = """Multi "quoted"
+    line \n stays"""
+  val c = 'x'
+  val esc = '\n'
+  val sym = 'mySymbol
+  println(text + formatted + raw + multi + c + esc + sym)
+
+enum Color:
+  case Red, Green
+
+trait Shape:
+  def area: Double
+
+case class Circle(r: Double) extends Shape:
+  def area: Double = math.Pi * r * r
+
+given Ordering[Int] = Ordering.Int
+val xs = List(1, 2, 3).map(_ * 2)
+val ok = true && !false || null == None

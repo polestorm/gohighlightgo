@@ -1,0 +1,27 @@
+// REQ: LANG-241 LANG-242 LANG-243 LANG-244 LANG-245
+import 'dart:async';
+
+/* outer /* nested */ still a comment */
+@immutable
+class Point {
+  final int x;
+  final double y;
+  const Point(this.x, [this.y = 1.5e3]);
+}
+
+Future<void> main(List<String> args) async {
+  final name = args.isNotEmpty ? args.first : null;
+  var count = 0xFF + 1000;
+  final text = 'Hello, $name! Count: ${count + 1}\n\x41\u00e9';
+  final other = "double \"quoted\" ${name ?? 'none'}";
+  final raw = r'C:\temp\$name';
+  final multi = '''
+Multi-line $name
+''';
+  late String $later;
+  $later = 'set';
+  await Future.delayed(Duration(seconds: 1));
+  print(text + other + raw + multi + $later);
+  dynamic d = null;
+  bool ok = true && !false || d == null;
+}

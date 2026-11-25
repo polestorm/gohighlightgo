@@ -1,0 +1,33 @@
+<span class="hl-com">// REQ: LANG-201 LANG-202 LANG-203 LANG-204 LANG-205</span>
+<span class="hl-kw">package</span> demo
+
+<span class="hl-kw">import</span> kotlin.math.max
+
+<span class="hl-com">/* outer /* nested */ still a comment */</span>
+<span class="hl-meta">@JvmInline</span>
+value <span class="hl-kw">class</span> <span class="hl-fn">Meters</span>(<span class="hl-kw">val</span> value<span class="hl-op">:</span> <span class="hl-type">Double</span>)
+
+<span class="hl-kw">data</span> <span class="hl-kw">class</span> <span class="hl-fn">Point</span>(<span class="hl-kw">val</span> x<span class="hl-op">:</span> <span class="hl-type">Int</span>, <span class="hl-kw">val</span> y<span class="hl-op">:</span> <span class="hl-type">Int</span> <span class="hl-op">=</span> <span class="hl-num">0</span>)
+
+<span class="hl-kw">sealed</span> <span class="hl-kw">interface</span> Shape
+
+<span class="hl-kw">fun</span> <span class="hl-fn">main</span>(args<span class="hl-op">:</span> <span class="hl-type">Array</span><span class="hl-op">&lt;</span><span class="hl-type">String</span><span class="hl-op">&gt;</span>) {
+    <span class="hl-kw">val</span> name<span class="hl-op">:</span> <span class="hl-type">String</span><span class="hl-op">?</span> <span class="hl-op">=</span> args.<span class="hl-fn">firstOrNull</span>()
+    <span class="hl-kw">var</span> count <span class="hl-op">=</span> <span class="hl-num">0x1F</span> <span class="hl-op">+</span> <span class="hl-num">0b101</span> <span class="hl-op">+</span> <span class="hl-num">1_000L</span>
+    <span class="hl-kw">val</span> pi <span class="hl-op">=</span> <span class="hl-num">3.14f</span>
+    <span class="hl-kw">val</span> greeting <span class="hl-op">=</span> <span class="hl-str">"Hello, </span><span class="hl-esc">$name</span><span class="hl-str">! Count: </span><span class="hl-esc">${count + 1}\n\t</span><span class="hl-str">Tab </span><span class="hl-esc">\u00e9</span><span class="hl-str">"</span>
+    <span class="hl-kw">val</span> raw <span class="hl-op">=</span> <span class="hl-str">"""</span>
+<span class="hl-str">        Raw </span><span class="hl-esc">$name</span><span class="hl-str"> and </span><span class="hl-esc">${max(1, 2)}</span>
+<span class="hl-str">        no \n escape</span>
+<span class="hl-str">    """</span>.<span class="hl-fn">trimIndent</span>()
+    <span class="hl-kw">val</span> c <span class="hl-op">=</span> <span class="hl-str">'x'</span>
+    <span class="hl-kw">val</span> esc <span class="hl-op">=</span> <span class="hl-str">'</span><span class="hl-esc">\'</span><span class="hl-str">'</span>
+    <span class="hl-kw">when</span> {
+        count <span class="hl-op">&gt;</span> <span class="hl-num">10</span> <span class="hl-op">-&gt;</span> <span class="hl-builtin">println</span>(greeting)
+        <span class="hl-kw">else</span> <span class="hl-op">-&gt;</span> <span class="hl-builtin">print</span>(raw)
+    }
+    <span class="hl-kw">val</span> list <span class="hl-op">=</span> <span class="hl-builtin">listOf</span>(<span class="hl-num">1</span>, <span class="hl-num">2</span>, <span class="hl-num">3</span>).map { it <span class="hl-op">*</span> <span class="hl-num">2</span> }
+    <span class="hl-builtin">check</span>(list.<span class="hl-fn">isNotEmpty</span>()) { <span class="hl-str">"empty"</span> }
+    <span class="hl-kw">val</span> nothing<span class="hl-op">:</span> <span class="hl-type">Unit</span> <span class="hl-op">=</span> <span class="hl-type">Unit</span>
+    <span class="hl-kw">if</span> (name <span class="hl-op">==</span> <span class="hl-builtin">null</span> <span class="hl-op">||</span> c <span class="hl-op">!=</span> esc) <span class="hl-kw">return</span>
+}

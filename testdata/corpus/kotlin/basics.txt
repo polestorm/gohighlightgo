@@ -1,0 +1,33 @@
+// REQ: LANG-201 LANG-202 LANG-203 LANG-204 LANG-205
+package demo
+
+import kotlin.math.max
+
+/* outer /* nested */ still a comment */
+@JvmInline
+value class Meters(val value: Double)
+
+data class Point(val x: Int, val y: Int = 0)
+
+sealed interface Shape
+
+fun main(args: Array<String>) {
+    val name: String? = args.firstOrNull()
+    var count = 0x1F + 0b101 + 1_000L
+    val pi = 3.14f
+    val greeting = "Hello, $name! Count: ${count + 1}\n\tTab \u00e9"
+    val raw = """
+        Raw $name and ${max(1, 2)}
+        no \n escape
+    """.trimIndent()
+    val c = 'x'
+    val esc = '\''
+    when {
+        count > 10 -> println(greeting)
+        else -> print(raw)
+    }
+    val list = listOf(1, 2, 3).map { it * 2 }
+    check(list.isNotEmpty()) { "empty" }
+    val nothing: Unit = Unit
+    if (name == null || c != esc) return
+}

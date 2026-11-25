@@ -1,0 +1,27 @@
+<span class="hl-com">// REQ: LANG-241 LANG-242 LANG-243 LANG-244 LANG-245</span>
+<span class="hl-kw">import</span> <span class="hl-str">'dart:async'</span>;
+
+<span class="hl-com">/* outer /* nested */ still a comment */</span>
+<span class="hl-meta">@immutable</span>
+<span class="hl-kw">class</span> Point {
+  <span class="hl-kw">final</span> <span class="hl-type">int</span> x;
+  <span class="hl-kw">final</span> <span class="hl-type">double</span> y;
+  <span class="hl-kw">const</span> <span class="hl-fn">Point</span>(<span class="hl-kw">this</span>.x, [<span class="hl-kw">this</span>.y <span class="hl-op">=</span> <span class="hl-num">1.5e3</span>]);
+}
+
+<span class="hl-type">Future</span><span class="hl-op">&lt;</span><span class="hl-type">void</span><span class="hl-op">&gt;</span> <span class="hl-fn">main</span>(<span class="hl-type">List</span><span class="hl-op">&lt;</span><span class="hl-type">String</span><span class="hl-op">&gt;</span> args) <span class="hl-kw">async</span> {
+  <span class="hl-kw">final</span> name <span class="hl-op">=</span> args.isNotEmpty <span class="hl-op">?</span> args.first <span class="hl-op">:</span> <span class="hl-builtin">null</span>;
+  <span class="hl-kw">var</span> count <span class="hl-op">=</span> <span class="hl-num">0xFF</span> <span class="hl-op">+</span> <span class="hl-num">1000</span>;
+  <span class="hl-kw">final</span> text <span class="hl-op">=</span> <span class="hl-str">'Hello, </span><span class="hl-esc">$name</span><span class="hl-str">! Count: </span><span class="hl-esc">${count + 1}\n\x41\u00e9</span><span class="hl-str">'</span>;
+  <span class="hl-kw">final</span> other <span class="hl-op">=</span> <span class="hl-str">"double </span><span class="hl-esc">\"</span><span class="hl-str">quoted</span><span class="hl-esc">\"</span><span class="hl-str"> </span><span class="hl-esc">${name ?? 'none'}</span><span class="hl-str">"</span>;
+  <span class="hl-kw">final</span> raw <span class="hl-op">=</span> <span class="hl-str">r'C:\temp\$name'</span>;
+  <span class="hl-kw">final</span> multi <span class="hl-op">=</span> <span class="hl-str">'''</span>
+<span class="hl-str">Multi-line </span><span class="hl-esc">$name</span>
+<span class="hl-str">'''</span>;
+  <span class="hl-kw">late</span> <span class="hl-type">String</span> $later;
+  $later <span class="hl-op">=</span> <span class="hl-str">'set'</span>;
+  <span class="hl-kw">await</span> <span class="hl-type">Future</span>.<span class="hl-fn">delayed</span>(<span class="hl-fn">Duration</span>(seconds<span class="hl-op">:</span> <span class="hl-num">1</span>));
+  <span class="hl-builtin">print</span>(text <span class="hl-op">+</span> other <span class="hl-op">+</span> raw <span class="hl-op">+</span> multi <span class="hl-op">+</span> $later);
+  <span class="hl-type">dynamic</span> d <span class="hl-op">=</span> <span class="hl-builtin">null</span>;
+  <span class="hl-type">bool</span> ok <span class="hl-op">=</span> <span class="hl-builtin">true</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-op">!</span><span class="hl-builtin">false</span> <span class="hl-op">||</span> d <span class="hl-op">==</span> <span class="hl-builtin">null</span>;
+}

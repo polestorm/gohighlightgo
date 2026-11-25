@@ -109,7 +109,7 @@ func markdownFence(w *writer, src []byte, i, e, indent int) int {
 			}
 			buf[k] = c
 		}
-		inner = byName[string(buf[:len(info)])]
+		inner = lookup(string(buf[:len(info)]))
 	}
 	if inner != nil && inner.names[0] != "markdown" {
 		inner.scan(w, content)

@@ -62,6 +62,23 @@ func TestStandaloneAndOutput(t *testing.T) {
 	}
 }
 
+func TestDefinitionFlag(t *testing.T) {
+	dir := t.TempDir()
+	good := filepath.Join(dir, "demo.hl")
+	bad := filepath.Join(dir, "bad.hl")
+	os.WriteFile(good, []byte("name clidemo\nkeyword hello\n"), 0o644)
+	os.WriteFile(bad, []byte("name clibad\nbogus\n"), 0o644)
+	if code, out, errOut := runCLI([]string{"-def", good, "-lang", "clidemo"}, "hello world"); code != 0 || out != `<span class="hl-kw">hello</span> world` {
+		t.Errorf("code %d, out %q, err %q", code, out, errOut)
+	}
+	if code, _, errOut := runCLI([]string{"-def", bad, "-lang", "go"}, "x"); code != 2 || !strings.Contains(errOut, "line 2") {
+		t.Errorf("bad definition: code %d, err %q", code, errOut)
+	}
+	if code, _, _ := runCLI([]string{"-def", filepath.Join(dir, "missing.hl"), "-lang", "go"}, "x"); code != 1 {
+		t.Errorf("missing definition: code %d", code)
+	}
+}
+
 func TestList(t *testing.T) {
 	code, out, _ := runCLI([]string{"-list"}, "")
 	if code != 0 || strings.Join(highlight.Languages(), "\n")+"\n" != out {

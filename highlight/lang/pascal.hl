@@ -1,0 +1,28 @@
+# Object Pascal (Delphi): Delphi Language Guide (RAD Studio 12); requirements/languages/pascal.md
+name     pascal delphi pas objectpascal
+
+keyword  and array as asm begin case class const constructor destructor dispinterface
+keyword  div do downto else end except exports file finalization finally for function goto if
+keyword  implementation in inherited initialization inline interface is label library mod nil not
+keyword  object of or out packed procedure program property raise record repeat resourcestring set
+keyword  shl shr string then threadvar to try type unit until uses var while with xor
+keyword  abstract cdecl deprecated dynamic external final forward helper overload override platform
+keyword  private protected public published reference reintroduce safecall sealed static stdcall
+keyword  strict virtual operator
+type     Boolean ByteBool WordBool LongBool Byte ShortInt SmallInt Word Integer Cardinal
+type     LongInt LongWord Int64 UInt64 NativeInt NativeUInt Char AnsiChar WideChar AnsiString
+type     WideString UnicodeString ShortString RawByteString Real Single Double Extended Currency Comp
+type     Pointer PChar PAnsiChar PWideChar Variant OleVariant
+builtin  True False Self Result Abs Assigned Break Chr Continue Copy Dec Delete Dispose
+builtin  Exclude Exit FillChar Halt High Include Inc Insert Length Low New Odd Ord Pos Pred ReadLn Round
+builtin  SetLength SizeOf Sqr Sqrt Succ Trunc WriteLn
+fold-case
+
+line-comment   //
+block-comment  { }
+block-comment  (* *)
+string   ' '  : doubled
+number        : no-leading-dot
+operators  +-*/=<>:@^
+calls
+hook     pascal

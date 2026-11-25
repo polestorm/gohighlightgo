@@ -16,6 +16,7 @@ pomiarów na końcu.
 | patologiczne | `TestPathological`, lista `pathological` | czas procesora dla dwóch rozmiarów różniących się 16 razy, próg 96 (jak w `gomdgo`); `go test -short` pomija ten test (H4) |
 | odporność | `FuzzHTML` | dla każdego języka: bez paniki, `checkSafe`, odwracalność, powtarzalność; ziarna: korpus, `trickyInputs`, małe wersje przypadków patologicznych |
 | wydajność | `BenchmarkCorpus` | korpus każdego języka powtórzony do około 1 MB |
+| definicje | `TestDefinitionErrors`, `TestRegister`, `TestRegisterConcurrent`, `FuzzDefinition` | błędy z numerem wiersza, rejestracja i `extends`, równoległość z `HTML`; fuzzing dowolnej definicji z dowolnym kodem: wynik bezpieczny i odwracalny (DEF-004) |
 | motywy | `TestThemes`, `TestThemeContrast` | każda klasa ma regułę w każdym motywie, arkusz powtarzalny, kontrast co najmniej 4,5 : 1 (WCAG 2.2) |
 | polecenie | `cmd/gohighlightgo`: `TestRun`, `TestStandaloneAndOutput`, `TestList`, `TestExtensions` | flagi, kody wyjścia, strona `-standalone`, tabela rozszerzeń zgodna z `Languages()` |
 | przegląd przez człowieka | `go run ./tools/review -o out/review.html` | jedna strona: każdy plik korpusu w motywie jasnym i ciemnym obok wyniku QLMarkdown (program `highlight` w środku, czarna skrzynka, w ramce), z liczbami (rozmiar, elementy, czas), oceną i uwagami do skopiowania; bez QLMarkdown `-ref ''` |
@@ -98,6 +99,31 @@ Ten sam dzień i komputer; program `qlmarkdown_cli` z paczki aplikacji, uruchami
 Czasy QLMarkdown obejmują cały jego potok (parser Markdown, kolorowanie), nie samo kolorowanie; diagramów
 nie rysuje przy konwersji. Porównanie samego kolorowania wymaga osobnego pomiaru programu `highlight` (H6).
 
+## H6: porównanie z odniesieniem (2026-11-25)
+
+`tools/compare` (osobny moduł, Go 1.25 przez chroma): chroma 2.27.0 przez publiczne API (lekser i formater HTML
+z klasami, bez `<pre>`), jako czarna skrzynka. highlight tylko wewnątrz QLMarkdown 1.5.7, więc mierzony jako
+cały proces: koszt kolorowania to różnica czasu `--syntax-highlight on` i `off` (mediana z 15). Przewaga
+`gohighlightgo` według wzoru z `.claude/CLAUDE.md`.
+
+| Wielkość | gohighlightgo | chroma | highlight | przewaga nad chroma | przewaga nad highlight |
+|---|--:|--:|--:|--:|--:|
+| języki | 19 | 297 | 263 | −93,6% | −92,8% |
+| dodane do programu (`-trimpath -ldflags="-s -w"`) | 201 504 B | 4 773 952 B | 3 416 096 B (biblioteka arm64) | 95,8% | 94,1% |
+| wiersze Go biblioteki | 3 124 | 31 199 (+ 279 plików definicji, 2,4 MB) | — | 90,0% | — |
+| czas, korpus jako 21 bloków (14,5 KB), `BenchmarkRivals`, mediana z 5 | 0,156 ms | 13,26 ms | — | 98,8% | — |
+| czas, 1 MB Go | 10,05 ms | 690,5 ms | — | 98,5% | — |
+| pamięć przydzielona, korpus | 0,139 MB | 17,50 MB | — | 99,2% | — |
+| pamięć przydzielona, 1 MB Go | 4,20 MB | 819,4 MB | — | 99,5% | — |
+| czas kolorowania, dokument 15 KB kodu (różnica procesów) | 0,4 ms | — | 34,3 ms | — | 98,8% |
+| czas kolorowania, dokument 1,3 MB kodu | 16,6 ms | — | 2078,6 ms | — | 99,2% |
+| wynik dla korpusu | 65 916 B, 1 817 elementów | 117 394 B, 4 317 elementów | — | 43,9% | — |
+
+Uwagi: chroma zamyka element `<span class="w">` (odstęp) po znaku `\n`, więc jej elementy przechodzą przez koniec
+wiersza; nasze nie (ADR 0002). Obie biblioteki i highlight escapują HTML z kodu (`TestRivalsSafety`; highlight
+sprawdzony ręcznie w pięciu językach). Rozmiar highlight to część arm64 `libwrapper_highlight.dylib` z
+interpreterem Lua, bez 1,5 MB definicji języków i 1,2 MB motywów.
+
 ## Tabela pomiarów
 
 | Data | Commit | Języki | H2–H4 | Binarka `gomdgo-mermaid` bez / z | Czas bez / z | Uwagi |
@@ -106,4 +132,6 @@ nie rysuje przy konwersji. Porównanie samego kolorowania wymaga osobnego pomiar
 | 2026-11-25 | etap 1 (`fa272fa`) | 1 (Go) | testy przechodzą; fuzzing 2 min, 11,0 mln wywołań, bez błędu | — | — | samo kolorowanie: 124 MB/s, 2 alokacje na wywołanie (`BenchmarkCorpus/go`, korpus Go powtórzony do 1 MB, mediana nieliczona, 1 przebieg `-benchtime 2s`); wynik 4–5 razy dłuższy od wejścia; 1 120 wierszy Go w `highlight/`, z czego testy około połowy; pomiar u odbiorców w etapie 4 |
 | 2026-11-25 | etap 2 (`e4ac7a7`) | 11 | testy przechodzą; 77 przypadków patologicznych; fuzzing 3 min, 3,2 mln wejść × 11 języków, bez błędu | — | — | samo kolorowanie 87–122 MB/s (Go 119, C 94, C++ 95, Java 106, JS 116, TS 87, Python 90, Rust 92, SQL 87, JSON 122, Pascal 104), 2–3 alokacje na wywołanie (`BenchmarkCorpus`, korpus języka powtórzony do 1 MB, 1 przebieg `-benchtime 1s`); pierwsza wersja C++ miała 2941 alokacji na wywołanie (ogranicznik napisu surowego budowany dla każdego napisu), poprawione |
 | 2026-11-25 | etap 3 (`762c9f2`) | 19 | testy przechodzą; 142 przypadki patologiczne; fuzzing 4 min, 3,5 mln wejść × 19 języków, bez błędu (wcześniejszy przebieg znalazł zgubienie `''` po `<<` w powłoce, poprawione) | — | — | samo kolorowanie (`BenchmarkCorpus`, 1 przebieg `-benchtime 1s`, MB/s): Go 111, C 92, C++ 90, Java 101, JS 102, TS 83, Python 86, Rust 89, SQL 80, JSON 117, Pascal 96, XML 307, HTML 143, CSS 122, YAML 164, TOML 150, sh 132, diff 633, Markdown 482; 2–4 alokacje na wywołanie, Markdown 22; spadek Go względem etapu 2 (119 → 111) po dodaniu śledzenia poprzedniego tokenu dla wyrażeń regularnych JS mieści się w rozrzucie pojedynczych przebiegów (99–119 tego dnia); pierwsze wersje CSS, YAML i Markdown miały 1562, 1596 i 6287 alokacji (`strings.ToLower`, `strings.Fields`), poprawione; 3 762 wiersze Go w `highlight/` |
-| 2026-11-25 | etap 4 (na `6c800aa`) | 19 | testy przechodzą | 8 021 282 B / 8 216 690 B | 3,8 / 3,0 ms (25 KB); 9,5 / 26,1 ms (1,3 MB kodu) | motywy, polecenie, strona przeglądu; H5 zmierzone (sekcja „H5”); rozszerzenie `gopeekgo` 6 676 224 / 6 828 496 B; adaptery jeszcze nie w repozytoriach odbiorców |
+| 2026-11-25 | etap 4 (`c5ac60f`) | 19 | testy przechodzą | 8 021 282 B / 8 216 690 B | 3,8 / 3,0 ms (25 KB); 9,5 / 26,1 ms (1,3 MB kodu) | motywy, polecenie, strona przeglądu; H5 zmierzone (sekcja „H5”); rozszerzenie `gopeekgo` 6 676 224 / 6 828 496 B; adaptery jeszcze nie w repozytoriach odbiorców |
+| 2026-11-25 | etap 5 (na `c5ac60f`) | 19 | testy przechodzą | — | — | H6 zmierzone (sekcja „H6”): wobec chroma 98,5–98,8% mniej czasu, 95,8% mniej dodanego rozmiaru; wobec highlight 99,2% mniej czasu kolorowania na 1,3 MB kodu |
+| 2026-11-25 | etap 7 (na `c5ac60f`) | 26 | testy przechodzą; 159 przypadków patologicznych (jeden wykrył czas kwadratowy w haku Swifta, poprawione); fuzzing `FuzzHTML` 3 min i `FuzzDefinition` 3,5 min bez błędu | — | — | definicje w plikach (ADR 0008): przeniesienie 11 języków bez zmiany żadnego wzorca, prędkość bez zmian (Go 109–117, C 98, Python 84, Rust 91, SQL 85 MB/s); odczyt definicji przy starcie 83 µs, 166 KB; dodane do programu 201 → 268 KB (26 języków; usunięcie `fmt` z biblioteki zaoszczędziło 186 KB); porównanie czasu z chroma powtórzone pod obciążeniem maszyny (inny proces, średnie obciążenie 16–22), więc tylko stosunek: korpus 75 razy, 1 MB Go 75 razy mniej czasu; pomiar bezwzględny do powtórzenia |

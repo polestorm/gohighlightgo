@@ -1,0 +1,22 @@
+# C: ISO/IEC 9899:2024 (C23); requirements/languages/c.md
+name     c h
+
+keyword  alignas alignof auto break case const constexpr continue default do else enum
+keyword  extern for goto if inline register restrict return sizeof static static_assert struct switch
+keyword  thread_local typedef typeof typeof_unqual union volatile while _Alignas _Alignof _Atomic
+keyword  _Generic _Noreturn _Static_assert _Thread_local
+type     bool char double float int long short signed unsigned void _Bool _Complex _Imaginary _BitInt
+type     _Decimal32 _Decimal64 _Decimal128 size_t ptrdiff_t intptr_t uintptr_t intmax_t uintmax_t wchar_t
+type     char8_t char16_t char32_t int8_t int16_t int32_t int64_t uint8_t uint16_t uint32_t uint64_t
+builtin  true false nullptr NULL
+
+line-comment   //
+block-comment  /* */
+string   " "  : escapes
+string   ' '  : escapes
+prefix   u8 u U L
+escape        : continuation x=any octal=3 u4 U8
+number        : quote-sep
+operators  +-*/%&|^!<>=:?~
+calls
+hook     c-preprocessor

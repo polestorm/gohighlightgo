@@ -1,0 +1,20 @@
+# Java: The Java Language Specification, Java SE 21; requirements/languages/java.md
+name     java
+
+keyword  abstract assert break case catch class const continue default do else enum
+keyword  extends final finally for goto if implements import instanceof interface native new package
+keyword  private protected public return static strictfp super switch synchronized this throw throws
+keyword  transient try volatile while var record sealed permits yield when
+type     boolean byte char double float int long short void
+builtin  true false null
+
+ident-extra    $
+line-comment   //
+block-comment  /* */
+string   """ """  : escapes multiline
+string   " "      : escapes
+string   ' '      : escapes
+escape        : octal=3 java-u
+operators  +-*/%&|^!<>=:?~
+calls
+decorators

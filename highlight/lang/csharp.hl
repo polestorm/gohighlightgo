@@ -1,0 +1,24 @@
+# C#: C# language specification (ECMA-334) and the C# 12 documentation; requirements/languages/csharp.md
+name     csharp cs c#
+
+keyword  abstract as base break case catch checked class const continue default delegate do else enum
+keyword  event explicit extern finally fixed for foreach goto if implicit in interface internal is lock
+keyword  namespace new operator out override params private protected public readonly ref return sealed
+keyword  sizeof stackalloc static struct switch this throw try typeof unchecked unsafe using virtual
+keyword  volatile while async await var yield record init when where nameof required partial with
+type     bool byte char decimal double float int long object sbyte short string uint ulong ushort void
+type     nint nuint dynamic
+builtin  true false null
+
+line-comment   //
+block-comment  /* */
+string   """ """  : multiline
+string   " "      : escapes
+string   ' '      : escapes
+prefix   @        : verbatim
+prefix   $        : interp=braces
+prefix   $@ @$    : verbatim interp=braces
+escape        : x=4 u4 U8
+operators  +-*/%&|^!<>=:?~
+calls
+hook     c-preprocessor

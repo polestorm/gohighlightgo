@@ -1,40 +1,6 @@
 package highlight
 
-// Object Pascal (Delphi) według Delphi Language Guide (dokumentacja RAD Studio 12): słowa zastrzeżone,
-// dyrektywy, typy i procedury modułu System; wymagania: requirements/languages/pascal.md.
-var langPascal = language{
-	names: []string{"pascal", "delphi", "pas", "objectpascal"},
-	scan: (&table{
-		words: foldWords(words(
-			wordGroup{keyword, `and array as asm begin case class const constructor destructor dispinterface
-				div do downto else end except exports file finalization finally for function goto if
-				implementation in inherited initialization inline interface is label library mod nil not
-				object of or out packed procedure program property raise record repeat resourcestring set
-				shl shr string then threadvar to try type unit until uses var while with xor
-				abstract cdecl deprecated dynamic external final forward helper overload override platform
-				private protected public published reference reintroduce safecall sealed static stdcall
-				strict virtual operator`},
-			wordGroup{typeName, `Boolean ByteBool WordBool LongBool Byte ShortInt SmallInt Word Integer Cardinal
-				LongInt LongWord Int64 UInt64 NativeInt NativeUInt Char AnsiChar WideChar AnsiString
-				WideString UnicodeString ShortString RawByteString Real Single Double Extended Currency Comp
-				Pointer PChar PAnsiChar PWideChar Variant OleVariant`},
-			wordGroup{builtin, `True False Self Result Abs Assigned Break Chr Continue Copy Dec Delete Dispose
-				Exclude Exit FillChar Halt High Include Inc Insert Length Low New Odd Ord Pos Pred ReadLn Round
-				SetLength SizeOf Sqr Sqrt Succ Trunc WriteLn`},
-		)),
-		foldCase:     true,
-		lineComments: []string{"//"},
-		blockComments: []blockComment{
-			{open: "{", close: "}"},
-			{open: "(*", close: "*)"},
-		},
-		quotes:    []quote{{open: `'`, close: `'`, doubled: true}},
-		numbers:   numberRule{noLeadingDot: true},
-		operators: "+-*/=<>:@^",
-		calls:     true,
-		special:   pascalSpecial,
-	}).scan,
-}
+// Hak dla Pascala (definicja w lang/pascal.hl; wymagania: requirements/languages/pascal.md).
 
 // pascalSpecial: dyrektywy kompilatora {$…} i (*$…*) (hl-meta), kody znaków #13 i #$0D (hl-esc) oraz liczby
 // szesnastkowe $FF, dwójkowe %1010 i ósemkowe &777 (hl-num).

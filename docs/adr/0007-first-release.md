@@ -1,0 +1,27 @@
+# 0007 Pierwsze wydanie v0.1.0 i publikacja
+
+Status: przyjęta · 2026-11-25 (decyzja właściciela: przygotować do publikacji i dołączyć do `gomdgo` i `gopeekgo`
+przed końcem fuzzingu; zmienia kolejność z `docs/roadmap.md`, gdzie wydanie było po 24 h fuzzingu)
+
+## Kontekst
+
+Odbiorcy wskazują w `go.mod` tylko wydane wersje (`gopeekgo`, ADR 0001 i 0003 tamże), a `gomdgo` jest publiczne,
+więc jego moduł `cmd/gomdgo-mermaid` nie może wymagać prywatnego modułu. Właściciel chce dołączyć kolorowanie do
+obu odbiorców teraz; wynik fuzzingu 24 h nie zmieni tej kolejności.
+
+## Decyzja
+
+1. **Wydanie to znacznik `v0.1.0`** na commicie z pełnym README i porównaniem; znaczników nie przesuwamy (jak
+   ADR 0017 w `gomdgo`). Poprawki po fuzzingu wychodzą jako `v0.1.1` i dalej.
+2. **Repozytorium staje się publiczne** przed dołączeniem do `gomdgo` (na wyraźną zgodę właściciela przy samej
+   zmianie widoczności).
+3. **Fuzzing 24 h nie jest warunkiem v0.1.0**; jest warunkiem dalszych wydań i wersji 1.0. Stan fuzzingu README
+   podaje wprost.
+4. **README po angielsku** na wzór `gomdgo`: zalety, słabe strony, tabela porównania z chroma i z highlight
+   (w QLMarkdown) z przypisami o sposobie pomiaru; dokumentacja wewnętrzna zostaje po polsku.
+
+## Skutki
+
++ odbiorcy mogą wskazać wydaną wersję w `go.mod`; łatki z `docs/adapters/` stosuje się bez `go.work`;
+− v0.1.0 nie spełnia jeszcze kryterium H4 w części „24 h fuzzingu”; ryzyko ogranicza 142 przypadków
+  patologicznych i dotychczasowe przebiegi bez błędu.

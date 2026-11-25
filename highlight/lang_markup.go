@@ -135,7 +135,7 @@ func (m markup) rawText(w *writer, src []byte, i int, name []byte) int {
 	var inner func(*writer, []byte)
 	switch {
 	case bytes.EqualFold(name, []byte("script")):
-		inner = langJavaScript.scan
+		inner = lookup("javascript").scan
 	case bytes.EqualFold(name, []byte("style")):
 		inner = langCSS.scan
 	default:

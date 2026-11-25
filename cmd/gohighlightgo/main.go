@@ -45,7 +45,12 @@ func run(args []string, stdin io.Reader, stdout, stderr io.Writer) int {
 		standalone = fs.Bool("standalone", false, "write a complete HTML document with a stylesheet")
 		title      = fs.String("title", "", "document `title` for -standalone (default: the file name)")
 		themeName  = fs.String("theme", highlight.DefaultTheme, "`theme` for -standalone: "+strings.Join(highlight.Themes(), ", "))
+		defs       []string
 	)
+	fs.Func("def", "add a language from a definition `file` (docs/definitions.md); may be repeated", func(s string) error {
+		defs = append(defs, s)
+		return nil
+	})
 	fs.Usage = func() {
 		fmt.Fprintln(stderr, "usage: gohighlightgo [flags] [file]")
 		fmt.Fprintln(stderr, "Highlights source code as HTML. Reads standard input when no file is given.")
@@ -60,6 +65,15 @@ func run(args []string, stdin io.Reader, stdout, stderr io.Writer) int {
 	fail := func(code int, format string, a ...any) int {
 		fmt.Fprintf(stderr, "gohighlightgo: %s\n", fmt.Sprintf(format, a...))
 		return code
+	}
+	for _, d := range defs {
+		src, err := os.ReadFile(d)
+		if err != nil {
+			return fail(1, "%v", err)
+		}
+		if err := highlight.Register(src); err != nil {
+			return fail(2, "%s: %v", d, err)
+		}
 	}
 	if *list {
 		fmt.Fprintln(stdout, strings.Join(highlight.Languages(), "\n"))

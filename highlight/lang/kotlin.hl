@@ -1,0 +1,21 @@
+# Kotlin: Kotlin language specification (Kotlin 1.9); requirements/languages/kotlin.md
+name     kotlin kt kts
+
+keyword  as break class continue do else for fun if in interface is object package return super this
+keyword  throw try typealias typeof val var when while by catch constructor finally import init where
+keyword  actual abstract annotation companion const crossinline data enum expect external final infix
+keyword  inline inner internal lateinit noinline open operator out override private protected public
+keyword  reified sealed suspend tailrec vararg
+type     Any Unit Nothing Int Long Short Byte Double Float Boolean Char String Array List Map Set UInt ULong
+builtin  true false null println print listOf mutableListOf mapOf mutableMapOf setOf arrayOf require
+builtin  check error lazy repeat
+
+line-comment   //
+block-comment  /* */  : nested
+string   """ """  : multiline interp=dollar
+string   " "      : escapes interp=dollar
+string   ' '      : escapes
+escape        : u4
+operators  +-*/%&|!<>=:?
+calls
+decorators

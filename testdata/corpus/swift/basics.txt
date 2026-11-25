@@ -1,0 +1,30 @@
+// REQ: LANG-211 LANG-212 LANG-213 LANG-214 LANG-215
+import Foundation
+
+/* outer /* nested */ still a comment */
+@MainActor
+struct Point: Equatable {
+    var x: Int
+    let y: Double = 1.5e3
+}
+
+#if DEBUG
+let mode = "debug"
+#endif
+
+func greet(_ name: String?) async throws -> String {
+    guard let name else { return "nobody" }
+    let count = 0xFF + 0o17 + 0b1010 + 1_000
+    let text = "Hello, \(name)! Count: \(count + 1)\n\u{1F600}"
+    let raw = #"Raw "quoted" \n \#(name) stays"#
+    let multi = """
+        Multi-line \(name)
+        """
+    let numbers = [1, 2, 3].map { $0 * 2 }
+    if #available(macOS 13, *) {
+        print(text, raw, multi, numbers)
+    }
+    return text
+}
+
+let ok: Bool = true && !false || nil == nil

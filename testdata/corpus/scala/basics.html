@@ -1,0 +1,30 @@
+<span class="hl-com">// REQ: LANG-231 LANG-232 LANG-233 LANG-234 LANG-235</span>
+<span class="hl-kw">package</span> demo
+
+<span class="hl-com">/* outer /* nested */ still a comment */</span>
+<span class="hl-meta">@main</span> <span class="hl-kw">def</span> <span class="hl-fn">hello</span>(args<span class="hl-op">:</span> <span class="hl-type">String</span><span class="hl-op">*</span>)<span class="hl-op">:</span> <span class="hl-type">Unit</span> <span class="hl-op">=</span>
+  <span class="hl-kw">val</span> name<span class="hl-op">:</span> <span class="hl-type">Option</span>[<span class="hl-type">String</span>] <span class="hl-op">=</span> args.headOption
+  <span class="hl-kw">val</span> count <span class="hl-op">=</span> <span class="hl-num">0xFF</span> <span class="hl-op">+</span> <span class="hl-num">1_000L</span>
+  <span class="hl-kw">val</span> pi <span class="hl-op">=</span> <span class="hl-num">3.14d</span>
+  <span class="hl-kw">val</span> text <span class="hl-op">=</span> <span class="hl-str">s"Hello, </span><span class="hl-esc">${name.getOrElse("world")}</span><span class="hl-str">! Count: </span><span class="hl-esc">$count\n</span><span class="hl-str">"</span>
+  <span class="hl-kw">val</span> formatted <span class="hl-op">=</span> <span class="hl-str">f"</span><span class="hl-esc">$pi</span><span class="hl-str">%.2f"</span>
+  <span class="hl-kw">val</span> raw <span class="hl-op">=</span> <span class="hl-str">raw"C:\temp\</span><span class="hl-esc">$count</span><span class="hl-str">"</span>
+  <span class="hl-kw">val</span> multi <span class="hl-op">=</span> <span class="hl-str">"""Multi "quoted"</span>
+<span class="hl-str">    line \n stays"""</span>
+  <span class="hl-kw">val</span> c <span class="hl-op">=</span> <span class="hl-str">'x'</span>
+  <span class="hl-kw">val</span> esc <span class="hl-op">=</span> <span class="hl-str">'</span><span class="hl-esc">\n</span><span class="hl-str">'</span>
+  <span class="hl-kw">val</span> sym <span class="hl-op">=</span> <span class="hl-meta">'mySymbol</span>
+  <span class="hl-builtin">println</span>(text <span class="hl-op">+</span> formatted <span class="hl-op">+</span> raw <span class="hl-op">+</span> multi <span class="hl-op">+</span> c <span class="hl-op">+</span> esc <span class="hl-op">+</span> sym)
+
+<span class="hl-kw">enum</span> Color<span class="hl-op">:</span>
+  <span class="hl-kw">case</span> Red, Green
+
+<span class="hl-kw">trait</span> Shape<span class="hl-op">:</span>
+  <span class="hl-kw">def</span> area<span class="hl-op">:</span> <span class="hl-type">Double</span>
+
+<span class="hl-kw">case</span> <span class="hl-kw">class</span> <span class="hl-fn">Circle</span>(r<span class="hl-op">:</span> <span class="hl-type">Double</span>) <span class="hl-kw">extends</span> Shape<span class="hl-op">:</span>
+  <span class="hl-kw">def</span> area<span class="hl-op">:</span> <span class="hl-type">Double</span> <span class="hl-op">=</span> math.Pi <span class="hl-op">*</span> r <span class="hl-op">*</span> r
+
+<span class="hl-kw">given</span> Ordering[<span class="hl-type">Int</span>] <span class="hl-op">=</span> Ordering.<span class="hl-type">Int</span>
+<span class="hl-kw">val</span> xs <span class="hl-op">=</span> <span class="hl-type">List</span>(<span class="hl-num">1</span>, <span class="hl-num">2</span>, <span class="hl-num">3</span>).<span class="hl-fn">map</span>(_ <span class="hl-op">*</span> <span class="hl-num">2</span>)
+<span class="hl-kw">val</span> ok <span class="hl-op">=</span> <span class="hl-builtin">true</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-op">!</span><span class="hl-builtin">false</span> <span class="hl-op">||</span> <span class="hl-builtin">null</span> <span class="hl-op">==</span> <span class="hl-builtin">None</span>

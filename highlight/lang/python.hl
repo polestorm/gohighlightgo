@@ -1,0 +1,25 @@
+# Python: The Python Language Reference and The Python Standard Library, 3.12; requirements/languages/python.md
+name     python py python3
+
+keyword  and as assert async await break class continue def del elif else except
+keyword  finally for from global if import in is lambda nonlocal not or pass raise return try while
+keyword  with yield
+type     bool bytearray bytes complex dict float frozenset int list memoryview object
+type     range set slice str tuple type
+builtin  True False None NotImplemented Ellipsis abs aiter all anext any ascii bin
+builtin  breakpoint callable chr classmethod compile delattr dir divmod enumerate eval exec filter
+builtin  format getattr globals hasattr hash help hex id input isinstance issubclass iter len locals map
+builtin  max min next oct open ord pow print property repr reversed round setattr sorted staticmethod
+builtin  sum super vars zip __import__
+
+line-comment   #
+string   """ """  : escapes multiline
+string   ''' '''  : escapes multiline
+string   " "      : escapes
+string   ' '      : escapes
+prefix   r br rb fr rf  : raw any-case
+prefix   u f b          : any-case
+escape        : continuation x=2 octal=3 u4 U8 named
+operators  +-*/%@&|^~<>=!:
+calls
+decorators

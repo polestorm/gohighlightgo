@@ -17,6 +17,7 @@ type escapeRule struct {
 	uBraces      bool // \u{…} (JS, Rust)
 	javaU        bool // \u, \uu, \uuu… i cztery cyfry (Java)
 	named        bool // \N{nazwa} (Python)
+	parenGroup   bool // \( … ) to wstawka wyrażenia (Swift), do nawiasu zamykającego w tym samym wierszu
 }
 
 // length zwraca długość sekwencji ucieczki od src[i] == '\\'.
@@ -49,6 +50,11 @@ func (r escapeRule) length(src []byte, i int) int {
 		return 2 + run(src, i+2, 4, isHex)
 	case c == 'U' && r.u8:
 		return 2 + run(src, i+2, 8, isHex)
+	case c == '(' && r.parenGroup:
+		if n := bracketLen(src, i, '(', ')', i+1); n > 0 {
+			return n
+		}
+		return 2
 	case c == 'N' && r.named && i+2 < len(src) && src[i+2] == '{':
 		return braced(src, i, i+2)
 	case isOctal(c) && r.octal > 0:

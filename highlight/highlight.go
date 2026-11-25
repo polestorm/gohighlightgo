@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"slices"
 	"strings"
+	"sync"
+	"sync/atomic"
 	"unicode/utf8"
 )
 
@@ -11,32 +13,74 @@ import (
 type language struct {
 	names []string // nazwa główna, potem aliasy; małymi literami
 	scan  func(w *writer, src []byte)
+	table *table // dla języków z definicji (do extends); nil dla skanerów w Go
 }
 
-// languages to wszystkie obsługiwane języki; nazwa główna pierwszego wpisu wyznacza plik wymagań
-// i katalog korpusu.
-var languages = []*language{
-	&langGo, &langC, &langCpp, &langJava, &langJavaScript, &langTypeScript, &langPython, &langRust,
-	&langSQL, &langJSON, &langPascal, &langXML, &langHTML, &langCSS, &langYAML, &langTOML, &langShell, &langDiff,
-	&langMarkdown,
+// languages to języki wbudowane: z definicji w lang/*.hl i ze skanerów w Go. Nazwa główna wyznacza plik
+// wymagań i katalog korpusu.
+var languages []*language
+
+// registry to niezmienna migawka języków; Register wymienia ją w całości, więc HTML czyta bez blokady.
+type registry struct {
+	byName map[string]*language
+	names  []string // wszystkie nazwy i aliasy, posortowane
+	langs  []*language
 }
 
 var (
-	byName   = map[string]*language{}
-	allNames []string
+	current    atomic.Pointer[registry]
+	registerMu sync.Mutex // porządkuje równoległe wywołania Register
 )
 
 func init() {
-	for _, l := range languages {
+	languages = append(loadBuiltins(), &langXML, &langHTML, &langCSS, &langYAML, &langTOML, &langShell,
+		&langDiff, &langMarkdown)
+	reg, err := newRegistry(languages)
+	if err != nil {
+		panic(err)
+	}
+	current.Store(reg)
+}
+
+func newRegistry(langs []*language) (*registry, error) {
+	r := &registry{byName: map[string]*language{}, langs: langs}
+	for _, l := range langs {
 		for _, n := range l.names {
-			if byName[n] != nil {
-				panic("highlight: duplicate language name " + n)
+			if r.byName[n] != nil {
+				return nil, &DefinitionError{Msg: sprintf("name %q is already in use", n)}
 			}
-			byName[n] = l
-			allNames = append(allNames, n)
+			r.byName[n] = l
+			r.names = append(r.names, n)
 		}
 	}
-	slices.Sort(allNames)
+	slices.Sort(r.names)
+	return r, nil
+}
+
+// lookup zwraca język o nazwie (bez rozróżniania wielkości liter) albo nil.
+func lookup(name string) *language {
+	return current.Load().byName[strings.ToLower(name)]
+}
+
+// Register adds a language described in the definition format (see docs/definitions.md in the repository).
+// The language is then accepted by HTML and listed by Languages, also as the language of a fenced block in
+// Markdown. The guarantees of HTML hold for it too: the format cannot express anything that would make the
+// output unsafe or the time worse than linear. Register returns a *DefinitionError for an invalid definition
+// and when one of its names is already in use; it is safe to call while other goroutines call HTML.
+func Register(definition []byte) error {
+	registerMu.Lock()
+	defer registerMu.Unlock()
+	old := current.Load()
+	l, err := parseDefinition(definition, func(name string) *language { return old.byName[name] })
+	if err != nil {
+		return err
+	}
+	reg, err := newRegistry(append(slices.Clone(old.langs), l))
+	if err != nil {
+		return err
+	}
+	current.Store(reg)
+	return nil
 }
 
 // HTML returns code escaped for HTML, with <span class="hl-…"> elements around tokens. The result has no
@@ -44,7 +88,7 @@ func init() {
 // escaped. Invalid UTF-8 and NUL bytes are replaced with U+FFFD. The language name is matched without regard
 // to case; ok is false (and out is nil) when the language is not known.
 func HTML(lang string, code []byte) (out []byte, ok bool) {
-	l := byName[strings.ToLower(lang)]
+	l := lookup(lang)
 	if l == nil {
 		return nil, false
 	}
@@ -59,7 +103,7 @@ func HTML(lang string, code []byte) (out []byte, ok bool) {
 
 // Languages returns every accepted language name and alias, sorted, in a new slice.
 func Languages() []string {
-	return slices.Clone(allNames)
+	return slices.Clone(current.Load().names)
 }
 
 // sanitize zamienia każdą serię bajtów niebędących poprawnym UTF-8 i każdy znak U+0000 na U+FFFD (OUT-006).
