@@ -1,0 +1,18 @@
+# Clojure: Clojure Reference, "The Reader" and "Special Forms" (Clojure 1.11); requirements/languages/clojure.md
+name     clojure clj cljs cljc edn
+
+keyword  def defn defn- defmacro defmulti defmethod defprotocol defrecord deftype fn fn* let letfn loop
+keyword  recur if if-not when when-not when-let if-let do quote var throw try catch finally new ns
+keyword  require import cond condp case and or not doseq dotimes for
+builtin  true false nil map filter reduce first rest next cons conj assoc dissoc get get-in update
+builtin  println print str count inc dec apply partial comp identity seq vec list hash-map atom swap!
+builtin  reset! deref
+
+ident-extra    *!?+<>=-
+ident-part     '/.
+line-comment   ;
+string   " "  : escapes
+prefix   #
+sigil    :    : attr
+escape        : u4 octal=3
+call-after-paren

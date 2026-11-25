@@ -1,0 +1,26 @@
+<span class="hl-com">(* REQ: LANG-361 LANG-362 LANG-363 LANG-364 LANG-365 *)</span>
+<span class="hl-com">(* outer (* nested *) still a comment *)</span>
+<span class="hl-kw">type</span> shape <span class="hl-op">=</span>
+  <span class="hl-op">|</span> <span class="hl-type">Circle</span> <span class="hl-kw">of</span> <span class="hl-type">float</span>
+  <span class="hl-op">|</span> <span class="hl-type">Rect</span> <span class="hl-kw">of</span> <span class="hl-type">float</span> <span class="hl-op">*</span> <span class="hl-type">float</span>
+
+<span class="hl-kw">let</span> area <span class="hl-op">=</span> <span class="hl-kw">function</span>
+  <span class="hl-op">|</span> <span class="hl-type">Circle</span> r <span class="hl-op">-&gt;</span> <span class="hl-type">Float</span><span class="hl-op">.</span>pi <span class="hl-op">*.</span> r <span class="hl-op">*.</span> r
+  <span class="hl-op">|</span> <span class="hl-type">Rect</span> (w, h) <span class="hl-op">-&gt;</span> w <span class="hl-op">*.</span> h
+
+<span class="hl-kw">let</span> <span class="hl-kw">rec</span> greet name times <span class="hl-op">=</span>
+  <span class="hl-kw">if</span> times <span class="hl-op">&lt;=</span> <span class="hl-num">0</span> <span class="hl-kw">then</span> <span class="hl-str">""</span>
+  <span class="hl-kw">else</span> <span class="hl-builtin">Printf</span><span class="hl-op">.</span>sprintf <span class="hl-str">"Hello, %s!</span><span class="hl-esc">\n</span><span class="hl-str">"</span> name <span class="hl-op">^</span> greet name (times <span class="hl-op">-</span> <span class="hl-num">1</span>)
+
+<span class="hl-kw">let</span> id' (x <span class="hl-op">:</span> <span class="hl-meta">'a</span>) <span class="hl-op">:</span> <span class="hl-meta">'a</span> <span class="hl-op">=</span> x
+
+<span class="hl-kw">module</span> <span class="hl-type">M</span> <span class="hl-op">=</span> <span class="hl-kw">struct</span>
+  <span class="hl-kw">let</span> quoted <span class="hl-op">=</span> <span class="hl-str">{|raw "text" \n stays|}</span>
+  <span class="hl-kw">let</span> c <span class="hl-op">=</span> <span class="hl-str">'x'</span>
+  <span class="hl-kw">let</span> nl <span class="hl-op">=</span> <span class="hl-str">'</span><span class="hl-esc">\n</span><span class="hl-str">'</span>
+<span class="hl-kw">end</span>
+
+<span class="hl-kw">let</span> () <span class="hl-op">=</span>
+  <span class="hl-kw">let</span> total <span class="hl-op">=</span> <span class="hl-builtin">List</span><span class="hl-op">.</span>fold_left ( <span class="hl-op">+</span> ) <span class="hl-num">0</span> [<span class="hl-num">1</span>; <span class="hl-num">2</span>; <span class="hl-num">3</span>] <span class="hl-op">+</span> <span class="hl-num">0x1F</span> <span class="hl-op">+</span> <span class="hl-num">1_000</span> <span class="hl-kw">in</span>
+  <span class="hl-builtin">print_endline</span> (greet <span class="hl-str">"world"</span> <span class="hl-num">2</span>);
+  <span class="hl-builtin">Printf</span><span class="hl-op">.</span>printf <span class="hl-str">"%d %f %b</span><span class="hl-esc">\n</span><span class="hl-str">"</span> total (area (<span class="hl-type">Circle</span> <span class="hl-num">1.5</span>)) (<span class="hl-builtin">true</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-builtin">not</span> <span class="hl-builtin">false</span>)

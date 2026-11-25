@@ -1,0 +1,32 @@
+! REQ: LANG-421 LANG-422 LANG-423 LANG-424 LANG-425
+program greeter
+  implicit none
+  integer, parameter :: dp = kind(1.0d0)
+  real(dp) :: area
+  integer :: i, times
+  character(len=*), parameter :: name = "world"
+  logical :: ok
+
+  times = 2
+  ok = .true. .and. .not. .false.
+  area = 3.14159_dp * 1.5_dp**2
+
+  ! Loop over the greetings.
+  do i = 1, times
+    if (i == 1 .or. ok) then
+      print *, 'Hello, ', trim(name), '! it''s ', i
+    else if (i .gt. 1) then
+      write (*, '(A, F8.3)') "area = ", area
+    end if
+  end do
+
+  call show(times)
+
+contains
+
+  subroutine show(n)
+    integer, intent(in) :: n
+    print *, "n = ", n, size([1, 2, 3])
+  end subroutine show
+
+end program greeter

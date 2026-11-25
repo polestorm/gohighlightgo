@@ -1,0 +1,30 @@
+# REQ: LANG-371 LANG-372 LANG-373 LANG-374 LANG-375
+#= Block comment
+   #= nested =# still a comment =#
+module Greeter
+
+export greet
+
+struct Point{T<:Real}
+    x::T
+    y::T
+end
+
+function greet(name::String, times::Int=1)
+    text = "Hello, $name! $(times + 1)\n"
+    multi = """
+        Multi $name
+        """
+    c = 'x'
+    A = [1 2; 3 4]
+    B = A' * A
+    return repeat(text, times) * multi
+end
+
+@time result = map(x -> x^2, collect(1:10))
+values = Dict("a" => 1, "b" => 2.5e3)
+push!(values, "c" => 0x1F)
+z = 3 + 2im
+println(greet("world", 2), sum(result), z, nothing === nothing, true && !false)
+
+end

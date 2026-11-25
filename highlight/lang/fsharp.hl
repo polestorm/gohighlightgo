@@ -1,0 +1,20 @@
+# F#: F# Language Specification and "F# language reference" (F# 8); requirements/languages/fsharp.md
+name     fsharp fs f#
+
+keyword  abstract and as assert base begin class default delegate do done downcast downto elif else end
+keyword  exception extern finally fixed for fun function global if in inherit inline interface internal
+keyword  lazy let match member module mutable namespace new not of open or override private public rec
+keyword  return select sig static struct then to try type upcast use val void when while with yield
+builtin  true false null printfn printf sprintf failwith ignore id fst snd Some None raise box unbox
+type     int float string bool unit char byte decimal int64 uint64 list option seq array exn obj
+
+line-comment   //
+block-comment  (* *)  : nested
+string   """ """  : multiline
+string   " "      : escapes
+string   ' '      : escapes
+prefix   @        : verbatim
+prefix   $        : interp=braces
+escape        : x=2 u4 U8
+operators  +-*/%&|^!<>=:?~@.
+upper-type

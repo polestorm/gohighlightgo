@@ -1,0 +1,32 @@
+<span class="hl-com">! REQ: LANG-421 LANG-422 LANG-423 LANG-424 LANG-425</span>
+<span class="hl-kw">program</span> greeter
+  <span class="hl-kw">implicit</span> <span class="hl-kw">none</span>
+  <span class="hl-type">integer</span>, <span class="hl-kw">parameter</span> <span class="hl-op">::</span> dp <span class="hl-op">=</span> <span class="hl-builtin">kind</span>(<span class="hl-num">1.0d0</span>)
+  <span class="hl-type">real</span>(dp) <span class="hl-op">::</span> area
+  <span class="hl-type">integer</span> <span class="hl-op">::</span> i, times
+  <span class="hl-type">character</span>(<span class="hl-builtin">len</span><span class="hl-op">=*</span>), <span class="hl-kw">parameter</span> <span class="hl-op">::</span> name <span class="hl-op">=</span> <span class="hl-str">"world"</span>
+  <span class="hl-type">logical</span> <span class="hl-op">::</span> ok
+
+  times <span class="hl-op">=</span> <span class="hl-num">2</span>
+  ok <span class="hl-op">=</span> <span class="hl-builtin">.true.</span> <span class="hl-op">.and.</span> <span class="hl-op">.not.</span> <span class="hl-builtin">.false.</span>
+  area <span class="hl-op">=</span> <span class="hl-num">3.14159_dp</span> <span class="hl-op">*</span> <span class="hl-num">1.5_dp</span><span class="hl-op">**</span><span class="hl-num">2</span>
+
+  <span class="hl-com">! Loop over the greetings.</span>
+  <span class="hl-kw">do</span> i <span class="hl-op">=</span> <span class="hl-num">1</span>, times
+    <span class="hl-kw">if</span> (i <span class="hl-op">==</span> <span class="hl-num">1</span> <span class="hl-op">.or.</span> ok) <span class="hl-kw">then</span>
+      <span class="hl-kw">print</span> <span class="hl-op">*</span>, <span class="hl-str">'Hello, '</span>, <span class="hl-builtin">trim</span>(name), <span class="hl-str">'! it</span><span class="hl-esc">''</span><span class="hl-str">s '</span>, i
+    <span class="hl-kw">else</span> <span class="hl-kw">if</span> (i <span class="hl-op">.gt.</span> <span class="hl-num">1</span>) <span class="hl-kw">then</span>
+      <span class="hl-kw">write</span> (<span class="hl-op">*</span>, <span class="hl-str">'(A, F8.3)'</span>) <span class="hl-str">"area = "</span>, area
+    <span class="hl-kw">end</span> <span class="hl-kw">if</span>
+  <span class="hl-kw">end</span> <span class="hl-kw">do</span>
+
+  <span class="hl-kw">call</span> <span class="hl-fn">show</span>(times)
+
+<span class="hl-kw">contains</span>
+
+  <span class="hl-kw">subroutine</span> <span class="hl-fn">show</span>(n)
+    <span class="hl-type">integer</span>, <span class="hl-kw">intent</span>(<span class="hl-kw">in</span>) <span class="hl-op">::</span> n
+    <span class="hl-kw">print</span> <span class="hl-op">*</span>, <span class="hl-str">"n = "</span>, n, <span class="hl-builtin">size</span>([<span class="hl-num">1</span>, <span class="hl-num">2</span>, <span class="hl-num">3</span>])
+  <span class="hl-kw">end</span> <span class="hl-kw">subroutine</span> show
+
+<span class="hl-kw">end</span> <span class="hl-kw">program</span> greeter

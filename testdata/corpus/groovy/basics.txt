@@ -1,0 +1,26 @@
+// REQ: LANG-391 LANG-392 LANG-393 LANG-394 LANG-395
+package demo
+
+import groovy.transform.CompileStatic
+
+/* Block comment */
+@CompileStatic
+class Greeter {
+    String name = 'world'
+
+    String greet(int times = 1) {
+        def text = "Hello, ${name}! $times\n"
+        def raw = 'single $not'
+        def multi = """
+            Multi ${name.toUpperCase()}
+        """
+        def pattern = /\d+ "quoted"/
+        def list = [1, 2, 3].collect { it * 2 }
+        def map = [a: 1, b: 2.5]
+        assert list.size() == 3
+        return text * times + raw + multi
+    }
+}
+
+def g = new Greeter(name: 'groovy')
+println g.greet(2) + 0x1F + 1_000L + true + null

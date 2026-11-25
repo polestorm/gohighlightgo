@@ -1,0 +1,16 @@
+# Erlang: Erlang Reference Manual (OTP 26), "Data Types", "Expressions", "Preprocessor"; requirements/languages/erlang.md
+name     erlang erl
+
+keyword  after and andalso band begin bnot bor bsl bsr bxor case catch cond div end fun if let maybe
+keyword  not of or orelse receive rem try when xor
+builtin  true false undefined ok error self spawn send length hd tl element setelement is_atom is_list
+builtin  is_integer is_binary atom_to_list list_to_atom io lists maps
+
+line-comment   %
+string   " "  : escapes
+string   ' '  : escapes name
+escape        : x=2 octal=3
+sigil    ?    : meta
+operators  +-*/=<>!|:#
+upper-type
+calls

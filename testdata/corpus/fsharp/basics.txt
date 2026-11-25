@@ -1,0 +1,29 @@
+// REQ: LANG-351 LANG-352 LANG-353 LANG-354 LANG-355
+module Demo.Greeter
+
+open System
+
+(* outer (* nested *) still a comment *)
+type Shape =
+    | Circle of radius: float
+    | Rect of width: float * height: float
+
+let area shape =
+    match shape with
+    | Circle r -> Math.PI * r * r
+    | Rect (w, h) -> w * h
+
+let greet (name: string) (times: int) : string =
+    let text = sprintf "Hello, %s!\n" name
+    let path = @"C:\temp\""quoted"""
+    let raw = """Raw "text" \n stays"""
+    let interp = $"Name: {name}, times: {times}"
+    let c = 'x'
+    if times > 0 && not (String.IsNullOrEmpty name) then String.replicate times text
+    else failwith "bad"
+
+[<EntryPoint>]
+let main argv =
+    printfn "%s %f %d" (greet "world" 2) (area (Circle 1.5)) 0x1F
+    let opt = Some 42 |> Option.map (fun x -> x + 1_000)
+    0

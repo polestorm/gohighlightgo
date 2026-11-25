@@ -1,0 +1,20 @@
+# Visual Basic: Visual Basic language reference (Keywords, Comments, String data type); requirements/languages/vb.md
+name     vb vbnet visualbasic vba vbs vbscript
+
+keyword  AddHandler AddressOf Alias And AndAlso As ByRef ByVal Call Case Catch Class Const Continue Declare
+keyword  Default Delegate Dim DirectCast Do Each Else ElseIf End Enum Erase Error Event Exit Finally For
+keyword  Friend Function Get GetType Global GoTo Handles If Implements Imports In Inherits Interface Is
+keyword  IsNot Let Lib Like Loop Me Mod Module MustInherit MustOverride MyBase MyClass Namespace Narrowing
+keyword  New Next Not Of On Operator Option Optional Or OrElse Overloads Overridable Overrides ParamArray
+keyword  Partial Private Property Protected Public RaiseEvent ReadOnly ReDim RemoveHandler Resume Return
+keyword  Select Set Shadows Shared Static Step Stop Structure Sub SyncLock Then Throw To Try TryCast
+keyword  TypeOf Using When While Widening With WithEvents WriteOnly Xor
+type     Boolean Byte Char Date Decimal Double Integer Long Object SByte Short Single String UInteger
+type     ULong UShort Variant
+builtin  True False Nothing CInt CStr CDbl CBool MsgBox Console
+fold-case
+
+line-comment   ' REM Rem rem
+string   " "  : doubled
+operators  +-*/\^&=<>:
+calls

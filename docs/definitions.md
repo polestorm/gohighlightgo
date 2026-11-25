@@ -32,7 +32,8 @@ calls
 
 ## Syntax
 
-One directive per line: a name, values separated by spaces, and optionally options after a lone `:`. Lines that
+One directive per line: a name, values separated by spaces, and optionally options after a lone `:` (the last
+one on the line, so `:` can also be a value: `sigil : : attr`). Lines that
 start with `#` and empty lines are ignored. Values are printable ASCII without spaces, except words, which may
 contain any letters.
 
@@ -55,12 +56,13 @@ contain any letters.
 | `number` | | `no-leading-dot`, `dot-ident`, `quote-sep` | differences in number syntax |
 | `operators` | characters | | characters coloured `hl-op` |
 | `calls` | | | a name followed by `(` is coloured `hl-fn` |
+| `call-after-paren` | | | a name right after `(` is coloured `hl-fn` (Lisp: `(println x)`) |
 | `macros` | | | a name followed by `!` (not `!=`) is coloured `hl-fn` |
 | `decorators` | | | `@name` is coloured `hl-meta` (the same as `sigil @ : meta`) |
 | `templates` | | | JavaScript template literals with `${…}` |
 | `regex` | | | JavaScript regular expression literals, decided by the previous token |
 | `keys` | | | a string followed by `:` is coloured `hl-attr` (JSON keys) |
-| `hook` | a hook | | a construct written in Go: `c-preprocessor`, `cpp`, `rust`, `json-minus`, `pascal`, `lua`, `swift`, `apostrophe`, `haskell`, `ruby`, `php`; may be repeated, tried in order |
+| `hook` | a hook | | a construct written in Go: `c-preprocessor`, `cpp`, `rust`, `json-minus`, `pascal`, `lua`, `swift`, `apostrophe`, `haskell`, `ruby`, `php`, `perl`, `elixir`, `matlab`, `dotted`; may be repeated, tried in order |
 
 **Strings.** `escapes`: `\` starts an escape sequence (shaped by `escape`); `multiline`: the string may cross line
 ends, otherwise an unclosed string ends before the line break; `doubled`: the closing delimiter written twice is an
@@ -76,8 +78,9 @@ unless the prefix gives its own `interp=` (`raw"…$x"` in Scala). With `interp=
 
 **Escapes.** `continuation`: `\` before a line end continues the string; `x=N`: `\x` and up to N hex digits;
 `octal=N`: up to N octal digits; `u4`, `U8`: `\u` with four and `\U` with eight hex digits; `u-braces`: `\u{…}`;
-`java-u`: `\u`, `\uu`, … and four hex digits; `named`: `\N{…}`; `paren`: `\( … )` (Swift interpolation). Any
-other `\` with one character is an escape too.
+`java-u`: `\u`, `\uu`, … and four hex digits; `named`: `\N{…}`; `paren`: `\( … )` (Swift interpolation);
+`char=X`: the escape character is X instead of `\` (`` char=` `` in PowerShell). Any other escape character with
+one character after it is an escape too. `interp=dollar` also takes `$(…)`.
 
 **Numbers.** Decimal, `0x`, `0o`, `0b`, `_` between digits, fractions, exponents (`e`, or `p` in hex) and a
 suffix of letters (`10u32`, `1.5f`) are built in. `no-leading-dot`: a number cannot start with `.`; `dot-ident`:

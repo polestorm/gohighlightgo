@@ -1,0 +1,19 @@
+# OCaml: The OCaml Manual (5.1), chapter "The OCaml language", Lexical conventions; requirements/languages/ocaml.md
+name     ocaml ml mli
+
+keyword  and as assert begin class constraint do done downto else end exception external for fun function
+keyword  functor if in include inherit initializer lazy let match method module mutable new nonrec object
+keyword  of open private rec sig struct then to try type val virtual when while with
+builtin  true false print_endline print_string print_int Printf List Array String failwith raise ignore
+builtin  not fst snd ref
+type     int float string bool unit char list option array exn
+
+ident-part     '
+block-comment  (* *)  : nested
+string   {| |}  : multiline
+string   " "    : escapes multiline
+escape        : x=2 octal=3 u-braces
+number        : no-leading-dot
+operators  +-*/%&|^!<>=:?~@.
+upper-type
+hook     apostrophe

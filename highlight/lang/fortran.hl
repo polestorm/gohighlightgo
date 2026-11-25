@@ -1,0 +1,18 @@
+# Fortran: ISO/IEC 1539-1:2018 (Fortran 2018), clause 6 Lexical tokens; requirements/languages/fortran.md
+name     fortran f90 f95 f03 f08 for
+
+keyword  program end subroutine function module submodule use implicit none contains call return if then
+keyword  else elseif endif do enddo while select case default where forall stop exit cycle goto continue
+keyword  allocate deallocate intent in out inout parameter dimension allocatable pointer target public
+keyword  private interface procedure type class result recursive pure elemental print write read open
+keyword  close format block associate
+type     integer real double precision complex logical character
+builtin  size len trim adjustl allocated present abs sqrt sin cos exp log mod max min sum huge kind
+fold-case
+
+line-comment   !
+string   " "  : doubled
+string   ' '  : doubled
+operators  +-*/=<>:%
+calls
+hook     dotted

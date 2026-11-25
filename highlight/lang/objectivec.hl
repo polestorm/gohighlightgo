@@ -1,0 +1,10 @@
+# Objective-C: Apple "Programming with Objective-C" and the C standard (C23); requirements/languages/objectivec.md
+extends  c
+name     objectivec objc objective-c m mm
+
+keyword  self super in out inout bycopy byref oneway
+type     id instancetype BOOL SEL Class IMP NSInteger NSUInteger CGFloat
+builtin  YES NO nil Nil
+sigil    @    : kw
+prefix   @
+decorators

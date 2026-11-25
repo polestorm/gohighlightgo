@@ -1,0 +1,33 @@
+' REQ: LANG-411 LANG-412 LANG-413 LANG-414 LANG-415
+Imports System
+
+Namespace Demo
+    Public Class Greeter
+        Private ReadOnly _name As String
+
+        Public Sub New(ByVal name As String)
+            _name = name
+        End Sub
+
+        REM Greets the name.
+        Public Function Greet(ByVal times As Integer) As String
+            Dim text As String = "Hello, " & _name & "! ""quoted"""
+            Dim result As String = ""
+            For i As Integer = 1 To times
+                result &= text & vbCrLf
+            Next
+            If times > 0 AndAlso Not String.IsNullOrEmpty(_name) Then
+                Return result
+            Else
+                Return Nothing
+            End If
+        End Function
+    End Class
+
+    Module Program
+        Sub Main()
+            Dim g As New Greeter("world")
+            Console.WriteLine(g.Greet(2) & CStr(&H1F + 1.5) & True)
+        End Sub
+    End Module
+End Namespace

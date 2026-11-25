@@ -1,0 +1,26 @@
+<span class="hl-com">% REQ: LANG-381 LANG-382 LANG-383 LANG-384 LANG-385</span>
+<span class="hl-com">%{</span>
+<span class="hl-com">Block comment</span>
+<span class="hl-com">over lines</span>
+<span class="hl-com">%}</span>
+<span class="hl-kw">function</span> result <span class="hl-op">=</span> <span class="hl-fn">greet</span>(name, times)
+    <span class="hl-com">% Greets name times times.</span>
+    <span class="hl-kw">if</span> nargin <span class="hl-op">&lt;</span> <span class="hl-num">2</span>
+        times <span class="hl-op">=</span> <span class="hl-num">1</span>;
+    <span class="hl-kw">end</span>
+    text <span class="hl-op">=</span> <span class="hl-builtin">sprintf</span>(<span class="hl-str">'Hello, %s!\n'</span>, name);
+    quoted <span class="hl-op">=</span> <span class="hl-str">'it''s'</span>;
+    s <span class="hl-op">=</span> <span class="hl-str">"double </span><span class="hl-esc">""</span><span class="hl-str">quoted</span><span class="hl-esc">""</span><span class="hl-str">"</span>;
+    A <span class="hl-op">=</span> [<span class="hl-num">1</span> <span class="hl-num">2</span>; <span class="hl-num">3</span> <span class="hl-num">4</span>];
+    B <span class="hl-op">=</span> A<span class="hl-op">'</span> <span class="hl-op">*</span> A<span class="hl-op">.'</span>;
+    C <span class="hl-op">=</span> <span class="hl-fn">A</span>(<span class="hl-num">1</span>, <span class="hl-op">:</span>)<span class="hl-op">'</span>;
+    result <span class="hl-op">=</span> <span class="hl-fn">repmat</span>(text, <span class="hl-num">1</span>, times);
+    <span class="hl-kw">for</span> k <span class="hl-op">=</span> <span class="hl-num">1</span><span class="hl-op">:</span><span class="hl-builtin">numel</span>(A)
+        <span class="hl-kw">if</span> <span class="hl-fn">A</span>(k) <span class="hl-op">&gt;</span> <span class="hl-num">2</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-op">~</span><span class="hl-builtin">isempty</span>(B)
+            <span class="hl-builtin">disp</span>(k);
+        <span class="hl-kw">elseif</span> k <span class="hl-op">==</span> <span class="hl-num">0</span>
+            <span class="hl-kw">continue</span>
+        <span class="hl-kw">end</span>
+    <span class="hl-kw">end</span>
+    x <span class="hl-op">=</span> <span class="hl-num">0x1F</span> <span class="hl-op">+</span> <span class="hl-num">1.5e3</span> <span class="hl-op">+</span> <span class="hl-builtin">pi</span>;
+<span class="hl-kw">end</span>

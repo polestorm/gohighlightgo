@@ -1,0 +1,26 @@
+% REQ: LANG-381 LANG-382 LANG-383 LANG-384 LANG-385
+%{
+Block comment
+over lines
+%}
+function result = greet(name, times)
+    % Greets name times times.
+    if nargin < 2
+        times = 1;
+    end
+    text = sprintf('Hello, %s!\n', name);
+    quoted = 'it''s';
+    s = "double ""quoted""";
+    A = [1 2; 3 4];
+    B = A' * A.';
+    C = A(1, :)';
+    result = repmat(text, 1, times);
+    for k = 1:numel(A)
+        if A(k) > 2 && ~isempty(B)
+            disp(k);
+        elseif k == 0
+            continue
+        end
+    end
+    x = 0x1F + 1.5e3 + pi;
+end

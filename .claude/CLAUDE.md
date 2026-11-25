@@ -12,7 +12,7 @@ ADR 0004. Etapy 4–5 gotowe: motywy (ADR 0006), polecenie `cmd/gohighlightgo` (
 `tools/review`, H5 i H6 (`tools/compare`, chroma i highlight); README po angielsku z porównaniem; wydanie v0.1.0
 przed 24 h fuzzingu (ADR 0007); adaptery u odbiorców po wydaniu (łatki w `docs/adapters/`). Etap 7: języki z tabeli
 to pliki `highlight/lang/*.hl` (ADR 0008, format w `docs/definitions.md`), `Register` i `-def`. Etap 8 (ADR 0009): cel to
-liczba języków jak u konkurencji (~260–300); dziś 30. Fuzzing według reguły z globalnego CLAUDE.md (Synology;
+liczba języków jak u konkurencji (~260–300); dziś 43. Fuzzing według reguły z globalnego CLAUDE.md (Synology;
 lokalnie najwyżej 2 min, `-parallel 2`). Zacznij od `README.md`, potem `docs/adr/0001-scope-and-acceptance.md` i kolejne
 ADR, `docs/roadmap.md`, `docs/provenance.md`, `docs/notes-from-gomdgo.md` i `docs/adr/open-questions.md`.
 

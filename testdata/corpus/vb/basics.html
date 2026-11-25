@@ -1,0 +1,33 @@
+<span class="hl-com">' REQ: LANG-411 LANG-412 LANG-413 LANG-414 LANG-415</span>
+<span class="hl-kw">Imports</span> System
+
+<span class="hl-kw">Namespace</span> Demo
+    <span class="hl-kw">Public</span> <span class="hl-kw">Class</span> Greeter
+        <span class="hl-kw">Private</span> <span class="hl-kw">ReadOnly</span> _name <span class="hl-kw">As</span> <span class="hl-type">String</span>
+
+        <span class="hl-kw">Public</span> <span class="hl-kw">Sub</span> <span class="hl-kw">New</span>(<span class="hl-kw">ByVal</span> name <span class="hl-kw">As</span> <span class="hl-type">String</span>)
+            _name <span class="hl-op">=</span> name
+        <span class="hl-kw">End</span> <span class="hl-kw">Sub</span>
+
+        <span class="hl-com">REM Greets the name.</span>
+        <span class="hl-kw">Public</span> <span class="hl-kw">Function</span> <span class="hl-fn">Greet</span>(<span class="hl-kw">ByVal</span> times <span class="hl-kw">As</span> <span class="hl-type">Integer</span>) <span class="hl-kw">As</span> <span class="hl-type">String</span>
+            <span class="hl-kw">Dim</span> text <span class="hl-kw">As</span> <span class="hl-type">String</span> <span class="hl-op">=</span> <span class="hl-str">"Hello, "</span> <span class="hl-op">&amp;</span> _name <span class="hl-op">&amp;</span> <span class="hl-str">"! </span><span class="hl-esc">""</span><span class="hl-str">quoted</span><span class="hl-esc">""</span><span class="hl-str">"</span>
+            <span class="hl-kw">Dim</span> result <span class="hl-kw">As</span> <span class="hl-type">String</span> <span class="hl-op">=</span> <span class="hl-str">""</span>
+            <span class="hl-kw">For</span> i <span class="hl-kw">As</span> <span class="hl-type">Integer</span> <span class="hl-op">=</span> <span class="hl-num">1</span> <span class="hl-kw">To</span> times
+                result <span class="hl-op">&amp;=</span> text <span class="hl-op">&amp;</span> vbCrLf
+            <span class="hl-kw">Next</span>
+            <span class="hl-kw">If</span> times <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-kw">AndAlso</span> <span class="hl-kw">Not</span> <span class="hl-type">String</span>.<span class="hl-fn">IsNullOrEmpty</span>(_name) <span class="hl-kw">Then</span>
+                <span class="hl-kw">Return</span> result
+            <span class="hl-kw">Else</span>
+                <span class="hl-kw">Return</span> <span class="hl-builtin">Nothing</span>
+            <span class="hl-kw">End</span> <span class="hl-kw">If</span>
+        <span class="hl-kw">End</span> <span class="hl-kw">Function</span>
+    <span class="hl-kw">End</span> <span class="hl-kw">Class</span>
+
+    <span class="hl-kw">Module</span> Program
+        <span class="hl-kw">Sub</span> <span class="hl-fn">Main</span>()
+            <span class="hl-kw">Dim</span> g <span class="hl-kw">As</span> <span class="hl-kw">New</span> <span class="hl-fn">Greeter</span>(<span class="hl-str">"world"</span>)
+            <span class="hl-builtin">Console</span>.<span class="hl-fn">WriteLine</span>(g.<span class="hl-fn">Greet</span>(<span class="hl-num">2</span>) <span class="hl-op">&amp;</span> <span class="hl-builtin">CStr</span>(<span class="hl-op">&amp;</span>H1F <span class="hl-op">+</span> <span class="hl-num">1.5</span>) <span class="hl-op">&amp;</span> <span class="hl-builtin">True</span>)
+        <span class="hl-kw">End</span> <span class="hl-kw">Sub</span>
+    <span class="hl-kw">End</span> <span class="hl-kw">Module</span>
+<span class="hl-kw">End</span> <span class="hl-kw">Namespace</span>

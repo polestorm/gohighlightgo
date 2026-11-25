@@ -1,0 +1,13 @@
+# MATLAB: MATLAB documentation (R2024a), "Language Fundamentals", keywords from iskeyword; requirements/languages/matlab.md
+name     matlab octave
+
+keyword  break case catch classdef continue else elseif end for function global if otherwise parfor
+keyword  persistent return spmd switch try while methods properties events enumeration
+builtin  true false pi disp fprintf sprintf zeros ones eye size length numel isempty error warning
+builtin  plot figure hold
+
+line-comment   %
+string   " "  : doubled
+operators  +-*/^\&|~<>=:.
+calls
+hook     matlab

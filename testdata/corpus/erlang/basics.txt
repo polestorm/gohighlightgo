@@ -1,0 +1,27 @@
+% REQ: LANG-331 LANG-332 LANG-333 LANG-334 LANG-335
+-module(greeter).
+-export([greet/2, start/0]).
+-define(GREETING, "Hello").
+
+%% Greets Name Times times.
+greet(Name, Times) when is_list(Name), Times > 0 ->
+    Text = ?GREETING ++ ", " ++ Name ++ "!\n",
+    lists:flatten(lists:duplicate(Times, Text));
+greet(_, _) ->
+    {error, 'bad args'}.
+
+start() ->
+    Pid = spawn(fun() -> loop(0) end),
+    Pid ! {self(), greet("world", 2)},
+    receive
+        {ok, Reply} -> io:format("~s~n", [Reply])
+    after 1000 ->
+        timeout
+    end,
+    X = 16#1F + 2#1010 + 3.14,
+    case X > 0 andalso true of
+        true -> ok;
+        false -> undefined
+    end.
+
+loop(N) -> receive _ -> loop(N + 1) end.

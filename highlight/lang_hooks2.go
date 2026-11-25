@@ -43,19 +43,8 @@ func rubyInner(t *table, w *writer, src []byte, i int) int {
 		return end
 	case b == '%':
 		return percentLiteral(w, src, i)
-	case b == ':' && i+1 < len(src) && (i == 0 || !isWordByte(src[i-1]) && src[i-1] != ':'):
-		if j := t.identEnd(src, i+1); j > i+1 {
-			if j < len(src) && (src[j] == '?' || src[j] == '!' || src[j] == '=') && (j+1 >= len(src) || src[j+1] != '=') {
-				j++
-			}
-			w.emit(attribute, src[i:j])
-			return j
-		}
-	case isWordByte(b) && !isDigit(b):
-		if j := t.identEnd(src, i); j > i && j+1 < len(src) && src[j] == ':' && src[j+1] != ':' && isSpace(src[j+1]) {
-			w.emit(attribute, src[i:j+1]) // klucz w skrócie {nazwa: wartość}
-			return j + 1
-		}
+	case b == ':' || isWordByte(b) && !isDigit(b):
+		return atomOrKey(t, w, src, i)
 	}
 	return i
 }

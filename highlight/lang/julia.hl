@@ -1,0 +1,21 @@
+# Julia: Julia Documentation (1.10), "Strings", "Variables", keyword list in Base; requirements/languages/julia.md
+name     julia jl
+
+keyword  baremodule begin break catch const continue do else elseif end export finally for function global
+keyword  if import let local macro module quote return struct try using while abstract mutable primitive
+keyword  type where in isa
+type     Int Int8 Int16 Int32 Int64 UInt UInt8 Float32 Float64 String Char Bool Vector Matrix Array Dict
+type     Any Nothing Symbol Tuple
+builtin  true false nothing missing println print push! length size zeros ones collect map filter sum
+
+ident-part     !
+line-comment   #
+block-comment  #= =#  : nested
+string   """ """  : escapes multiline interp=dollar
+string   " "      : escapes interp=dollar
+escape        : x=2 u4 U8 octal=3
+sigil    @    : meta
+operators  +-*/%&|^!<>=:?~\
+upper-type
+calls
+hook     apostrophe

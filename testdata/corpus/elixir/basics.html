@@ -1,0 +1,24 @@
+<span class="hl-com"># REQ: LANG-321 LANG-322 LANG-323 LANG-324 LANG-325</span>
+<span class="hl-kw">defmodule</span> <span class="hl-type">Demo</span><span class="hl-op">.</span><span class="hl-type">Greeter</span> <span class="hl-kw">do</span>
+  <span class="hl-meta">@moduledoc</span> <span class="hl-str">"""</span>
+<span class="hl-str">  Greets people. Version </span><span class="hl-esc">#{@version}</span>
+<span class="hl-str">  """</span>
+  <span class="hl-meta">@version</span> <span class="hl-str">"1.0"</span>
+
+  <span class="hl-kw">defstruct</span> <span class="hl-attr">name:</span> <span class="hl-str">"world"</span>, <span class="hl-attr">times:</span> <span class="hl-num">1</span>
+
+  <span class="hl-kw">def</span> <span class="hl-fn">greet</span>(%<span class="hl-builtin">__MODULE__</span>{<span class="hl-attr">name:</span> name, <span class="hl-attr">times:</span> times}) <span class="hl-kw">when</span> times <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-kw">do</span>
+    text <span class="hl-op">=</span> <span class="hl-str">"Hello, </span><span class="hl-esc">#{name}</span><span class="hl-str">!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>
+    words <span class="hl-op">=</span> <span class="hl-str">~w(alpha beta gamma)</span>
+    pattern <span class="hl-op">=</span> <span class="hl-str">~r/\d+ "quoted"/i</span>
+    opts <span class="hl-op">=</span> [<span class="hl-attr">key:</span> <span class="hl-attr">:value</span>, <span class="hl-attr">other:</span> <span class="hl-builtin">nil</span>]
+    <span class="hl-kw">case</span> <span class="hl-type">Enum</span><span class="hl-op">.</span><span class="hl-fn">count</span>(words) <span class="hl-kw">do</span>
+      <span class="hl-num">3</span> <span class="hl-op">-&gt;</span> <span class="hl-type">String</span><span class="hl-op">.</span><span class="hl-fn">duplicate</span>(text, times)
+      _ <span class="hl-op">-&gt;</span> {<span class="hl-attr">:error</span>, <span class="hl-attr">:unexpected</span>}
+    <span class="hl-kw">end</span>
+  <span class="hl-kw">end</span>
+
+  <span class="hl-kw">defp</span> private<span class="hl-op">?</span>(x), <span class="hl-attr">do:</span> x <span class="hl-op">==</span> <span class="hl-str">'chars'</span> <span class="hl-kw">or</span> x <span class="hl-op">!=</span> <span class="hl-num">0x1F</span> <span class="hl-op">+</span> <span class="hl-num">1_000</span> <span class="hl-op">+</span> <span class="hl-num">3.14</span>
+<span class="hl-kw">end</span>
+
+<span class="hl-type">Demo</span><span class="hl-op">.</span><span class="hl-type">Greeter</span><span class="hl-op">.</span><span class="hl-fn">greet</span>(%<span class="hl-type">Demo</span><span class="hl-op">.</span><span class="hl-type">Greeter</span>{}) <span class="hl-op">|&gt;</span> <span class="hl-type">IO</span><span class="hl-op">.</span><span class="hl-fn">puts</span>()

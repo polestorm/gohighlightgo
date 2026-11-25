@@ -1,0 +1,27 @@
+<span class="hl-com">% REQ: LANG-331 LANG-332 LANG-333 LANG-334 LANG-335</span>
+<span class="hl-op">-</span><span class="hl-fn">module</span>(greeter).
+<span class="hl-op">-</span><span class="hl-fn">export</span>([greet<span class="hl-op">/</span><span class="hl-num">2</span>, start<span class="hl-op">/</span><span class="hl-num">0</span>]).
+<span class="hl-op">-</span><span class="hl-fn">define</span>(<span class="hl-type">GREETING</span>, <span class="hl-str">"Hello"</span>).
+
+<span class="hl-com">%% Greets Name Times times.</span>
+<span class="hl-fn">greet</span>(<span class="hl-type">Name</span>, <span class="hl-type">Times</span>) <span class="hl-kw">when</span> <span class="hl-builtin">is_list</span>(<span class="hl-type">Name</span>), <span class="hl-type">Times</span> <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-op">-&gt;</span>
+    <span class="hl-type">Text</span> <span class="hl-op">=</span> <span class="hl-meta">?GREETING</span> <span class="hl-op">++</span> <span class="hl-str">", "</span> <span class="hl-op">++</span> <span class="hl-type">Name</span> <span class="hl-op">++</span> <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>,
+    <span class="hl-builtin">lists</span><span class="hl-op">:</span><span class="hl-fn">flatten</span>(<span class="hl-builtin">lists</span><span class="hl-op">:</span><span class="hl-fn">duplicate</span>(<span class="hl-type">Times</span>, <span class="hl-type">Text</span>));
+<span class="hl-fn">greet</span>(_, _) <span class="hl-op">-&gt;</span>
+    {<span class="hl-builtin">error</span>, 'bad args'}.
+
+<span class="hl-fn">start</span>() <span class="hl-op">-&gt;</span>
+    <span class="hl-type">Pid</span> <span class="hl-op">=</span> <span class="hl-builtin">spawn</span>(<span class="hl-kw">fun</span>() <span class="hl-op">-&gt;</span> <span class="hl-fn">loop</span>(<span class="hl-num">0</span>) <span class="hl-kw">end</span>),
+    <span class="hl-type">Pid</span> <span class="hl-op">!</span> {<span class="hl-builtin">self</span>(), <span class="hl-fn">greet</span>(<span class="hl-str">"world"</span>, <span class="hl-num">2</span>)},
+    <span class="hl-kw">receive</span>
+        {<span class="hl-builtin">ok</span>, <span class="hl-type">Reply</span>} <span class="hl-op">-&gt;</span> <span class="hl-builtin">io</span><span class="hl-op">:</span><span class="hl-fn">format</span>(<span class="hl-str">"~s~n"</span>, [<span class="hl-type">Reply</span>])
+    <span class="hl-kw">after</span> <span class="hl-num">1000</span> <span class="hl-op">-&gt;</span>
+        timeout
+    <span class="hl-kw">end</span>,
+    <span class="hl-type">X</span> <span class="hl-op">=</span> <span class="hl-num">16</span><span class="hl-op">#</span><span class="hl-num">1F</span> <span class="hl-op">+</span> <span class="hl-num">2</span><span class="hl-op">#</span><span class="hl-num">1010</span> <span class="hl-op">+</span> <span class="hl-num">3.14</span>,
+    <span class="hl-kw">case</span> <span class="hl-type">X</span> <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-kw">andalso</span> <span class="hl-builtin">true</span> <span class="hl-kw">of</span>
+        <span class="hl-builtin">true</span> <span class="hl-op">-&gt;</span> <span class="hl-builtin">ok</span>;
+        <span class="hl-builtin">false</span> <span class="hl-op">-&gt;</span> <span class="hl-builtin">undefined</span>
+    <span class="hl-kw">end</span>.
+
+<span class="hl-fn">loop</span>(<span class="hl-type">N</span>) <span class="hl-op">-&gt;</span> <span class="hl-kw">receive</span> _ <span class="hl-op">-&gt;</span> <span class="hl-fn">loop</span>(<span class="hl-type">N</span> <span class="hl-op">+</span> <span class="hl-num">1</span>) <span class="hl-kw">end</span>.

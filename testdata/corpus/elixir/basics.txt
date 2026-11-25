@@ -1,0 +1,24 @@
+# REQ: LANG-321 LANG-322 LANG-323 LANG-324 LANG-325
+defmodule Demo.Greeter do
+  @moduledoc """
+  Greets people. Version #{@version}
+  """
+  @version "1.0"
+
+  defstruct name: "world", times: 1
+
+  def greet(%__MODULE__{name: name, times: times}) when times > 0 do
+    text = "Hello, #{name}!\n"
+    words = ~w(alpha beta gamma)
+    pattern = ~r/\d+ "quoted"/i
+    opts = [key: :value, other: nil]
+    case Enum.count(words) do
+      3 -> String.duplicate(text, times)
+      _ -> {:error, :unexpected}
+    end
+  end
+
+  defp private?(x), do: x == 'chars' or x != 0x1F + 1_000 + 3.14
+end
+
+Demo.Greeter.greet(%Demo.Greeter{}) |> IO.puts()

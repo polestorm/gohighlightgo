@@ -1,0 +1,19 @@
+# Perl: perlsyn, perlop (Quote and Quote-like Operators), perlpod, perlfunc (Perl 5.38); requirements/languages/perl.md
+name     perl pl pm
+
+keyword  if elsif else unless while until for foreach do last next redo goto return my our local state
+keyword  sub package use no require BEGIN END and or not xor eq ne lt gt le ge cmp
+builtin  print printf say open close chomp chop split join push pop shift unshift keys values each
+builtin  defined undef die warn exists delete scalar ref bless map grep sort reverse length substr
+builtin  sprintf lc uc wantarray
+
+line-comment   #
+string   " "  : escapes interp=dollar
+string   ' '  : escapes
+string   ` `  : escapes interp=dollar
+escape        : x=2 octal=3
+sigil    $@%  : attr
+operators  +-*/%&|^!<>=?~.:
+calls
+regex
+hook     perl

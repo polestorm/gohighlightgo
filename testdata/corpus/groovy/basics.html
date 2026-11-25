@@ -1,0 +1,26 @@
+<span class="hl-com">// REQ: LANG-391 LANG-392 LANG-393 LANG-394 LANG-395</span>
+<span class="hl-kw">package</span> demo
+
+<span class="hl-kw">import</span> groovy.transform.CompileStatic
+
+<span class="hl-com">/* Block comment */</span>
+<span class="hl-meta">@CompileStatic</span>
+<span class="hl-kw">class</span> Greeter {
+    <span class="hl-type">String</span> name <span class="hl-op">=</span> <span class="hl-str">'world'</span>
+
+    <span class="hl-type">String</span> <span class="hl-fn">greet</span>(<span class="hl-type">int</span> times <span class="hl-op">=</span> <span class="hl-num">1</span>) {
+        <span class="hl-kw">def</span> text <span class="hl-op">=</span> <span class="hl-str">"Hello, </span><span class="hl-esc">${name}</span><span class="hl-str">! </span><span class="hl-esc">$times\n</span><span class="hl-str">"</span>
+        <span class="hl-kw">def</span> raw <span class="hl-op">=</span> <span class="hl-str">'single $not'</span>
+        <span class="hl-kw">def</span> multi <span class="hl-op">=</span> <span class="hl-str">"""</span>
+<span class="hl-str">            Multi </span><span class="hl-esc">${name.toUpperCase()}</span>
+<span class="hl-str">        """</span>
+        <span class="hl-kw">def</span> pattern <span class="hl-op">=</span> <span class="hl-str">/\d+ "quoted"/</span>
+        <span class="hl-kw">def</span> list <span class="hl-op">=</span> [<span class="hl-num">1</span>, <span class="hl-num">2</span>, <span class="hl-num">3</span>].collect { it <span class="hl-op">*</span> <span class="hl-num">2</span> }
+        <span class="hl-kw">def</span> map <span class="hl-op">=</span> [a<span class="hl-op">:</span> <span class="hl-num">1</span>, b<span class="hl-op">:</span> <span class="hl-num">2.5</span>]
+        <span class="hl-kw">assert</span> list.<span class="hl-fn">size</span>() <span class="hl-op">==</span> <span class="hl-num">3</span>
+        <span class="hl-kw">return</span> text <span class="hl-op">*</span> times <span class="hl-op">+</span> raw <span class="hl-op">+</span> multi
+    }
+}
+
+<span class="hl-kw">def</span> g <span class="hl-op">=</span> <span class="hl-kw">new</span> <span class="hl-fn">Greeter</span>(name<span class="hl-op">:</span> <span class="hl-str">'groovy'</span>)
+<span class="hl-builtin">println</span> g.<span class="hl-fn">greet</span>(<span class="hl-num">2</span>) <span class="hl-op">+</span> <span class="hl-num">0x1F</span> <span class="hl-op">+</span> <span class="hl-num">1_000L</span> <span class="hl-op">+</span> <span class="hl-builtin">true</span> <span class="hl-op">+</span> <span class="hl-builtin">null</span>

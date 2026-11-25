@@ -1,0 +1,20 @@
+# PowerShell: about_Language_Keywords, about_Quoting_Rules, about_Comments (PowerShell 7.4); requirements/languages/powershell.md
+name     powershell ps1 pwsh posh
+
+keyword  begin break catch class continue data define do dynamicparam else elseif end enum exit filter
+keyword  finally for foreach from function hidden if in param process return static switch throw trap
+keyword  try until using var while workflow
+builtin  true false null
+fold-case
+
+ident-part     -
+line-comment   #
+block-comment  <# #>
+string   @" "@  : escapes multiline interp=dollar
+string   @' '@  : multiline
+string   " "    : escapes interp=dollar
+string   ' '    : doubled
+escape        : char=`
+sigil    $      : attr
+sigil    -      : op
+operators  +*/%=<>!|,

@@ -1,0 +1,30 @@
+<span class="hl-com"># REQ: LANG-371 LANG-372 LANG-373 LANG-374 LANG-375</span>
+<span class="hl-com">#= Block comment</span>
+   <span class="hl-com">#= nested =# still a comment =#</span>
+<span class="hl-kw">module</span> <span class="hl-type">Greeter</span>
+
+<span class="hl-kw">export</span> greet
+
+<span class="hl-kw">struct</span> <span class="hl-type">Point</span>{<span class="hl-type">T</span><span class="hl-op">&lt;:</span><span class="hl-type">Real</span>}
+    x<span class="hl-op">::</span><span class="hl-type">T</span>
+    y<span class="hl-op">::</span><span class="hl-type">T</span>
+<span class="hl-kw">end</span>
+
+<span class="hl-kw">function</span> <span class="hl-fn">greet</span>(name<span class="hl-op">::</span><span class="hl-type">String</span>, times<span class="hl-op">::</span><span class="hl-type">Int</span><span class="hl-op">=</span><span class="hl-num">1</span>)
+    text <span class="hl-op">=</span> <span class="hl-str">"Hello, </span><span class="hl-esc">$name</span><span class="hl-str">! </span><span class="hl-esc">$(times + 1)\n</span><span class="hl-str">"</span>
+    multi <span class="hl-op">=</span> <span class="hl-str">"""</span>
+<span class="hl-str">        Multi </span><span class="hl-esc">$name</span>
+<span class="hl-str">        """</span>
+    c <span class="hl-op">=</span> <span class="hl-str">'x'</span>
+    <span class="hl-type">A</span> <span class="hl-op">=</span> [<span class="hl-num">1</span> <span class="hl-num">2</span>; <span class="hl-num">3</span> <span class="hl-num">4</span>]
+    <span class="hl-type">B</span> <span class="hl-op">=</span> <span class="hl-type">A</span>' <span class="hl-op">*</span> <span class="hl-type">A</span>
+    <span class="hl-kw">return</span> <span class="hl-fn">repeat</span>(text, times) <span class="hl-op">*</span> multi
+<span class="hl-kw">end</span>
+
+<span class="hl-meta">@time</span> result <span class="hl-op">=</span> <span class="hl-builtin">map</span>(x <span class="hl-op">-&gt;</span> x<span class="hl-op">^</span><span class="hl-num">2</span>, <span class="hl-builtin">collect</span>(<span class="hl-num">1</span><span class="hl-op">:</span><span class="hl-num">10</span>))
+values <span class="hl-op">=</span> <span class="hl-type">Dict</span>(<span class="hl-str">"a"</span> <span class="hl-op">=&gt;</span> <span class="hl-num">1</span>, <span class="hl-str">"b"</span> <span class="hl-op">=&gt;</span> <span class="hl-num">2.5e3</span>)
+<span class="hl-builtin">push!</span>(values, <span class="hl-str">"c"</span> <span class="hl-op">=&gt;</span> <span class="hl-num">0x1F</span>)
+z <span class="hl-op">=</span> <span class="hl-num">3</span> <span class="hl-op">+</span> <span class="hl-num">2im</span>
+<span class="hl-builtin">println</span>(<span class="hl-fn">greet</span>(<span class="hl-str">"world"</span>, <span class="hl-num">2</span>), <span class="hl-builtin">sum</span>(result), z, <span class="hl-builtin">nothing</span> <span class="hl-op">===</span> <span class="hl-builtin">nothing</span>, <span class="hl-builtin">true</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-op">!</span><span class="hl-builtin">false</span>)
+
+<span class="hl-kw">end</span>

@@ -14,6 +14,8 @@ type table struct {
 	identExtra    string           // dodatkowe bajty identyfikatora poza literami, cyframi i _ (np. $ w JS)
 	identPart     string           // bajty dozwolone w identyfikatorze, ale nie na początku (' w Haskellu)
 	upperType     bool             // identyfikator spoza słów, zaczynający się wielką literą, dostaje hl-type
+	lispCalls     bool             // identyfikator tuż po ( dostaje hl-fn (Clojure, Lisp)
+	escapeChar    byte             // znak ucieczki w napisach; 0 oznacza \
 	sigils        []sigil          // znak przed nazwą, np. @ (adnotacje), $ (zmienne PHP)
 	lineStrings   []string         // przedrostki napisów do końca wiersza (\\ w Zigu)
 	lineComments  []string         // przedrostki komentarzy do końca wiersza
@@ -209,6 +211,9 @@ func (t *table) scan(w *writer, src []byte) {
 			c := t.wordClass(src[i:j])
 			if c == none && t.upperType && src[i] >= 'A' && src[i] <= 'Z' {
 				c = typeName
+			}
+			if c == none && t.lispCalls && i > 0 && src[i-1] == '(' {
+				c = call
 			}
 			if c == none && t.calls && parenAfter(src, j) {
 				c = call
@@ -499,7 +504,7 @@ func (t *table) scanQuoteRaw(w *writer, src []byte, start, i int, q *quote, raw 
 				emit(c, src[start:j])
 				return j
 			}
-		case '\\':
+		case t.escapeByte():
 			if !q.escapes {
 				break
 			}
@@ -522,6 +527,14 @@ func (t *table) scanQuoteRaw(w *writer, src []byte, start, i int, q *quote, raw 
 	return j
 }
 
+// escapeByte zwraca znak ucieczki w napisach.
+func (t *table) escapeByte() byte {
+	if t.escapeChar != 0 {
+		return t.escapeChar
+	}
+	return '\\'
+}
+
 // interpLen zwraca długość wstawki od src[j] albo 0. Dla '$': $nazwa albo ${…}; dla '{': {…}, a {{ to dwa
 // znaki ucieczki. Wnętrze sięga do nawiasu zamykającego (z zagnieżdżeniem) w tym samym wierszu, najwyżej 256
 // bajtów, więc koszt każdej próby jest ograniczony.
@@ -535,6 +548,8 @@ func interpLen(src []byte, j int, kind byte) int {
 		return 2
 	case kind == '#' && next == '{':
 		return bracketLen(src, j, '{', '}', j+1)
+	case kind == '$' && next == '(':
+		return bracketLen(src, j, '(', ')', j+1)
 	case kind == '$' && next == '{':
 		return bracketLen(src, j, '{', '}', j+1)
 	case kind == '{':

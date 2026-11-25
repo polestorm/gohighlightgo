@@ -1,0 +1,25 @@
+<span class="hl-com">; REQ: LANG-341 LANG-342 LANG-343 LANG-344 LANG-345</span>
+(<span class="hl-kw">ns</span> demo.greeter
+  (<span class="hl-attr">:require</span> [clojure.string <span class="hl-attr">:as</span> <span class="hl-builtin">str</span>]))
+
+(<span class="hl-kw">def</span> ^<span class="hl-attr">:dynamic</span> *greeting* <span class="hl-str">"Hello"</span>)
+
+(<span class="hl-kw">defn</span> greet
+  <span class="hl-str">"Greets name times times."</span>
+  [name times]
+  (<span class="hl-kw">let</span> [text (<span class="hl-builtin">str</span> *greeting* <span class="hl-str">", "</span> name <span class="hl-str">"!</span><span class="hl-esc">\n</span><span class="hl-str">"</span>)
+        pattern <span class="hl-str">#"</span><span class="hl-esc">\d</span><span class="hl-str">+ </span><span class="hl-esc">\"</span><span class="hl-str">quoted</span><span class="hl-esc">\"</span><span class="hl-str">"</span>]
+    (<span class="hl-kw">if</span> (<span class="hl-fn">pos?</span> times)
+      (<span class="hl-builtin">apply</span> <span class="hl-builtin">str</span> (<span class="hl-fn">repeat</span> times text))
+      <span class="hl-attr">:none</span>)))
+
+(<span class="hl-kw">defn-</span> valid? [x]
+  (<span class="hl-kw">and</span> (<span class="hl-kw">not</span> (<span class="hl-fn">nil?</span> x)) (<span class="hl-fn">re-find</span> <span class="hl-str">#"[a-z]+"</span> x)))
+
+(<span class="hl-kw">def</span> config {<span class="hl-attr">:name</span> <span class="hl-str">"world"</span> <span class="hl-attr">:times</span> <span class="hl-num">2</span> <span class="hl-attr">::internal</span> <span class="hl-builtin">true</span>})
+
+(<span class="hl-kw">defmacro</span> unless [test &amp; body]
+  `(<span class="hl-kw">if</span> ~test <span class="hl-builtin">nil</span> (<span class="hl-kw">do</span> ~@body)))
+
+(<span class="hl-builtin">println</span> (<span class="hl-fn">greet</span> (<span class="hl-attr">:name</span> config) (<span class="hl-attr">:times</span> config)) <span class="hl-num">0x1F</span> <span class="hl-num">1.5</span> <span class="hl-num">1</span>/<span class="hl-num">3</span> <span class="hl-builtin">true</span> <span class="hl-builtin">false</span> <span class="hl-builtin">nil</span>)
+(<span class="hl-builtin">swap!</span> (<span class="hl-builtin">atom</span> <span class="hl-num">0</span>) <span class="hl-builtin">inc</span>)

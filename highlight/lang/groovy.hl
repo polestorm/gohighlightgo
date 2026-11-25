@@ -1,0 +1,22 @@
+# Groovy: Groovy Language Documentation (4.0), "Syntax"; requirements/languages/groovy.md
+name     groovy gradle gvy
+
+keyword  abstract as assert break case catch class const continue def default do else enum extends final
+keyword  finally for goto if implements import in instanceof interface native new package private
+keyword  protected public return static super switch synchronized this throw throws trait transient try
+keyword  var volatile while
+type     boolean byte char double float int long short void String Object
+builtin  true false null println print
+
+ident-extra    $
+line-comment   //
+block-comment  /* */
+string   """ """  : escapes multiline interp=dollar
+string   ''' '''  : escapes multiline
+string   " "      : escapes interp=dollar
+string   ' '      : escapes
+escape        : u4
+operators  +-*/%&|^!<>=:?~
+calls
+decorators
+regex

@@ -1,0 +1,25 @@
+; REQ: LANG-341 LANG-342 LANG-343 LANG-344 LANG-345
+(ns demo.greeter
+  (:require [clojure.string :as str]))
+
+(def ^:dynamic *greeting* "Hello")
+
+(defn greet
+  "Greets name times times."
+  [name times]
+  (let [text (str *greeting* ", " name "!\n")
+        pattern #"\d+ \"quoted\""]
+    (if (pos? times)
+      (apply str (repeat times text))
+      :none)))
+
+(defn- valid? [x]
+  (and (not (nil? x)) (re-find #"[a-z]+" x)))
+
+(def config {:name "world" :times 2 ::internal true})
+
+(defmacro unless [test & body]
+  `(if ~test nil (do ~@body)))
+
+(println (greet (:name config) (:times config)) 0x1F 1.5 1/3 true false nil)
+(swap! (atom 0) inc)

@@ -1,0 +1,26 @@
+(* REQ: LANG-361 LANG-362 LANG-363 LANG-364 LANG-365 *)
+(* outer (* nested *) still a comment *)
+type shape =
+  | Circle of float
+  | Rect of float * float
+
+let area = function
+  | Circle r -> Float.pi *. r *. r
+  | Rect (w, h) -> w *. h
+
+let rec greet name times =
+  if times <= 0 then ""
+  else Printf.sprintf "Hello, %s!\n" name ^ greet name (times - 1)
+
+let id' (x : 'a) : 'a = x
+
+module M = struct
+  let quoted = {|raw "text" \n stays|}
+  let c = 'x'
+  let nl = '\n'
+end
+
+let () =
+  let total = List.fold_left ( + ) 0 [1; 2; 3] + 0x1F + 1_000 in
+  print_endline (greet "world" 2);
+  Printf.printf "%d %f %b\n" total (area (Circle 1.5)) (true && not false)

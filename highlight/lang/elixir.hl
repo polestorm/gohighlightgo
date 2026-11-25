@@ -1,0 +1,19 @@
+# Elixir: Elixir documentation, "Syntax reference" and "Operators" (Elixir 1.16); requirements/languages/elixir.md
+name     elixir ex exs
+
+keyword  after and catch do else end fn in not or rescue when def defp defmodule defmacro defmacrop
+keyword  defstruct defprotocol defimpl defdelegate defguard defexception import require alias use
+keyword  case cond if unless with for receive try quote unquote raise reraise
+builtin  true false nil __MODULE__ __DIR__ __ENV__ __CALLER__
+
+line-comment   #
+string   """ """  : escapes multiline interp=hash
+string   ''' '''  : escapes multiline interp=hash
+string   " "      : escapes interp=hash
+string   ' '      : escapes interp=hash
+escape        : x=2 u4 u-braces
+sigil    @    : meta
+operators  +-*/&|^!<>=?~.\
+upper-type
+calls
+hook     elixir

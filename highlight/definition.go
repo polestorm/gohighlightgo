@@ -31,6 +31,10 @@ var hooks = map[string]hookFunc{
 	"haskell":        haskellPragma,
 	"ruby":           rubySpecial,
 	"php":            phpSpecial,
+	"perl":           perlSpecial,
+	"elixir":         elixirSpecial,
+	"matlab":         matlabSpecial,
+	"dotted":         dottedSpecial,
 }
 
 // DefinitionError reports an invalid language definition: the line (from 1) and what is wrong with it.
@@ -65,9 +69,10 @@ func parseDefinition(src []byte, lookup func(string) *language) (*language, erro
 		fields := strings.Fields(line)
 		key := fields[0]
 		var values, opts []string
-		for k, f := range fields[1:] {
-			if f == ":" {
-				values, opts = fields[1:k+1], fields[k+2:]
+		// Separatorem opcji jest ostatni samotny „:”, więc „:” może być też wartością (sigil : : attr).
+		for k := len(fields) - 1; k >= 1; k-- {
+			if fields[k] == ":" {
+				values, opts = fields[1:k], fields[k+1:]
 				break
 			}
 		}
@@ -116,7 +121,7 @@ func parseDefinition(src []byte, lookup func(string) *language) (*language, erro
 				}
 				t.words[v] = c
 			}
-		case "fold-case", "calls", "macros", "decorators", "templates", "keys", "regex", "upper-type":
+		case "fold-case", "calls", "macros", "decorators", "templates", "keys", "regex", "upper-type", "call-after-paren":
 			if len(values) > 0 || len(opts) > 0 {
 				return fail("%s takes no values", key)
 			}
@@ -131,6 +136,8 @@ func parseDefinition(src []byte, lookup func(string) *language) (*language, erro
 				t.sigils = append(t.sigils, sigil{char: '@', class: meta})
 			case "upper-type":
 				t.upperType = true
+			case "call-after-paren":
+				t.lispCalls = true
 			case "templates":
 				t.templates = true
 			case "keys":
@@ -274,6 +281,8 @@ func parseDefinition(src []byte, lookup func(string) *language) (*language, erro
 					r.named = true
 				case k == "paren" && !hasValue:
 					r.parenGroup = true
+				case k == "char" && hasValue && len(v) == 1 && v[0] > ' ' && v[0] < 0x7f && v != "\n":
+					t.escapeChar = v[0]
 				default:
 					return fail("escape: unknown option %q", o)
 				}

@@ -1,0 +1,30 @@
+// REQ: LANG-311 LANG-312 LANG-313
+#import <Foundation/Foundation.h>
+
+@interface Greeter : NSObject
+@property (nonatomic, copy) NSString *name;
+- (instancetype)initWithName:(NSString *)name;
+- (NSString *)greet:(NSInteger)times;
+@end
+
+@implementation Greeter
+- (instancetype)initWithName:(NSString *)name {
+    self = [super init];
+    if (self) { _name = [name copy]; }
+    return self;
+}
+
+- (NSString *)greet:(NSInteger)times {
+    BOOL ok = YES && times > 0;
+    id value = nil;
+    return ok ? [NSString stringWithFormat:@"Hello, %@! %ld\n", self.name, (long)times] : @"none";
+}
+@end
+
+int main(void) {
+    @autoreleasepool {
+        Greeter *g = [[Greeter alloc] initWithName:@"world"];
+        NSLog(@"%@", [g greet:2]);
+    }
+    return 0;
+}

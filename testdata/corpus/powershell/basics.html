@@ -1,0 +1,27 @@
+<span class="hl-com"># REQ: LANG-401 LANG-402 LANG-403 LANG-404 LANG-405</span>
+<span class="hl-com">&lt;#</span>
+<span class="hl-com">  Block comment</span>
+<span class="hl-com">#&gt;</span>
+<span class="hl-kw">param</span>(
+    [string]<span class="hl-attr">$Name</span> <span class="hl-op">=</span> <span class="hl-str">"world"</span><span class="hl-op">,</span>
+    [int]<span class="hl-attr">$Times</span> <span class="hl-op">=</span> <span class="hl-num">1</span>
+)
+
+<span class="hl-kw">function</span> Get-Greeting {
+    <span class="hl-kw">param</span>([string]<span class="hl-attr">$Who</span>)
+    <span class="hl-attr">$text</span> <span class="hl-op">=</span> <span class="hl-str">"Hello, </span><span class="hl-esc">$Who</span><span class="hl-str">! Count: </span><span class="hl-esc">$($Times + 1)`n</span><span class="hl-str">"</span>
+    <span class="hl-attr">$raw</span> <span class="hl-op">=</span> <span class="hl-str">'single </span><span class="hl-esc">''</span><span class="hl-str">quoted</span><span class="hl-esc">''</span><span class="hl-str"> $not'</span>
+    <span class="hl-kw">return</span> <span class="hl-attr">$text</span> <span class="hl-op">*</span> <span class="hl-attr">$Times</span> <span class="hl-op">+</span> <span class="hl-attr">$raw</span>
+}
+
+<span class="hl-attr">$here</span> <span class="hl-op">=</span> <span class="hl-str">@"</span>
+<span class="hl-str">Here-string for </span><span class="hl-esc">$Name</span>
+<span class="hl-str">"@</span>
+
+<span class="hl-kw">if</span> (<span class="hl-attr">$Times</span> <span class="hl-op">-gt</span> <span class="hl-num">0</span> <span class="hl-op">-and</span> <span class="hl-attr">$Name</span> <span class="hl-op">-ne</span> <span class="hl-attr">$null</span>) {
+    Get-ChildItem <span class="hl-op">-Path</span> C:\temp <span class="hl-op">-Filter</span> <span class="hl-op">*</span>.txt <span class="hl-op">|</span> ForEach-Object { Write-Output <span class="hl-attr">$_</span>.Name }
+} <span class="hl-kw">elseif</span> (<span class="hl-attr">$true</span>) {
+    Write-Host (Get-Greeting <span class="hl-op">-Who</span> <span class="hl-attr">$Name</span>)
+}
+<span class="hl-attr">$total</span> <span class="hl-op">=</span> <span class="hl-num">0x1F</span> <span class="hl-op">+</span> <span class="hl-num">1.5e3</span> <span class="hl-op">+</span> <span class="hl-attr">$false</span>
+<span class="hl-kw">foreach</span> (<span class="hl-attr">$i</span> <span class="hl-kw">in</span> <span class="hl-num">1</span>.<span class="hl-num">.3</span>) { <span class="hl-attr">$total</span> <span class="hl-op">+=</span> <span class="hl-attr">$i</span> }

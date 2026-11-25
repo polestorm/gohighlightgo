@@ -1,0 +1,32 @@
+# REQ: LANG-301 LANG-302 LANG-303 LANG-304 LANG-305
+use strict;
+use warnings;
+
+=pod
+
+Documentation block.
+
+=cut
+
+my %ages = (alice => 30, bob => 25);
+my @names = qw(alice bob carol);
+my $count = scalar(@names);
+
+sub greet {
+    my ($name, $times) = @_;
+    my $text = "Hello, $name!\n";
+    my $raw = 'single $not';
+    (my $clean = $text) =~ s/\s+$//g;
+    $clean =~ tr/a-z/A-Z/;
+    return $clean x $times if $name =~ m{^[a-z]+$}i;
+    return q{fallback} . qq[ for $name];
+}
+
+foreach my $n (sort keys %ages) {
+    printf "%s is %d\n", $n, $ages{$n} unless $n eq 'bob';
+}
+my $re = qr/\d+/;
+print <<"EOT";
+Heredoc for $count names
+EOT
+print greet($names[0], 2), 0x1F + 1_000 + 3.14, "\x41";
