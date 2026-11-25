@@ -1,0 +1,28 @@
+// REQ: LANG-011 LANG-012 LANG-013 LANG-014 LANG-015 LANG-016 LANG-017
+#include <stdio.h>
+#include "local.h"
+  #  define MAX(a, b) ((a) > (b) ? (a) : (b))
+#if defined(DEBUG) && DEBUG > 1
+#endif
+
+/* Counts characters.
+   Not nested: /* stays inside */
+static const char *names[] = {"a\tb", u8"zażółć", L"wide", "hex \x41\x4142 oct \101\0 uni \u00e9 \U0001F600"};
+
+typedef struct point { int32_t x, y; } point;
+
+int main(int argc, char **argv) {
+    size_t n = sizeof(names) / sizeof *names;
+    unsigned long long big = 18'446'744'073'709'551'615ULL;
+    double d = 1.5e-3 + .5f + 0x1.8p1 + 0b1010 + 017;
+    char c = '\'', q = 'x', w = L'\n';
+    bool ok = true && !false;
+    void *p = nullptr;
+    if (argc > 1 && p == NULL) {
+        printf("%zu %c\n", n, c);
+    }
+    const char *s = "continued \
+on the next line";
+    for (int i = 0; i < 10; ++i) { big >>= 1; big ^= ~0u; }
+    return ok ? 0 : -1;
+}

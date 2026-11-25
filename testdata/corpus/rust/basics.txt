@@ -1,0 +1,41 @@
+// REQ: LANG-071 LANG-072 LANG-073 LANG-074 LANG-075 LANG-076 LANG-077
+#![allow(dead_code)]
+use std::collections::HashMap;
+
+/* outer /* nested */ still a comment */
+
+#[derive(Debug, Clone)]
+pub struct Point<'a> {
+    name: &'a str,
+    x: f64,
+}
+
+impl<'a> Point<'a> {
+    pub fn new(name: &'a str) -> Self {
+        Self { name, x: 1.5e3 }
+    }
+}
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let mut map: HashMap<String, Vec<u8>> = HashMap::new();
+    let c = 'a';
+    let nl = '\n';
+    let quote = '\'';
+    let b = b'x';
+    let ok = Some(1u32).is_some() && true;
+    let raw = r#"raw "string" with \n"#;
+    let raw2 = br##"bytes "#" inside"##;
+    let s = "multi
+line \u{1F600} \x41";
+    let bytes = b"abc\0";
+    for i in 0..10 {
+        let t = (i, 2);
+        println!("{} {}", t.0, 1.max(2));
+    }
+    'outer: loop {
+        if map.len() != 0 { break 'outer; }
+        break;
+    }
+    let n = 0xff_u8 + 0o7 + 0b1 + 1_000i64 as u8;
+    Ok(())
+}

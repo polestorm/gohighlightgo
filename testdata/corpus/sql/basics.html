@@ -1,0 +1,19 @@
+<span class="hl-com">-- REQ: LANG-081 LANG-082 LANG-083 LANG-084 LANG-085</span>
+<span class="hl-com">/* Block comment /* nested */ still comment */</span>
+<span class="hl-kw">CREATE</span> <span class="hl-kw">TABLE</span> <span class="hl-kw">IF</span> <span class="hl-kw">NOT</span> <span class="hl-kw">EXISTS</span> "order items" (
+    id <span class="hl-type">INTEGER</span> <span class="hl-kw">PRIMARY</span> <span class="hl-kw">KEY</span> <span class="hl-kw">AUTO_INCREMENT</span>,
+    name <span class="hl-type">VARCHAR</span>(<span class="hl-num">100</span>) <span class="hl-kw">NOT</span> <span class="hl-builtin">NULL</span> <span class="hl-kw">DEFAULT</span> <span class="hl-str">'it</span><span class="hl-esc">''</span><span class="hl-str">s'</span>,
+    price <span class="hl-type">DECIMAL</span>(<span class="hl-num">10</span>, <span class="hl-num">2</span>) <span class="hl-kw">CHECK</span> (price <span class="hl-op">&gt;=</span> <span class="hl-num">0</span>),
+    created <span class="hl-type">TIMESTAMP</span> <span class="hl-kw">DEFAULT</span> <span class="hl-kw">CURRENT_TIMESTAMP</span>
+);
+
+<span class="hl-kw">select</span> o.id, <span class="hl-builtin">count</span>(<span class="hl-op">*</span>) <span class="hl-kw">as</span> n, <span class="hl-builtin">coalesce</span>(<span class="hl-builtin">sum</span>(o.price), <span class="hl-num">0.0</span>) <span class="hl-kw">AS</span> total, my_func(o.name)
+<span class="hl-kw">from</span> "order items" o
+<span class="hl-kw">left</span> <span class="hl-kw">join</span> `select` s <span class="hl-kw">on</span> s.id <span class="hl-op">=</span> o.id
+<span class="hl-kw">where</span> o.name <span class="hl-kw">like</span> <span class="hl-str">N'%zażółć%'</span> <span class="hl-kw">and</span> o.price <span class="hl-kw">between</span> <span class="hl-num">1</span> <span class="hl-kw">and</span> <span class="hl-num">1e3</span> <span class="hl-kw">or</span> o.flag <span class="hl-kw">is</span> <span class="hl-builtin">null</span>
+<span class="hl-kw">group</span> <span class="hl-kw">by</span> o.id <span class="hl-kw">having</span> <span class="hl-builtin">count</span>(<span class="hl-op">*</span>) <span class="hl-op">&gt;</span> <span class="hl-num">1</span>
+<span class="hl-kw">order</span> <span class="hl-kw">by</span> total <span class="hl-kw">desc</span>
+<span class="hl-kw">limit</span> <span class="hl-num">10</span> <span class="hl-kw">offset</span> <span class="hl-num">20</span>;
+
+<span class="hl-kw">insert</span> <span class="hl-kw">into</span> t (a, b) <span class="hl-kw">values</span> (<span class="hl-str">X'FF'</span>, <span class="hl-str">'multi</span>
+<span class="hl-str">line'</span>);

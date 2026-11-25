@@ -1,0 +1,22 @@
+// REQ: LANG-041 LANG-042 LANG-043 LANG-044 LANG-045 LANG-046 LANG-047
+import { readFile } from "node:fs/promises";
+
+/* Block comment */
+export default class Store extends Base {
+    static #count = 0;
+    @logged
+    async load(path) {
+        const data = await readFile(path, 'utf8');
+        let $el = document.querySelector(`#item-${this.id}`);
+        const msg = `Hello ${user.name}, you have ${count > 1 ? `${count} items` : "one item"} {not code}
+second line \` and \${not}`;
+        const obj = { a: { b: 1 } };
+        const t = `${ { a: 1 }.a }`;
+        const big = 9007199254740993n + 0x1Fn + 0b1010 + 0o17 + 1_000 + .5e-3;
+        if (data === undefined || data == null || Number.isNaN(NaN) || x !== Infinity) {
+            throw new Error("bad \x41 \u0041 \u{1F600}");
+        }
+        const re = /'not a string/; // regular expressions are not recognized
+        return typeof data === 'string' ? data : void 0;
+    }
+}

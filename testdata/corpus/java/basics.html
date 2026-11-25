@@ -1,0 +1,34 @@
+<span class="hl-com">// REQ: LANG-031 LANG-032 LANG-033 LANG-034 LANG-035 LANG-036</span>
+<span class="hl-kw">package</span> demo;
+
+<span class="hl-kw">import</span> java.util.List;
+
+<span class="hl-com">/** Javadoc comment. */</span>
+<span class="hl-meta">@FunctionalInterface</span>
+<span class="hl-kw">public</span> <span class="hl-kw">sealed</span> <span class="hl-kw">interface</span> Shape <span class="hl-kw">permits</span> Circle {
+    <span class="hl-type">double</span> <span class="hl-fn">area</span>();
+}
+
+<span class="hl-kw">public</span> <span class="hl-kw">record</span> <span class="hl-fn">Circle</span>(<span class="hl-type">double</span> r) <span class="hl-kw">implements</span> Shape {
+    <span class="hl-meta">@Override</span>
+    <span class="hl-kw">public</span> <span class="hl-type">double</span> <span class="hl-fn">area</span>() { <span class="hl-kw">return</span> Math.PI <span class="hl-op">*</span> r <span class="hl-op">*</span> r; }
+}
+
+<span class="hl-kw">class</span> Main {
+    <span class="hl-kw">private</span> <span class="hl-kw">static</span> <span class="hl-kw">final</span> <span class="hl-type">long</span> BIG <span class="hl-op">=</span> <span class="hl-num">1_000_000L</span>;
+    <span class="hl-kw">public</span> <span class="hl-kw">static</span> <span class="hl-type">void</span> <span class="hl-fn">main</span>(String[] args) <span class="hl-kw">throws</span> Exception {
+        <span class="hl-kw">var</span> $name <span class="hl-op">=</span> <span class="hl-str">"tab</span><span class="hl-esc">\t</span><span class="hl-str"> octal </span><span class="hl-esc">\101</span><span class="hl-str"> unicode </span><span class="hl-esc">\u0041</span><span class="hl-str"> </span><span class="hl-esc">\uuuu0042</span><span class="hl-str">"</span>;
+        <span class="hl-type">char</span> c <span class="hl-op">=</span> <span class="hl-str">'</span><span class="hl-esc">\'</span><span class="hl-str">'</span>;
+        <span class="hl-type">float</span> f <span class="hl-op">=</span> <span class="hl-num">.5f</span> <span class="hl-op">+</span> <span class="hl-num">1e3f</span> <span class="hl-op">+</span> <span class="hl-num">0x1.0p3</span>;
+        String block <span class="hl-op">=</span> <span class="hl-str">"""</span>
+<span class="hl-str">            Hello, "block"</span>
+<span class="hl-str">            end</span><span class="hl-esc">\</span>
+<span class="hl-str">            """</span>;
+        <span class="hl-type">boolean</span> ok <span class="hl-op">=</span> args.length <span class="hl-op">&gt;</span> <span class="hl-num">0</span> <span class="hl-op">?</span> <span class="hl-builtin">true</span> <span class="hl-op">:</span> <span class="hl-builtin">false</span>;
+        Object o <span class="hl-op">=</span> <span class="hl-builtin">null</span>;
+        <span class="hl-kw">if</span> (o <span class="hl-kw">instanceof</span> String s <span class="hl-op">&amp;&amp;</span> <span class="hl-op">!</span>ok) {
+            System.out.<span class="hl-fn">println</span>(s <span class="hl-op">+</span> $name <span class="hl-op">+</span> c <span class="hl-op">+</span> f <span class="hl-op">+</span> block);
+        }
+        <span class="hl-type">int</span> x <span class="hl-op">=</span> <span class="hl-kw">switch</span> (args.length) { <span class="hl-kw">case</span> <span class="hl-num">0</span> <span class="hl-op">-&gt;</span> <span class="hl-num">1</span>; <span class="hl-kw">default</span> <span class="hl-op">-&gt;</span> { <span class="hl-kw">yield</span> <span class="hl-num">2</span>; } };
+    }
+}

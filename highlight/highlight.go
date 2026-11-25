@@ -15,7 +15,10 @@ type language struct {
 
 // languages to wszystkie obsługiwane języki; nazwa główna pierwszego wpisu wyznacza plik wymagań
 // i katalog korpusu.
-var languages = []*language{&langGo}
+var languages = []*language{
+	&langGo, &langC, &langCpp, &langJava, &langJavaScript, &langTypeScript, &langPython, &langRust,
+	&langSQL, &langJSON, &langPascal,
+}
 
 var (
 	byName   = map[string]*language{}

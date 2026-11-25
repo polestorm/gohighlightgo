@@ -1,0 +1,28 @@
+<span class="hl-com">// REQ: LANG-011 LANG-012 LANG-013 LANG-014 LANG-015 LANG-016 LANG-017</span>
+<span class="hl-meta">#include</span> <span class="hl-str">&lt;stdio.h&gt;</span>
+<span class="hl-meta">#include</span> <span class="hl-str">"local.h"</span>
+  <span class="hl-meta">#  define</span> <span class="hl-fn">MAX</span>(a, b) ((a) <span class="hl-op">&gt;</span> (b) <span class="hl-op">?</span> (a) <span class="hl-op">:</span> (b))
+<span class="hl-meta">#if</span> <span class="hl-fn">defined</span>(DEBUG) <span class="hl-op">&amp;&amp;</span> DEBUG <span class="hl-op">&gt;</span> <span class="hl-num">1</span>
+<span class="hl-meta">#endif</span>
+
+<span class="hl-com">/* Counts characters.</span>
+<span class="hl-com">   Not nested: /* stays inside */</span>
+<span class="hl-kw">static</span> <span class="hl-kw">const</span> <span class="hl-type">char</span> <span class="hl-op">*</span>names[] <span class="hl-op">=</span> {<span class="hl-str">"a</span><span class="hl-esc">\t</span><span class="hl-str">b"</span>, <span class="hl-str">u8"zażółć"</span>, <span class="hl-str">L"wide"</span>, <span class="hl-str">"hex </span><span class="hl-esc">\x41\x4142</span><span class="hl-str"> oct </span><span class="hl-esc">\101\0</span><span class="hl-str"> uni </span><span class="hl-esc">\u00e9</span><span class="hl-str"> </span><span class="hl-esc">\U0001F600</span><span class="hl-str">"</span>};
+
+<span class="hl-kw">typedef</span> <span class="hl-kw">struct</span> point { <span class="hl-type">int32_t</span> x, y; } point;
+
+<span class="hl-type">int</span> <span class="hl-fn">main</span>(<span class="hl-type">int</span> argc, <span class="hl-type">char</span> <span class="hl-op">**</span>argv) {
+    <span class="hl-type">size_t</span> n <span class="hl-op">=</span> <span class="hl-kw">sizeof</span>(names) <span class="hl-op">/</span> <span class="hl-kw">sizeof</span> <span class="hl-op">*</span>names;
+    <span class="hl-type">unsigned</span> <span class="hl-type">long</span> <span class="hl-type">long</span> big <span class="hl-op">=</span> <span class="hl-num">18'446'744'073'709'551'615ULL</span>;
+    <span class="hl-type">double</span> d <span class="hl-op">=</span> <span class="hl-num">1.5e-3</span> <span class="hl-op">+</span> <span class="hl-num">.5f</span> <span class="hl-op">+</span> <span class="hl-num">0x1.8p1</span> <span class="hl-op">+</span> <span class="hl-num">0b1010</span> <span class="hl-op">+</span> <span class="hl-num">017</span>;
+    <span class="hl-type">char</span> c <span class="hl-op">=</span> <span class="hl-str">'</span><span class="hl-esc">\'</span><span class="hl-str">'</span>, q <span class="hl-op">=</span> <span class="hl-str">'x'</span>, w <span class="hl-op">=</span> <span class="hl-str">L'</span><span class="hl-esc">\n</span><span class="hl-str">'</span>;
+    <span class="hl-type">bool</span> ok <span class="hl-op">=</span> <span class="hl-builtin">true</span> <span class="hl-op">&amp;&amp;</span> <span class="hl-op">!</span><span class="hl-builtin">false</span>;
+    <span class="hl-type">void</span> <span class="hl-op">*</span>p <span class="hl-op">=</span> <span class="hl-builtin">nullptr</span>;
+    <span class="hl-kw">if</span> (argc <span class="hl-op">&gt;</span> <span class="hl-num">1</span> <span class="hl-op">&amp;&amp;</span> p <span class="hl-op">==</span> <span class="hl-builtin">NULL</span>) {
+        <span class="hl-fn">printf</span>(<span class="hl-str">"%zu %c</span><span class="hl-esc">\n</span><span class="hl-str">"</span>, n, c);
+    }
+    <span class="hl-kw">const</span> <span class="hl-type">char</span> <span class="hl-op">*</span>s <span class="hl-op">=</span> <span class="hl-str">"continued </span><span class="hl-esc">\</span>
+<span class="hl-str">on the next line"</span>;
+    <span class="hl-kw">for</span> (<span class="hl-type">int</span> i <span class="hl-op">=</span> <span class="hl-num">0</span>; i <span class="hl-op">&lt;</span> <span class="hl-num">10</span>; <span class="hl-op">++</span>i) { big <span class="hl-op">&gt;&gt;=</span> <span class="hl-num">1</span>; big <span class="hl-op">^=</span> <span class="hl-op">~</span><span class="hl-num">0u</span>; }
+    <span class="hl-kw">return</span> ok <span class="hl-op">?</span> <span class="hl-num">0</span> <span class="hl-op">:</span> <span class="hl-op">-</span><span class="hl-num">1</span>;
+}

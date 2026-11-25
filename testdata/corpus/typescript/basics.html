@@ -1,0 +1,24 @@
+<span class="hl-com">// REQ: LANG-051 LANG-052</span>
+<span class="hl-kw">interface</span> Point { <span class="hl-kw">readonly</span> x<span class="hl-op">:</span> <span class="hl-type">number</span>; y<span class="hl-op">?:</span> <span class="hl-type">number</span> }
+
+<span class="hl-kw">type</span> Shape <span class="hl-op">=</span> { kind<span class="hl-op">:</span> <span class="hl-str">"circle"</span>; r<span class="hl-op">:</span> <span class="hl-type">number</span> } <span class="hl-op">|</span> { kind<span class="hl-op">:</span> <span class="hl-str">"square"</span>; a<span class="hl-op">:</span> <span class="hl-type">bigint</span> };
+
+<span class="hl-kw">declare</span> <span class="hl-kw">module</span> <span class="hl-str">"lib"</span> {
+    <span class="hl-kw">export</span> <span class="hl-kw">function</span> f<span class="hl-op">&lt;</span>T <span class="hl-kw">extends</span> <span class="hl-kw">keyof</span> Point<span class="hl-op">&gt;</span>(k<span class="hl-op">:</span> T)<span class="hl-op">:</span> Point[T];
+}
+
+<span class="hl-kw">namespace</span> Geometry {
+    <span class="hl-kw">export</span> <span class="hl-kw">abstract</span> <span class="hl-kw">class</span> Base {
+        <span class="hl-kw">protected</span> <span class="hl-kw">abstract</span> <span class="hl-fn">area</span>()<span class="hl-op">:</span> <span class="hl-type">number</span>;
+    }
+}
+
+<span class="hl-kw">enum</span> Color { Red <span class="hl-op">=</span> <span class="hl-num">1</span>, Green }
+
+<span class="hl-kw">function</span> <span class="hl-fn">isString</span>(x<span class="hl-op">:</span> <span class="hl-type">unknown</span>)<span class="hl-op">:</span> x <span class="hl-kw">is</span> <span class="hl-type">string</span> {
+    <span class="hl-kw">return</span> <span class="hl-kw">typeof</span> x <span class="hl-op">===</span> <span class="hl-str">"string"</span>;
+}
+
+<span class="hl-kw">const</span> conf <span class="hl-op">=</span> { debug<span class="hl-op">:</span> <span class="hl-builtin">true</span> } <span class="hl-kw">satisfies</span> Record<span class="hl-op">&lt;</span><span class="hl-type">string</span>, <span class="hl-type">boolean</span><span class="hl-op">&gt;</span>;
+<span class="hl-kw">let</span> n <span class="hl-op">=</span> (value <span class="hl-kw">as</span> <span class="hl-type">any</span>) <span class="hl-kw">as</span> <span class="hl-type">never</span>;
+<span class="hl-kw">const</span> label <span class="hl-op">=</span> <span class="hl-str">`Point </span><span class="hl-esc">${</span>p.x<span class="hl-esc">}</span><span class="hl-str">`</span>;

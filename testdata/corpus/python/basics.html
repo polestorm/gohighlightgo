@@ -1,0 +1,34 @@
+<span class="hl-com"># REQ: LANG-061 LANG-062 LANG-063 LANG-064 LANG-065 LANG-066</span>
+<span class="hl-str">"""Module docstring</span>
+<span class="hl-str">over two lines."""</span>
+<span class="hl-kw">from</span> dataclasses <span class="hl-kw">import</span> dataclass
+<span class="hl-kw">import</span> re
+
+
+<span class="hl-meta">@dataclass</span>(frozen<span class="hl-op">=</span><span class="hl-builtin">True</span>)
+<span class="hl-kw">class</span> Point<span class="hl-op">:</span>
+    x<span class="hl-op">:</span> <span class="hl-type">int</span> <span class="hl-op">=</span> <span class="hl-num">0</span>
+    y<span class="hl-op">:</span> <span class="hl-type">float</span> <span class="hl-op">=</span> <span class="hl-num">1.5e-3</span>
+
+    <span class="hl-kw">def</span> <span class="hl-fn">norm</span>(self) <span class="hl-op">-&gt;</span> <span class="hl-type">float</span><span class="hl-op">:</span>
+        <span class="hl-kw">return</span> (self.x <span class="hl-op">**</span> <span class="hl-num">2</span> <span class="hl-op">+</span> self.y <span class="hl-op">**</span> <span class="hl-num">2</span>) <span class="hl-op">**</span> <span class="hl-num">.5</span>
+
+
+<span class="hl-kw">async</span> <span class="hl-kw">def</span> <span class="hl-fn">main</span>(<span class="hl-op">*</span>args, <span class="hl-op">**</span>kwargs)<span class="hl-op">:</span>
+    p <span class="hl-op">=</span> <span class="hl-fn">Point</span>(<span class="hl-num">1</span>, <span class="hl-num">2</span>)
+    names <span class="hl-op">=</span> [<span class="hl-type">str</span>(n) <span class="hl-kw">for</span> n <span class="hl-kw">in</span> <span class="hl-type">range</span>(<span class="hl-num">10</span>) <span class="hl-kw">if</span> n <span class="hl-op">%</span> <span class="hl-num">2</span> <span class="hl-op">==</span> <span class="hl-num">0</span>]
+    raw <span class="hl-op">=</span> <span class="hl-str">r"C:\new\dir\""</span> <span class="hl-op">+</span> <span class="hl-str">R'\d+'</span> <span class="hl-op">+</span> <span class="hl-str">rb"\x00"</span>
+    text <span class="hl-op">=</span> <span class="hl-str">f"{p.x!r:&gt;10} done</span><span class="hl-esc">\n</span><span class="hl-str">"</span> <span class="hl-op">+</span> <span class="hl-str">b'bytes</span><span class="hl-esc">\x41</span><span class="hl-str">'</span> <span class="hl-op">+</span> <span class="hl-str">u"uni </span><span class="hl-esc">\u00e9</span><span class="hl-str"> </span><span class="hl-esc">\N{BULLET}</span><span class="hl-str"> </span><span class="hl-esc">\U0001F600</span><span class="hl-str">"</span>
+    big <span class="hl-op">=</span> <span class="hl-num">1_000_000</span> <span class="hl-op">+</span> <span class="hl-num">0x_FF</span> <span class="hl-op">+</span> <span class="hl-num">0o17</span> <span class="hl-op">+</span> <span class="hl-num">0b1010</span> <span class="hl-op">+</span> <span class="hl-num">3.14j</span>
+    <span class="hl-kw">if</span> p <span class="hl-kw">is</span> <span class="hl-kw">not</span> <span class="hl-builtin">None</span> <span class="hl-kw">and</span> <span class="hl-builtin">isinstance</span>(p, Point) <span class="hl-kw">or</span> <span class="hl-kw">not</span> <span class="hl-builtin">True</span><span class="hl-op">:</span>
+        <span class="hl-builtin">print</span>(<span class="hl-builtin">len</span>(names), <span class="hl-builtin">sorted</span>(names), sep<span class="hl-op">=</span><span class="hl-str">", "</span>)
+    lam <span class="hl-op">=</span> <span class="hl-kw">lambda</span> x<span class="hl-op">:</span> x <span class="hl-op">@</span> x
+    <span class="hl-kw">try</span><span class="hl-op">:</span>
+        <span class="hl-kw">await</span> <span class="hl-fn">other</span>()
+    <span class="hl-kw">except</span> (ValueError, TypeError) <span class="hl-kw">as</span> err<span class="hl-op">:</span>
+        <span class="hl-kw">raise</span> <span class="hl-fn">RuntimeError</span>(<span class="hl-str">"bad"</span>) <span class="hl-kw">from</span> err
+    s <span class="hl-op">=</span> <span class="hl-str">'line continued </span><span class="hl-esc">\</span>
+<span class="hl-str">here'</span>
+    doc <span class="hl-op">=</span> <span class="hl-str">'''single</span>
+<span class="hl-str">quotes'''</span>
+    <span class="hl-kw">return</span> <span class="hl-builtin">NotImplemented</span>

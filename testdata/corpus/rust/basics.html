@@ -1,0 +1,41 @@
+<span class="hl-com">// REQ: LANG-071 LANG-072 LANG-073 LANG-074 LANG-075 LANG-076 LANG-077</span>
+<span class="hl-meta">#![allow</span>(dead_code)]
+<span class="hl-kw">use</span> std<span class="hl-op">::</span>collections<span class="hl-op">::</span>HashMap;
+
+<span class="hl-com">/* outer /* nested */ still a comment */</span>
+
+<span class="hl-meta">#[derive</span>(Debug, Clone)]
+<span class="hl-kw">pub</span> <span class="hl-kw">struct</span> Point<span class="hl-op">&lt;</span><span class="hl-meta">'a</span><span class="hl-op">&gt;</span> {
+    name<span class="hl-op">:</span> <span class="hl-op">&amp;</span><span class="hl-meta">'a</span> <span class="hl-type">str</span>,
+    x<span class="hl-op">:</span> <span class="hl-type">f64</span>,
+}
+
+<span class="hl-kw">impl</span><span class="hl-op">&lt;</span><span class="hl-meta">'a</span><span class="hl-op">&gt;</span> Point<span class="hl-op">&lt;</span><span class="hl-meta">'a</span><span class="hl-op">&gt;</span> {
+    <span class="hl-kw">pub</span> <span class="hl-kw">fn</span> <span class="hl-fn">new</span>(name<span class="hl-op">:</span> <span class="hl-op">&amp;</span><span class="hl-meta">'a</span> <span class="hl-type">str</span>) <span class="hl-op">-&gt;</span> <span class="hl-kw">Self</span> {
+        <span class="hl-kw">Self</span> { name, x<span class="hl-op">:</span> <span class="hl-num">1.5e3</span> }
+    }
+}
+
+<span class="hl-kw">fn</span> <span class="hl-fn">main</span>() <span class="hl-op">-&gt;</span> <span class="hl-type">Result</span><span class="hl-op">&lt;</span>(), <span class="hl-type">Box</span><span class="hl-op">&lt;</span><span class="hl-kw">dyn</span> std<span class="hl-op">::</span>error<span class="hl-op">::</span>Error<span class="hl-op">&gt;&gt;</span> {
+    <span class="hl-kw">let</span> <span class="hl-kw">mut</span> map<span class="hl-op">:</span> HashMap<span class="hl-op">&lt;</span><span class="hl-type">String</span>, <span class="hl-type">Vec</span><span class="hl-op">&lt;</span><span class="hl-type">u8</span><span class="hl-op">&gt;&gt;</span> <span class="hl-op">=</span> HashMap<span class="hl-op">::</span><span class="hl-fn">new</span>();
+    <span class="hl-kw">let</span> c <span class="hl-op">=</span> <span class="hl-str">'a'</span>;
+    <span class="hl-kw">let</span> nl <span class="hl-op">=</span> <span class="hl-str">'</span><span class="hl-esc">\n</span><span class="hl-str">'</span>;
+    <span class="hl-kw">let</span> quote <span class="hl-op">=</span> <span class="hl-str">'</span><span class="hl-esc">\'</span><span class="hl-str">'</span>;
+    <span class="hl-kw">let</span> b <span class="hl-op">=</span> <span class="hl-str">b'x'</span>;
+    <span class="hl-kw">let</span> ok <span class="hl-op">=</span> <span class="hl-builtin">Some</span>(<span class="hl-num">1u32</span>).<span class="hl-fn">is_some</span>() <span class="hl-op">&amp;&amp;</span> <span class="hl-builtin">true</span>;
+    <span class="hl-kw">let</span> raw <span class="hl-op">=</span> <span class="hl-str">r#"raw "string" with \n"#</span>;
+    <span class="hl-kw">let</span> raw2 <span class="hl-op">=</span> <span class="hl-str">br##"bytes "#" inside"##</span>;
+    <span class="hl-kw">let</span> s <span class="hl-op">=</span> <span class="hl-str">"multi</span>
+<span class="hl-str">line </span><span class="hl-esc">\u{1F600}</span><span class="hl-str"> </span><span class="hl-esc">\x41</span><span class="hl-str">"</span>;
+    <span class="hl-kw">let</span> bytes <span class="hl-op">=</span> <span class="hl-str">b"abc</span><span class="hl-esc">\0</span><span class="hl-str">"</span>;
+    <span class="hl-kw">for</span> i <span class="hl-kw">in</span> <span class="hl-num">0</span>..<span class="hl-num">10</span> {
+        <span class="hl-kw">let</span> t <span class="hl-op">=</span> (i, <span class="hl-num">2</span>);
+        <span class="hl-fn">println</span><span class="hl-op">!</span>(<span class="hl-str">"{} {}"</span>, t.<span class="hl-num">0</span>, <span class="hl-num">1</span>.<span class="hl-fn">max</span>(<span class="hl-num">2</span>));
+    }
+    <span class="hl-meta">'outer</span><span class="hl-op">:</span> <span class="hl-kw">loop</span> {
+        <span class="hl-kw">if</span> map.<span class="hl-fn">len</span>() <span class="hl-op">!=</span> <span class="hl-num">0</span> { <span class="hl-kw">break</span> <span class="hl-meta">'outer</span>; }
+        <span class="hl-kw">break</span>;
+    }
+    <span class="hl-kw">let</span> n <span class="hl-op">=</span> <span class="hl-num">0xff_u8</span> <span class="hl-op">+</span> <span class="hl-num">0o7</span> <span class="hl-op">+</span> <span class="hl-num">0b1</span> <span class="hl-op">+</span> <span class="hl-num">1_000i64</span> <span class="hl-kw">as</span> <span class="hl-type">u8</span>;
+    <span class="hl-builtin">Ok</span>(())
+}

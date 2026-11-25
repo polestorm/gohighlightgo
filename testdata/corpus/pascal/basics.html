@@ -1,0 +1,48 @@
+<span class="hl-com">// REQ: LANG-101 LANG-102 LANG-103 LANG-104 LANG-105 LANG-106 LANG-107</span>
+<span class="hl-kw">unit</span> Demo;
+
+<span class="hl-meta">{$IFDEF DEBUG}</span>
+<span class="hl-meta">{$R *.res}</span>
+<span class="hl-meta">{$ENDIF}</span>
+
+<span class="hl-kw">interface</span>
+
+<span class="hl-kw">uses</span>
+  System.SysUtils, System.Classes;
+
+<span class="hl-kw">type</span>
+  TShape <span class="hl-op">=</span> <span class="hl-kw">class</span> <span class="hl-kw">abstract</span>(TObject)
+  <span class="hl-kw">strict</span> <span class="hl-kw">private</span>
+    FName<span class="hl-op">:</span> <span class="hl-kw">string</span>;
+  <span class="hl-kw">public</span>
+    <span class="hl-kw">constructor</span> <span class="hl-fn">Create</span>(<span class="hl-kw">const</span> AName<span class="hl-op">:</span> <span class="hl-kw">string</span>); <span class="hl-kw">virtual</span>;
+    <span class="hl-kw">function</span> Area<span class="hl-op">:</span> <span class="hl-type">Double</span>; <span class="hl-kw">virtual</span>; <span class="hl-kw">abstract</span>;
+    <span class="hl-kw">property</span> Name<span class="hl-op">:</span> <span class="hl-kw">string</span> read FName write FName;
+  <span class="hl-kw">end</span>;
+
+<span class="hl-kw">implementation</span>
+
+<span class="hl-com">{ Block comment }</span>
+<span class="hl-com">(* Another block comment *)</span>
+<span class="hl-meta">(*$WARNINGS OFF*)</span>
+
+<span class="hl-kw">constructor</span> TShape.<span class="hl-fn">Create</span>(<span class="hl-kw">const</span> AName<span class="hl-op">:</span> <span class="hl-kw">string</span>);
+<span class="hl-kw">var</span>
+  I<span class="hl-op">:</span> <span class="hl-type">Integer</span>;
+  S<span class="hl-op">:</span> <span class="hl-type">UnicodeString</span>;
+<span class="hl-kw">begin</span>
+  <span class="hl-kw">inherited</span> Create;
+  FName <span class="hl-op">:=</span> AName <span class="hl-op">+</span> <span class="hl-str">'It</span><span class="hl-esc">''</span><span class="hl-str">s'</span> <span class="hl-op">+</span> <span class="hl-esc">#13#10</span> <span class="hl-op">+</span> <span class="hl-esc">#$0D</span> <span class="hl-op">+</span> <span class="hl-str">'end'</span>;
+  <span class="hl-kw">for</span> I <span class="hl-op">:=</span> <span class="hl-num">1</span> <span class="hl-kw">to</span> <span class="hl-num">10</span> <span class="hl-kw">do</span>
+    <span class="hl-builtin">Inc</span>(I, <span class="hl-num">$FF</span> <span class="hl-op">+</span> <span class="hl-num">%1010</span> <span class="hl-op">+</span> <span class="hl-num">&amp;777</span> <span class="hl-op">+</span> <span class="hl-num">1_000</span> <span class="hl-op">+</span> <span class="hl-num">1.5E3</span>);
+  <span class="hl-kw">if</span> <span class="hl-builtin">Assigned</span>(<span class="hl-builtin">Self</span>) <span class="hl-kw">and</span> <span class="hl-kw">not</span> (<span class="hl-builtin">Length</span>(S) <span class="hl-op">&gt;</span> <span class="hl-num">0</span>) <span class="hl-kw">then</span>
+    <span class="hl-builtin">WriteLn</span>(<span class="hl-fn">Format</span>(<span class="hl-str">'%d'</span>, [I]))
+  <span class="hl-kw">else</span>
+    <span class="hl-builtin">Exit</span>;
+  <span class="hl-kw">case</span> I <span class="hl-kw">of</span>
+    <span class="hl-num">1</span>..<span class="hl-num">10</span><span class="hl-op">:</span> <span class="hl-builtin">Result</span> <span class="hl-op">:=</span> <span class="hl-kw">nil</span>;
+  <span class="hl-kw">end</span>;
+  <span class="hl-kw">BEGIN</span> <span class="hl-kw">End</span>;
+<span class="hl-kw">end</span>;
+
+<span class="hl-kw">end</span>.
