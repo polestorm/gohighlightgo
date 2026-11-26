@@ -55,24 +55,24 @@ older tools (keywords, comments, strings and numbers; few context rules), no det
 | Themes | 2, and `auto` | 74 | 97 🥇 |
 | Dependencies[^deps] | 0 🥇 | 1 | a Lua interpreter |
 | Size added to a program[^size] | 536 kB 🥇 | 4 774 kB | 6 156 kB |
-| Time, the corpus as 21 blocks (14.5 kB)[^bench] | 0.16 ms 🥇 | 13.3 ms | — |
-| Time, 1 MB of Go | 10.0 ms 🥇 | 690 ms | — |
-| Time, a document with 1.3 MB of code[^doc] | 17 ms 🥇 | — | 2 079 ms |
-| Memory allocated, the corpus as 21 blocks[^mem] | 0.14 MB 🥇 | 17.5 MB | — |
-| Memory allocated, 1 MB of Go[^mem] | 4.2 MB in 45 allocs 🥇 | 820 MB in 12 million allocs | — |
+| Time, the corpus as 21 blocks (14.5 kB)[^bench] | 0.16 ms 🥇 | 13.3 ms | *not measured* |
+| Time, 1 MB of Go | 10.0 ms 🥇 | 690 ms | *not measured* |
+| Time, a document with 1.3 MB of code[^doc] | 17 ms 🥇 | *not measured* | 2 079 ms |
+| Memory allocated, the corpus as 21 blocks[^mem] | 0.14 MB 🥇 | 17.5 MB | *not measured* |
+| Memory allocated, 1 MB of Go[^mem] | 4.2 MB 🥇 | 820 MB | *not measured* |
 | Peak memory added, 1 MB of Go[^mem] | 4 MB 🥇 | 75 MB | 11 MB |
-| Output for the corpus | 65.9 kB, 1 817 spans 🥇 | 117.4 kB, 4 317 spans | — |
-| HTML in the code is escaped[^safe] | yes | yes | yes |
+| Output for the corpus | 65.9 kB 🥇 | 117.4 kB | *not measured* |
+| XSS-safe output[^safe] | yes | yes | yes |
 | Guarantees hold for added languages | yes, by construction 🥇 | not documented | not documented |
-| Elements span line breaks | never 🥇 | yes (whitespace) | — |
+| Elements span line breaks | never 🥇 | yes (whitespace) | *not checked* |
 | Hostile input, 64 kB: hang or over 15 s[^hostile] | 0 of 3 278 🥇 | 101 of 2 200 (59 languages) | 8 of 1 474 (8 languages) |
 | Hostile input: input ×16 costs time ×96 or more | 0 🥇 | 11 (7 languages) | 15 (6 languages) |
 | Hostile input: linear, but over 1 s for 64 kB | 0 🥇 | 119 (38 languages) | 1 |
 | Hangs on ordinary non-ASCII text | no 🥇 | yes, JSONata (`zażółć`, `日本`) | no |
 | Crashes on input | no 🥇 | yes, YANG (`/*` repeated) | no |
-| Removing the tags gives back the input[^text] | yes, 298 languages 🥇 | not in 15 of 200 (a lone CR, for example C, C++, JavaScript, Rust; also tabs and the last line in diff, make, just) | — |
-| Deterministic output | yes, documented and tested | yes, in the same test | — |
-| Language detection from the content | no | yes | — |
+| Removing the tags gives back the input[^text] | yes, 298 languages 🥇 | not in 15 of 200 | *not measured* |
+| Deterministic output | yes, documented and tested | yes, in the same test | *not checked* |
+| Language detection from the content | no | yes | *not checked* |
 | Command line | yes | yes | yes |
 | License | Apache 2.0 | MIT | GPL 3.0 |
 
@@ -106,7 +106,9 @@ older tools (keywords, comments, strings and numbers; few context rules), no det
     input such as previews and pasted code.
 [^text]: The corpus and seven awkward inputs (CRLF, a lone CR, tabs, no final newline, invalid UTF-8, NUL, non-ASCII
     text) in each language; for invalid UTF-8 and NUL a U+FFFD in their place counts as kept, for both libraries.
-    chroma runs without its default conversion of line ends to LF (`EnsureLF: false`). highlight's output passes
+    chroma runs without its default conversion of line ends to LF (`EnsureLF: false`). Where it changes the
+    text: a lone CR is lost or moved (for example C, C++, JavaScript, Rust and 11 more), and in diff, make and
+    just also tabs and the last line. highlight's output passes
     through Markdown, so it is not compared.
 [^mem]: "Allocated" is the sum of all allocations during one run (`B/op` of `BenchmarkRivals`); most of it is
     garbage collected during the run, so it measures the work for the garbage collector, not the memory in use.
