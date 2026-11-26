@@ -61,16 +61,14 @@ conversion `T(x)` looks like a call). It is new.
 | Hostile input: linear, but over 1 s for 64 kB | 0 🥇 | 119 (38 languages) | 1 |
 | Hangs on ordinary non-ASCII text | no 🥇 | yes, JSONata (`zażółć`, `日本`) | no |
 | Crashes on input | no 🥇 | yes, YANG (`/*` repeated) | no |
-| Removing the tags gives back the input[^text] | yes, 298 languages 🥇 | not in 15 of 200 | *not measured* |
+| Removing the tags gives back the input[^text] | 298/298 lang 🥇 | 185/200 | *not measured* |
 | Deterministic output | yes, documented and tested | yes, in the same test | *not checked* |
 | Language detection from the content | no | yes | *not checked* |
 | Themes | 2, and `auto` | 74 | 97 🥇 |
 | Command line | yes | yes | yes |
 | License | Apache 2.0 | MIT | GPL 3.0 |
 
-Every row can be repeated by anyone: the inputs are frozen in [`tools/compare/inputs`](tools/compare/inputs),
-`go run ./cmd/rivalbench` and `go run ./cmd/rivalprobe` in `tools/compare` measure them, and the results are kept
-in [`tools/compare/results`](tools/compare/results). How: [docs/comparison.md](docs/comparison.md) and the notes below.
+To repeat the comparison, see [docs/comparison.md](docs/comparison.md).
 
 [^hl]: An independent C++ program by André Simon, measured through the copy that QLMarkdown 1.5.7 bundles.
     [More](docs/comparison.md#highlight)
