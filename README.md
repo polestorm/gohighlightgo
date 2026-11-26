@@ -1,9 +1,8 @@
 # gohighlightgo
 
-Syntax highlighting for source code in pure Go: code in, HTML `<span class="hl-…">` elements out. Written from
-the language specifications, with no dependencies outside the Go standard library. The output is safe by
-construction, the same input always gives the same HTML, byte for byte, and the time is linear in the length of
-the input, also for hostile input.
+Syntax highlighting for source code in pure Go. Written from the language specifications, with no dependencies
+outside the Go standard library. The output is safe by construction, the same input always gives the same HTML,
+byte for byte, and the time is linear in the length of the input, also for hostile input.
 
 ```go
 import "github.com/polestorm/gohighlightgo/highlight"
@@ -19,21 +18,18 @@ Compared with the established highlighters (details in [Comparison](#comparison)
 - **Small**: 5,397 lines of Go and 3,753 lines of language definitions, 536 kB added to a program, no
   dependencies, nothing loaded at run time.
 - **Extensible without a release**: a language made of words, comments, strings and numbers is a short text
-  file ([docs/definitions.md](docs/definitions.md)); a program adds its own with `highlight.Register`, the
-  command with `-def`. Definitions cannot contain regular expressions or code, so every guarantee below holds for
-  them too.
-- **Safe by construction**: the output contains only escaped text and `<span>` elements with classes from a
-  fixed list of 14, never nested and never spanning a line break. An independent checker verifies this in the
-  tests and in fuzzing, and removing the tags gives back the input.
-- **Linear time on hostile input**: one pass over the bytes, no regular expressions; 283 pathological cases are
-  timed in the test suite, and the library is fuzzed. In the comparison it is the only one that never hangs or
+  file ([docs/definitions.md](docs/definitions.md)).
+- **Safe by construction**: only escaped text and `<span>` elements from a fixed list of classes, checked in
+  tests and fuzzing.
+- **Linear time on hostile input**: one pass, no regular expressions; the only one compared that never hangs or
   slows down on hostile input.
 - **Deterministic**: the same input gives the same output, byte for byte, documented and tested.
 - **Made to be built on**: a single function, a stylesheet per theme, a command, and a few lines to connect it to
   a Markdown renderer (for example [gomdgo](https://github.com/polestorm/gomdgo)) behind a build tag.
 
-Where it is weaker: two themes instead of dozens, many languages described more shallowly than in the
-older tools (keywords, comments, strings and numbers; few context rules), no detection of the language from the content, and lexical highlighting only (a conversion `T(x)` looks like a call). It is new.
+Where it is weaker: many languages described more shallowly than in the older tools (keywords, comments, strings
+and numbers; few context rules), no detection of the language from the content, and lexical highlighting only (a
+conversion `T(x)` looks like a call). It is new.
 
 ## Contents
 
