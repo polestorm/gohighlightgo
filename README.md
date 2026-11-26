@@ -58,8 +58,8 @@ conversion `T(x)` looks like a call). It is new.
 | Hostile input, 64 kB: hang or over 15 s[^hostile] | 0 of 3 278 🥇 | 101 of 2 200 (59 languages) | 8 of 1 474 (8 languages) |
 | Hostile input: input ×16 costs time ×96 or more | 0 🥇 | 11 (7 languages) | 15 (6 languages) |
 | Hostile input: linear, but over 1 s for 64 kB | 0 🥇 | 119 (38 languages) | 1 |
-| Hangs on ordinary non-ASCII text | no 🥇 | yes, JSONata (`zażółć`, `日本`) | no |
-| Crashes on input | no 🥇 | yes, YANG (`/*` repeated) | no |
+| Hangs on non-ASCII text | no 🥇 | yes, JSONata (`zażółć`, `日本`) | no 🥇 |
+| Crashes on input | no 🥇 | yes, YANG (`/*` repeated) | no 🥇 |
 | Removing the tags gives back the input[^text] | 298/298 🥇 | 185/200 | *not measured* |
 | Language detection from the content | no | yes | *not checked* |
 | Themes | 2, and `auto` | 74 | 97 🥇 |
