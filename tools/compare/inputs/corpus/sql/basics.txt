@@ -1,0 +1,19 @@
+-- REQ: LANG-081 LANG-082 LANG-083 LANG-084 LANG-085
+/* Block comment /* nested */ still comment */
+CREATE TABLE IF NOT EXISTS "order items" (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL DEFAULT 'it''s',
+    price DECIMAL(10, 2) CHECK (price >= 0),
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+select o.id, count(*) as n, coalesce(sum(o.price), 0.0) AS total, my_func(o.name)
+from "order items" o
+left join `select` s on s.id = o.id
+where o.name like N'%zażółć%' and o.price between 1 and 1e3 or o.flag is null
+group by o.id having count(*) > 1
+order by total desc
+limit 10 offset 20;
+
+insert into t (a, b) values (X'FF', 'multi
+line');

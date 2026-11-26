@@ -1,0 +1,40 @@
+# REQ: LANG-141 LANG-142 LANG-143 LANG-144 LANG-145 LANG-146
+%YAML 1.2
+---
+name: gohighlightgo
+version: 1.5
+count: 42
+hex: 0x1F
+octal: 0o17
+infinite: -.inf
+empty: ~
+enabled: true
+disabled: False
+nothing: null
+date: 2024-01-31
+url: http://example.com:8080/path # comment after a value
+"quoted key": "line\n with \"escape\" and \u00e9"
+'single': 'it''s fine'
+list:
+  - first
+  - second: nested
+  - [a, b, {c: 1, d: "x"}]
+? complex key
+: complex value
+anchor: &base
+  a: 1
+merged: *base
+tagged: !!str 123
+custom: !mytag value
+literal: |
+  line one
+    indented line
+
+  after blank line
+folded: >-
+  folded text
+  continues
+next: done
+multi: "first
+  second"
+...

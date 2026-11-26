@@ -1,0 +1,27 @@
+/* REQ: LANG-131 LANG-132 LANG-133 LANG-134 LANG-135 */
+@import url("theme.css");
+@charset "utf-8";
+
+:root {
+  --accent: #0a84ff;
+  --gap: 1.5rem;
+}
+
+body, .page > main + aside ~ footer {
+  margin: 0 auto !important;
+  font: italic bold 12px/30px Georgia, serif;
+  color: rgb(10 20 30 / 50%);
+  background: url(img/bg.png) no-repeat, var(--accent);
+  width: calc(100% - 2 * var(--gap));
+  content: "\201C quote \"x\"";
+  transition: opacity .3s ease-in-out, -webkit-transform 0.5s;
+  z-index: -1;
+}
+
+a:hover, a::after, #header .nav li:nth-child(2n+1) {
+  display: inline-block;
+}
+
+@media screen and (max-width: 600px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}

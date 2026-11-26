@@ -1,0 +1,82 @@
+{
+  "Date": "2026-11-26",
+  "Machine": "Apple M4, 10 cores, darwin/arm64",
+  "Go": "go1.26.6",
+  "Chroma": "v2.27.0",
+  "QLMarkdown": "1.5.7",
+  "Rows": [
+    {
+      "Name": "Languages",
+      "Ours": "298",
+      "Chroma": "297",
+      "Highlight": "263"
+    },
+    {
+      "Name": "Size added to a program",
+      "Ours": "536 kB",
+      "Chroma": "4 774 kB",
+      "Highlight": "4 964 kB (library 3 416 kB, definition and theme files 1 548 kB)",
+      "OursV": 536.288,
+      "ChromaV": 4773.952,
+      "HighV": 4963.873
+    },
+    {
+      "Name": "Time, 21 files (14.5 kB)",
+      "Ours": "0.17 ms",
+      "Chroma": "13 ms",
+      "Highlight": "not measured",
+      "OursV": 0.167867,
+      "ChromaV": 12.812708
+    },
+    {
+      "Name": "Time, 1 MB of Go",
+      "Ours": "11 ms",
+      "Chroma": "687 ms",
+      "Highlight": "not measured",
+      "OursV": 10.696888,
+      "ChromaV": 686.996208
+    },
+    {
+      "Name": "Time, 1.3 MB of code",
+      "Ours": "15 ms",
+      "Chroma": "1138 ms",
+      "Highlight": "2256 ms",
+      "OursV": 15.361849,
+      "ChromaV": 1138.393375,
+      "HighV": 2256.384
+    },
+    {
+      "Name": "Memory allocated, 21 files",
+      "Ours": "0.14 MB",
+      "Chroma": "16.93 MB",
+      "Highlight": "not measured",
+      "OursV": 0.139008,
+      "ChromaV": 16.926306
+    },
+    {
+      "Name": "Memory allocated, 1 MB of Go",
+      "Ours": "4.20 MB",
+      "Chroma": "819.52 MB",
+      "Highlight": "not measured",
+      "OursV": 4.202529,
+      "ChromaV": 819.51934
+    },
+    {
+      "Name": "Peak memory added, 1 MB of Go",
+      "Ours": "7 MB",
+      "Chroma": "54 MB",
+      "Highlight": "10 MB",
+      "OursV": 6.78125,
+      "ChromaV": 54.140625,
+      "HighV": 10.1875
+    },
+    {
+      "Name": "Output for the 21 files",
+      "Ours": "65.9 kB",
+      "Chroma": "117.4 kB",
+      "Highlight": "not measured",
+      "OursV": 65.916,
+      "ChromaV": 117.394
+    }
+  ]
+}

@@ -36,6 +36,10 @@ import (
 // patterns: wzorce złośliwe; każdy powtórzony z "a " daje wiele niezamkniętych konstrukcji.
 var patterns = []string{"\"", "'", "`", "/*", "(*", "<!--", "<", "${", "#", "\\", "[["}
 
+// patternNames: nazwy plików wzorców w inputs/hostile (<nazwa>-small.txt, <nazwa>-large.txt).
+var patternNames = []string{"dquote", "squote", "backtick", "block-comment", "paren-star", "html-comment", "lt",
+	"dollar-brace", "hash", "backslash", "double-bracket"}
+
 // tricky: trudne wejścia dla odwracalności.
 var tricky = map[string][]byte{
 	"CRLF line ends":       []byte("a = 1\r\nb = \"x\"\r\n"),

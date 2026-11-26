@@ -1,0 +1,32 @@
+# REQ: LANG-161 LANG-162 LANG-163 LANG-164 LANG-165 LANG-166
+#!/usr/bin/env bash
+set -euo pipefail
+
+NAME="world" COUNT=3 ./run.sh --verbose
+readonly DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+greet() {
+    local who=${1:-$NAME}
+    echo "Hello, $who! Exit code: $? in \$HOME=$HOME" 'single $not' `date`
+}
+
+if [[ -f "$DIR/config" ]]; then
+    source "$DIR/config"
+elif test -d /tmp; then
+    grep -r 'pattern' . | sort | uniq -c > out.txt 2>&1
+else
+    exit 1
+fi
+
+for f in *.txt; do
+    wc -l "$f" && echo done
+done
+
+cat <<EOF
+Here document with $NAME
+EOF
+cat <<-'END'
+	literal $NAME
+	END
+count=$((COUNT + 1)) # arithmetic
+echo escaped\ space

@@ -1,0 +1,30 @@
+// REQ: LANG-021 LANG-022 LANG-023 LANG-024
+#include <vector>
+#pragma once
+
+namespace demo {
+
+template <typename T>
+concept Number = requires(T a) { a + a; };
+
+class Widget final : public Base {
+public:
+    explicit Widget(int n) noexcept : n_(n) {}
+    ~Widget() override = default;
+    auto size() const -> std::size_t { return static_cast<std::size_t>(n_); }
+    bool operator==(const Widget&) const = default;
+private:
+    int n_ = 1'000;
+};
+
+}  // namespace demo
+
+int main() {
+    auto raw = R"(a "quoted" \n stays)";
+    auto delim = u8R"xy(
+multi-line )" still inside
+)xy";
+    std::vector<char32_t> v{U'ż', u'a', L'b'};
+    if (v.empty() and not false) co_return;
+    throw std::runtime_error("bad\n");
+}

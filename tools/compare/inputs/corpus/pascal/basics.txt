@@ -1,0 +1,48 @@
+// REQ: LANG-101 LANG-102 LANG-103 LANG-104 LANG-105 LANG-106 LANG-107
+unit Demo;
+
+{$IFDEF DEBUG}
+{$R *.res}
+{$ENDIF}
+
+interface
+
+uses
+  System.SysUtils, System.Classes;
+
+type
+  TShape = class abstract(TObject)
+  strict private
+    FName: string;
+  public
+    constructor Create(const AName: string); virtual;
+    function Area: Double; virtual; abstract;
+    property Name: string read FName write FName;
+  end;
+
+implementation
+
+{ Block comment }
+(* Another block comment *)
+(*$WARNINGS OFF*)
+
+constructor TShape.Create(const AName: string);
+var
+  I: Integer;
+  S: UnicodeString;
+begin
+  inherited Create;
+  FName := AName + 'It''s' + #13#10 + #$0D + 'end';
+  for I := 1 to 10 do
+    Inc(I, $FF + %1010 + &777 + 1_000 + 1.5E3);
+  if Assigned(Self) and not (Length(S) > 0) then
+    WriteLn(Format('%d', [I]))
+  else
+    Exit;
+  case I of
+    1..10: Result := nil;
+  end;
+  BEGIN End;
+end;
+
+end.

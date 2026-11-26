@@ -1,0 +1,11 @@
+// REQ: LANG-091 LANG-092 LANG-093 LANG-094
+{
+  "name": "gohighlightgo",
+  "version" : 1.5e3,
+  "negative": -42,
+  "flags": [true, false, null],
+  "escapes": "tab\t quote\" uni \u00e9 slash\/",
+  /* JSONC comment */
+  "nested": {"a": [1, 2, {"b": "c"}]},
+  "key with \"quotes\"": "value"
+}

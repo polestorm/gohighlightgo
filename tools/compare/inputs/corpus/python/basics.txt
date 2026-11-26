@@ -1,0 +1,34 @@
+# REQ: LANG-061 LANG-062 LANG-063 LANG-064 LANG-065 LANG-066
+"""Module docstring
+over two lines."""
+from dataclasses import dataclass
+import re
+
+
+@dataclass(frozen=True)
+class Point:
+    x: int = 0
+    y: float = 1.5e-3
+
+    def norm(self) -> float:
+        return (self.x ** 2 + self.y ** 2) ** .5
+
+
+async def main(*args, **kwargs):
+    p = Point(1, 2)
+    names = [str(n) for n in range(10) if n % 2 == 0]
+    raw = r"C:\new\dir\"" + R'\d+' + rb"\x00"
+    text = f"{p.x!r:>10} done\n" + b'bytes\x41' + u"uni \u00e9 \N{BULLET} \U0001F600"
+    big = 1_000_000 + 0x_FF + 0o17 + 0b1010 + 3.14j
+    if p is not None and isinstance(p, Point) or not True:
+        print(len(names), sorted(names), sep=", ")
+    lam = lambda x: x @ x
+    try:
+        await other()
+    except (ValueError, TypeError) as err:
+        raise RuntimeError("bad") from err
+    s = 'line continued \
+here'
+    doc = '''single
+quotes'''
+    return NotImplemented

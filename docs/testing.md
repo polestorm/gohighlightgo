@@ -162,6 +162,54 @@ Wcześniejsze przebiegi tego samego dnia: limit 3 s dawał 138 przekroczeń w ch
 i dwoma procesami dały 93 przekroczenia, 16 przypadków gorszych niż liniowe i 29 wolnych, żadnego fałszywego
 alarmu. Liczby zależą od obciążenia maszyny; przed kolejnym wydaniem powtórzyć na spokojnym sprzęcie.
 
+## Powtarzalne porównanie: zamrożone wejścia i `rivalbench` (2026-11-26)
+
+Każdy wiersz tabeli porównania w README ma się dać powtórzyć u siebie, także przez autorów konkurencji. Dlatego
+wejścia pomiarów leżą jako pliki w `tools/compare/inputs` (opis po angielsku w jego `README.md`):
+
+- `corpus/`: 21 plików w 19 językach, skopiowane z `testdata/corpus` na `c5ac60f` (tych samych używał pomiar H6);
+  korpus biblioteki rośnie z każdym językiem, a ten już nie;
+- `text/`: siedem trudnych wejść odwracalności; `hostile/`: 11 wzorców złośliwych × 2 rozmiary; `xss/`: wejście
+  `TestRivalsSafety`. Test `TestInputsMatch` w `cmd/rivalprobe` pilnuje, że pliki są bajt w bajt tym, czego
+  używa sonda, a `TestRivalsSafety` i `BenchmarkRivals` czytają je wprost.
+
+`go run ./cmd/rivalbench` w `tools/compare` mierzy wszystko poza wrogimi danymi jednym przebiegiem: rozmiar
+(programy z `probes/` minus `probes/none`), czas i przydziały (`testing.Benchmark`, mediana z 5), dokument
+1,3 MB (u bibliotek Go czas pokolorowania 1 848 bloków, u highlight polecenie QLMarkdown `on` minus `off`, mediana
+z 15), pamięć szczytową dodaną (`getrusage` procesu z `probes/` minus `probes/none`, u highlight `on` minus `off`,
+mediana z 15) i rozmiar wyniku. Wynik zapisany w `tools/compare/results/rivalbench-2026-11-26.md` i `.json`.
+
+Przebieg 2026-11-26, Apple M4 (10 rdzeni), zasilanie sieciowe, go1.26.6, chroma 2.27.0, QLMarkdown 1.5.7
+(highlight 4.21); około 4 minut:
+
+| Wielkość | gohighlightgo | chroma | highlight | przewaga nad chroma | nad highlight |
+|---|--:|--:|--:|--:|--:|
+| języki | 298 | 297 | 263 | — | — |
+| dodane do programu | 536 kB | 4 774 kB | 4 964 kB (biblioteka 3 416 kB, definicje i motywy 1 548 kB) | 88,8% | 89,2% |
+| czas, 21 plików (14,5 kB) | 0,17 ms | 13 ms | — | 98,7% | — |
+| czas, 1 MB Go | 11 ms | 687 ms | — | 98,4% | — |
+| czas, 1,3 MB kodu | 15 ms | 1 138 ms | 2 256 ms | 98,7% | 99,3% |
+| pamięć przydzielona, 21 plików | 0,14 MB | 16,93 MB | — | 99,2% | — |
+| pamięć przydzielona, 1 MB Go | 4,20 MB | 819,52 MB | — | 99,5% | — |
+| pamięć szczytowa dodana, 1 MB Go | 7 MB | 54 MB | 10 MB | 87,5% | 33,4% |
+| wynik dla 21 plików | 65,9 kB | 117,4 kB | — | 43,9% | — |
+
+Różnice wobec wcześniejszych liczb z README i tego dokumentu:
+
+- definicje i motywy highlight: 1 548 kB to suma rozmiarów plików; wcześniejsze 2 740 kB podawało `du`, które liczy
+  zajęte bloki dysku (dużo małych plików), więc całość highlight spada z 6 156 do 4 964 kB;
+- pamięć szczytowa: wcześniej proces testowy Go (4 i 75 MB), teraz programy z `probes/`, które trzymają też całe
+  wejście i wynik (u nas +3 MB), a u chromy wynik zależy od chwili sprzątania pamięci; mediana z 15 zamiast
+  jednego przebiegu;
+- dokument 1,3 MB: wcześniej u nas różnica procesów `gomdgo-mermaid` (17 ms), czego nie da się powtórzyć bez
+  łatki z `docs/adapters/`; teraz czas samego kolorowania bloków przez API, co pozwala zmierzyć też chromę;
+- czasy w granicach rozrzutu (0,16 → 0,17 ms, 10,0 → 11 ms, 690 → 687 ms).
+
+Ręczne sprawdzenie poleceń z `inputs/README.md` (2026-11-26): chroma YANG na `block-comment-small.txt` kończy
+się `panic: unknown state comment`; chroma JSONata na 37-bajtowym `non-ascii.txt` po ponad minucie nadal działa i zajmuje
+3,6 GB (zatrzymany ręcznie); chroma make: 35 ms dla 4 kB i 2 725 ms dla 64 kB (z uruchomieniem procesu), nasz
+program 12 ms dla 64 kB; highlight z `${` w Dart (`dollar-brace-large.txt`) nadal działa po 20 s (zatrzymany).
+
 ## Tabela pomiarów
 
 | Data | Commit | Języki | H2–H4 | Binarka `gomdgo-mermaid` bez / z | Czas bez / z | Uwagi |

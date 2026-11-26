@@ -1,0 +1,18 @@
+// REQ: LANG-004 LANG-005 LANG-009 OUT-001 OUT-004
+package edge
+
+func zażółć() {}
+
+func Größe(ä int) bool { return ä <= 1 && ä >= 0 || ä != 2 }
+
+func html() string { return "<script>alert('x') & </script>" + `<b>"quoted"</b>` }
+
+var _ = a<b && c>d // <!-- not a comment --> &amp;
+
+var s = "unterminated
+var r = 'x
+x := Größe (1); y := zażółć	()
+z := f() + g () - h
+	()
+/* unterminated comment
+until the end of the file <&>

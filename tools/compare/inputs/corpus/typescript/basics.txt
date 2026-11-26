@@ -1,0 +1,24 @@
+// REQ: LANG-051 LANG-052
+interface Point { readonly x: number; y?: number }
+
+type Shape = { kind: "circle"; r: number } | { kind: "square"; a: bigint };
+
+declare module "lib" {
+    export function f<T extends keyof Point>(k: T): Point[T];
+}
+
+namespace Geometry {
+    export abstract class Base {
+        protected abstract area(): number;
+    }
+}
+
+enum Color { Red = 1, Green }
+
+function isString(x: unknown): x is string {
+    return typeof x === "string";
+}
+
+const conf = { debug: true } satisfies Record<string, boolean>;
+let n = (value as any) as never;
+const label = `Point ${p.x}`;

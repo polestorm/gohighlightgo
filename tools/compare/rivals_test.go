@@ -64,7 +64,10 @@ func TestRivalsOutput(t *testing.T) {
 
 // TestRivalsSafety: obie biblioteki muszą zapisać znaki HTML z kodu jako odwołania.
 func TestRivalsSafety(t *testing.T) {
-	attack := []byte("</code></pre><script>alert(1)</script> \"<img src=x onerror=alert(1)>\" & <!-- -->")
+	attack, err := os.ReadFile("inputs/xss/attack.txt") // te same bajty sprawdza każdy (inputs/README.md)
+	if err != nil {
+		t.Fatal(err)
+	}
 	for _, s := range withChroma(samples(t)) {
 		o := Ours(s.Lang, attack)
 		c, err := Chroma(ChromaLexer(s.Lang), attack)
@@ -81,7 +84,10 @@ func TestRivalsSafety(t *testing.T) {
 
 // BenchmarkRivals: korpus każdego języka powtórzony do około 1 MB oraz całość; chroma z leksera i formatera HTML.
 func BenchmarkRivals(b *testing.B) {
-	s := withChroma(samples(b))
+	s, err := CorpusDir("inputs/corpus") // zamrożony korpus pomiarów (inputs/README.md)
+	if err != nil {
+		b.Fatal(err)
+	}
 	langs := []string{""}
 	seen := map[string]bool{}
 	for _, sample := range s {

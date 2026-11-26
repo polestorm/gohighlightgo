@@ -46,14 +46,14 @@ conversion `T(x)` looks like a call). It is new.
 | Languages | 298 🥇 | 297 | 263 |
 | New language without a new release | a text file (`Register`, `-def`) | an XML file (`NewXMLLexer`, `Register`) | a Lua file |
 | Dependencies[^deps] | 0 🥇 | 1 | a Lua interpreter |
-| Size added to a program[^size] | 536 kB 🥇 | 4 774 kB | 6 156 kB |
-| Time, the corpus as 21 blocks (14.5 kB)[^bench] | 0.16 ms 🥇 | 13.3 ms | *not measured* |
-| Time, 1 MB of Go | 10.0 ms 🥇 | 690 ms | *not measured* |
-| Time, 1.3 MB of code[^doc] | 17 ms 🥇 | *not measured* | 2 079 ms |
-| Memory allocated, the corpus as 21 blocks[^mem] | 0.14 MB 🥇 | 17.5 MB | *not measured* |
+| Size added to a program[^size] | 536 kB 🥇 | 4 774 kB | 4 964 kB |
+| Time, 21 files (14.5 kB)[^bench] | 0.17 ms 🥇 | 13 ms | *not measured* |
+| Time, 1 MB of Go | 11 ms 🥇 | 687 ms | *not measured* |
+| Time, 1.3 MB of code[^doc] | 15 ms 🥇 | 1 138 ms | 2 256 ms |
+| Memory allocated, 21 files[^mem] | 0.14 MB 🥇 | 16.9 MB | *not measured* |
 | Memory allocated, 1 MB of Go[^mem] | 4.2 MB 🥇 | 820 MB | *not measured* |
-| Peak memory added, 1 MB of Go[^mem] | 4 MB 🥇 | 75 MB | 11 MB |
-| Output for the corpus | 65.9 kB 🥇 | 117.4 kB | *not measured* |
+| Peak memory added, 1 MB of Go[^mem] | 7 MB 🥇 | 54 MB | 10 MB |
+| Output for the 21 files | 65.9 kB 🥇 | 117.4 kB | *not measured* |
 | XSS-safe output[^safe] | yes | yes | yes |
 | Elements span line breaks | never 🥇 | yes (whitespace) | *not checked* |
 | Hostile input, 64 kB: hang or over 15 s[^hostile] | 0 of 3 278 🥇 | 101 of 2 200 (59 languages) | 8 of 1 474 (8 languages) |
@@ -68,16 +68,19 @@ conversion `T(x)` looks like a call). It is new.
 | Command line | yes | yes | yes |
 | License | Apache 2.0 | MIT | GPL 3.0 |
 
-How the numbers were measured: [docs/comparison.md](docs/comparison.md) and the notes below.
+Every row can be repeated by anyone: the inputs are frozen in [`tools/compare/inputs`](tools/compare/inputs),
+`go run ./cmd/rivalbench` and `go run ./cmd/rivalprobe` in `tools/compare` measure them, and the results are kept
+in [`tools/compare/results`](tools/compare/results). How: [docs/comparison.md](docs/comparison.md) and the notes below.
 
 [^hl]: An independent C++ program by André Simon, measured through the copy that QLMarkdown 1.5.7 bundles.
     [More](docs/comparison.md#highlight)
 [^deps]: Modules compiled into a program. chroma requires two more modules for its tests.
 [^size]: A small program that turns standard input into HTML, built with and without highlighting; language
     definitions and themes are counted for all three. [More](docs/comparison.md#size-added-to-a-program)
-[^bench]: Median of five runs of `BenchmarkRivals`, 2026-11-25, one Apple-silicon laptop. 🥇 marks the best value
-    in a row. [More](docs/comparison.md#time-and-memory-on-the-corpus)
-[^doc]: A Markdown document turned into HTML with and without highlighting; median of 15 runs.
+[^bench]: `go run ./cmd/rivalbench`, median of five runs, 2026-11-26, Apple M4. 🥇 marks the best value in a
+    row. [More](docs/comparison.md#time-and-memory-on-the-corpus)
+[^doc]: The 21 files as code blocks, repeated to 1.3 MB: for chroma and gohighlightgo the time to highlight every
+    block; for highlight the QLMarkdown command with highlighting minus without.
     [More](docs/comparison.md#a-document-full-of-code)
 [^hostile]: Eleven hostile patterns at about 4 kB and 64 kB in every language; each call of chroma and highlight
     in its own process, stopped after 15 s. [More](docs/comparison.md#hostile-input)

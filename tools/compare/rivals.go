@@ -27,8 +27,11 @@ type Sample struct {
 }
 
 // Corpus czyta testdata/corpus z katalogu głównego repozytorium (root).
-func Corpus(root string) ([]Sample, error) {
-	files, err := filepath.Glob(filepath.Join(root, "testdata/corpus/*/*.txt"))
+func Corpus(root string) ([]Sample, error) { return CorpusDir(filepath.Join(root, "testdata/corpus")) }
+
+// CorpusDir czyta pliki dir/<język>/*.txt, każdy bez pierwszego wiersza (odwołania REQ), w kolejności nazw.
+func CorpusDir(dir string) ([]Sample, error) {
+	files, err := filepath.Glob(filepath.Join(dir, "*/*.txt"))
 	if err != nil {
 		return nil, err
 	}
