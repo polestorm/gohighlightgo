@@ -59,8 +59,8 @@ older tools (keywords, comments, strings and numbers; few context rules), no det
 | Time, 1 MB of Go | 10.0 ms 🥇 | 690 ms | — |
 | Time, a document with 1.3 MB of code[^doc] | 17 ms 🥇 | — | 2 079 ms |
 | Memory allocated, the corpus as 21 blocks[^mem] | 0.14 MB 🥇 | 17.5 MB | — |
-| Memory allocated, 1 MB of Go[^mem] | 4.2 MB in 45 allocations 🥇 | 820 MB in 12 million | — |
-| Peak memory of the process, 1 MB of Go[^mem] | 22 MB 🥇 | 93 MB | — |
+| Memory allocated, 1 MB of Go[^mem] | 4.2 MB in 45 allocs 🥇 | 820 MB in 12 million allocs | — |
+| Peak memory added, 1 MB of Go[^mem] | 4 MB 🥇 | 75 MB | 11 MB |
 | Output for the corpus | 65.9 kB, 1 817 spans 🥇 | 117.4 kB, 4 317 spans | — |
 | HTML in the code is escaped[^safe] | yes | yes | yes |
 | Guarantees hold for added languages | yes, by construction 🥇 | not documented | not documented |
@@ -110,8 +110,11 @@ older tools (keywords, comments, strings and numbers; few context rules), no det
     through Markdown, so it is not compared.
 [^mem]: "Allocated" is the sum of all allocations during one run (`B/op` of `BenchmarkRivals`); most of it is
     garbage collected during the run, so it measures the work for the garbage collector, not the memory in use.
-    "Peak" is the maximum resident size of a test process that highlights 1 MB of Go once (`/usr/bin/time -l`);
-    the same process without highlighting takes 18 MB. Measured on 2026-11-25.
+    highlight is written in C++ and runs as a separate program, so its allocations cannot be counted this way.
+    "Peak memory added" is the maximum resident size of a process that highlights 1 MB of Go once minus the same
+    process without highlighting (`/usr/bin/time -l`): for the two Go libraries a test process (22 MB and 93 MB
+    against 18 MB), for highlight the QLMarkdown command on a document with that code, with `--syntax-highlight on`
+    and `off` (36 MB against 25 MB). Measured on 2026-11-25 and 2026-11-26.
 [^safe]: Output for `</code></pre><script>alert(1)</script>` and an `<img onerror>` in each of the 200
     languages that chroma also knows (`TestRivalsSafety`); for highlight, the same text in Go, HTML, XML, shell and Markdown blocks.
 

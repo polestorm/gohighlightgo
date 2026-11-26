@@ -116,6 +116,7 @@ cały proces: koszt kolorowania to różnica czasu `--syntax-highlight on` i `of
 | pamięć przydzielona, korpus | 0,139 MB | 17,50 MB | — | 99,2% | — |
 | pamięć przydzielona, 1 MB Go | 4,20 MB | 819,4 MB | — | 99,5% | — |
 | pamięć szczytowa procesu, 1 MB Go (2026-11-25, `/usr/bin/time -l`, jedno wywołanie; ten sam proces bez kolorowania 18 MB) | 22 MB | 93 MB | — | 76% | — |
+| pamięć szczytowa dodana przez kolorowanie, 1 MB Go (2026-11-26; Go: proces testowy 22 i 93 MB wobec 18 MB; highlight: `qlmarkdown_cli` z `--syntax-highlight on` i `off`, 36 i 25 MB, 2 przebiegi) | 4 MB | 75 MB | 11 MB | 94,7% | 63,6% |
 | czas kolorowania, dokument 15 KB kodu (różnica procesów) | 0,4 ms | — | 34,3 ms | — | 98,8% |
 | czas kolorowania, dokument 1,3 MB kodu | 16,6 ms | — | 2078,6 ms | — | 99,2% |
 | wynik dla korpusu | 65 916 B, 1 817 elementów | 117 394 B, 4 317 elementów | — | 43,9% | — |
