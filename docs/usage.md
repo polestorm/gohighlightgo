@@ -2,6 +2,8 @@
 
 [← README](../README.md)
 
+Requires Go 1.22 or newer. The API may still change before version 1.0.
+
 ```go
 out, ok := highlight.HTML("python", src)  // fragment: escaped code with <span class="hl-…">
 names := highlight.Languages()            // every accepted name and alias, sorted

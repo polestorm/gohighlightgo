@@ -81,7 +81,7 @@ czas 93,8% (15 KB) i 98,8% (1,3 MB), pamięć 65,7% i 28,4%. Porównanie samego 
 Wnioski: kolorowanie kosztuje około 0,2 MB pliku wykonywalnego; na zwykłych dokumentach czas się nie zmienia,
 na samym kodzie rośnie o około 13 ms na MB, a wynik i pamięć rosną z liczbą elementów `<span>`.
 
-## Odniesienie: QLMarkdown 1.5.7 (program `highlight` w środku)
+## Odniesienie: QLMarkdown 1.5.7 (w środku `highlight` 4.21, wersja odczytana z `libwrapper_highlight.dylib`)
 
 Ten sam dzień i komputer; program `qlmarkdown_cli` z paczki aplikacji, uruchamiany jako czarna skrzynka.
 

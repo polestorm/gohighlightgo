@@ -13,12 +13,9 @@ out, ok := highlight.HTML("go", src) // escaped code with <span class="hl-…">;
 
 ## Why gohighlightgo
 
-Compared with [chroma](https://github.com/alecthomas/chroma), the usual highlighter in Go, and with
-[highlight](http://www.andre-simon.de/) by André Simon, the engine behind the QLMarkdown preview on macOS
-(details in [Comparison](#comparison)):
+Compared with the established highlighters (details in [Comparison](#comparison)):
 
-- **Fast**: about 100 MB/s; 98.5–98.8% less time than chroma on the test inputs and 99% less than highlight on
-  a document full of code.
+- **Fast**: about 100 MB/s, the fastest of the highlighters compared.
 - **Small**: 5,397 lines of Go and 3,753 lines of language definitions, 536 kB added to a program, no
   dependencies, nothing loaded at run time.
 - **Extensible without a release**: a language made of words, comments, strings and numbers is a short text
@@ -29,8 +26,8 @@ Compared with [chroma](https://github.com/alecthomas/chroma), the usual highligh
   fixed list of 14, never nested and never spanning a line break. An independent checker verifies this in the
   tests and in fuzzing, and removing the tags gives back the input.
 - **Linear time on hostile input**: one pass over the bytes, no regular expressions; 283 pathological cases are
-  timed in the test suite, and the library is fuzzed. On 64 kB of hostile input chroma hangs or needs more than
-  15 s in 101 of 2,200 cases and highlight in 8 of 1,474; gohighlightgo in none of 3,278.
+  timed in the test suite, and the library is fuzzed. In the comparison it is the only one that never hangs or
+  slows down on hostile input.
 - **Deterministic**: the same input gives the same output, byte for byte, documented and tested.
 - **Made to be built on**: a single function, a stylesheet per theme, a command, and a few lines to connect it to
   a Markdown renderer (for example [gomdgo](https://github.com/polestorm/gomdgo)) behind a build tag.
@@ -40,19 +37,18 @@ older tools (keywords, comments, strings and numbers; few context rules), no det
 
 ## Contents
 
-- [Why gohighlightgo](#why-gohighlightgo) · [Comparison](#comparison) · [Status](#status) ·
-  [Documentation](#documentation) · [How the comparison was measured](#how-the-comparison-was-measured) ·
-  [License](#license)
+- [Why gohighlightgo](#why-gohighlightgo) · [Comparison](#comparison) ·
+  [Documentation](#documentation) · [License](#license)
 - [Usage](docs/usage.md): the API, classes and stylesheets, command line, connecting to a Markdown renderer
 - [Languages](docs/languages.md): the 298 languages and the names each one accepts
+- [How the comparison was measured](docs/comparison.md): the tests and tools behind the comparison table
 
 ## Comparison
 
-| | gohighlightgo 0.1.0 | chroma 2.27.0 | highlight (QLMarkdown 1.5.7)[^hl] |
+| | gohighlightgo 0.1.0 | [chroma](https://github.com/alecthomas/chroma) 2.27.0 | [highlight](http://www.andre-simon.de/) 4.21[^hl] |
 |---|:---:|:---:|:---:|
 | Languages | 298 🥇 | 297 | 263 |
 | New language without a new release | a text file (`Register`, `-def`) | an XML file (`NewXMLLexer`, `Register`) | a Lua file |
-| Themes | 2, and `auto` | 74 | 97 🥇 |
 | Dependencies[^deps] | 0 🥇 | 1 | a Lua interpreter |
 | Size added to a program[^size] | 536 kB 🥇 | 4 774 kB | 6 156 kB |
 | Time, the corpus as 21 blocks (14.5 kB)[^bench] | 0.16 ms 🥇 | 13.3 ms | *not measured* |
@@ -73,92 +69,40 @@ older tools (keywords, comments, strings and numbers; few context rules), no det
 | Removing the tags gives back the input[^text] | yes, 298 languages 🥇 | not in 15 of 200 | *not measured* |
 | Deterministic output | yes, documented and tested | yes, in the same test | *not checked* |
 | Language detection from the content | no | yes | *not checked* |
+| Themes | 2, and `auto` | 74 | 97 🥇 |
 | Command line | yes | yes | yes |
 | License | Apache 2.0 | MIT | GPL 3.0 |
 
-[^hl]: highlight is measured inside QLMarkdown, the Markdown preview for macOS that bundles it as a library;
-    it is only run as a program. gohighlightgo is written from the language specifications, not from the code or
-    the language definitions of other highlighters ([docs/provenance.md](docs/provenance.md)).
+How the numbers were measured: [docs/comparison.md](docs/comparison.md) and the notes below.
+
+[^hl]: An independent C++ program by André Simon, measured through the copy that QLMarkdown 1.5.7 bundles.
+    [More](docs/comparison.md#highlight)
 [^deps]: Modules compiled into a program. chroma requires two more modules for its tests.
-[^size]: How much bigger a program gets when it can highlight code. A small program that reads code from
-    standard input and writes HTML is built twice, with the library and without it (`-trimpath -ldflags="-s -w"`,
-    macOS arm64), and the row gives the difference: 536 kB for gohighlightgo, about 4.8 MB for chroma.
-    Everything gohighlightgo needs, all 298 languages included, is inside those 536 kB. highlight is not a Go
-    library; its row is the arm64 part of the library QLMarkdown loads, which includes a Lua interpreter
-    (3,416 kB), plus the language definition and theme files it reads from disk at run time (2,740 kB). The
-    first two have their definitions and themes inside the program, so the three numbers cover the same things.
-[^bench]: The 21 files of this project's corpus one by one, in the 19 languages it had on 2026-11-25 before
-    the definition files, and the Go files of the corpus joined to 1 MB. Median of five runs of `BenchmarkRivals`.
-    chroma runs its lexer and its HTML formatter with classes, without `<pre>`, which gives output of the same
-    form. Measured on 2026-11-25 on one Apple-silicon laptop. 🥇 marks the best value in a row.
-[^doc]: The corpus as a Markdown document with one fenced block per file, joined to 1.3 MB, converted to an
-    HTML page with and without highlighting; the difference is the cost of highlighting. gohighlightgo: the
-    `gomdgo-mermaid` command built with and without highlighting; highlight: QLMarkdown's command with
-    `--syntax-highlight on` and `off`. Median of 15 runs of each process.
-[^hostile]: `go run ./cmd/rivalprobe` in `tools/compare`, 2026-11-25, chroma 2.27.0 and QLMarkdown 1.5.7 on one
-    Apple-silicon laptop, four processes at a time. Eleven hostile patterns (unclosed `"`, `'`, `` ` ``, `/*`, `(*`,
-    `<!--`, `<`, `${`, `#`, `\`, `[[`, each followed by `a `), repeated to about 4 kB and 64 kB, in every language
-    the library knows: 298 for gohighlightgo, 200 for chroma, 134 for highlight. Every call of chroma and highlight
-    runs in its own process, which is killed after 15 s; "hang or over 15 s" does not tell a hang from a very slow
-    run. highlight is timed as the whole QLMarkdown command on a Markdown document with one code block, so its times
-    include starting the program; that makes a slow-down harder to detect, not easier. The inputs are written to be
-    hostile: ordinary code is highlighted by all three without trouble, and the difference matters for untrusted
-    input such as previews and pasted code.
-[^text]: The corpus and seven awkward inputs (CRLF, a lone CR, tabs, no final newline, invalid UTF-8, NUL, non-ASCII
-    text) in each language; for invalid UTF-8 and NUL a U+FFFD in their place counts as kept, for both libraries.
-    chroma runs without its default conversion of line ends to LF (`EnsureLF: false`). Where it changes the
-    text: a lone CR is lost or moved (for example C, C++, JavaScript, Rust and 11 more), and in diff, make and
-    just also tabs and the last line. highlight's output passes
-    through Markdown, so it is not compared.
-[^mem]: "Allocated" is the sum of all allocations during one run (`B/op` of `BenchmarkRivals`); most of it is
-    garbage collected during the run, so it measures the work for the garbage collector, not the memory in use.
-    highlight is written in C++ and runs as a separate program, so its allocations cannot be counted this way.
-    "Peak memory added" is the maximum resident size of a process that highlights 1 MB of Go once minus the same
-    process without highlighting (`/usr/bin/time -l`): for the two Go libraries a test process (22 MB and 93 MB
-    against 18 MB), for highlight the QLMarkdown command on a document with that code, with `--syntax-highlight on`
-    and `off` (36 MB against 25 MB). Measured on 2026-11-25 and 2026-11-26.
-[^safe]: Output for `</code></pre><script>alert(1)</script>` and an `<img onerror>` in each of the 200
-    languages that chroma also knows (`TestRivalsSafety`); for highlight, the same text in Go, HTML, XML, shell and Markdown blocks.
-
-## Status
-
-Version 0.1.0: the planned languages, themes and command are done; hardening in progress. The API may still
-change before 1.0. Requires Go 1.22 or newer.
-
-- 298 languages, each with a requirements file and a corpus file whose output is checked byte for byte.
-- Language definitions: the 11 table languages moved to definition files without a single byte of output
-  changing; any definition the parser accepts is fuzzed together with random code.
-- Safety and round trip (removing the tags gives back the input) are checked on every test input and in fuzzing.
-- Fuzzing: short runs during development (about 13 minutes in total, about 18 million inputs, each in every
-  language supported at the time) without a failure after one fix; the 24-hour run is still to be done.
-- Not yet done: highlighting in the gomdgo command and in the gopeekgo preview (the adapters are ready).
+[^size]: A small program that turns standard input into HTML, built with and without highlighting; language
+    definitions and themes are counted for all three. [More](docs/comparison.md#size-added-to-a-program)
+[^bench]: Median of five runs of `BenchmarkRivals`, 2026-11-25, one Apple-silicon laptop. 🥇 marks the best value
+    in a row. [More](docs/comparison.md#time-and-memory-on-the-corpus)
+[^doc]: A Markdown document turned into HTML with and without highlighting; median of 15 runs.
+    [More](docs/comparison.md#a-document-full-of-code)
+[^hostile]: Eleven hostile patterns at about 4 kB and 64 kB in every language; each call of chroma and highlight
+    in its own process, stopped after 15 s. [More](docs/comparison.md#hostile-input)
+[^text]: The corpus and seven awkward inputs (CRLF, a lone CR, tabs, invalid UTF-8 and others) in each language.
+    [More](docs/comparison.md#removing-the-tags-gives-back-the-input)
+[^mem]: Allocated: the sum of all allocations in one run, mostly freed during it. Peak added: the largest memory
+    use of a process minus the same process without highlighting. [More](docs/comparison.md#memory)
+[^safe]: `</code></pre><script>alert(1)</script>` and an `<img onerror>` in every language chroma also knows; for
+    highlight, in five languages. [More](docs/comparison.md#xss-safe-output)
 
 ## Documentation
 
-- This README, [`docs/usage.md`](docs/usage.md), [`docs/languages.md`](docs/languages.md) and the package documentation (`go doc github.com/polestorm/gohighlightgo/highlight`).
+- This README, [`docs/usage.md`](docs/usage.md), [`docs/languages.md`](docs/languages.md), [`docs/comparison.md`](docs/comparison.md) and the package documentation (`go doc github.com/polestorm/gohighlightgo/highlight`).
 - [`docs/definitions.md`](docs/definitions.md): the format of language definitions.
 - In Polish: [`docs/provenance.md`](docs/provenance.md) (sources and clean-room rules),
   [`docs/testing.md`](docs/testing.md) (tests, measurements, comparison), [`requirements/`](requirements/)
   (numbered requirements, one file per language), [`docs/adr/`](docs/adr/) (decisions),
   [`docs/roadmap.md`](docs/roadmap.md).
 - `go run ./tools/review` builds one HTML page with every corpus file in both themes next to the output of
-  QLMarkdown, for review by a person.
-
-## How the comparison was measured
-
-gohighlightgo and chroma are run through their public API on the same inputs by `TestRivalsOutput`,
-`TestRivalsSafety` and `BenchmarkRivals` in `tools/compare` (a separate module, so the library itself has no
-dependencies). highlight is not available as a Go library, so it is measured as a whole program, the way it is
-used in practice, and its share is the difference between runs with and without highlighting.
-
-The hostile-input rows come from `tools/compare/cmd/rivalprobe`, which runs every call of chroma and highlight
-in a separate process with a time limit, so a hang is recorded and the measurement goes on. It writes a progress
-page and a JSON summary; the numbers and the method are in `docs/testing.md`.
-
-The corpus is small and written to cover each language's specification, not to imitate typical code; the 1 MB
-and 1.3 MB inputs are the corpus repeated. The three highlighters split code into tokens differently (chroma
-marks whitespace and punctuation, gohighlightgo does not), so the output sizes compare the work each one does,
-not identical results.
+  highlight, for review by a person.
 
 ## License
 
