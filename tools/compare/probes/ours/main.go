@@ -1,4 +1,4 @@
-// Program kolorujący standardowe wejście jako Go biblioteką gohighlightgo (wszystkie języki są wkompilowane).
+// Command ours highlights standard input with gohighlightgo; the language is the first argument.
 package main
 
 import (

@@ -1,9 +1,9 @@
-// Polecenie gohighlightgo koloruje kod źródłowy biblioteką gohighlightgo.
+// Command gohighlightgo highlights source code with the gohighlightgo library.
 //
-//	gohighlightgo [flagi] [plik]
+//	gohighlightgo [flags] [file]
 //
-// Bez nazwy pliku (albo z nazwą "-") czyta standardowe wejście; wynik trafia na standardowe wyjście albo do
-// pliku wskazanego flagą -o. Język podaje flaga -lang albo rozszerzenie pliku (docs/adr/0005-command-line.md).
+// Without a file name (or with "-") it reads standard input; the output goes to standard output or to the file
+// given with -o. The language comes from the -lang flag or from the file extension.
 package main
 
 import (

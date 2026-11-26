@@ -1,14 +1,14 @@
-// Polecenie rivalprobe sprawdza niezmienniki gohighlightgo na naszej bibliotece i na konkurentach, na tych
-// samych wejściach:
+// Command rivalprobe checks the invariants of gohighlightgo on this library and on the other highlighters, on
+// the same inputs:
 //
-//   - text: odwracalność (po zdjęciu znaczników zostaje wejście) i determinizm, na korpusie i trudnych wejściach;
-//     gohighlightgo i chroma;
-//   - ours-time, chroma-time, highlight-time: czas dla wzorców złośliwych, wejście ×16.
+//   - text: round-trip fidelity (removing the tags gives back the input) and determinism, on the corpus and the
+//     awkward inputs; gohighlightgo and chroma;
+//   - ours-time, chroma-time, highlight-time: time for hostile patterns, input ×16.
 //
-// Każde wywołanie konkurenta biegnie w osobnym procesie (z własną grupą procesów) z twardym limitem czasu,
-// więc zawieszony lekser zostaje zabity i trafia do wyników. highlight (André Simon) mierzymy jako czarną
-// skrzynkę przez qlmarkdown_cli z QLMarkdown: dokument Markdown z jednym blokiem kodu; czas obejmuje start
-// procesu i Markdown, co tylko utrudnia wykrycie czasu gorszego niż liniowy. Postęp: strona HTML co 2 s.
+// Every call of another highlighter runs in its own process (with its own process group) under a hard time
+// limit, so a hung lexer is killed and recorded. highlight (André Simon) is measured as a black box through
+// qlmarkdown_cli from QLMarkdown: a Markdown document with one code block; the time includes starting the
+// process and the Markdown, which only makes a worse-than-linear time harder to detect. Progress: a page, 2 s.
 //
 //	cd tools/compare && go run ./cmd/rivalprobe -page ../../out/probe.html > probe.json
 package main

@@ -1,10 +1,10 @@
-// Polecenie rivalbench powtarza pomiary z tabeli porównania w README na zamrożonych wejściach z inputs/
-// i wypisuje wyniki jako tabelę Markdown (oraz JSON z -json). Każdy może je uruchomić u siebie:
+// Command rivalbench repeats the measurements of the comparison table in the README on the frozen inputs in
+// inputs/ and prints the results as a Markdown table (and as JSON with -json). Anyone can run it:
 //
 //	cd tools/compare && go run ./cmd/rivalbench
 //
-// Mierzy gohighlightgo i chroma przez ich API w Go oraz highlight (André Simon) jako czarną skrzynkę przez
-// polecenie QLMarkdown, gdy QLMarkdown jest zainstalowany. Wejścia i sposób pomiaru opisuje inputs/README.md.
+// It measures gohighlightgo and chroma through their Go API, and highlight (André Simon) as a black box through
+// the QLMarkdown command when QLMarkdown is installed. inputs/README.md describes the inputs and the method.
 package main
 
 import (

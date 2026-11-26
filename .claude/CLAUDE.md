@@ -9,7 +9,7 @@ Stan (2026-11-25): **etap 3 gotowy**. `HTML`, `Languages` i 19 języków (z tabe
 TypeScript, Python, Rust, SQL, JSON, Pascal/Delphi; z własnym skanerem: XML, HTML, CSS, YAML, TOML, powłoka, diff,
 Markdown) z korpusem, wymaganiami i testami H1–H4; postać wyniku ustala ADR 0002, tabela ADR 0003, własne skanery
 ADR 0004. Etapy 4–5 gotowe: motywy (ADR 0006), polecenie `cmd/gohighlightgo` (ADR 0005), strona przeglądu
-`tools/review`, H5 i H6 (`tools/compare`, chroma i highlight); README po angielsku z porównaniem; wydania v0.1.0 i v0.1.1
+`tools/review`, H5 i H6 (`tools/compare`, chroma i highlight); README po angielsku z porównaniem; wydania v0.1.0–v0.1.2
 przed 24 h fuzzingu (ADR 0007); adaptery u odbiorców po wydaniu (łatki w `docs/adapters/`). Etap 7: języki z tabeli
 to pliki `highlight/lang/*.hl` (ADR 0008, format w `docs/definitions.md`), `Register` i `-def`. Etap 8 (ADR 0009): cel to
 liczba języków jak u konkurencji (~260–300); dziś 298; definicje wczytywane leniwie. Fuzzing według reguły z globalnego CLAUDE.md (Synology;

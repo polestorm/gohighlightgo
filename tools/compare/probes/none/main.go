@@ -1,4 +1,4 @@
-// Program bez kolorowania: kopiuje standardowe wejście na wyjście. Punkt odniesienia dla rozmiaru.
+// Command none copies standard input to standard output without highlighting: the baseline for size and memory.
 package main
 
 import (

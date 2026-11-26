@@ -35,3 +35,8 @@ dnia na Synology przez wspólną kolejkę; warunek z punktu 3 obowiązuje dalej 
 kodu biblioteki i dla 1.0. Sekcję „Status” usunięto z README (decyzja
 właściciela z 2026-11-26, README ma być krótkie), więc stan fuzzingu podają `docs/testing.md` i `docs/roadmap.md`,
 a nie README, jak chciał punkt 3.
+
+`v0.1.2` (ten sam dzień, przed upublicznieniem): komentarze dokumentacyjne poleceń (`cmd/gohighlightgo`,
+`tools/review`) i modułu `tools/compare` przetłumaczone na angielski, bo pokazuje je pkg.go.dev; binarki
+zbudowane z `-trimpath -buildvcs=false -ldflags="-s -w -buildid="` mają tę samą sumę przed i po. Kod biblioteki bez
+zmian, więc fuzzing zlecony na `b3e7860` dotyczy też tego wydania.

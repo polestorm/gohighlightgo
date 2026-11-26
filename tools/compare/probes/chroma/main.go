@@ -1,4 +1,4 @@
-// Program kolorujący standardowe wejście biblioteką chroma (wszystkie leksery są wkompilowane).
+// Command chroma highlights standard input with chroma; the language is the first argument.
 package main
 
 import (

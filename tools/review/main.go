@@ -1,15 +1,15 @@
-// Polecenie review składa jedną stronę HTML do przeglądu korpusu przez człowieka: dla każdego pliku z
-// testdata/corpus język, wymagania, wynik gohighlightgo w motywie jasnym i ciemnym oraz (opcjonalnie) wynik
-// programu odniesienia, z liczbami: rozmiar, liczba elementów, czas. Strona pozwala zaznaczyć ocenę i skopiować
-// uwagi.
+// Command review builds one HTML page for a person to review the corpus: for every file in testdata/corpus its
+// language, requirements, the gohighlightgo output in the light and dark themes and, optionally, the output of
+// the reference program, with figures: size, number of elements, time. The page lets the reviewer mark a verdict
+// and copy notes.
 //
 //	go run ./tools/review -o out/review.html
-//	go run ./tools/review -ref '' -o out/review.html   # bez odniesienia
+//	go run ./tools/review -ref '' -o out/review.html   # without the reference
 //
-// Odniesieniem jest domyślnie qlmarkdown_cli z QLMarkdown (w środku program highlight André Simona),
-// uruchamiany jako czarna skrzynka na dokumencie Markdown z jednym blokiem kodu; jego cała strona trafia do
-// ramki <iframe>, żeby jego arkusz nie mieszał się z naszym (docs/provenance.md: wolno uruchamiać, nie czytamy
-// kodu ani definicji). Uruchamiać z katalogu głównego repozytorium.
+// The reference is by default qlmarkdown_cli from QLMarkdown (with André Simon's highlight inside), run as a
+// black box on a Markdown document with one code block; its whole page goes into an <iframe>, so that its
+// stylesheet does not mix with ours. Run it
+// from the repository root.
 package main
 
 import (
