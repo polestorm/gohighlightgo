@@ -49,13 +49,12 @@ conversion `T(x)` looks like a call). It is new.
 | Size added to a program[^size] | 536 kB 🥇 | 4 774 kB | 6 156 kB |
 | Time, the corpus as 21 blocks (14.5 kB)[^bench] | 0.16 ms 🥇 | 13.3 ms | *not measured* |
 | Time, 1 MB of Go | 10.0 ms 🥇 | 690 ms | *not measured* |
-| Time, a document with 1.3 MB of code[^doc] | 17 ms 🥇 | *not measured* | 2 079 ms |
+| Time, 1.3 MB of code[^doc] | 17 ms 🥇 | *not measured* | 2 079 ms |
 | Memory allocated, the corpus as 21 blocks[^mem] | 0.14 MB 🥇 | 17.5 MB | *not measured* |
 | Memory allocated, 1 MB of Go[^mem] | 4.2 MB 🥇 | 820 MB | *not measured* |
 | Peak memory added, 1 MB of Go[^mem] | 4 MB 🥇 | 75 MB | 11 MB |
 | Output for the corpus | 65.9 kB 🥇 | 117.4 kB | *not measured* |
 | XSS-safe output[^safe] | yes | yes | yes |
-| Guarantees hold for added languages | yes, by construction 🥇 | not documented | not documented |
 | Elements span line breaks | never 🥇 | yes (whitespace) | *not checked* |
 | Hostile input, 64 kB: hang or over 15 s[^hostile] | 0 of 3 278 🥇 | 101 of 2 200 (59 languages) | 8 of 1 474 (8 languages) |
 | Hostile input: input ×16 costs time ×96 or more | 0 🥇 | 11 (7 languages) | 15 (6 languages) |
