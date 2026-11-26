@@ -1,7 +1,7 @@
 # UnrealScript: UnrealScript Language Reference (Epic Games, UE3); requirements/languages/unrealscript.md
 name     unrealscript uc
 keyword  class extends var local function event state simulated native static final if else for
-keyword  foreach while do switch case default break continue return new self super none defaultproperties
+keyword  foreach while do switch case default break continue return new self super defaultproperties
 keyword  replication reliable unreliable config localized const enum struct
 type     int float bool byte string name vector rotator Object Actor
 builtin  true false None Log Spawn

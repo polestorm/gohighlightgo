@@ -210,6 +210,22 @@ się `panic: unknown state comment`; chroma JSONata na 37-bajtowym `non-ascii.tx
 3,6 GB (zatrzymany ręcznie); chroma make: 35 ms dla 4 kB i 2 725 ms dla 64 kB (z uruchomieniem procesu), nasz
 program 12 ms dla 64 kB; highlight z `${` w Dart (`dollar-brace-large.txt`) nadal działa po 20 s (zatrzymany).
 
+## Błąd determinizmu w definicjach z `fold-case` (2026-11-26)
+
+Pierwszy przebieg CI po upublicznieniu (Go 1.22, ubuntu) pokazał inny wynik `TestCorpus` dla Cassandry niż
+wzorzec: `set` raz jako `hl-type`, raz jako `hl-kw`. Przyczyna nie leży w wersji Go: definicja miała `fold-case`
+i jednocześnie `SET` w `keyword` oraz `set` w `type` (tak samo `TIMESTAMP`/`timestamp`), a `foldWords` przy
+zrównaniu liter zostawiał tę klasę, którą mapa podała później, czyli losowo między uruchomieniami procesu.
+Odtworzone lokalnie (`GOTOOLCHAIN=go1.22.12 go test ./highlight`); `FuzzHTML` tego nie łapał, bo porównuje dwa
+wywołania w jednym procesie, gdzie mapa jest już zbudowana. Dotyczy v0.1.0–v0.1.2 i tylko Cassandry oraz
+UnrealScriptu (`none`/`None`).
+
+Poprawka: parser definicji odrzuca słowo w dwóch z list `keyword`, `type`, `builtin` (przy `fold-case` bez
+względu na wielkość liter) błędem z numerami obu wierszy (`DEF-002`), a `foldWords` panikuje przy takim konflikcie
+w tabelach pisanych w Go. W 10 wbudowanych definicjach słowo zostało tylko na tej liście, która dotąd wygrywała
+(ostatni wiersz); wzorce korpusu bez zmian. Testy przechodzą na Go 1.26 i 1.22, `TestCorpus -count=30` na obu bez
+różnicy; `FuzzDefinition` lokalnie 60 s z `-parallel 2` bez błędu.
+
 ## Tabela pomiarów
 
 | Data | Commit | Języki | H2–H4 | Binarka `gomdgo-mermaid` bez / z | Czas bez / z | Uwagi |

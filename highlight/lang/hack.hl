@@ -2,6 +2,6 @@
 extends  php
 name     hack hh
 
-keyword  async await newtype enum class shape type namespace use await concurrent inout readonly
+keyword  async await newtype enum class type namespace use await concurrent inout readonly
 keyword  upcast where super
 type     vec dict keyset shape nonnull num arraykey dynamic noreturn nothing this

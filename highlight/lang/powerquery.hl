@@ -1,7 +1,7 @@
 # Power Query M: Power Query M formula language specification (Microsoft); requirements/languages/powerquery.md
 name     powerquery pq
 keyword  let in if then else each and or not as is meta section shared try otherwise error type
-type     number text logical date datetime duration table list record function any null binary
+type     number text logical date datetime duration table list record function any binary
 builtin  true false null #table #date #datetime Table.SelectRows Table.AddColumn Text.Upper List.Sum
 ident-part     .
 line-comment   //

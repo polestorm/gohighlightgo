@@ -71,6 +71,12 @@ func parseDefinition(src []byte, lookup func(string) *language) (*language, erro
 	t := &table{words: map[string]class{}, escape: escapeRule{}.length}
 	var names []string
 	seen := map[string]bool{}
+	// entries: słowa w kolejności pliku; sprawdzane na końcu, bo fold-case może stać po nich.
+	type wordEntry struct {
+		word, class string
+		line        int
+	}
+	var entries []wordEntry
 	for n, raw := range strings.Split(string(src), "\n") {
 		fail := func(format string, a ...any) (*language, error) {
 			return nil, &DefinitionError{Line: n + 1, Msg: sprintf(format, a...)}
@@ -141,6 +147,7 @@ func parseDefinition(src []byte, lookup func(string) *language) (*language, erro
 					return fail("%s %q is longer than 32 bytes", key, v)
 				}
 				t.words[v] = c
+				entries = append(entries, wordEntry{v, key, n + 1})
 			}
 		case "fold-case", "calls", "macros", "decorators", "templates", "keys", "regex", "upper-type", "call-after-paren":
 			if len(values) > 0 || len(opts) > 0 {
@@ -352,6 +359,20 @@ func parseDefinition(src []byte, lookup func(string) *language) (*language, erro
 	for _, q := range t.quotes {
 		if q.open == "" || q.close == "" {
 			return nil, &DefinitionError{Msg: "empty string delimiter"}
+		}
+	}
+	// Słowo w dwóch klasach (po zrównaniu wielkości liter przy fold-case) jest błędem: przy fold-case wynik
+	// zależałby od kolejności mapy, a bez niego od kolejności wierszy, której czytelnik definicji nie widzi.
+	first := map[string]wordEntry{}
+	for _, e := range entries {
+		k := e.word
+		if t.foldCase {
+			k = strings.ToLower(k)
+		}
+		if p, ok := first[k]; ok && p.class != e.class {
+			return nil, &DefinitionError{Line: e.line, Msg: sprintf("word %q is both %s and %s (line %d)", e.word, p.class, e.class, p.line)}
+		} else if !ok {
+			first[k] = e
 		}
 	}
 	if t.foldCase {

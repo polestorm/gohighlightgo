@@ -103,11 +103,17 @@ func words(groups ...wordGroup) map[string]class {
 	return m
 }
 
-// foldWords zamienia klucze mapy na małe litery, dla table.foldCase.
+// foldWords zamienia klucze mapy na małe litery, dla table.foldCase. Dwa słowa różniące się tylko wielkością
+// liter muszą mieć tę samą klasę, inaczej wynik zależałby od kolejności przechodzenia mapy; definicje sprawdza
+// parseDefinition, tabele w Go ta panika przy starcie testów.
 func foldWords(m map[string]class) map[string]class {
 	out := make(map[string]class, len(m))
 	for k, v := range m {
-		out[strings.ToLower(k)] = v
+		l := strings.ToLower(k)
+		if c, ok := out[l]; ok && c != v {
+			panic("highlight: word " + k + " in two classes")
+		}
+		out[l] = v
 	}
 	return out
 }

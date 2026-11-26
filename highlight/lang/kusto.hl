@@ -1,7 +1,7 @@
 # Kusto Query Language: Kusto Query Language (KQL) reference (Microsoft); requirements/languages/kusto.md
 name     kusto kql
 keyword  where project extend summarize by order sort asc desc take limit top join on kind inner leftouter
-keyword  union let datatable render count distinct parse mv-expand and or not in has contains startswith
+keyword  union let datatable render distinct parse mv-expand and or not in has contains startswith
 keyword  between ago
 builtin  true false now count dcount sum avg min max bin tostring toint strcat iff isnotempty
 ident-part     -

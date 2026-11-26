@@ -18,6 +18,8 @@ func TestDefinitionErrors(t *testing.T) {
 		{"name x\nstring \"", "line 2: string needs"},
 		{"name x\nstring \" \" : sometimes", "unknown option"},
 		{"name x\noperators ←→", "not printable ASCII"},
+		{"name x\nkeyword set\ntype set", "both keyword and type"},
+		{"name x\nkeyword SET\ntype set\nfold-case", "both keyword and type"},
 		{"name x\nline-comment \xef", "not valid UTF-8"},
 		{"name x\nblock-comment /*", "line 2: block-comment needs"},
 		{"name x\nescape : x=9", "x must be"},

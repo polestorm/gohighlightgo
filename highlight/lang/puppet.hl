@@ -1,8 +1,8 @@
 # Puppet: Puppet language reference (8.x): reserved words, resource types, variables, strings; requirements/languages/puppet.md
 name     puppet pp
 
-keyword  and application attr case class consumes default define elsif else environment false function
-keyword  if import in inherits node or private produces site true type undef unit unless include require
+keyword  and application attr case class consumes default define elsif else environment function
+keyword  if import in inherits node or private produces site type unit unless include require
 keyword  contain
 type     file package service exec user group cron mount host notify String Integer Boolean Array Hash
 builtin  true false undef notice warning fail template epp lookup

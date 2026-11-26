@@ -2,7 +2,7 @@
 name     llvm ll llvm-ir
 keyword  define declare global constant private internal external linkonce weak common appending
 keyword  dso_local unnamed_addr align alloca load store getelementptr inbounds call ret br switch
-keyword  icmp fcmp add sub mul sdiv udiv and or xor shl phi select zext sext trunc bitcast to label
+keyword  icmp fcmp add sub mul sdiv udiv and or xor shl phi select zext sext trunc bitcast to
 keyword  nounwind readonly noinline attributes source_filename target datalayout triple eq ne sgt slt
 type     void i1 i8 i16 i32 i64 i128 half float double ptr label metadata
 builtin  true false null undef poison zeroinitializer

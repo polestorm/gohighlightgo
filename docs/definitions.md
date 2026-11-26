@@ -43,7 +43,7 @@ start with `#` and empty lines are ignored. Values contain no spaces. Values of 
 |---|---|---|---|
 | `name` | names | | the primary name, then aliases; lower case; may be repeated |
 | `extends` | a language | | starts from a copy of an earlier table language; must be the first directive |
-| `keyword`, `type`, `builtin` | words | | words coloured `hl-kw`, `hl-type`, `hl-builtin`; at most 32 bytes each; may be repeated |
+| `keyword`, `type`, `builtin` | words | | words coloured `hl-kw`, `hl-type`, `hl-builtin`; at most 32 bytes each; may be repeated; a word cannot be in two of the three (with `fold-case`, in any letter case) |
 | `fold-case` | | | words match without regard to case (SQL, Pascal) |
 | `ident-extra` | characters | | punctuation allowed in identifiers besides letters, digits and `_` (for example `$`) |
 | `ident-part` | characters | | punctuation allowed inside identifiers but not at their start (`'` in Haskell: `foldl'`) |

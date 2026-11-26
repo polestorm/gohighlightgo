@@ -1,7 +1,7 @@
 # Pine Script: TradingView Pine Script v5 language reference; requirements/languages/pinescript.md
 name     pinescript pine
 keyword  if else for to by while switch var varip import export method type and or not true false na
-keyword  indicator strategy library
+keyword  indicator library
 type     int float bool color string line label table array matrix map series simple const
 builtin  close open high low volume ta plot plotshape input strategy math request time
 line-comment   //
