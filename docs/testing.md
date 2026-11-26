@@ -115,6 +115,7 @@ cały proces: koszt kolorowania to różnica czasu `--syntax-highlight on` i `of
 | czas, 1 MB Go | 10,05 ms | 690,5 ms | — | 98,5% | — |
 | pamięć przydzielona, korpus | 0,139 MB | 17,50 MB | — | 99,2% | — |
 | pamięć przydzielona, 1 MB Go | 4,20 MB | 819,4 MB | — | 99,5% | — |
+| pamięć szczytowa procesu, 1 MB Go (2026-11-25, `/usr/bin/time -l`, jedno wywołanie; ten sam proces bez kolorowania 18 MB) | 22 MB | 93 MB | — | 76% | — |
 | czas kolorowania, dokument 15 KB kodu (różnica procesów) | 0,4 ms | — | 34,3 ms | — | 98,8% |
 | czas kolorowania, dokument 1,3 MB kodu | 16,6 ms | — | 2078,6 ms | — | 99,2% |
 | wynik dla korpusu | 65 916 B, 1 817 elementów | 117 394 B, 4 317 elementów | — | 43,9% | — |

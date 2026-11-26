@@ -54,13 +54,13 @@ older tools (keywords, comments, strings and numbers; few context rules), no det
 | New language without a new release | a text file (`Register`, `-def`) | an XML file (`NewXMLLexer`, `Register`) | a Lua file |
 | Themes | 2, and `auto` | 74 | 97 🥇 |
 | Dependencies[^deps] | 0 🥇 | 1 | a Lua interpreter |
-| Lines of code[^size] | 5,397 and 3,753 lines of definitions 🥇 | 31,199 and 279 lexer files (2.4 MB) | — |
-| Added to a program | 536 kB 🥇 | 4,774 kB | 3,416 kB and 2.7 MB of definitions and themes |
+| Added to a program[^size] | 536 kB 🥇 | 4,774 kB | 3,416 kB and 2.7 MB of definitions and themes |
 | Time, the corpus as 21 blocks (14.5 kB)[^bench] | 0.16 ms 🥇 | 13.3 ms | — |
 | Time, 1 MB of Go | 10.0 ms 🥇 | 690 ms | — |
 | Time, a document with 1.3 MB of code[^doc] | 17 ms 🥇 | — | 2,079 ms |
-| Memory, the corpus as 21 blocks | 0.14 MB 🥇 | 17.5 MB | — |
-| Memory, 1 MB of Go | 4.2 MB 🥇 | 819 MB | — |
+| Memory allocated, the corpus as 21 blocks[^mem] | 0.14 MB 🥇 | 17.5 MB | — |
+| Memory allocated, 1 MB of Go[^mem] | 4.2 MB in 45 allocations 🥇 | 820 MB in 12 million | — |
+| Peak memory of the process, 1 MB of Go[^mem] | 22 MB 🥇 | 93 MB | — |
 | Output for the corpus | 65.9 kB, 1,817 spans 🥇 | 117.4 kB, 4,317 spans | — |
 | HTML in the code is escaped[^safe] | yes | yes | yes |
 | Guarantees hold for added languages | yes, by construction 🥇 | not documented | not documented |
@@ -80,12 +80,11 @@ older tools (keywords, comments, strings and numbers; few context rules), no det
     it is only run as a program. gohighlightgo is written from the language specifications, not from the code or
     the language definitions of other highlighters ([docs/provenance.md](docs/provenance.md)).
 [^deps]: Modules compiled into a program. chroma requires two more modules for its tests.
-[^size]: Lines of Go in the packages a "standard input to HTML" program pulls in, without tests. "Added to a
-    program" is the size of that program minus the same program without highlighting (`-trimpath -ldflags="-s
+[^size]: The size of that program minus the same program without highlighting (`-trimpath -ldflags="-s
     -w"`, macOS arm64); for highlight, the arm64 part of its library in QLMarkdown, which also holds the Lua
     interpreter, and its language definitions and themes.
 [^bench]: The 21 files of this project's corpus one by one, in the 19 languages it had on 2026-11-25 before
-    the definition files, and the Go files of the corpus joined to 1 MB. Median of five runs of `BenchmarkRivals`; memory is the number of bytes allocated per run.
+    the definition files, and the Go files of the corpus joined to 1 MB. Median of five runs of `BenchmarkRivals`.
     chroma runs its lexer and its HTML formatter with classes, without `<pre>`, which gives output of the same
     form. Measured on 2026-11-25 on one Apple-silicon laptop. 🥇 marks the best value in a row.
 [^doc]: The corpus as a Markdown document with one fenced block per file, joined to 1.3 MB, converted to an
@@ -105,6 +104,10 @@ older tools (keywords, comments, strings and numbers; few context rules), no det
     text) in each language; for invalid UTF-8 and NUL a U+FFFD in their place counts as kept, for both libraries.
     chroma runs without its default conversion of line ends to LF (`EnsureLF: false`). highlight's output passes
     through Markdown, so it is not compared.
+[^mem]: "Allocated" is the sum of all allocations during one run (`B/op` of `BenchmarkRivals`); most of it is
+    garbage collected during the run, so it measures the work for the garbage collector, not the memory in use.
+    "Peak" is the maximum resident size of a test process that highlights 1 MB of Go once (`/usr/bin/time -l`);
+    the same process without highlighting takes 18 MB. Measured on 2026-11-25.
 [^safe]: Output for `</code></pre><script>alert(1)</script>` and an `<img onerror>` in each of the 200
     languages that chroma also knows (`TestRivalsSafety`); for highlight, the same text in Go, HTML, XML, shell and Markdown blocks.
 
