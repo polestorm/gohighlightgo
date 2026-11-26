@@ -61,9 +61,11 @@ conversion `T(x)` looks like a call). It is new.
 | Hangs on non-ASCII text | no 🥇 | yes, JSONata (`zażółć`, `日本`) | no 🥇 |
 | Crashes on input | no 🥇 | yes, YANG (`/*` repeated) | no 🥇 |
 | Removing the tags gives back the input[^text] | 298/298 🥇 | 185/200 | *not measured* |
-| Language detection from the content | no | yes | *not checked* |
+| Language detection | no | yes 🥇 | *not checked* |
 | Themes | 2, and `auto` | 74 | 97 🥇 |
+| Output formats | HTML | HTML, SVG, terminal, JSON | HTML, LaTeX, RTF, ODT, SVG, terminal and more[^formats] 🥇 |
 | Command line | yes | yes | yes |
+| GitHub popularity[^pop] | new | 5 088 stars, 568 forks 🥇 | 130 stars, 175 forks (GitLab) |
 | License | Apache 2.0 | MIT | GPL 3.0 |
 
 To repeat the comparison, see [docs/comparison.md](docs/comparison.md).
@@ -84,6 +86,9 @@ To repeat the comparison, see [docs/comparison.md](docs/comparison.md).
     [More](docs/comparison.md#removing-the-tags-gives-back-the-input)
 [^mem]: Allocated: the sum of all allocations in one run, mostly freed during it. Peak added: the largest memory
     use of a process minus the same process without highlighting. [More](docs/comparison.md#memory)
+[^formats]: From its manual: HTML, XHTML, LaTeX, TeX, RTF, ODT, SVG, BBCode, Pango markup and terminal (16, 256
+    and true colour). chroma's list is from `formatters.Names()`.
+[^pop]: Stars and forks on 2026-11-26; highlight is developed on GitLab.
 [^safe]: `</code></pre><script>alert(1)</script>` and an `<img onerror>` in every language chroma also knows; for
     highlight, in five languages. [More](docs/comparison.md#xss-safe-output)
 
