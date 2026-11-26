@@ -43,7 +43,7 @@ conversion `T(x)` looks like a call). It is new.
 | | gohighlightgo 0.1.0 | [chroma](https://github.com/alecthomas/chroma) 2.27.0 | [highlight](http://www.andre-simon.de/) 4.21[^hl] |
 |---|:---:|:---:|:---:|
 | Languages | 298 | 297 | 263 |
-| Adding a new language | a text file (`.hl`) | an XML file | a Lua file |
+| Adding a new language | a `.hl` text file | an XML file | a Lua file |
 | Dependencies[^deps] | 0 | 1 | a Lua interpreter |
 | Size added to a program[^size] | 536 kB 🥇 | 4 774 kB | 4 964 kB |
 | Time, 21 files (14.5 kB)[^bench] | 0.17 ms 🥇 | 13 ms | *not measured* |
@@ -55,15 +55,15 @@ conversion `T(x)` looks like a call). It is new.
 | Output for the 21 files | 65.9 kB 🥇 | 117.4 kB | *not measured* |
 | XSS-safe output[^safe] | yes | yes | yes |
 | Elements span line breaks | never 🥇 | yes (whitespace) | *not checked* |
-| Hostile input, 64 kB: hang or over 15 s[^hostile] | 0 of 3 278 🥇 | 101 of 2 200 (59 languages) | 8 of 1 474 (8 languages) |
+| Hostile input, 64 kB: hang or over 15 s[^hostile] | 0 / 3 278 🥇 | 101 / 2 200 (59 lang) | 8 / 1 474 (8 lang) |
 | Hangs on non-ASCII text | no 🥇 | yes, JSONata (`zażółć`, `日本`) | no 🥇 |
 | Crashes on input | no 🥇 | yes, YANG (`/*` repeated) | no 🥇 |
 | Round-trip fidelity[^text] | 298/298 🥇 | 185/200 | *not measured* |
 | Language detection | no | yes 🥇 | *not checked* |
 | Themes | 2, and `auto` | 74 | 97 🥇 |
-| Output formats | HTML | HTML, SVG, terminal, JSON | HTML, LaTeX, RTF, ODT, SVG, terminal and more[^formats] 🥇 |
+| Output formats | HTML | HTML, SVG, terminal, JSON 🥇 | HTML, LaTeX, RTF, ODT, SVG, terminal and more[^formats] 🥇 |
 | Command line | yes | yes | yes |
-| GitHub popularity[^pop] | new | 5 088 stars, 568 forks 🥇 | 130 stars, 175 forks (GitLab) |
+| GitHub popularity[^pop] | new | 5 088 stars, 568 forks 🥇 | 130 stars, 175 forks (GitLab) 🥇 |
 | License | Apache 2.0 | MIT | GPL 3.0 |
 
 To repeat the comparison, see [docs/comparison.md](docs/comparison.md).
