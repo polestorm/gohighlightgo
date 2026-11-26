@@ -23,7 +23,6 @@ Compared with the established highlighters (details in [Comparison](#comparison)
   tests and fuzzing.
 - **Linear time on hostile input**: one pass, no regular expressions; the only one compared that never hangs or
   slows down on hostile input.
-- **Deterministic**: the same input gives the same output, byte for byte, documented and tested.
 - **Made to be built on**: a single function, a stylesheet per theme, a command, and a few lines to connect it to
   a Markdown renderer (for example [gomdgo](https://github.com/polestorm/gomdgo)) behind a build tag.
 
@@ -61,8 +60,7 @@ conversion `T(x)` looks like a call). It is new.
 | Hostile input: linear, but over 1 s for 64 kB | 0 🥇 | 119 (38 languages) | 1 |
 | Hangs on ordinary non-ASCII text | no 🥇 | yes, JSONata (`zażółć`, `日本`) | no |
 | Crashes on input | no 🥇 | yes, YANG (`/*` repeated) | no |
-| Removing the tags gives back the input[^text] | 298/298 lang 🥇 | 185/200 | *not measured* |
-| Deterministic output | yes, documented and tested | yes, in the same test | *not checked* |
+| Removing the tags gives back the input[^text] | 298/298 🥇 | 185/200 | *not measured* |
 | Language detection from the content | no | yes | *not checked* |
 | Themes | 2, and `auto` | 74 | 97 🥇 |
 | Command line | yes | yes | yes |
