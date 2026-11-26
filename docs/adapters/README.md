@@ -7,10 +7,10 @@ wydaniu łatkę stosuje się w repozytorium odbiorcy i dopisuje zależność:
 
 ```sh
 cd ../gomdgo && git apply ../gohighlightgo/docs/adapters/gomdgo-mermaid.patch
-cd cmd/gomdgo-mermaid && go get github.com/polestorm/gohighlightgo@v0.1.0
+cd cmd/gomdgo-mermaid && go get github.com/polestorm/gohighlightgo@v0.1.1
 
 cd ../gopeekgo && git apply ../gohighlightgo/docs/adapters/gopeekgo.patch
-go get github.com/polestorm/gohighlightgo@v0.1.0
+go get github.com/polestorm/gohighlightgo@v0.1.1
 ```
 
 Do tego czasu oba warianty buduje się lokalnie przez `go.work` (bez commita), tak jak przy pomiarze H5

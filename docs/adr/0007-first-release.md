@@ -25,3 +25,13 @@ obu odbiorców teraz; wynik fuzzingu 24 h nie zmieni tej kolejności.
 + odbiorcy mogą wskazać wydaną wersję w `go.mod`; łatki z `docs/adapters/` stosuje się bez `go.work`;
 − v0.1.0 nie spełnia jeszcze kryterium H4 w części „24 h fuzzingu”; ryzyko ogranicza 142 przypadków
   patologicznych i dotychczasowe przebiegi bez błędu.
+
+## Uzupełnienie 2026-11-26: v0.1.1 przed 24 h fuzzingu
+
+Decyzja właściciela: `v0.1.1` wychodzi przed 24 h fuzzingu, bo od `v0.1.0` nie zmienił się kod biblioteki
+(`highlight/`, `cmd/`): to wydanie README, `docs/comparison.md` i powtarzalnego porównania w `tools/compare`
+(zamrożone wejścia, `rivalbench`, zapisane wyniki). 24 h fuzzingu (`FuzzHTML`, `FuzzDefinition`) zlecone tego samego
+dnia na Synology przez wspólną kolejkę; warunek z punktu 3 obowiązuje dalej dla pierwszego wydania ze zmianą
+kodu biblioteki i dla 1.0. Sekcję „Status” usunięto z README (decyzja
+właściciela z 2026-11-26, README ma być krótkie), więc stan fuzzingu podają `docs/testing.md` i `docs/roadmap.md`,
+a nie README, jak chciał punkt 3.

@@ -40,7 +40,7 @@ conversion `T(x)` looks like a call). It is new.
 
 ## Comparison
 
-| | gohighlightgo 0.1.0 | [chroma](https://github.com/alecthomas/chroma) 2.27.0 | [highlight](http://www.andre-simon.de/) 4.21[^hl] |
+| | gohighlightgo 0.1.1 | [chroma](https://github.com/alecthomas/chroma) 2.27.0 | [highlight](http://www.andre-simon.de/) 4.21[^hl] |
 |---|:---:|:---:|:---:|
 | Languages | 298 | 297 | 263 |
 | Adding a new language | a `.hl` text file | an XML file | a Lua file |
