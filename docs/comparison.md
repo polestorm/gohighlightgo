@@ -74,26 +74,29 @@ document with that code, with and without highlighting.
 ### Hostile input
 
 `go run ./cmd/rivalprobe` in `tools/compare`, 2026-11-25 at commit `bc1f263`, chroma 2.27.0 and highlight 4.21,
-Apple M4, four processes at a time. The inputs are the 22 files of `tools/compare/inputs/hostile`: eleven
-patterns (unclosed `"`, `'`, `` ` ``, `/*`, `(*`, `<!--`, `<`, `${`, `#`, `\`, `[[`, each followed by `a `),
-repeated to about 4 kB and 64 kB, given to every language each library knows: 298 for gohighlightgo, 200 for
-chroma, 134 for highlight. Every call of chroma and highlight runs in its own process, which is killed after 15 s;
-"hang or over 15 s" does not tell a hang from a very slow run. highlight is timed as the whole QLMarkdown command
-on a Markdown document with one code block, so its times include starting the program; that makes a slow-down
-harder to detect, not easier. Each finding is listed in
+Apple M4, four processes at a time. The inputs are the 22 files of `tools/compare/inputs/hostile`: eleven patterns
+(unclosed `"`, `'`, `` ` ``, `/*`, `(*`, `<!--`, `<`, `${`, `#`, `\`, `[[`, each followed by `a `), repeated to
+about 4 kB and 64 kB, given to every language each library knows: 298 for gohighlightgo, 200 for chroma, 134 for
+highlight. Every call of chroma and highlight runs in its own process, which is killed after 15 s; "hang or over
+15 s" does not tell a hang from a very slow run. highlight is timed as the whole QLMarkdown command on a Markdown
+document with one code block, so its times include starting the program; that makes a slow-down harder to detect,
+not easier. Besides hangs, the probe records two kinds of slow-down, which the README leaves out: input ×16
+costing time ×96 or more (gohighlightgo 0, chroma 11 cases in 7 languages, highlight 15 in 6), and linear time but
+over 1 s for 64 kB (gohighlightgo 0, chroma 119 in 38 languages, highlight 1). Each finding is listed in
 [`tools/compare/results/rivalprobe-2026-11-25.json`](../tools/compare/results/rivalprobe-2026-11-25.json). The
 inputs are written to be hostile: ordinary code is highlighted by all three without trouble, and the difference
 matters for untrusted input such as previews and pasted code.
 
-### Removing the tags gives back the input
+### Round-trip fidelity
 
-The library's test corpus (one or more files in each of the 298 languages, at commit `bc1f263`) and the seven
-files of `tools/compare/inputs/text` (CRLF, a lone CR, tabs, no final newline, invalid UTF-8, NUL, non-ASCII
-text) in each language; for invalid UTF-8 and NUL a U+FFFD in their place counts as kept, for both libraries.
-chroma runs without its default conversion of line ends to LF (`EnsureLF: false`), so the check is about its
-lexers, not that option. Where it changes the text: a lone CR is lost or moved (for example C, C++, JavaScript,
-Rust and 11 more), and in diff, make and just also tabs and the last line. highlight's output passes through
-Markdown, so it is not compared.
+The output with its tags removed and its escapes undone must equal the input, byte for byte. Inputs: the library's
+test corpus (one or more files in each of the 298 languages, at commit `bc1f263`) and the seven files of
+`tools/compare/inputs/text` (CRLF, a lone CR, tabs, no final newline, invalid UTF-8, NUL, non-ASCII text) in each
+language; for invalid UTF-8 and NUL a U+FFFD in their place counts as kept, for both libraries. chroma runs
+without its default conversion of line ends to LF (`EnsureLF: false`), so the check is about its lexers, not that
+option. Where it changes the text: a lone CR is lost or moved (for example C, C++, JavaScript, Rust and 11 more),
+and in diff, make and just also tabs and the last line. highlight's output passes through Markdown, so it is not
+compared.
 
 ### XSS-safe output
 

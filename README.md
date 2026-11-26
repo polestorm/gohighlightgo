@@ -42,9 +42,9 @@ conversion `T(x)` looks like a call). It is new.
 
 | | gohighlightgo 0.1.0 | [chroma](https://github.com/alecthomas/chroma) 2.27.0 | [highlight](http://www.andre-simon.de/) 4.21[^hl] |
 |---|:---:|:---:|:---:|
-| Languages | 298 🥇 | 297 | 263 |
-| New language without a new release | a text file (`Register`, `-def`) | an XML file (`NewXMLLexer`, `Register`) | a Lua file |
-| Dependencies[^deps] | 0 🥇 | 1 | a Lua interpreter |
+| Languages | 298 | 297 | 263 |
+| Adding a new language | a text file (`.hl`) | an XML file | a Lua file |
+| Dependencies[^deps] | 0 | 1 | a Lua interpreter |
 | Size added to a program[^size] | 536 kB 🥇 | 4 774 kB | 4 964 kB |
 | Time, 21 files (14.5 kB)[^bench] | 0.17 ms 🥇 | 13 ms | *not measured* |
 | Time, 1 MB of Go | 11 ms 🥇 | 687 ms | *not measured* |
@@ -56,11 +56,9 @@ conversion `T(x)` looks like a call). It is new.
 | XSS-safe output[^safe] | yes | yes | yes |
 | Elements span line breaks | never 🥇 | yes (whitespace) | *not checked* |
 | Hostile input, 64 kB: hang or over 15 s[^hostile] | 0 of 3 278 🥇 | 101 of 2 200 (59 languages) | 8 of 1 474 (8 languages) |
-| Hostile input: input ×16 costs time ×96 or more | 0 🥇 | 11 (7 languages) | 15 (6 languages) |
-| Hostile input: linear, but over 1 s for 64 kB | 0 🥇 | 119 (38 languages) | 1 |
 | Hangs on non-ASCII text | no 🥇 | yes, JSONata (`zażółć`, `日本`) | no 🥇 |
 | Crashes on input | no 🥇 | yes, YANG (`/*` repeated) | no 🥇 |
-| Removing the tags gives back the input[^text] | 298/298 🥇 | 185/200 | *not measured* |
+| Round-trip fidelity[^text] | 298/298 🥇 | 185/200 | *not measured* |
 | Language detection | no | yes 🥇 | *not checked* |
 | Themes | 2, and `auto` | 74 | 97 🥇 |
 | Output formats | HTML | HTML, SVG, terminal, JSON | HTML, LaTeX, RTF, ODT, SVG, terminal and more[^formats] 🥇 |
@@ -82,8 +80,8 @@ To repeat the comparison, see [docs/comparison.md](docs/comparison.md).
     [More](docs/comparison.md#a-document-full-of-code)
 [^hostile]: Eleven hostile patterns at about 4 kB and 64 kB in every language; each call of chroma and highlight
     in its own process, stopped after 15 s. [More](docs/comparison.md#hostile-input)
-[^text]: The corpus and seven awkward inputs (CRLF, a lone CR, tabs, invalid UTF-8 and others) in each language.
-    [More](docs/comparison.md#removing-the-tags-gives-back-the-input)
+[^text]: Removing the tags and escapes gives back the input, byte for byte; on the corpus and seven awkward
+    inputs in each language. [More](docs/comparison.md#round-trip-fidelity)
 [^mem]: Allocated: the sum of all allocations in one run, mostly freed during it. Peak added: the largest memory
     use of a process minus the same process without highlighting. [More](docs/comparison.md#memory)
 [^formats]: From its manual: HTML, XHTML, LaTeX, TeX, RTF, ODT, SVG, BBCode, Pango markup and terminal (16, 256
